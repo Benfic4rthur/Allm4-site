@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const favicon32 = "/allm4-favicon-v4-32.png";
+const faviconIco = "/allm4-favicon-v4.ico";
+const appleTouchIcon = "/allm4-touch-v4.png";
+
 export const metadata: Metadata = {
   title: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
   description:
     "Transforme seu computador em um ambiente próprio de inteligência artificial. Conheça o Allm4 para macOS Apple Silicon e Windows.",
+  icons: {
+    icon: [
+      { url: favicon32, type: "image/png", sizes: "32x32" },
+      { url: faviconIco, type: "image/x-icon" },
+    ],
+    shortcut: faviconIco,
+    apple: appleTouchIcon,
+  },
 };
 
 const safariOpaqueScriptErrorGuard = `
@@ -42,8 +54,10 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
-        <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/icon.svg?v=3" type="image/svg+xml" />
+        <link rel="icon" href={faviconIco} sizes="any" />
+        <link rel="icon" href={favicon32} type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href={faviconIco} />
+        <link rel="apple-touch-icon" href={appleTouchIcon} sizes="180x180" />
         <script
           dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}
         />

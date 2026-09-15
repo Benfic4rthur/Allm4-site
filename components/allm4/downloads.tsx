@@ -91,13 +91,13 @@ export function Downloads() {
   ];
 
   return (
-    <section className="download-section section" id="download">
+    <section className="download-section section">
       <div className="wrap">
         <div className="download-heading reveal">
           <div className="eyebrow">
             <span className="status-dot" /> O PRÓXIMO PASSO É SEU
           </div>
-          <h2>
+          <h2 id="download" style={{ scrollMarginTop: "-68px" }}>
             Seu computador já pode
             <br />
             fazer <span>muito mais.</span>
@@ -189,7 +189,7 @@ function AccessInfo() {
 
   return (
     <div
-      className="reveal mx-auto mb-5 max-w-[680px] overflow-hidden rounded-[10px] border border-[#ffffff12] bg-[#171714] transition-[border-color,background-color] duration-300"
+      className="reveal mx-auto mt-3 mb-3 max-w-[680px] overflow-hidden rounded-[10px] border border-[#ffffff12] bg-[#171714] transition-[border-color,background-color] duration-300"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >

@@ -1,4 +1,5 @@
 const trustedReleaseOwner = "Benfic4rthur";
+const downloadCountBaseline = 1;
 
 export const siteConfig = {
   name: "Allm4",
@@ -17,6 +18,8 @@ export type Release = {
   url: string;
   mac: string | null;
   windows: string | null;
+  macDownloads: number;
+  windowsDownloads: number;
 };
 
 export const fallbackRelease: Release = {
@@ -25,6 +28,8 @@ export const fallbackRelease: Release = {
   mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.13/Allm4-0.1.13.dmg",
   windows:
     "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.13/Allm4-Setup-0.1.13.exe",
+  macDownloads: 2,
+  windowsDownloads: 2,
 };
 
 function hasTrustedLogin(value: unknown) {
@@ -44,6 +49,11 @@ function isOfficialAssetUrl(value: string, tag: string, fileName: string) {
   } catch {
     return false;
   }
+}
+
+function displayDownloadCount(value: unknown) {
+  if (!Number.isSafeInteger(value) || (value as number) < 0) return 2;
+  return Math.max(2, (value as number) + downloadCountBaseline);
 }
 
 export function parseRelease(data: unknown): Release | null {
@@ -77,9 +87,13 @@ export function parseRelease(data: unknown): Release | null {
         isOfficialAssetUrl(candidate.browser_download_url, tag, fileName)
       );
     });
-    return typeof entry?.browser_download_url === "string"
-      ? entry.browser_download_url
-      : null;
+
+    if (!entry || typeof entry.browser_download_url !== "string") return null;
+
+    return {
+      url: entry.browser_download_url,
+      downloads: displayDownloadCount(entry.download_count),
+    };
   };
 
   const mac = asset(`Allm4-${version}.dmg`);
@@ -89,7 +103,9 @@ export function parseRelease(data: unknown): Release | null {
   return {
     version,
     url: `${siteConfig.releases}/tag/${tag}`,
-    mac,
-    windows,
+    mac: mac?.url ?? null,
+    windows: windows?.url ?? null,
+    macDownloads: mac?.downloads ?? 2,
+    windowsDownloads: windows?.downloads ?? 2,
   };
 }

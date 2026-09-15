@@ -12,7 +12,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout
@@ -35,3 +35,10 @@ jobs:
 
       - name: Validate release parsing
         run: node --experimental-strip-types --test tests/releases.test.mjs
+
+      - name: Build production export
+        env:
+          GITHUB_PAGES: "true"
+          PAGES_BASE_PATH: ""
+          NEXT_PUBLIC_BASE_PATH: ""
+        run: npx next build

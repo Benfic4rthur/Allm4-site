@@ -15,6 +15,7 @@ const asset = (name, url = prefix + name, extra = {}) => ({
   uploader: trustedUser,
   digest,
   browser_download_url: url,
+  download_count: 1,
   ...extra,
 });
 
@@ -44,9 +45,34 @@ test("selects only the exact official installers", () => {
   assert.equal(result.windows, prefix + windowsName);
 });
 
+test("starts visible counters at two and follows GitHub counts", () => {
+  const result = parseRelease(
+    release([
+      asset(`Allm4-${version}.dmg`, undefined, { download_count: 1 }),
+      asset(`Allm4-Setup-${version}.exe`, undefined, { download_count: 8 }),
+    ]),
+  );
+
+  assert.equal(result.macDownloads, 2);
+  assert.equal(result.windowsDownloads, 9);
+});
+
+test("falls back to two when GitHub count is unavailable or invalid", () => {
+  const result = parseRelease(
+    release([
+      asset(`Allm4-${version}.dmg`, undefined, { download_count: null }),
+      asset(`Allm4-Setup-${version}.exe`, undefined, { download_count: -1 }),
+    ]),
+  );
+
+  assert.equal(result.macDownloads, 2);
+  assert.equal(result.windowsDownloads, 2);
+});
+
 test("a partial release does not claim an unavailable installer exists", () => {
   const result = parseRelease(release([asset(`Allm4-${version}.dmg`)]));
   assert.equal(result.windows, null);
+  assert.equal(result.windowsDownloads, 2);
 });
 
 test("rejects malformed, untrusted or foreign release data", () => {
@@ -74,4 +100,6 @@ test("the fallback contains separate official Mac and Windows installers", () =>
     fallbackRelease.windows,
     /\/v0\.1\.13\/Allm4-Setup-0\.1\.13\.exe$/,
   );
+  assert.equal(fallbackRelease.macDownloads, 2);
+  assert.equal(fallbackRelease.windowsDownloads, 2);
 });

@@ -54,7 +54,7 @@ export function MotionRoot({ children }: { children: ReactNode }) {
 
       cursorEl?.classList.add("is-visible");
       if (cursorEl) {
-        cursorEl.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+        cursorEl.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-2px, -2px)`;
       }
 
       cancelAnimationFrame(frame);
@@ -98,20 +98,31 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           position: fixed;
           left: 0;
           top: 0;
-          width: 10px;
-          height: 10px;
-          border-radius: 999px;
-          background: #05070a;
-          border: 1px solid rgba(232, 244, 255, 0.92);
-          box-shadow:
-            0 0 0 1px rgba(207, 228, 255, 0.18),
-            0 0 9px rgba(211, 232, 255, 0.72),
-            0 0 22px rgba(142, 190, 255, 0.38);
+          width: 22px;
+          height: 28px;
           pointer-events: none;
           z-index: 2147483000;
           opacity: 0;
           transition: opacity 100ms ease;
           will-change: transform;
+        }
+
+        .allm4-cursor svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+          overflow: visible;
+          filter:
+            drop-shadow(0 0 3px rgba(232, 244, 255, 0.95))
+            drop-shadow(0 0 8px rgba(191, 220, 255, 0.68))
+            drop-shadow(0 0 15px rgba(126, 178, 255, 0.38));
+        }
+
+        .allm4-cursor path {
+          fill: #05070a;
+          stroke: rgba(238, 247, 255, 0.96);
+          stroke-width: 1.15;
+          stroke-linejoin: round;
         }
 
         .allm4-cursor.is-visible {
@@ -124,7 +135,11 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           }
         }
       `}</style>
-      <div ref={cursor} className="allm4-cursor" aria-hidden="true" />
+      <div ref={cursor} className="allm4-cursor" aria-hidden="true">
+        <svg viewBox="0 0 22 28" focusable="false">
+          <path d="M2.2 1.8 2.7 22l5-4.8 4 9 4-1.8-4-8.8 7-.4L2.2 1.8Z" />
+        </svg>
+      </div>
       {children}
     </div>
   );

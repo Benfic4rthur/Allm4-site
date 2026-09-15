@@ -1,5 +1,8 @@
 import { Sparkles, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export function Brand({ label = false }: { label?: boolean }) {
   return (
     <a href="#inicio" className="brand" aria-label="Allm4 — início">
@@ -37,7 +40,7 @@ export function AppScreenshot({ full = false }: { full?: boolean }) {
       </div>
       <div className="screenshot-viewport">
         <img
-          src="/images/allm4-app.png"
+          src={`${publicBasePath}/images/allm4-app.png`}
           alt="Interface real do Allm4: chat com modelo local, histórico à esquerda, seletor de modelos e painel de observabilidade"
           width="3456"
           height="2234"

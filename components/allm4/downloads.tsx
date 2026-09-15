@@ -32,10 +32,15 @@ export function Downloads() {
       "https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases/latest",
       {
         signal: controller.signal,
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
         headers: { Accept: "application/vnd.github+json" },
       },
     )
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        const contentType = r.headers.get("content-type") ?? "";
+        return r.ok && contentType.includes("application/json") ? r.json() : null;
+      })
       .then((data) => {
         const next = parseRelease(data);
         if (next) setRelease(next);
@@ -111,11 +116,15 @@ export function Downloads() {
         </div>
         <MacInstallGuide />
         <div className="release-links">
-          <a href={release.url} target="_blank" rel="noreferrer">
+          <a href={release.url} target="_blank" rel="noopener noreferrer">
             O que há de novo <ArrowUpRight size={12} />
           </a>
           <span />
-          <a href={siteConfig.releases} target="_blank" rel="noreferrer">
+          <a
+            href={siteConfig.releases}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Todas as versões <ArrowUpRight size={12} />
           </a>
         </div>

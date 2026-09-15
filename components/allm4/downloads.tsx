@@ -10,7 +10,11 @@ import {
   Check,
   ChevronDown,
 } from "lucide-react";
-import { fallbackRelease, parseRelease, siteConfig } from "@/lib/site-config";
+import {
+  fallbackRelease,
+  parseReleaseHistory,
+  siteConfig,
+} from "@/lib/site-config";
 
 function WindowsIcon() {
   return (
@@ -32,29 +36,42 @@ export function Downloads() {
 
   useEffect(() => {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    let active = true;
 
-    fetch(
-      "https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases/latest",
-      {
-        signal: controller.signal,
-        credentials: "omit",
-        referrerPolicy: "no-referrer",
-        headers: { Accept: "application/vnd.github+json" },
-      },
-    )
-      .then((r) => {
-        const contentType = r.headers.get("content-type") ?? "";
-        return r.ok && contentType.includes("application/json") ? r.json() : null;
-      })
-      .then((data) => {
-        const next = parseRelease(data);
-        if (next) setRelease(next);
-      })
+    async function loadReleaseHistory() {
+      const releases: unknown[] = [];
+
+      for (let page = 1; page <= 10; page += 1) {
+        const response = await fetch(
+          `https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases?per_page=100&page=${page}`,
+          {
+            signal: controller.signal,
+            credentials: "omit",
+            referrerPolicy: "no-referrer",
+            headers: { Accept: "application/vnd.github+json" },
+          },
+        );
+        const contentType = response.headers.get("content-type") ?? "";
+        if (!response.ok || !contentType.includes("application/json")) return;
+
+        const data: unknown = await response.json();
+        if (!Array.isArray(data)) return;
+
+        releases.push(...data);
+        if (data.length < 100) break;
+      }
+
+      const next = parseReleaseHistory(releases);
+      if (active && next) setRelease(next);
+    }
+
+    void loadReleaseHistory()
       .catch(() => {})
       .finally(() => clearTimeout(timeout));
 
     return () => {
+      active = false;
       clearTimeout(timeout);
       controller.abort();
     };
@@ -131,8 +148,8 @@ export function Downloads() {
                   {p.url ? (
                     <span
                       className="inline-flex items-center gap-1.5 font-mono text-[9px] font-medium opacity-70"
-                      title="Contagem pública de downloads deste instalador"
-                      aria-label={`${visibleDownloads} downloads`}
+                      title="Contagem pública acumulada de downloads de todas as versões"
+                      aria-label={`${visibleDownloads} downloads acumulados`}
                     >
                       <Download size={13} />
                       {visibleDownloads} downloads

@@ -1,6 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseRelease, fallbackRelease } from "../lib/site-config.ts";
+import {
+  parseRelease,
+  parseReleaseHistory,
+  fallbackRelease,
+} from "../lib/site-config.ts";
 
 const version = "1.2.3";
 const tag = `v${version}`;
@@ -27,6 +31,31 @@ const release = (assets, extra = {}) => ({
   assets,
   ...extra,
 });
+
+function releaseFor(releaseVersion, macDownloads, windowsDownloads) {
+  const releaseTag = `v${releaseVersion}`;
+  const releasePrefix =
+    `https://github.com/Benfic4rthur/Allm4-Releases/releases/download/${releaseTag}/`;
+  const releaseAsset = (name, downloadCount) => ({
+    name,
+    state: "uploaded",
+    uploader: trustedUser,
+    digest,
+    browser_download_url: releasePrefix + name,
+    download_count: downloadCount,
+  });
+
+  return {
+    draft: false,
+    prerelease: false,
+    author: trustedUser,
+    tag_name: releaseTag,
+    assets: [
+      releaseAsset(`Allm4-${releaseVersion}.dmg`, macDownloads),
+      releaseAsset(`Allm4-Setup-${releaseVersion}.exe`, windowsDownloads),
+    ],
+  };
+}
 
 test("selects only the exact official installers", () => {
   const macName = `Allm4-${version}.dmg`;
@@ -73,6 +102,32 @@ test("a partial release does not claim an unavailable installer exists", () => {
   const result = parseRelease(release([asset(`Allm4-${version}.dmg`)]));
   assert.equal(result.windows, null);
   assert.equal(result.windowsDownloads, 2);
+});
+
+test("sums installer downloads across release history and keeps the newest links", () => {
+  const result = parseReleaseHistory([
+    releaseFor("1.2.3", 4, 7),
+    releaseFor("1.2.5", 2, 3),
+    releaseFor("1.2.4", 5, 1),
+  ]);
+
+  assert.equal(result.version, "1.2.5");
+  assert.match(result.mac, /\/v1\.2\.5\/Allm4-1\.2\.5\.dmg$/);
+  assert.match(result.windows, /\/v1\.2\.5\/Allm4-Setup-1\.2\.5\.exe$/);
+  assert.equal(result.macDownloads, 12);
+  assert.equal(result.windowsDownloads, 12);
+});
+
+test("release history ignores invalid entries without losing valid totals", () => {
+  const filtered = parseReleaseHistory([
+    null,
+    releaseFor("1.2.2", 3, 4),
+    { ...releaseFor("9.9.9", 100, 100), author: { login: "someone-else" } },
+  ]);
+
+  assert.equal(filtered.version, "1.2.2");
+  assert.equal(filtered.macDownloads, 4);
+  assert.equal(filtered.windowsDownloads, 5);
 });
 
 test("rejects malformed, untrusted or foreign release data", () => {

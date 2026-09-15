@@ -20,6 +20,18 @@ export type Release = {
   windowsDownloads: number;
 };
 
+type ParsedInstaller = {
+  url: string;
+  downloads: number;
+};
+
+type ParsedRelease = {
+  version: string;
+  url: string;
+  mac: ParsedInstaller | null;
+  windows: ParsedInstaller | null;
+};
+
 export const fallbackRelease: Release = {
   version: "0.1.13",
   url: "https://github.com/Benfic4rthur/Allm4-Releases/releases/tag/v0.1.13",
@@ -49,12 +61,28 @@ function isOfficialAssetUrl(value: string, tag: string, fileName: string) {
   }
 }
 
-function displayDownloadCount(value: unknown) {
-  if (!Number.isSafeInteger(value) || (value as number) < 0) return 2;
-  return Math.max(2, (value as number) + downloadCountBaseline);
+function rawDownloadCount(value: unknown) {
+  return Number.isSafeInteger(value) && (value as number) >= 0
+    ? (value as number)
+    : 0;
 }
 
-export function parseRelease(data: unknown): Release | null {
+function displayDownloadCount(value: number) {
+  return Math.max(2, value + downloadCountBaseline);
+}
+
+function compareVersions(a: string, b: string) {
+  const aParts = a.split(".").map(Number);
+  const bParts = b.split(".").map(Number);
+
+  for (let index = 0; index < 3; index += 1) {
+    if (aParts[index] !== bParts[index]) return aParts[index] - bParts[index];
+  }
+
+  return 0;
+}
+
+function parseReleaseEntry(data: unknown): ParsedRelease | null {
   if (!data || typeof data !== "object") return null;
   const release = data as Record<string, unknown>;
   if (
@@ -71,7 +99,7 @@ export function parseRelease(data: unknown): Release | null {
   const version = tag.replace(/^v/, "");
   const assets: unknown[] = release.assets;
 
-  const asset = (fileName: string) => {
+  const asset = (fileName: string): ParsedInstaller | null => {
     const entry = assets.find((value): value is Record<string, unknown> => {
       if (!value || typeof value !== "object") return false;
       const candidate = value as Record<string, unknown>;
@@ -90,7 +118,7 @@ export function parseRelease(data: unknown): Release | null {
 
     return {
       url: entry.browser_download_url,
-      downloads: displayDownloadCount(entry.download_count),
+      downloads: rawDownloadCount(entry.download_count),
     };
   };
 
@@ -101,9 +129,58 @@ export function parseRelease(data: unknown): Release | null {
   return {
     version,
     url: `${siteConfig.releases}/tag/${tag}`,
-    mac: mac?.url ?? null,
-    windows: windows?.url ?? null,
-    macDownloads: mac?.downloads ?? 2,
-    windowsDownloads: windows?.downloads ?? 2,
+    mac,
+    windows,
   };
+}
+
+function publicRelease(
+  release: ParsedRelease,
+  macDownloads: number,
+  windowsDownloads: number,
+): Release {
+  return {
+    version: release.version,
+    url: release.url,
+    mac: release.mac?.url ?? null,
+    windows: release.windows?.url ?? null,
+    macDownloads: displayDownloadCount(macDownloads),
+    windowsDownloads: displayDownloadCount(windowsDownloads),
+  };
+}
+
+export function parseRelease(data: unknown): Release | null {
+  const release = parseReleaseEntry(data);
+  if (!release) return null;
+
+  return publicRelease(
+    release,
+    release.mac?.downloads ?? 0,
+    release.windows?.downloads ?? 0,
+  );
+}
+
+export function parseReleaseHistory(data: unknown): Release | null {
+  if (!Array.isArray(data)) return null;
+
+  const releases = data
+    .map(parseReleaseEntry)
+    .filter((release): release is ParsedRelease => release !== null);
+
+  if (releases.length === 0) return null;
+
+  const latest = releases.reduce((current, candidate) =>
+    compareVersions(candidate.version, current.version) > 0 ? candidate : current,
+  );
+
+  const macDownloads = releases.reduce(
+    (total, release) => total + (release.mac?.downloads ?? 0),
+    0,
+  );
+  const windowsDownloads = releases.reduce(
+    (total, release) => total + (release.windows?.downloads ?? 0),
+    0,
+  );
+
+  return publicRelease(latest, macDownloads, windowsDownloads);
 }

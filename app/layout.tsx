@@ -1,17 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-const faviconUrl = `${publicBasePath}/favicon.svg?v=2`;
-
 export const metadata: Metadata = {
   title: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
   description:
     "Transforme seu computador em um ambiente próprio de inteligência artificial. Conheça o Allm4 para macOS Apple Silicon e Windows.",
-  icons: {
-    icon: [{ url: faviconUrl, type: "image/svg+xml" }],
-    shortcut: faviconUrl,
-  },
 };
 
 const safariOpaqueScriptErrorGuard = `
@@ -49,6 +42,8 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <link rel="icon" href="/icon.svg?v=3" type="image/svg+xml" />
+        <link rel="shortcut icon" href="/icon.svg?v=3" type="image/svg+xml" />
         <script
           dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}
         />

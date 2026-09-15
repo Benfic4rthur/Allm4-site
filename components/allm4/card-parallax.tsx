@@ -74,17 +74,17 @@ export function CardParallax() {
         const isExplorer = card.classList.contains("explorer-screenshot");
         const isHeroApp = card.classList.contains("app-window") && !!card.closest(".product-stage");
 
-        const rotateX = y * (isHeroApp ? -9 : isExplorer ? -7.5 : -6.5);
-        const rotateY = x * (isHeroApp ? 12 : isExplorer ? 10.5 : 8.5);
-        const translateX = x * (isHeroApp ? 16 : isExplorer ? 12 : 7);
-        const translateY = y * (isHeroApp ? 11 : isExplorer ? 8 : 5) - (isHeroApp ? 4 : isExplorer ? 5 : 6);
-        const translateZ = isHeroApp ? 52 : isExplorer ? 42 : 18;
-        const scale = isHeroApp ? 1.028 : isExplorer ? 1.025 : 1.018;
-        const perspective = isHeroApp ? 780 : isExplorer ? 900 : 850;
+        const rotateX = y * (isHeroApp ? -9 : isExplorer ? -4.2 : -3.8);
+        const rotateY = x * (isHeroApp ? 12 : isExplorer ? 5.8 : 5.2);
+        const translateX = x * (isHeroApp ? 16 : isExplorer ? 7 : 4);
+        const translateY = y * (isHeroApp ? 11 : isExplorer ? 4.5 : 3) - (isHeroApp ? 4 : isExplorer ? 3 : 3.5);
+        const translateZ = isHeroApp ? 52 : isExplorer ? 24 : 11;
+        const scale = isHeroApp ? 1.028 : isExplorer ? 1.014 : 1.011;
+        const perspective = isHeroApp ? 780 : isExplorer ? 1050 : 980;
         const rotateZ = isHeroApp
           ? ` rotateZ(${x * 0.7}deg)`
           : isExplorer
-            ? ` rotateZ(${x * 0.9 - 2}deg)`
+            ? ` rotateZ(${x * 0.35 - 0.8}deg)`
             : "";
 
         card.style.setProperty("--parallax-light-x", `${(x + 1) * 50}%`);
@@ -93,7 +93,7 @@ export function CardParallax() {
           `perspective(${perspective}px) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) ` +
           `rotateX(${rotateX}deg) rotateY(${rotateY}deg)${rotateZ} scale3d(${scale}, ${scale}, ${scale})`;
         card.style.transition =
-          "transform 75ms cubic-bezier(.2,.8,.2,1), border-color 220ms ease, box-shadow 220ms ease, filter 220ms ease";
+          "transform 90ms cubic-bezier(.2,.8,.2,1), border-color 220ms ease, box-shadow 220ms ease, filter 220ms ease";
         card.style.transformStyle = "preserve-3d";
         card.style.willChange = "transform";
         card.style.zIndex = "2";

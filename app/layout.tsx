@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
@@ -79,6 +80,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         <SecurityConsole />
+        <CardParallax />
         {children}
       </body>
     </html>

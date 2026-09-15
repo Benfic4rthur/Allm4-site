@@ -70,14 +70,14 @@ export function CardParallax() {
         const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
         const isExplorer = card.classList.contains("explorer-screenshot");
 
-        const rotateX = y * (isExplorer ? -3.2 : -6.5);
-        const rotateY = x * (isExplorer ? 4.6 : 8.5);
-        const translateX = x * (isExplorer ? 5 : 7);
-        const translateY = y * (isExplorer ? 3 : 5) - (isExplorer ? 2 : 6);
-        const translateZ = isExplorer ? 24 : 18;
-        const scale = isExplorer ? 1.01 : 1.018;
-        const perspective = isExplorer ? 1200 : 850;
-        const rotateZ = isExplorer ? " rotateZ(-2deg)" : "";
+        const rotateX = y * (isExplorer ? -7.5 : -6.5);
+        const rotateY = x * (isExplorer ? 10.5 : 8.5);
+        const translateX = x * (isExplorer ? 12 : 7);
+        const translateY = y * (isExplorer ? 8 : 5) - (isExplorer ? 5 : 6);
+        const translateZ = isExplorer ? 42 : 18;
+        const scale = isExplorer ? 1.025 : 1.018;
+        const perspective = isExplorer ? 900 : 850;
+        const rotateZ = isExplorer ? ` rotateZ(${x * 0.9 - 2}deg)` : "";
 
         card.style.setProperty("--parallax-light-x", `${(x + 1) * 50}%`);
         card.style.setProperty("--parallax-light-y", `${(y + 1) * 50}%`);
@@ -85,7 +85,7 @@ export function CardParallax() {
           `perspective(${perspective}px) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) ` +
           `rotateX(${rotateX}deg) rotateY(${rotateY}deg)${rotateZ} scale3d(${scale}, ${scale}, ${scale})`;
         card.style.transition =
-          "transform 90ms cubic-bezier(.2,.8,.2,1), border-color 260ms ease, box-shadow 260ms ease, filter 260ms ease";
+          "transform 80ms cubic-bezier(.2,.8,.2,1), border-color 260ms ease, box-shadow 260ms ease, filter 260ms ease";
         card.style.transformStyle = "preserve-3d";
         card.style.willChange = "transform";
         card.style.zIndex = "2";

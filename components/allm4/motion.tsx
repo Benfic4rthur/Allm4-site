@@ -98,8 +98,8 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           position: fixed;
           left: 0;
           top: 0;
-          width: 22px;
-          height: 28px;
+          width: 18px;
+          height: 24px;
           pointer-events: none;
           z-index: 2147483000;
           opacity: 0;
@@ -121,7 +121,8 @@ export function MotionRoot({ children }: { children: ReactNode }) {
         .allm4-cursor path {
           fill: #05070a;
           stroke: rgba(238, 247, 255, 0.96);
-          stroke-width: 1.15;
+          stroke-width: 1.05;
+          stroke-linecap: round;
           stroke-linejoin: round;
         }
 
@@ -136,8 +137,8 @@ export function MotionRoot({ children }: { children: ReactNode }) {
         }
       `}</style>
       <div ref={cursor} className="allm4-cursor" aria-hidden="true">
-        <svg viewBox="0 0 22 28" focusable="false">
-          <path d="M2.2 1.8 2.7 22l5-4.8 4 9 4-1.8-4-8.8 7-.4L2.2 1.8Z" />
+        <svg viewBox="0 0 18 24" focusable="false">
+          <path d="M2.15 1.75 Q1.72 1.42 1.74 2.08 L2.12 18.45 Q2.14 19.08 2.63 19.4 Q3.03 19.66 3.42 19.27 L6.63 15.98 L9.67 22.05 Q9.93 22.56 10.45 22.31 L12.58 21.28 Q13.08 21.04 12.83 20.53 L9.88 14.48 L15.42 14.17 Q16.02 14.14 16.28 13.62 Q16.47 13.21 16.08 12.9 Z" />
         </svg>
       </div>
       {children}

@@ -98,8 +98,8 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           position: fixed;
           left: 0;
           top: 0;
-          width: 18px;
-          height: 24px;
+          width: 16px;
+          height: 21px;
           pointer-events: none;
           z-index: 2147483000;
           opacity: 0;
@@ -112,6 +112,8 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           width: 100%;
           height: 100%;
           overflow: visible;
+          transform: rotate(-8deg);
+          transform-origin: 12% 10%;
           filter:
             drop-shadow(0 0 3px rgba(232, 244, 255, 0.95))
             drop-shadow(0 0 8px rgba(191, 220, 255, 0.68))

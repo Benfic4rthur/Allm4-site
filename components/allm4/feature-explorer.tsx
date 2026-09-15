@@ -254,18 +254,18 @@ export function FeatureExplorer() {
           box-shadow: 0 0 12px rgba(246, 124, 82, 0.55);
         }
         .feature-preview {
-          perspective: 1300px;
+          perspective: 1050px;
         }
         .explorer-motion-idle {
           width: 100%;
-          animation: explorer-idle-float 6.5s ease-in-out infinite;
+          animation: explorer-idle-float 4.8s ease-in-out infinite;
         }
         .explorer-screenshot {
           --parallax-light-x: 50%;
           --parallax-light-y: 50%;
           transform-style: preserve-3d;
           will-change: transform;
-          transition: transform 360ms cubic-bezier(.2,.8,.2,1), filter 260ms ease;
+          transition: transform 300ms cubic-bezier(.2,.8,.2,1), filter 220ms ease, box-shadow 220ms ease;
         }
         .explorer-screenshot::before {
           content: "";
@@ -277,22 +277,25 @@ export function FeatureExplorer() {
           opacity: 0;
           background: radial-gradient(
             circle at var(--parallax-light-x) var(--parallax-light-y),
-            rgba(255, 197, 153, 0.12),
-            rgba(246, 124, 82, 0.04) 24%,
-            transparent 52%
+            rgba(255, 214, 185, 0.2),
+            rgba(246, 124, 82, 0.09) 28%,
+            transparent 58%
           );
           mix-blend-mode: screen;
-          transition: opacity 220ms ease;
+          transition: opacity 180ms ease;
         }
         .explorer-screenshot:hover::before {
           opacity: 1;
         }
         .explorer-screenshot:hover {
-          filter: brightness(1.025);
+          filter: brightness(1.06) saturate(1.04);
+          box-shadow: 0 28px 70px rgba(0, 0, 0, .26);
         }
         @keyframes explorer-idle-float {
-          0%, 100% { transform: translate3d(0, 0, 0); }
-          50% { transform: translate3d(0, -5px, 0); }
+          0%, 100% { transform: translate3d(0, 0, 0) rotateZ(0deg); }
+          25% { transform: translate3d(0, -7px, 0) rotateZ(-.35deg); }
+          50% { transform: translate3d(0, -12px, 0) rotateZ(0deg); }
+          75% { transform: translate3d(0, -6px, 0) rotateZ(.35deg); }
         }
         @keyframes feature-guide-pulse {
           0%, 100% { transform: translateX(0); opacity: .58; }

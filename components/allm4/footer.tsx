@@ -3,7 +3,6 @@ import { useState } from "react";
 import {
   ArrowUpRight,
   Mail,
-  MessageCircle,
   BookOpen,
   ShieldCheck,
   FileText,
@@ -54,16 +53,6 @@ export function Footer() {
             >
               <Mail size={12} />
               {siteConfig.contactEmail}
-            </a>
-            <a
-              className="contact-link"
-              href={siteConfig.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle size={12} />
-              WhatsApp · {siteConfig.whatsappLabel}
-              <ArrowUpRight size={11} />
             </a>
           </div>
           <div className="footer-column">

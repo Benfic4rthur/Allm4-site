@@ -6,9 +6,7 @@ export const siteConfig = {
   cta: { label: "Baixar Allm4", href: "#download" },
   repository: "https://github.com/Benfic4rthur/Allm4-Releases",
   releases: "https://github.com/Benfic4rthur/Allm4-Releases/releases",
-  contactEmail: "arthur_benfica@hotmail.com",
-  whatsapp: "https://wa.me/5551991640517",
-  whatsappLabel: "+55 (51) 99164-0517",
+  contactEmail: "suporte@allm4.com",
   privacyUrl: "",
   termsUrl: "",
 };

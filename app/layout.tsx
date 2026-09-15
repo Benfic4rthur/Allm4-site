@@ -2,9 +2,8 @@ import type { Metadata } from "next";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
-const favicon32 = "/allm4-favicon-v4-32.png";
-const faviconIco = "/allm4-favicon-v4.ico";
-const appleTouchIcon = "/allm4-touch-v4.png";
+const favicon32 = "/allm4-favicon-v4-32.png?v=5";
+const appleTouchIcon = "/allm4-touch-v4.png?v=5";
 const isProduction = process.env.NODE_ENV === "production";
 
 const productionCsp = [
@@ -30,11 +29,7 @@ export const metadata: Metadata = {
   description:
     "Transforme seu computador em um ambiente próprio de inteligência artificial. Conheça o Allm4 para macOS Apple Silicon e Windows.",
   icons: {
-    icon: [
-      { url: favicon32, type: "image/png", sizes: "32x32" },
-      { url: faviconIco, type: "image/x-icon" },
-    ],
-    shortcut: faviconIco,
+    icon: [{ url: favicon32, type: "image/png", sizes: "32x32" }],
     apple: appleTouchIcon,
   },
 };
@@ -76,10 +71,6 @@ export default function RootLayout({
           <meta httpEquiv="Content-Security-Policy" content={productionCsp} />
         )}
         <meta name="referrer" content="no-referrer" />
-        <link rel="icon" href={faviconIco} sizes="any" />
-        <link rel="icon" href={favicon32} type="image/png" sizes="32x32" />
-        <link rel="shortcut icon" href={faviconIco} />
-        <link rel="apple-touch-icon" href={appleTouchIcon} sizes="180x180" />
         {!isProduction && (
           <script
             dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}

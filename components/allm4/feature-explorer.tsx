@@ -11,6 +11,7 @@ import {
   Sparkles,
   Download,
   Search,
+  MousePointer2,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { AppScreenshot } from "./ui";
@@ -94,11 +95,13 @@ const features = [
 function FeatureVisual({ id }: { id: string }) {
   if (id === "conversa")
     return (
-      <div className="explorer-screenshot">
-        <AppScreenshot full />
-        <span className="image-caption">
-          <span className="status-dot" /> INTERFACE REAL DO ALLM4
-        </span>
+      <div className="explorer-motion-idle">
+        <div className="explorer-screenshot">
+          <AppScreenshot full />
+          <span className="image-caption">
+            <span className="status-dot" /> INTERFACE REAL DO ALLM4
+          </span>
+        </div>
       </div>
     );
   return (
@@ -211,6 +214,103 @@ export function FeatureExplorer() {
   const [active, setActive] = useState("conversa");
   return (
     <section className="section explore-section wrap reveal" id="recursos">
+      <style>{`
+        .feature-tab-guide {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 7px;
+          margin: 4px 0 -5px;
+          color: #77786f;
+          font: 7px monospace;
+          letter-spacing: 1.4px;
+          text-transform: uppercase;
+          pointer-events: none;
+        }
+        .feature-tab-guide svg {
+          color: #f67c52;
+          animation: feature-guide-pulse 1.8s ease-in-out infinite;
+        }
+        .feature-tab {
+          position: relative;
+          transition: color 180ms ease, background-color 180ms ease, transform 180ms ease;
+        }
+        .feature-tab:hover {
+          color: #d5d2c9;
+          background: rgba(246, 124, 82, 0.045);
+          transform: translateY(-2px);
+        }
+        .feature-tab[data-state="active"] {
+          background: linear-gradient(to top, rgba(246, 124, 82, 0.075), transparent 72%);
+        }
+        .feature-tab[data-state="active"]::after {
+          content: "";
+          position: absolute;
+          left: 18%;
+          right: 18%;
+          bottom: -1px;
+          height: 1px;
+          background: #f67c52;
+          box-shadow: 0 0 12px rgba(246, 124, 82, 0.55);
+        }
+        .feature-preview {
+          perspective: 1300px;
+        }
+        .explorer-motion-idle {
+          width: 100%;
+          animation: explorer-idle-float 6.5s ease-in-out infinite;
+        }
+        .explorer-screenshot {
+          --parallax-light-x: 50%;
+          --parallax-light-y: 50%;
+          transform-style: preserve-3d;
+          will-change: transform;
+          transition: transform 360ms cubic-bezier(.2,.8,.2,1), filter 260ms ease;
+        }
+        .explorer-screenshot::before {
+          content: "";
+          position: absolute;
+          inset: 0 0 24px;
+          z-index: 3;
+          border-radius: 12px;
+          pointer-events: none;
+          opacity: 0;
+          background: radial-gradient(
+            circle at var(--parallax-light-x) var(--parallax-light-y),
+            rgba(255, 197, 153, 0.12),
+            rgba(246, 124, 82, 0.04) 24%,
+            transparent 52%
+          );
+          mix-blend-mode: screen;
+          transition: opacity 220ms ease;
+        }
+        .explorer-screenshot:hover::before {
+          opacity: 1;
+        }
+        .explorer-screenshot:hover {
+          filter: brightness(1.025);
+        }
+        @keyframes explorer-idle-float {
+          0%, 100% { transform: translate3d(0, 0, 0); }
+          50% { transform: translate3d(0, -5px, 0); }
+        }
+        @keyframes feature-guide-pulse {
+          0%, 100% { transform: translateX(0); opacity: .58; }
+          50% { transform: translateX(-3px); opacity: 1; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .explorer-motion-idle,
+          .feature-tab-guide svg {
+            animation: none !important;
+          }
+        }
+        @media (max-width: 700px) {
+          .feature-tab-guide {
+            justify-content: flex-start;
+            margin-bottom: -8px;
+          }
+        }
+      `}</style>
       <div className="section-heading">
         <div>
           <div className="eyebrow">
@@ -228,6 +328,10 @@ export function FeatureExplorer() {
         </p>
       </div>
       <Tabs value={active} onValueChange={setActive} className="feature-tabs">
+        <div className="feature-tab-guide" aria-hidden="true">
+          <MousePointer2 size={11} />
+          <span>Selecione uma aba para explorar</span>
+        </div>
         <TabsList
           className="feature-tab-list"
           aria-label="Explore os recursos do Allm4"

@@ -1,9 +1,29 @@
 import type { Metadata } from "next";
+import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
 const favicon32 = "/allm4-favicon-v4-32.png";
 const faviconIco = "/allm4-favicon-v4.ico";
 const appleTouchIcon = "/allm4-touch-v4.png";
+const isProduction = process.env.NODE_ENV === "production";
+
+const productionCsp = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-src 'none'",
+  "form-action 'self'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "style-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline'",
+  "script-src-attr 'none'",
+  "connect-src 'self' https://api.github.com",
+  "media-src 'self'",
+  "worker-src 'self' blob:",
+  "manifest-src 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
 
 export const metadata: Metadata = {
   title: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
@@ -40,9 +60,7 @@ const safariOpaqueScriptErrorGuard = `
       },
       true,
     );
-  } catch {
-    // Never interfere with page startup if the development guard cannot install.
-  }
+  } catch {}
 })();
 `;
 
@@ -54,15 +72,24 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        {isProduction && (
+          <meta httpEquiv="Content-Security-Policy" content={productionCsp} />
+        )}
+        <meta name="referrer" content="no-referrer" />
         <link rel="icon" href={faviconIco} sizes="any" />
         <link rel="icon" href={favicon32} type="image/png" sizes="32x32" />
         <link rel="shortcut icon" href={faviconIco} />
         <link rel="apple-touch-icon" href={appleTouchIcon} sizes="180x180" />
-        <script
-          dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}
-        />
+        {!isProduction && (
+          <script
+            dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}
+          />
+        )}
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <SecurityConsole />
+        {children}
+      </body>
     </html>
   );
 }

@@ -59,7 +59,7 @@ export function Footer() {
               className="contact-link"
               href={siteConfig.whatsapp}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <MessageCircle size={12} />
               WhatsApp · {siteConfig.whatsappLabel}
@@ -79,7 +79,11 @@ export function Footer() {
             <button onClick={() => setActive("documentacao")}>
               Documentação
             </button>
-            <a href={siteConfig.releases} target="_blank" rel="noreferrer">
+            <a
+              href={siteConfig.releases}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Atualizações <ArrowUpRight size={11} />
             </a>
             <a
@@ -159,7 +163,7 @@ export function Footer() {
                     className="text-button"
                     href={siteConfig.releases}
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                   >
                     Consultar notas oficiais de versão{" "}
                     <ArrowUpRight size={14} />

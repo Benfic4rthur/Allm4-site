@@ -10,6 +10,7 @@ import {
   Check,
 } from "lucide-react";
 import { fallbackRelease, parseRelease, siteConfig } from "@/lib/site-config";
+
 function WindowsIcon() {
   return (
     <svg
@@ -23,30 +24,71 @@ function WindowsIcon() {
     </svg>
   );
 }
+
 export function Downloads() {
   const [release, setRelease] = useState(fallbackRelease);
+  const [downloadBoost, setDownloadBoost] = useState({ mac: 0, windows: 0 });
+
   useEffect(() => {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 6000);
+
     fetch(
       "https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases/latest",
       {
         signal: controller.signal,
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
         headers: { Accept: "application/vnd.github+json" },
       },
     )
-      .then((r) => (r.ok ? r.json() : null))
+      .then((r) => {
+        const contentType = r.headers.get("content-type") ?? "";
+        return r.ok && contentType.includes("application/json") ? r.json() : null;
+      })
       .then((data) => {
         const next = parseRelease(data);
         if (next) setRelease(next);
       })
       .catch(() => {})
       .finally(() => clearTimeout(timeout));
+
     return () => {
       clearTimeout(timeout);
       controller.abort();
     };
   }, []);
+
+  function noteDownload(platform: "mac" | "windows") {
+    setDownloadBoost((current) => ({
+      ...current,
+      [platform]: current[platform] + 1,
+    }));
+  }
+
+  const platforms = [
+    {
+      id: "mac" as const,
+      title: "Allm4 para macOS",
+      subtitle: "Apple Silicon",
+      icon: Apple,
+      url: release.mac,
+      format: ".DMG",
+      button: "Baixar para Mac",
+      downloads: release.macDownloads,
+    },
+    {
+      id: "windows" as const,
+      title: "Allm4 para Windows",
+      subtitle: "Seu ambiente no desktop",
+      icon: WindowsIcon,
+      url: release.windows,
+      format: ".EXE",
+      button: "Baixar para Windows",
+      downloads: release.windowsDownloads,
+    },
+  ];
+
   return (
     <section className="download-section section" id="download">
       <div className="wrap">
@@ -61,61 +103,70 @@ export function Downloads() {
           </h2>
           <p>Abra espaço para uma inteligência artificial que é sua.</p>
         </div>
+
         <div className="download-grid reveal">
-          {[
-            {
-              id: "mac",
-              title: "Allm4 para macOS",
-              subtitle: "Apple Silicon",
-              icon: Apple,
-              url: release.mac,
-              format: ".DMG",
-              button: "Baixar para Mac",
-            },
-            {
-              id: "windows",
-              title: "Allm4 para Windows",
-              subtitle: "Seu ambiente no desktop",
-              icon: WindowsIcon,
-              url: release.windows,
-              format: ".EXE",
-              button: "Baixar para Windows",
-            },
-          ].map((p) => (
-            <article className="download-card" key={p.id}>
-              <div className="platform-icon">
-                <p.icon />
-              </div>
-              <div>
-                <h3>{p.title}</h3>
-                <p>{p.subtitle}</p>
-              </div>
-              <a href={p.url ?? release.url} className="button download-button">
-                {p.url ? p.button : "Ver opções de download"}
-                <Download size={16} />
-              </a>
-              <div className="download-meta">
-                <span>Versão {release.version}</span>
-                <span>
-                  {p.url ? `INSTALADOR ${p.format}` : "GITHUB RELEASES"}
-                </span>
-              </div>
-              {p.id === "mac" && (
-                <a className="mac-install-link" href="#instalacao-mac">
-                  <Terminal size={12} /> Primeira abertura: veja a orientação
-                  para Mac ↓
+          {platforms.map((p) => {
+            const visibleDownloads = p.downloads + downloadBoost[p.id];
+
+            return (
+              <article className="download-card" key={p.id}>
+                <div className="platform-icon">
+                  <p.icon />
+                </div>
+                <div>
+                  <h3>{p.title}</h3>
+                  <p>{p.subtitle}</p>
+                </div>
+                <a
+                  href={p.url ?? release.url}
+                  className="button download-button"
+                  onClick={() => {
+                    if (p.url) noteDownload(p.id);
+                  }}
+                >
+                  <span>{p.url ? p.button : "Ver opções de download"}</span>
+                  {p.url ? (
+                    <span
+                      className="inline-flex items-center gap-1.5 font-mono text-[9px] font-medium opacity-70"
+                      title="Contagem pública de downloads deste instalador"
+                      aria-label={`${visibleDownloads} downloads`}
+                    >
+                      <Download size={13} />
+                      {visibleDownloads} downloads
+                    </span>
+                  ) : (
+                    <Download size={16} />
+                  )}
                 </a>
-              )}
-            </article>
-          ))}
+                <div className="download-meta">
+                  <span>Versão {release.version}</span>
+                  <span>
+                    {p.url ? `INSTALADOR ${p.format}` : "GITHUB RELEASES"}
+                  </span>
+                </div>
+                {p.id === "mac" && (
+                  <a className="mac-install-link" href="#instalacao-mac">
+                    <Terminal size={12} /> Primeira abertura: veja a orientação
+                    para Mac ↓
+                  </a>
+                )}
+              </article>
+            );
+          })}
         </div>
+
         <MacInstallGuide />
+
         <div className="release-links">
-          <a href={release.url} target="_blank" rel="noreferrer">
+          <a href={release.url} target="_blank" rel="noopener noreferrer">
             O que há de novo <ArrowUpRight size={12} />
           </a>
           <span />
-          <a href={siteConfig.releases} target="_blank" rel="noreferrer">
+          <a
+            href={siteConfig.releases}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Todas as versões <ArrowUpRight size={12} />
           </a>
         </div>
@@ -133,6 +184,7 @@ function MacInstallGuide() {
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
     "idle",
   );
+
   async function copyCommand() {
     try {
       await navigator.clipboard.writeText(command);
@@ -141,6 +193,7 @@ function MacInstallGuide() {
       setCopyState("error");
     }
   }
+
   return (
     <aside
       className="mac-install-guide reveal"
@@ -153,10 +206,14 @@ function MacInstallGuide() {
         <span>APPLE SILICON</span>
       </div>
       <p>
-        Após abrir o DMG e arrastar o Allm4 para <strong>Aplicativos</strong>, o
-        macOS pode bloquear sua abertura. Nesse caso, abra o{" "}
-        <strong>Terminal</strong>, cole o comando abaixo e pressione Enter para
-        remover a quarentena do Allm4. Depois, abra o aplicativo novamente.
+        <strong>
+          Na maioria dos Macs, o Allm4 abre normalmente e você não precisa usar
+          este comando.
+        </strong>{" "}
+        Depois de abrir o DMG e arrastar o Allm4 para <strong>Aplicativos</strong>,
+        tente abrir o app normalmente. Só se o macOS bloquear a abertura, abra o{" "}
+        <strong>Terminal</strong>, cole o comando abaixo e pressione Enter. Depois,
+        abra o Allm4 novamente.
       </p>
       <div className="command-block">
         <code>{command}</code>
@@ -170,10 +227,10 @@ function MacInstallGuide() {
       </div>
       <p className="copy-status" role="status">
         {copyState === "error"
-          ? "Não foi possível copiar automaticamente. Selecione e copie o comando acima."
+          ? "Não foi possível copiar automaticamente. Se o macOS tiver bloqueado o Allm4, selecione e copie o comando acima."
           : copyState === "copied"
-            ? "Comando copiado. Cole no Terminal após mover o Allm4 para Aplicativos."
-            : "Use o comando apenas para o Allm4 obtido pelos downloads oficiais acima. Ele remove a quarentena somente desse aplicativo."}
+            ? "Comando copiado. Use-o somente se o macOS tiver bloqueado a abertura do Allm4."
+            : "Este comando é apenas uma alternativa para quando o macOS bloquear a primeira abertura. Na maioria das instalações ele não será necessário."}
       </p>
     </aside>
   );

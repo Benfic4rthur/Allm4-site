@@ -8,6 +8,7 @@ import {
   Terminal,
   Copy,
   Check,
+  ChevronDown,
 } from "lucide-react";
 import { fallbackRelease, parseRelease, siteConfig } from "@/lib/site-config";
 
@@ -90,19 +91,21 @@ export function Downloads() {
   ];
 
   return (
-    <section className="download-section section" id="download">
+    <section className="download-section section">
       <div className="wrap">
         <div className="download-heading reveal">
           <div className="eyebrow">
             <span className="status-dot" /> O PRÓXIMO PASSO É SEU
           </div>
-          <h2>
+          <h2 id="download" style={{ scrollMarginTop: "-68px" }}>
             Seu computador já pode
             <br />
             fazer <span>muito mais.</span>
           </h2>
           <p>Abra espaço para uma inteligência artificial que é sua.</p>
         </div>
+
+        <AccessInfo />
 
         <div className="download-grid reveal">
           {platforms.map((p) => {
@@ -176,6 +179,64 @@ export function Downloads() {
         </p>
       </div>
     </section>
+  );
+}
+
+function AccessInfo() {
+  const [hovered, setHovered] = useState(false);
+  const [pinned, setPinned] = useState(false);
+  const open = hovered || pinned;
+
+  return (
+    <div
+      className="reveal mx-auto mt-3 mb-3 max-w-[680px] overflow-hidden rounded-[10px] border border-[#ffffff12] bg-[#171714] transition-[border-color,background-color] duration-300"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <button
+        type="button"
+        className="flex w-full items-center justify-center gap-2 px-4 py-3 text-center font-mono text-[8px] tracking-[0.12em] text-[#c7c2b6] transition-colors hover:text-[#f49a78] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[#f67c5260]"
+        aria-expanded={open}
+        aria-controls="allm4-access-details"
+        onFocus={() => setHovered(true)}
+        onBlur={() => setHovered(false)}
+        onClick={() => setPinned((current) => !current)}
+      >
+        <span>SEM MENSALIDADE · SEM ASSINATURA · FUTURAS ATUALIZAÇÕES INCLUÍDAS</span>
+        <ChevronDown
+          size={13}
+          className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          aria-hidden="true"
+        />
+      </button>
+
+      <div
+        id="allm4-access-details"
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+        aria-hidden={!open}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-[#ffffff10] px-5 pb-4 pt-4">
+            <div className="flex flex-wrap items-center justify-center gap-2 text-center font-mono text-[8px] tracking-[0.12em]">
+              <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
+                USO GRATUITO INICIAL
+              </span>
+              <span className="rounded-full border border-[#f67c5240] bg-[#f67c520c] px-3 py-1.5 text-[#f49a78]">
+                PAGAMENTO ÚNICO E VITALÍCIO
+              </span>
+            </div>
+            <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
+              Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso
+              gratuito, o acesso completo é liberado com um pagamento único e de
+              valor simbólico, pensado para ajudar a manter o projeto e seu
+              desenvolvimento contínuo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

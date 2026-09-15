@@ -38,8 +38,8 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
-          PAGES_BASE_PATH: "/Allm4-site"
-          NEXT_PUBLIC_BASE_PATH: "/Allm4-site"
+          PAGES_BASE_PATH: ""
+          NEXT_PUBLIC_BASE_PATH: ""
         run: npx next build
 
       - name: Upload Pages artifact

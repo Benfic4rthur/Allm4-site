@@ -105,25 +105,14 @@ export function Downloads() {
         </div>
 
         <div
-          className="reveal mx-auto mb-5 max-w-[622px] rounded-[10px] border border-[#ffffff12] bg-[#171714] px-5 py-4"
+          className="reveal mx-auto mb-4 max-w-[680px] text-center"
           aria-label="Como funciona o acesso ao Allm4"
         >
-          <div className="flex flex-wrap items-center justify-center gap-2 text-center font-mono text-[8px] tracking-[0.12em]">
-            <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
-              USO GRATUITO INICIAL
-            </span>
-            <span className="rounded-full border border-[#f67c5240] bg-[#f67c520c] px-3 py-1.5 text-[#f49a78]">
-              PAGAMENTO ÚNICO E VITALÍCIO
-            </span>
-          </div>
-          <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
-            Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso
-            gratuito, o acesso completo é liberado com um pagamento único e de
-            valor simbólico, pensado para ajudar a manter o projeto e seu
-            desenvolvimento contínuo.
+          <p className="text-[13px] font-medium leading-[1.6] text-[#d8d4ca]">
+            Comece grátis. Depois, <span className="text-[#f49a78]">pagamento único e vitalício.</span>
           </p>
-          <p className="mt-2 text-center font-mono text-[8px] tracking-[0.11em] text-[#c7c2b6]">
-            SEM MENSALIDADE · SEM ASSINATURA · FUTURAS ATUALIZAÇÕES INCLUÍDAS
+          <p className="mt-1 text-[10px] leading-[1.65] text-[#8f8c84]">
+            Uma contribuição simbólica para ajudar a manter o projeto. Sem mensalidade, sem assinatura e com futuras atualizações incluídas.
           </p>
         </div>
 

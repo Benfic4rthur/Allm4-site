@@ -10,6 +10,7 @@ const cardSelector = [
   ".traditional",
   ".with-allm4",
   ".feature-visual",
+  ".explorer-screenshot",
 ].join(", ");
 
 export function CardParallax() {
@@ -29,6 +30,8 @@ export function CardParallax() {
       card.style.removeProperty("transform-style");
       card.style.removeProperty("will-change");
       card.style.removeProperty("z-index");
+      card.style.removeProperty("--parallax-light-x");
+      card.style.removeProperty("--parallax-light-y");
     };
 
     const clear = () => {
@@ -65,14 +68,22 @@ export function CardParallax() {
 
         const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
         const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-        const rotateX = y * -6.5;
-        const rotateY = x * 8.5;
-        const translateX = x * 7;
-        const translateY = y * 5 - 6;
+        const isExplorer = card.classList.contains("explorer-screenshot");
 
+        const rotateX = y * (isExplorer ? -3.2 : -6.5);
+        const rotateY = x * (isExplorer ? 4.6 : 8.5);
+        const translateX = x * (isExplorer ? 5 : 7);
+        const translateY = y * (isExplorer ? 3 : 5) - (isExplorer ? 2 : 6);
+        const translateZ = isExplorer ? 24 : 18;
+        const scale = isExplorer ? 1.01 : 1.018;
+        const perspective = isExplorer ? 1200 : 850;
+        const rotateZ = isExplorer ? " rotateZ(-2deg)" : "";
+
+        card.style.setProperty("--parallax-light-x", `${(x + 1) * 50}%`);
+        card.style.setProperty("--parallax-light-y", `${(y + 1) * 50}%`);
         card.style.transform =
-          `perspective(850px) translate3d(${translateX}px, ${translateY}px, 18px) ` +
-          `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.018, 1.018, 1.018)`;
+          `perspective(${perspective}px) translate3d(${translateX}px, ${translateY}px, ${translateZ}px) ` +
+          `rotateX(${rotateX}deg) rotateY(${rotateY}deg)${rotateZ} scale3d(${scale}, ${scale}, ${scale})`;
         card.style.transition =
           "transform 90ms cubic-bezier(.2,.8,.2,1), border-color 260ms ease, box-shadow 260ms ease, filter 260ms ease";
         card.style.transformStyle = "preserve-3d";

@@ -11,6 +11,33 @@ export const metadata: Metadata = {
   },
 };
 
+const safariOpaqueScriptErrorGuard = `
+(() => {
+  try {
+    const host = window.location.hostname;
+    if (host !== "localhost" && host !== "127.0.0.1") return;
+
+    window.addEventListener(
+      "error",
+      (event) => {
+        if (
+          event instanceof ErrorEvent &&
+          event.message === "Script error." &&
+          !event.filename &&
+          !event.error
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      },
+      true,
+    );
+  } catch {
+    // Never interfere with page startup if the development guard cannot install.
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,6 +45,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: safariOpaqueScriptErrorGuard }}
+        />
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );

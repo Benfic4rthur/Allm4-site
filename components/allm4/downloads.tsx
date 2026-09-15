@@ -112,7 +112,7 @@ export function Downloads() {
             Comece grátis. Depois, <span className="text-[#f49a78]">pagamento único e vitalício.</span>
           </p>
           <p className="mt-1 text-[10px] leading-[1.65] text-[#8f8c84]">
-            Uma contribuição simbólica para ajudar a manter o projeto. Sem mensalidade, sem assinatura e com futuras atualizações incluídas.
+            Uma contribuição simbólica para ajudar a manter o projeto.
           </p>
         </div>
 
@@ -166,6 +166,10 @@ export function Downloads() {
             );
           })}
         </div>
+
+        <p className="reveal mx-auto mt-4 text-center font-mono text-[8px] tracking-[0.12em] text-[#aaa69d]">
+          SEM MENSALIDADE · SEM ASSINATURA · FUTURAS ATUALIZAÇÕES INCLUÍDAS
+        </p>
 
         <MacInstallGuide />
 

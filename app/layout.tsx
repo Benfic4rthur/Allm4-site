@@ -3,7 +3,7 @@ import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
-const appleTouchIcon = "/allm4-touch-v5.png?v=7";
+const appleTouchIcon = "/allm4-touch-v5.png?v=8";
 const isProduction = process.env.NODE_ENV === "production";
 
 const productionCsp = [

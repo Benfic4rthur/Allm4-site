@@ -219,7 +219,7 @@ function AccessInfo() {
         onBlur={() => setHovered(false)}
         onClick={() => setPinned((current) => !current)}
       >
-        <span>COMECE GRATUITAMENTE · ATIVAÇÃO PELO PRÓPRIO APLICATIVO</span>
+        <span>SEM MENSALIDADE · SEM ASSINATURA · FUTURAS ATUALIZAÇÕES INCLUÍDAS</span>
         <ChevronDown
           size={13}
           className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
@@ -243,8 +243,9 @@ function AccessInfo() {
             </div>
             <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
               Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso
-              gratuito, o próprio aplicativo apresenta as opções de ativação
-              disponíveis.
+              gratuito, o acesso completo é liberado com um pagamento único e de
+              valor simbólico, pensado para ajudar a manter o projeto e seu
+              desenvolvimento contínuo.
             </p>
           </div>
         </div>

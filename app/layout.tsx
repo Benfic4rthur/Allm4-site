@@ -4,7 +4,7 @@ import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
 const appleTouchIcon = "/allm4-touch-v5.png?v=8";
-const socialPreviewImage = "https://allm4.com/og-allm4.png?v=1";
+const socialPreviewImage = "https://allm4.com/allm4-touch-v5.png?v=8";
 const isProduction = process.env.NODE_ENV === "production";
 
 const productionCsp = [
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     images: [
       {
         url: socialPreviewImage,
-        width: 1200,
-        height: 630,
-        alt: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
+        width: 180,
+        height: 180,
+        alt: "Allm4",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
     description:
       "Transforme seu computador em um ambiente próprio de inteligência artificial. Conheça o Allm4 para macOS Apple Silicon e Windows.",

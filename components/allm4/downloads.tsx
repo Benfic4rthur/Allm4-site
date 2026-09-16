@@ -240,6 +240,9 @@ function AccessInfo() {
               <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
                 USO GRATUITO INICIAL
               </span>
+              <span className="rounded-full border border-[#f67c5240] bg-[#f67c520c] px-3 py-1.5 text-[#f49a78]">
+                PAGAMENTO ÚNICO
+              </span>
             </div>
             <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
               Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso

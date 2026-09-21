@@ -6,7 +6,9 @@ export const siteConfig = {
   cta: { label: "Baixar Allm4", href: "#download" },
   repository: "https://github.com/Benfic4rthur/Allm4-Releases",
   releases: "https://github.com/Benfic4rthur/Allm4-Releases/releases",
-  contactEmail: "suporte@allm4.com",
+  contactEmail: "arthur_benfica@hotmail.com",
+  whatsappUrl: "https://wa.me/5551991640517",
+  whatsappLabel: "+55 51 99164-0517",
   privacyUrl: "",
   termsUrl: "",
 };
@@ -33,11 +35,11 @@ type ParsedRelease = {
 };
 
 export const fallbackRelease: Release = {
-  version: "0.1.13",
-  url: "https://github.com/Benfic4rthur/Allm4-Releases/releases/tag/v0.1.13",
-  mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.13/Allm4-0.1.13.dmg",
+  version: "0.1.25",
+  url: "https://github.com/Benfic4rthur/Allm4-Releases/releases/tag/v0.1.25",
+  mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.25/Allm4-0.1.25.dmg",
   windows:
-    "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.13/Allm4-Setup-0.1.13.exe",
+    "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.25/Allm4-Setup-0.1.25.exe",
   macDownloads: 2,
   windowsDownloads: 2,
 };

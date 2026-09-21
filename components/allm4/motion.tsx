@@ -203,9 +203,15 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           .download-card,
           .traditional,
           .with-allm4,
-          .feature-visual {
+          .feature-visual,
+          .project-console,
+          .local-trust-card,
+          .repair-card,
+          .personalization-visual,
+          .project-proof {
             transition:
               transform 260ms cubic-bezier(.2,.8,.2,1),
+              background-color 260ms ease,
               border-color 260ms ease,
               box-shadow 260ms ease,
               filter 260ms ease;
@@ -218,7 +224,12 @@ export function MotionRoot({ children }: { children: ReactNode }) {
           .download-card:hover,
           .traditional:hover,
           .with-allm4:hover,
-          .feature-visual:hover {
+          .feature-visual:hover,
+          .project-console:hover,
+          .local-trust-card:hover,
+          .repair-card:hover,
+          .personalization-visual:hover,
+          .project-proof:hover {
             transform: translateY(-4px);
             border-color: rgba(246, 124, 82, 0.28);
             box-shadow:

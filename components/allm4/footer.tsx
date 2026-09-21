@@ -6,6 +6,7 @@ import {
   BookOpen,
   ShieldCheck,
   FileText,
+  MessageCircle,
 } from "lucide-react";
 import {
   Dialog,
@@ -43,9 +44,9 @@ export function Footer() {
           <div className="footer-brand">
             <Brand />
             <p>
-              Sua IA. No seu computador.
+              A IA ficou simples.
               <br />
-              Sob seu controle.
+              Mesmo para quem nunca usou.
             </p>
             <a
               className="contact-link"
@@ -54,10 +55,21 @@ export function Footer() {
               <Mail size={12} />
               {siteConfig.contactEmail}
             </a>
+            <a
+              className="contact-link"
+              href={siteConfig.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={12} />
+              WhatsApp {siteConfig.whatsappLabel}
+            </a>
           </div>
           <div className="footer-column">
             <span>PRODUTO</span>
             <a href="#recursos">Conheça o Allm4</a>
+            <a href="#personalizacao">Personalização</a>
+            <a href="#projetos">Projetos</a>
             <a href="#assistente">Assistente de modelos</a>
             <a href="#download">
               Download <ArrowUpRight size={11} />
@@ -137,10 +149,10 @@ export function Footer() {
                       </p>
                     </li>
                     <li>
-                      <strong>Baixe e converse.</strong>
+                      <strong>Escolha o que quer fazer.</strong>
                       <p>
-                        Após o download do modelo, selecione-o para começar uma
-                        conversa. Ajuste suas preferências nas Configurações.
+                        Abra o Chat para conversar, Imagem para criar visuais ou
+                        Projetos para trabalhar em arquivos reais com revisão.
                       </p>
                     </li>
                   </ol>

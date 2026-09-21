@@ -24,7 +24,15 @@ export function CTA({ small = false }: { small?: boolean }) {
     </a>
   );
 }
-export function AppScreenshot({ full = false }: { full?: boolean }) {
+export function AppScreenshot({
+  full = false,
+  src = "/images/allm4-chat-v0132-sem-dock.avif",
+  alt = "Interface real do Allm4 no ambiente de Chat",
+}: {
+  full?: boolean;
+  src?: string;
+  alt?: string;
+}) {
   return (
     <div className={`app-window ${full ? "full-screenshot" : ""}`}>
       <div className="window-chrome" aria-hidden="true">
@@ -40,10 +48,10 @@ export function AppScreenshot({ full = false }: { full?: boolean }) {
       </div>
       <div className="screenshot-viewport">
         <img
-          src={`${publicBasePath}/images/allm4-app.png`}
-          alt="Interface real do Allm4: chat com modelo local, histórico à esquerda, seletor de modelos e painel de observabilidade"
+          src={`${publicBasePath}${src}`}
+          alt={alt}
           width="3456"
-          height="2234"
+          height="2078"
           loading={full ? "lazy" : "eager"}
           fetchPriority={full ? "auto" : "high"}
         />

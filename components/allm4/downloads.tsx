@@ -9,6 +9,7 @@ import {
   Copy,
   Check,
   ChevronDown,
+  ShieldCheck,
 } from "lucide-react";
 import {
   fallbackRelease,
@@ -115,11 +116,11 @@ export function Downloads() {
             <span className="status-dot" /> O PRÓXIMO PASSO É SEU
           </div>
           <h2 id="download" style={{ scrollMarginTop: "-68px" }}>
-            Seu computador já pode
+            Seu primeiro passo
             <br />
-            fazer <span>muito mais.</span>
+            pode ser <span>simples.</span>
           </h2>
-          <p>Abra espaço para uma inteligência artificial que é sua.</p>
+          <p>Escolha seu sistema, instale e deixe o Allm4 guiar o restante.</p>
         </div>
 
         <AccessInfo />
@@ -170,12 +171,21 @@ export function Downloads() {
                     para Mac ↓
                   </a>
                 )}
+                {p.id === "windows" && (
+                  <a className="mac-install-link" href="#instalacao-windows">
+                    <ShieldCheck size={12} /> Primeira abertura: veja a orientação
+                    para Windows ↓
+                  </a>
+                )}
               </article>
             );
           })}
         </div>
 
-        <MacInstallGuide />
+        <div className="install-guides">
+          <MacInstallGuide />
+          <WindowsInstallGuide />
+        </div>
 
         <div className="release-links">
           <a href={release.url} target="_blank" rel="noopener noreferrer">
@@ -241,14 +251,17 @@ function AccessInfo() {
                 USO GRATUITO INICIAL
               </span>
               <span className="rounded-full border border-[#f67c5240] bg-[#f67c520c] px-3 py-1.5 text-[#f49a78]">
-                PAGAMENTO ÚNICO E VITALÍCIO
+                PAGAMENTO ÚNICO
+              </span>
+              <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
+                ATÉ 3 COMPUTADORES
               </span>
             </div>
             <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
               Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso
               gratuito, o acesso completo é liberado com um pagamento único e de
-              valor simbólico, pensado para ajudar a manter o projeto e seu
-              desenvolvimento contínuo.
+              valor simbólico. A mesma licença pode ser usada em até 3 computadores,
+              e você controla dentro do Allm4 quais máquinas estão vinculadas.
             </p>
           </div>
         </div>
@@ -309,6 +322,37 @@ function MacInstallGuide() {
           : copyState === "copied"
             ? "Comando copiado. Use-o somente se o macOS tiver bloqueado a abertura do Allm4."
             : "Este comando é apenas uma alternativa para quando o macOS bloquear a primeira abertura. Na maioria das instalações ele não será necessário."}
+      </p>
+    </aside>
+  );
+}
+
+function WindowsInstallGuide() {
+  return (
+    <aside
+      className="mac-install-guide windows-install-guide reveal"
+      id="instalacao-windows"
+      aria-labelledby="windows-install-title"
+    >
+      <div className="mac-guide-title">
+        <ShieldCheck size={17} />
+        <h3 id="windows-install-title">Primeira abertura no Windows</h3>
+        <span>WINDOWS</span>
+      </div>
+      <p>
+        <strong>Baixe o instalador somente pelo botão oficial desta página.</strong>{" "}
+        Ao abrir o arquivo <strong>Allm4-Setup.exe</strong>, o Windows pode mostrar
+        a mensagem “O Windows protegeu o computador” porque o aplicativo ainda não
+        tem uma assinatura digital reconhecida.
+      </p>
+      <ol className="windows-steps">
+        <li>Confirme que o arquivo veio do repositório oficial do Allm4.</li>
+        <li>Clique em <strong>Mais informações</strong>.</li>
+        <li>Clique em <strong>Executar assim mesmo</strong> para continuar.</li>
+      </ol>
+      <p className="copy-status">
+        Não é preciso desativar a proteção do Windows. Em computadores administrados
+        por empresa ou escola, essa opção pode estar bloqueada pelo responsável do sistema.
       </p>
     </aside>
   );

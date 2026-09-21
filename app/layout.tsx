@@ -26,9 +26,9 @@ const productionCsp = [
 ].join("; ");
 
 export const metadata: Metadata = {
-  title: "Allm4 — Sua IA. No seu computador. Sob seu controle.",
+  title: "Allm4 — IA local simples para qualquer pessoa",
   description:
-    "Transforme seu computador em um ambiente próprio de inteligência artificial. Conheça o Allm4 para macOS Apple Silicon e Windows.",
+    "Converse, crie imagens e trabalhe em projetos com IA local, mesmo sem conhecimento técnico. Allm4 para macOS Apple Silicon e Windows.",
   icons: {
     icon: [{ url: favicon32, type: "image/png", sizes: "32x32" }],
     apple: appleTouchIcon,

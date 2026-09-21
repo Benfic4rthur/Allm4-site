@@ -1,48 +1,34 @@
 "use client";
 import { useState } from "react";
 import {
-  Zap,
-  Sparkles,
-  Layers,
   Cpu,
   MemoryStick,
   CircuitBoard,
-  Check,
   SlidersHorizontal,
   RotateCcw,
 } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-const profiles = [
+import { AppScreenshot } from "./ui";
+
+const assistantSteps = [
   {
-    id: "rapido",
-    label: "Mais rápido",
-    icon: Zap,
-    title: "Mais leve. Mais ágil.",
-    description:
-      "Prioriza modelos mais leves, que exigem menos recursos. Um ponto de partida para conversas e tarefas do dia a dia.",
-    bars: [28, 25, 38],
-    note: "PRIORIDADE: AGILIDADE",
+    id: "inicio",
+    label: "1. Comece",
+    src: "/images/allm4-assistente-inicio.avif",
+    alt: "Tutorial do Allm4 explicando o que é uma LLM e oferecendo a análise do computador",
   },
   {
-    id: "recomendado",
-    label: "Recomendado",
-    icon: Sparkles,
-    title: "O equilíbrio faz a diferença.",
-    description:
-      "Busca uma combinação entre capacidade e desempenho, considerando os recursos disponíveis no seu computador.",
-    bars: [60, 55, 64],
-    note: "PRIORIDADE: EQUILÍBRIO",
+    id: "analise",
+    label: "2. Análise",
+    src: "/images/allm4-assistente-analise.avif",
+    alt: "Allm4 mostrando a análise do processador, memória e GPU do computador",
   },
   {
-    id: "capaz",
-    label: "Mais capaz",
-    icon: Layers,
-    title: "Mais espaço para ir além.",
-    description:
-      "Prioriza modelos com maior capacidade entre as opções adequadas ao seu hardware, que podem exigir mais memória e tempo de resposta.",
-    bars: [86, 90, 88],
-    note: "PRIORIDADE: CAPACIDADE",
+    id: "recomendacao",
+    label: "3. Escolha",
+    src: "/images/allm4-assistente-recomendacao.avif",
+    alt: "Allm4 recomendando modelos locais compatíveis com o computador",
   },
 ];
 export function ModelAssistant() {
@@ -50,15 +36,16 @@ export function ModelAssistant() {
     <section className="section assistant-section" id="assistente">
       <div className="wrap assistant-layout">
         <div className="assistant-copy reveal">
-          <div className="eyebrow">03 / FEITO PARA O SEU COMPUTADOR</div>
+          <div className="eyebrow">04 / FEITO PARA O SEU COMPUTADOR</div>
           <h2>
-            O modelo certo.
+            O Allm4 ajuda
             <br />
-            Para o que você tem.
+            você a escolher.
           </h2>
           <p className="section-intro">
-            Não precisa entender de parâmetros para começar. O assistente do
-            Allm4 conhece seu hardware e ajuda você a fazer uma boa escolha.
+            Processador, memória, GPU… você não precisa entender nada disso para
+            começar. O tutorial explica o básico, analisa sua máquina e mostra
+            modelos adequados para você escolher com segurança.
           </p>
           <div className="hardware-list">
             <div>
@@ -85,68 +72,22 @@ export function ModelAssistant() {
             <br />O desempenho depende do hardware e do modelo escolhido.
           </p>
         </div>
-        <div className="assistant-console reveal">
-          <div className="console-top">
-            <span>
-              <Cpu size={16} /> ASSISTENTE ALLM4
-            </span>
-            <span>EXPLORE OS PERFIS</span>
-          </div>
-          <div className="hardware-diagram" aria-hidden="true">
-            <span className="hardware-node">
-              <Cpu />
-            </span>
-            <i />
-            <span className="center-node">
-              <Sparkles />
-            </span>
-            <i />
-            <span className="hardware-node">
-              <MemoryStick />
-            </span>
-          </div>
-          <Tabs defaultValue="recomendado">
-            <TabsList
-              className="profile-list"
-              aria-label="Perfil de recomendação"
-            >
-              {profiles.map((p) => (
-                <TabsTrigger className="profile-tab" key={p.id} value={p.id}>
-                  <p.icon size={14} />
-                  {p.label}
+        <div className="assistant-console assistant-real reveal">
+          <Tabs defaultValue="recomendacao">
+            <TabsList className="assistant-step-list" aria-label="Etapas do assistente de escolha">
+              {assistantSteps.map((step) => (
+                <TabsTrigger className="assistant-step-tab" key={step.id} value={step.id}>
+                  {step.label}
                 </TabsTrigger>
               ))}
             </TabsList>
-            {profiles.map((p) => (
-              <TabsContent value={p.id} key={p.id} className="profile-panel">
-                <div className="profile-heading">
-                  <p.icon size={22} />
-                  <span>{p.note}</span>
-                </div>
-                <h3>{p.title}</h3>
-                <p>{p.description}</p>
-                <div className="profile-bars" aria-hidden="true">
-                  {p.bars.map((b, i) => (
-                    <div key={i}>
-                      <span>
-                        {["CAPACIDADE", "USO DE MEMÓRIA", "COMPLEXIDADE"][i]}
-                      </span>
-                      <div>
-                        <i style={{ width: `${b}%` }} />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="profile-note">
-                  <Check size={13} /> A recomendação real é feita dentro do
-                  aplicativo.
-                </div>
+            {assistantSteps.map((step) => (
+              <TabsContent value={step.id} key={step.id} className="assistant-step-panel">
+                <AppScreenshot full src={step.src} alt={step.alt} />
               </TabsContent>
             ))}
           </Tabs>
-          <p className="demo-disclaimer">
-            Perfis ilustrativos • Este site não analisa seu computador.
-          </p>
+          <p className="demo-disclaimer">Telas reais do assistente de primeiros passos do Allm4.</p>
         </div>
       </div>
     </section>

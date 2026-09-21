@@ -11,6 +11,11 @@ const cardSelector = [
   ".with-allm4",
   ".feature-visual",
   ".explorer-screenshot",
+  ".project-console",
+  ".local-trust-card",
+  ".repair-card",
+  ".personalization-visual",
+  ".project-proof",
   ".product-stage .app-window",
 ].join(", ");
 

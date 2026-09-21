@@ -1217,8 +1217,8 @@ button:focus-visible {
 }
 .assistant-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  grid-template-columns: minmax(340px, 0.72fr) minmax(680px, 1.28fr);
+  gap: 58px;
   align-items: center;
 }
 .assistant-copy .section-intro {
@@ -1262,7 +1262,7 @@ button:focus-visible {
   box-shadow: 0 20px 70px #0002;
 }
 .assistant-console.assistant-real {
-  padding: 14px;
+  padding: 18px;
   background: linear-gradient(150deg, #23231f, #151613);
 }
 .assistant-step-list {
@@ -1274,8 +1274,8 @@ button:focus-visible {
   background: #0f100eaa;
 }
 .assistant-step-tab {
-  height: 34px;
-  font: 9px monospace;
+  height: 40px;
+  font: 10px monospace;
   letter-spacing: .25px;
   color: #85857d;
 }
@@ -2145,7 +2145,10 @@ button:focus-visible {
   }
 }
 @media (max-width: 1100px) {
-  .assistant-layout,
+  .assistant-layout {
+    grid-template-columns: minmax(300px, 0.65fr) minmax(0, 1.35fr);
+    gap: 55px;
+  }
   .controls-layout {
     gap: 55px;
   }
@@ -2871,7 +2874,7 @@ button:focus-visible {
   }
 }
 
-/* Product evolution: Chat, Image, Projects and Allm4 Repair */
+/* Product evolution: Chat, Image, Projects and Allm4 Auto Repair */
 .evolved-hero .hero-copy {
   max-width: 900px;
 }

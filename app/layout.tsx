@@ -5,7 +5,12 @@ import "./globals.css";
 
 const favicon32 = "/allm4-favicon-v5-32.png?v=6";
 const appleTouchIcon = "/allm4-touch-v5.png?v=6";
+const socialPreview = "/images/allm4-social-preview.png";
 const isProduction = process.env.NODE_ENV === "production";
+
+const title = "Allm4 — IA local simples para qualquer pessoa";
+const description =
+  "Converse, crie imagens e trabalhe em projetos com IA local, mesmo sem conhecimento técnico. Allm4 para macOS Apple Silicon e Windows.";
 
 const productionCsp = [
   "default-src 'self'",
@@ -26,12 +31,35 @@ const productionCsp = [
 ].join("; ");
 
 export const metadata: Metadata = {
-  title: "Allm4 — IA local simples para qualquer pessoa",
-  description:
-    "Converse, crie imagens e trabalhe em projetos com IA local, mesmo sem conhecimento técnico. Allm4 para macOS Apple Silicon e Windows.",
+  metadataBase: new URL("https://allm4.com"),
+  title,
+  description,
   icons: {
     icon: [{ url: favicon32, type: "image/png", sizes: "32x32" }],
     apple: appleTouchIcon,
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    siteName: "Allm4",
+    title,
+    description,
+    images: [
+      {
+        url: socialPreview,
+        width: 1200,
+        height: 630,
+        alt: "Allm4 — IA local simples para qualquer pessoa",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [socialPreview],
   },
 };
 

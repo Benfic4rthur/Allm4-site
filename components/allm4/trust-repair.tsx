@@ -55,10 +55,10 @@ export function TrustRepair() {
               <div className="trust-card-icon repair-icon"><Wrench /></div>
               <span><span className="status-dot" /> ATIVO E SILENCIOSO</span>
             </div>
-            <span className="trust-card-kicker">ALLM4 REPAIR</span>
+            <span className="trust-card-kicker">ALLM4 AUTO REPAIR</span>
             <h3>Problemas que não ficam esquecidos.</h3>
             <p>
-              Se algo falhar, você não precisa investigar. O Allm4 Repair encontra o
+              Se algo falhar, você não precisa investigar. O Allm4 Auto Repair encontra o
               bug, envia um relato técnico sem seus dados pessoais e prepara a
               correção. A equipe do Allm4 só revisa e autoriza quando ela está pronta
               para virar uma nova versão.
@@ -72,7 +72,7 @@ export function TrustRepair() {
                 loading="lazy"
               />
             </figure>
-            <div className="repair-flow" aria-label="Fluxo do Allm4 Repair">
+            <div className="repair-flow" aria-label="Fluxo do Allm4 Auto Repair">
               <div><ScanSearch size={16} /><span>Encontra<strong>Identifica o bug em silêncio</strong></span></div>
               <i />
               <div><ShieldCheck size={16} /><span>Reporta<strong>Sem senhas, tokens ou dados pessoais</strong></span></div>

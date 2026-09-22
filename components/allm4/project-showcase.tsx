@@ -32,7 +32,10 @@ export function ProjectShowcase() {
         <div className="project-proof reveal">
           <AppScreenshot
             full
-            src="/images/allm4-projeto-arquivos-sem-dock.avif"
+            src="/images/allm4-projeto-arquivos-v0134.png"
+            width={3456}
+            height={2024}
+            maskWindowCorners
             alt="Tela real do Allm4 mostrando os arquivos encontrados dentro de um projeto"
           />
           <div className="project-proof-caption">

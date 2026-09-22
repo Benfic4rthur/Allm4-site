@@ -15,19 +15,25 @@ const assistantSteps = [
   {
     id: "inicio",
     label: "1. Comece",
-    src: "/images/allm4-assistente-inicio.avif",
+    src: "/images/allm4-assistente-inicio-v0134.png",
+    width: 3454,
+    height: 2020,
     alt: "Tutorial do Allm4 explicando o que é uma LLM e oferecendo a análise do computador",
   },
   {
     id: "analise",
     label: "2. Análise",
-    src: "/images/allm4-assistente-analise.avif",
+    src: "/images/allm4-assistente-analise-v0134.png",
+    width: 3456,
+    height: 2018,
     alt: "Allm4 mostrando a análise do processador, memória e GPU do computador",
   },
   {
     id: "recomendacao",
     label: "3. Escolha",
-    src: "/images/allm4-assistente-recomendacao.avif",
+    src: "/images/allm4-assistente-escolha-v0134.png",
+    width: 3456,
+    height: 2024,
     alt: "Allm4 recomendando modelos locais compatíveis com o computador",
   },
 ];
@@ -87,6 +93,9 @@ export function ModelAssistant() {
                   full
                   src={step.src}
                   alt={step.alt}
+                  width={step.width}
+                  height={step.height}
+                  maskWindowCorners
                   gallery={assistantSteps.map((item) => ({
                     src: item.src,
                     alt: item.alt,

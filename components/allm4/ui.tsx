@@ -34,6 +34,7 @@ export function AppScreenshot({
   gallery,
   initialIndex,
   expandable = true,
+  maskWindowCorners = false,
 }: {
   full?: boolean;
   src?: string;
@@ -43,6 +44,7 @@ export function AppScreenshot({
   gallery?: Array<{ src: string; alt: string }>;
   initialIndex?: number;
   expandable?: boolean;
+  maskWindowCorners?: boolean;
 }) {
   const imageSrc = `${publicBasePath}${src}`;
   const modalGallery = gallery?.map((item) => ({
@@ -66,6 +68,7 @@ export function AppScreenshot({
         <img
           src={imageSrc}
           alt={alt}
+          className={maskWindowCorners ? "demo-screenshot-rounded" : undefined}
           width={width}
           height={height}
           loading={full ? "lazy" : "eager"}
@@ -90,6 +93,7 @@ export function AppScreenshot({
       triggerClassName={`app-window ${full ? "full-screenshot" : ""}`}
       gallery={modalGallery}
       initialIndex={initialIndex}
+      imageClassName={maskWindowCorners ? "demo-screenshot-rounded" : undefined}
     >
       {frame}
     </DemoImageModal>

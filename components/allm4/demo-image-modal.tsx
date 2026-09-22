@@ -9,6 +9,7 @@ type DemoImageModalProps = {
   alt: string;
   triggerClassName: string;
   children: ReactNode;
+  imageClassName?: string;
   gallery?: Array<{ src: string; alt: string }>;
   initialIndex?: number;
 };
@@ -18,6 +19,7 @@ export function DemoImageModal({
   alt,
   triggerClassName,
   children,
+  imageClassName,
   gallery,
   initialIndex = 0,
 }: DemoImageModalProps) {
@@ -95,7 +97,11 @@ export function DemoImageModal({
                 <ChevronLeft size={24} />
               </button>
             )}
-            <img src={activeItem.src} alt={activeItem.alt} />
+            <img
+              src={activeItem.src}
+              alt={activeItem.alt}
+              className={imageClassName}
+            />
             {hasGallery && (
               <button
                 type="button"

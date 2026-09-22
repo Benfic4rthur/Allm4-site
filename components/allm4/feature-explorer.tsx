@@ -72,6 +72,7 @@ function ChatVisual() {
           src="/images/allm4-chat-em-uso-v0133.png"
           width={3456}
           height={2020}
+          maskWindowCorners
           alt="Interface real do Allm4 durante uma conversa com um modelo local"
         />
         <span className="image-caption">
@@ -91,6 +92,7 @@ function ImageVisual() {
           src="/images/allm4-imagem-em-uso-v0133.png"
           width={3456}
           height={2024}
+          maskWindowCorners
           alt="Interface real do Allm4 mostrando uma imagem criada localmente"
         />
         <span className="image-caption">
@@ -110,6 +112,7 @@ function ProjectsVisual() {
           src="/images/allm4-projeto-em-uso-v0133.png"
           width={3456}
           height={2022}
+          maskWindowCorners
           alt="Interface real do Allm4 trabalhando em um projeto e listando seus arquivos"
         />
         <span className="image-caption">

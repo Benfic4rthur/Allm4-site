@@ -548,6 +548,9 @@ button:focus-visible {
   max-height: calc(94dvh - 100px);
   object-fit: contain;
 }
+.demo-screenshot-rounded {
+  border-radius: 12px;
+}
 .demo-image-dialog-nav {
   position: absolute;
   top: 50%;

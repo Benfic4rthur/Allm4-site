@@ -28,7 +28,10 @@ export function PersonalizationShowcase() {
         <div className="personalization-visual reveal">
           <AppScreenshot
             full
-            src="/images/allm4-personalizacao-sem-dock.avif"
+            src="/images/allm4-personalizacao-v0134.png"
+            width={3456}
+            height={2020}
+            maskWindowCorners
             alt="Tela real do Allm4 para personalizar nome, idioma e estilo das respostas"
           />
           <span className="image-caption">

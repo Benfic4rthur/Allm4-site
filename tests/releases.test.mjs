@@ -150,10 +150,13 @@ test("rejects malformed, untrusted or foreign release data", () => {
 });
 
 test("the fallback contains separate official Mac and Windows installers", () => {
-  assert.match(fallbackRelease.mac, /\/v0\.1\.25\/Allm4-0\.1\.25\.dmg$/);
-  assert.match(
+  assert.equal(
+    fallbackRelease.mac,
+    `https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v${fallbackRelease.version}/Allm4-${fallbackRelease.version}.dmg`,
+  );
+  assert.equal(
     fallbackRelease.windows,
-    /\/v0\.1\.25\/Allm4-Setup-0\.1\.25\.exe$/,
+    `https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v${fallbackRelease.version}/Allm4-Setup-${fallbackRelease.version}.exe`,
   );
   assert.equal(fallbackRelease.macDownloads, 2);
   assert.equal(fallbackRelease.windowsDownloads, 2);

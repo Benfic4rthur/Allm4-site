@@ -49,7 +49,8 @@ export default function Home() {
             <p>
               Você não precisa ficar de fora do mundo da IA por não saber termos
               técnicos. Converse, crie imagens e tire projetos do papel no seu
-              computador, com passos claros desde o primeiro clique e sem necessidade de internet. 
+              computador, com passos claros desde o primeiro clique. Depois de
+              instalar os modelos, muitas tarefas funcionam sem internet.
             </p>
             <div className="hero-actions">
               <CTA />

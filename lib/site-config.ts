@@ -35,11 +35,11 @@ type ParsedRelease = {
 };
 
 export const fallbackRelease: Release = {
-  version: "0.1.25",
-  url: "https://github.com/Benfic4rthur/Allm4-Releases/releases/tag/v0.1.25",
-  mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.25/Allm4-0.1.25.dmg",
+  version: "0.1.32",
+  url: "https://github.com/Benfic4rthur/Allm4-Releases/releases/tag/v0.1.32",
+  mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.32/Allm4-0.1.32.dmg",
   windows:
-    "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.25/Allm4-Setup-0.1.25.exe",
+    "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.32/Allm4-Setup-0.1.32.exe",
   macDownloads: 2,
   windowsDownloads: 2,
 };

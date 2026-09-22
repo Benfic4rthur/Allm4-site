@@ -1,7 +1,7 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { Maximize2, X } from "lucide-react";
+import { useState, type ReactNode } from "react";
+import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
 type DemoImageModalProps = {
@@ -9,6 +9,8 @@ type DemoImageModalProps = {
   alt: string;
   triggerClassName: string;
   children: ReactNode;
+  gallery?: Array<{ src: string; alt: string }>;
+  initialIndex?: number;
 };
 
 export function DemoImageModal({
@@ -16,9 +18,24 @@ export function DemoImageModal({
   alt,
   triggerClassName,
   children,
+  gallery,
+  initialIndex = 0,
 }: DemoImageModalProps) {
+  const items = gallery?.length ? gallery : [{ src, alt }];
+  const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const activeItem = items[activeIndex] ?? items[0];
+  const hasGallery = items.length > 1;
+
+  function move(direction: -1 | 1) {
+    setActiveIndex((current) => (current + direction + items.length) % items.length);
+  }
+
   return (
-    <DialogPrimitive.Root>
+    <DialogPrimitive.Root
+      onOpenChange={(open) => {
+        if (open) setActiveIndex(initialIndex);
+      }}
+    >
       <DialogPrimitive.Trigger asChild>
         <button
           type="button"
@@ -34,9 +51,22 @@ export function DemoImageModal({
 
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay className="demo-image-overlay" />
-        <DialogPrimitive.Content className="demo-image-dialog">
+        <DialogPrimitive.Content
+          className="demo-image-dialog"
+          onKeyDown={(event) => {
+            if (!hasGallery) return;
+            if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              move(-1);
+            }
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              move(1);
+            }
+          }}
+        >
           <DialogPrimitive.Title className="sr-only">
-            {alt}
+            {activeItem.alt}
           </DialogPrimitive.Title>
           <DialogPrimitive.Description className="sr-only">
             Visualização ampliada da imagem demonstrativa do Allm4.
@@ -55,12 +85,35 @@ export function DemoImageModal({
           </div>
 
           <div className="demo-image-dialog-body">
-            <img src={src} alt={alt} />
+            {hasGallery && (
+              <button
+                type="button"
+                className="demo-image-dialog-nav demo-image-dialog-nav-previous"
+                onClick={() => move(-1)}
+                aria-label="Ver imagem anterior do assistente"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
+            <img src={activeItem.src} alt={activeItem.alt} />
+            {hasGallery && (
+              <button
+                type="button"
+                className="demo-image-dialog-nav demo-image-dialog-nav-next"
+                onClick={() => move(1)}
+                aria-label="Ver próxima imagem do assistente"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
           </div>
 
           <div className="demo-image-dialog-footer">
-            <span>{alt}</span>
-            <span>ESC PARA FECHAR</span>
+            <span>{activeItem.alt}</span>
+            <span>
+              {hasGallery && `${activeIndex + 1} / ${items.length} · `}
+              ESC PARA FECHAR
+            </span>
           </div>
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

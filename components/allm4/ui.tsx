@@ -29,18 +29,28 @@ export function AppScreenshot({
   full = false,
   src = "/images/allm4-chat-v0132-sem-dock.avif",
   alt = "Interface real do Allm4 no ambiente de Chat",
+  gallery,
+  initialIndex,
 }: {
   full?: boolean;
   src?: string;
   alt?: string;
+  gallery?: Array<{ src: string; alt: string }>;
+  initialIndex?: number;
 }) {
   const imageSrc = `${publicBasePath}${src}`;
+  const modalGallery = gallery?.map((item) => ({
+    ...item,
+    src: `${publicBasePath}${item.src}`,
+  }));
 
   return (
     <DemoImageModal
       src={imageSrc}
       alt={alt}
       triggerClassName={`app-window ${full ? "full-screenshot" : ""}`}
+      gallery={modalGallery}
+      initialIndex={initialIndex}
     >
       <div className="window-chrome" aria-hidden="true">
         <div className="traffic-lights">

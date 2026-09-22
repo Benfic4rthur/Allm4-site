@@ -81,9 +81,18 @@ export function ModelAssistant() {
                 </TabsTrigger>
               ))}
             </TabsList>
-            {assistantSteps.map((step) => (
+            {assistantSteps.map((step, index) => (
               <TabsContent value={step.id} key={step.id} className="assistant-step-panel">
-                <AppScreenshot full src={step.src} alt={step.alt} />
+                <AppScreenshot
+                  full
+                  src={step.src}
+                  alt={step.alt}
+                  gallery={assistantSteps.map((item) => ({
+                    src: item.src,
+                    alt: item.alt,
+                  }))}
+                  initialIndex={index}
+                />
               </TabsContent>
             ))}
           </Tabs>

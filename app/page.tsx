@@ -79,7 +79,12 @@ export default function Home() {
               <span><span className="status-dot" /> CHAT · IMAGEM · PROJETOS</span>
               <span>ALLM4 DESKTOP <ArrowUpRight size={12} /></span>
             </div>
-            <AppScreenshot />
+            <AppScreenshot
+              src="/images/allm4-chat-hero-v0133.png"
+              width={3454}
+              height={2024}
+              expandable={false}
+            />
             <div className="floating-chip">
               <div className="chip-icon"><Sparkles size={20} /></div>
               <div><strong>Você escolhe o que quer fazer.</strong><span>O Allm4 cuida da parte difícil.</span></div>

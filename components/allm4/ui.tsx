@@ -29,29 +29,28 @@ export function AppScreenshot({
   full = false,
   src = "/images/allm4-chat-v0132-sem-dock.avif",
   alt = "Interface real do Allm4 no ambiente de Chat",
+  width = 3456,
+  height = 2078,
   gallery,
   initialIndex,
+  expandable = true,
 }: {
   full?: boolean;
   src?: string;
   alt?: string;
+  width?: number;
+  height?: number;
   gallery?: Array<{ src: string; alt: string }>;
   initialIndex?: number;
+  expandable?: boolean;
 }) {
   const imageSrc = `${publicBasePath}${src}`;
   const modalGallery = gallery?.map((item) => ({
     ...item,
     src: `${publicBasePath}${item.src}`,
   }));
-
-  return (
-    <DemoImageModal
-      src={imageSrc}
-      alt={alt}
-      triggerClassName={`app-window ${full ? "full-screenshot" : ""}`}
-      gallery={modalGallery}
-      initialIndex={initialIndex}
-    >
+  const frame = (
+    <>
       <div className="window-chrome" aria-hidden="true">
         <div className="traffic-lights">
           <i />
@@ -67,12 +66,32 @@ export function AppScreenshot({
         <img
           src={imageSrc}
           alt={alt}
-          width="3456"
-          height="2078"
+          width={width}
+          height={height}
           loading={full ? "lazy" : "eager"}
           fetchPriority={full ? "auto" : "high"}
         />
       </div>
+    </>
+  );
+
+  if (!expandable) {
+    return (
+      <div className={`app-window ${full ? "full-screenshot" : ""}`}>
+        {frame}
+      </div>
+    );
+  }
+
+  return (
+    <DemoImageModal
+      src={imageSrc}
+      alt={alt}
+      triggerClassName={`app-window ${full ? "full-screenshot" : ""}`}
+      gallery={modalGallery}
+      initialIndex={initialIndex}
+    >
+      {frame}
     </DemoImageModal>
   );
 }

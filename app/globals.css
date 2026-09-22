@@ -3755,3 +3755,178 @@ button:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep the desktop composition while giving smaller screens room to breathe. */
+.demo-image-dialog-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.demo-image-dialog-zoom {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .feature-panel,
+  .assistant-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .feature-panel {
+    gap: 20px;
+    max-width: 720px;
+    margin-inline: auto;
+  }
+  .feature-preview {
+    padding-block: 12px;
+  }
+  .explorer-screenshot {
+    max-width: 650px;
+    margin-inline: auto;
+  }
+  .feature-description h3,
+  .feature-description > p {
+    max-width: 620px;
+  }
+  .assistant-layout {
+    gap: 28px;
+    align-items: start;
+  }
+  .assistant-copy .section-intro {
+    max-width: 620px;
+  }
+  .assistant-console.assistant-real {
+    width: 100%;
+    max-width: 720px;
+  }
+  .demo-image-dialog-zoom {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 10px;
+    border: 1px solid #ffffff20;
+    border-radius: 8px;
+    background: #ffffff08;
+    color: #e8e3da;
+    font-size: 10px;
+  }
+  .demo-image-dialog-close {
+    width: 44px;
+    height: 44px;
+  }
+  .demo-image-dialog-body.is-zoomed {
+    display: block;
+    place-items: initial;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .demo-image-dialog-body.is-zoomed img {
+    width: 1300px;
+    max-width: none;
+    max-height: none;
+  }
+  .demo-image-dialog-body.is-zoomed .demo-image-dialog-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    height: auto;
+    min-height: 124px;
+    flex-wrap: wrap;
+    gap: 15px 8px;
+    padding-block: 17px 10px;
+  }
+  .header nav {
+    order: 3;
+    display: flex;
+    flex: 0 0 100%;
+    justify-content: space-between;
+    gap: 16px;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 11px;
+    scrollbar-width: none;
+  }
+  .header nav a {
+    flex: 0 0 auto;
+    min-height: 44px;
+    align-content: center;
+  }
+  .header .button-small {
+    min-height: 44px;
+  }
+  .hero-art {
+    display: none;
+  }
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 14px;
+    padding-block: 25px;
+  }
+  .trust-strip > span {
+    max-width: none;
+    font-size: 10px;
+  }
+  .trust-strip svg {
+    width: 16px;
+    height: 16px;
+  }
+  .feature-tab-list {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+  .feature-tab-guide {
+    order: -1;
+    flex: 0 0 100%;
+    margin: 0 0 5px;
+    padding: 0;
+    font-size: 11px;
+  }
+  .environment-tab {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .feature-tab {
+    min-height: 55px;
+    padding: 10px 4px;
+    font-size: 10px;
+  }
+  .feature-panel {
+    min-height: 0;
+  }
+  .environment-benefits span,
+  .feature-description li {
+    font-size: 12px;
+  }
+  .demo-image-dialog-chrome {
+    min-height: 54px;
+  }
+  .demo-image-dialog-nav {
+    width: 44px;
+  }
+  .demo-image-dialog-footer {
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 370px) {
+  .hero h1 {
+    font-size: 32px;
+    letter-spacing: -1.6px;
+  }
+  .hero h1 > span {
+    display: block;
+    text-wrap: balance;
+  }
+  .header nav {
+    gap: 13px;
+  }
+  .demo-image-dialog-status {
+    font-size: 7px;
+    letter-spacing: .5px;
+  }
+}

@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
-import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { useRef, useState, type ReactNode } from "react";
+import { ChevronLeft, ChevronRight, Maximize2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
 
 type DemoImageModalProps = {
@@ -12,6 +12,7 @@ type DemoImageModalProps = {
   imageClassName?: string;
   gallery?: Array<{ src: string; alt: string }>;
   initialIndex?: number;
+  onOpenChange?: (open: boolean) => void;
 };
 
 export function DemoImageModal({
@@ -22,9 +23,12 @@ export function DemoImageModal({
   imageClassName,
   gallery,
   initialIndex = 0,
+  onOpenChange,
 }: DemoImageModalProps) {
   const items = gallery?.length ? gallery : [{ src, alt }];
   const [activeIndex, setActiveIndex] = useState(initialIndex);
+  const [zoomed, setZoomed] = useState(false);
+  const imageBody = useRef<HTMLDivElement>(null);
   const activeItem = items[activeIndex] ?? items[0];
   const hasGallery = items.length > 1;
 
@@ -32,10 +36,26 @@ export function DemoImageModal({
     setActiveIndex((current) => (current + direction + items.length) % items.length);
   }
 
+  function toggleZoom() {
+    setZoomed((current) => !current);
+    if (!zoomed) {
+      requestAnimationFrame(() => {
+        const body = imageBody.current;
+        if (!body) return;
+        body.scrollLeft = (body.scrollWidth - body.clientWidth) / 2;
+        body.scrollTop = (body.scrollHeight - body.clientHeight) / 2;
+      });
+    }
+  }
+
   return (
     <DialogPrimitive.Root
       onOpenChange={(open) => {
-        if (open) setActiveIndex(initialIndex);
+        if (open) {
+          setActiveIndex(initialIndex);
+          setZoomed(false);
+        }
+        onOpenChange?.(open);
       }}
     >
       <DialogPrimitive.Trigger asChild>
@@ -78,15 +98,30 @@ export function DemoImageModal({
             <span className="demo-image-dialog-status">
               <span className="status-dot" /> DEMONSTRAÇÃO DO ALLM4
             </span>
-            <DialogPrimitive.Close
-              className="demo-image-dialog-close"
-              aria-label="Fechar imagem ampliada"
-            >
-              <X size={19} />
-            </DialogPrimitive.Close>
+            <div className="demo-image-dialog-actions">
+              <button
+                type="button"
+                className="demo-image-dialog-zoom"
+                onClick={toggleZoom}
+                aria-label={zoomed ? "Ajustar imagem à tela" : "Aproximar imagem para ler detalhes"}
+                aria-pressed={zoomed}
+              >
+                {zoomed ? <ZoomOut size={16} /> : <ZoomIn size={16} />}
+                <span>{zoomed ? "Ajustar" : "Ler detalhes"}</span>
+              </button>
+              <DialogPrimitive.Close
+                className="demo-image-dialog-close"
+                aria-label="Fechar imagem ampliada"
+              >
+                <X size={19} />
+              </DialogPrimitive.Close>
+            </div>
           </div>
 
-          <div className="demo-image-dialog-body">
+          <div
+            ref={imageBody}
+            className={`demo-image-dialog-body${zoomed ? " is-zoomed" : ""}`}
+          >
             {hasGallery && (
               <button
                 type="button"

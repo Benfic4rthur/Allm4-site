@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Cpu,
   MemoryStick,
@@ -38,8 +38,39 @@ const assistantSteps = [
   },
 ];
 export function ModelAssistant() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState(assistantSteps[0].id);
+  const [imageOpen, setImageOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setVisible(entry.isIntersecting);
+      if (entry.isIntersecting) setActiveStep(assistantSteps[0].id);
+    }, { threshold: 0.2 });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible || imageOpen) return;
+
+    const timer = window.setTimeout(() => {
+      setActiveStep((current) => {
+        const index = assistantSteps.findIndex((step) => step.id === current);
+        return assistantSteps[(index + 1) % assistantSteps.length].id;
+      });
+    }, 5000);
+
+    return () => window.clearTimeout(timer);
+  }, [activeStep, imageOpen, visible]);
+
   return (
-    <section className="section assistant-section" id="assistente">
+    <section ref={sectionRef} className="section assistant-section" id="assistente">
       <div className="wrap assistant-layout">
         <div className="assistant-copy reveal">
           <div className="eyebrow">04 / FEITO PARA O SEU COMPUTADOR</div>
@@ -79,7 +110,7 @@ export function ModelAssistant() {
           </p>
         </div>
         <div className="assistant-console assistant-real reveal">
-          <Tabs defaultValue="recomendacao">
+          <Tabs value={activeStep} onValueChange={setActiveStep}>
             <TabsList className="assistant-step-list" aria-label="Etapas do assistente de escolha">
               {assistantSteps.map((step) => (
                 <TabsTrigger className="assistant-step-tab" key={step.id} value={step.id}>
@@ -101,6 +132,7 @@ export function ModelAssistant() {
                     alt: item.alt,
                   }))}
                   initialIndex={index}
+                  onModalOpenChange={setImageOpen}
                 />
               </TabsContent>
             ))}

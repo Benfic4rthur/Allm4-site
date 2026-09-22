@@ -249,7 +249,7 @@ function AccessInfo() {
     >
       <button
         type="button"
-        className="flex w-full items-center justify-center gap-2 px-4 py-3 text-center font-mono text-[8px] tracking-[0.12em] text-[#c7c2b6] transition-colors hover:text-[#f49a78] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[#f67c5260]"
+        className="flex min-h-11 w-full items-center justify-center gap-2 px-4 py-3 text-center font-mono text-[8px] tracking-[0.12em] text-[#c7c2b6] transition-colors hover:text-[#f49a78] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[#f67c5260]"
         aria-expanded={open}
         aria-controls="allm4-access-details"
         onFocus={() => setHovered(true)}

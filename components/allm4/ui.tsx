@@ -1,5 +1,6 @@
 import { Sparkles, ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { DemoImageModal } from "./demo-image-modal";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -33,8 +34,14 @@ export function AppScreenshot({
   src?: string;
   alt?: string;
 }) {
+  const imageSrc = `${publicBasePath}${src}`;
+
   return (
-    <div className={`app-window ${full ? "full-screenshot" : ""}`}>
+    <DemoImageModal
+      src={imageSrc}
+      alt={alt}
+      triggerClassName={`app-window ${full ? "full-screenshot" : ""}`}
+    >
       <div className="window-chrome" aria-hidden="true">
         <div className="traffic-lights">
           <i />
@@ -48,7 +55,7 @@ export function AppScreenshot({
       </div>
       <div className="screenshot-viewport">
         <img
-          src={`${publicBasePath}${src}`}
+          src={imageSrc}
           alt={alt}
           width="3456"
           height="2078"
@@ -56,6 +63,6 @@ export function AppScreenshot({
           fetchPriority={full ? "auto" : "high"}
         />
       </div>
-    </div>
+    </DemoImageModal>
   );
 }

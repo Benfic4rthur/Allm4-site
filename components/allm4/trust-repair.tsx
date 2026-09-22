@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   Wrench,
 } from "lucide-react";
+import { DemoImageModal } from "./demo-image-modal";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -63,7 +64,11 @@ export function TrustRepair() {
               correção. A equipe do Allm4 só revisa e autoriza quando ela está pronta
               para virar uma nova versão.
             </p>
-            <figure className="repair-screenshot">
+            <DemoImageModal
+              src={`${publicBasePath}/images/allm4-repair-v2.avif`}
+              alt="Janela do Allm4 Maintainer mostrando uma correção concluída e aguardando autorização"
+              triggerClassName="repair-screenshot"
+            >
               <img
                 src={`${publicBasePath}/images/allm4-repair-v2.avif`}
                 alt="Janela do Allm4 Maintainer mostrando uma correção concluída e aguardando autorização"
@@ -71,7 +76,7 @@ export function TrustRepair() {
                 height="1205"
                 loading="lazy"
               />
-            </figure>
+            </DemoImageModal>
             <div className="repair-flow" aria-label="Fluxo do Allm4 Auto Repair">
               <div><ScanSearch size={16} /><span>Encontra<strong>Identifica o bug em silêncio</strong></span></div>
               <i />

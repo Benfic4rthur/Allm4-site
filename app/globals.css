@@ -400,6 +400,191 @@ button:focus-visible {
   height: auto;
   margin-top: -1.9%;
 }
+.demo-image-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  appearance: none;
+  cursor: zoom-in;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+.demo-image-trigger:hover {
+  border-color: #f67c5260;
+  box-shadow:
+    0 -12px 80px #e5894518,
+    0 35px 80px #0008,
+    0 0 0 1px #f67c5218;
+  filter: brightness(1.04);
+}
+.demo-image-trigger:focus-visible {
+  outline-offset: 6px;
+}
+.demo-image-zoom-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid #ffffff24;
+  border-radius: 6px;
+  background: #161613dc;
+  backdrop-filter: blur(10px);
+  color: #f5f2e9;
+  box-shadow: 0 8px 24px #0007;
+  font: 8px monospace;
+  letter-spacing: .45px;
+  opacity: .76;
+  transition:
+    opacity .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+.demo-image-trigger:hover .demo-image-zoom-hint,
+.demo-image-trigger:focus-visible .demo-image-zoom-hint {
+  opacity: 1;
+  background: #2a211ced;
+  border-color: #f67c5270;
+  transform: translateY(-2px);
+}
+.demo-image-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  background:
+    radial-gradient(circle at 50% 45%, #f67c5215, transparent 42%),
+    #080807e8;
+  backdrop-filter: blur(16px) saturate(.8);
+  animation: demo-overlay-in .2s ease-out;
+}
+.demo-image-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 81;
+  display: flex;
+  width: min(94vw, 1800px);
+  max-height: 94dvh;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffffff20;
+  border-radius: 13px;
+  outline: none;
+  background: #11110f;
+  box-shadow:
+    0 0 0 1px #f67c5212,
+    0 35px 120px #000c,
+    0 0 90px #f67c5211;
+  animation: demo-dialog-in .24s ease-out;
+}
+.demo-image-dialog-chrome {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px 8px 17px;
+  border-bottom: 1px solid #ffffff12;
+  background: linear-gradient(180deg, #25231f, #1d1c19);
+}
+.demo-image-dialog-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #a8a79e;
+  font: 8px monospace;
+  letter-spacing: 1.1px;
+}
+.demo-image-dialog-close {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #ffffff18;
+  border-radius: 8px;
+  background: #ffffff06;
+  color: #ddd9cf;
+  transition:
+    color .2s ease,
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+.demo-image-dialog-close:hover {
+  color: #fff;
+  border-color: #f67c5265;
+  background: #f67c5218;
+  transform: rotate(4deg);
+}
+.demo-image-dialog-body {
+  display: grid;
+  min-height: 0;
+  flex: 1 1 auto;
+  place-items: center;
+  overflow: auto;
+  background:
+    linear-gradient(#ffffff04 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff04 1px, transparent 1px),
+    #0c0c0b;
+  background-size: 36px 36px;
+}
+.demo-image-dialog-body img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: calc(94dvh - 100px);
+  object-fit: contain;
+}
+.demo-image-dialog-footer {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 9px 17px;
+  border-top: 1px solid #ffffff10;
+  color: #88887f;
+  background: #171714;
+  font: 8px monospace;
+  letter-spacing: .35px;
+}
+.demo-image-dialog-footer span:first-child {
+  overflow: hidden;
+  max-width: 75%;
+  color: #b7b5ac;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.demo-image-dialog-footer span:last-child {
+  color: #c07b5f;
+  letter-spacing: .9px;
+}
+@keyframes demo-overlay-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes demo-dialog-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
 .floating-chip {
   position: absolute;
   right: -20px;

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Apple,
   Download,
@@ -33,57 +33,89 @@ function WindowsIcon() {
 
 export function Downloads() {
   const [release, setRelease] = useState(fallbackRelease);
-  const [downloadBoost, setDownloadBoost] = useState({ mac: 0, windows: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000);
     let active = true;
+    let loading = false;
+    let lastAttemptAt = 0;
+    let currentController: AbortController | null = null;
 
     async function loadReleaseHistory() {
-      const releases: unknown[] = [];
+      if (!active || loading) return;
+      loading = true;
+      lastAttemptAt = Date.now();
 
-      for (let page = 1; page <= 10; page += 1) {
-        const response = await fetch(
-          `https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases?per_page=100&page=${page}`,
-          {
-            signal: controller.signal,
-            credentials: "omit",
-            referrerPolicy: "no-referrer",
-            headers: { Accept: "application/vnd.github+json" },
-          },
-        );
-        const contentType = response.headers.get("content-type") ?? "";
-        if (!response.ok || !contentType.includes("application/json")) return;
+      const controller = new AbortController();
+      currentController = controller;
+      const timeout = setTimeout(() => controller.abort(), 8000);
 
-        const data: unknown = await response.json();
-        if (!Array.isArray(data)) return;
+      try {
+        const releases: unknown[] = [];
 
-        releases.push(...data);
-        if (data.length < 100) break;
+        for (let page = 1; page <= 10; page += 1) {
+          const response = await fetch(
+            `https://api.github.com/repos/Benfic4rthur/Allm4-Releases/releases?per_page=100&page=${page}`,
+            {
+              signal: controller.signal,
+              cache: "no-store",
+              credentials: "omit",
+              referrerPolicy: "no-referrer",
+              headers: { Accept: "application/vnd.github+json" },
+            },
+          );
+          const contentType = response.headers.get("content-type") ?? "";
+          if (!response.ok || !contentType.includes("application/json")) return;
+
+          const data: unknown = await response.json();
+          if (!Array.isArray(data)) return;
+
+          releases.push(...data);
+          if (data.length < 100) break;
+        }
+
+        const next = parseReleaseHistory(releases);
+        if (active && next) setRelease(next);
+      } catch {
+        // Keep the last valid release data when GitHub is temporarily unavailable.
+      } finally {
+        clearTimeout(timeout);
+        if (currentController === controller) currentController = null;
+        loading = false;
       }
-
-      const next = parseReleaseHistory(releases);
-      if (active && next) setRelease(next);
     }
 
-    void loadReleaseHistory()
-      .catch(() => {})
-      .finally(() => clearTimeout(timeout));
+    const refreshIfStale = () => {
+      if (Date.now() - lastAttemptAt >= 60_000) void loadReleaseHistory();
+    };
+
+    void loadReleaseHistory();
+
+    const interval = window.setInterval(() => {
+      if (document.visibilityState === "visible") void loadReleaseHistory();
+    }, 3 * 60_000);
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible") refreshIfStale();
+    };
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting) refreshIfStale();
+      },
+      { threshold: 0.15 },
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
 
     return () => {
       active = false;
-      clearTimeout(timeout);
-      controller.abort();
+      window.clearInterval(interval);
+      document.removeEventListener("visibilitychange", handleVisibility);
+      observer.disconnect();
+      currentController?.abort();
     };
   }, []);
-
-  function noteDownload(platform: "mac" | "windows") {
-    setDownloadBoost((current) => ({
-      ...current,
-      [platform]: current[platform] + 1,
-    }));
-  }
 
   const platforms = [
     {
@@ -109,7 +141,7 @@ export function Downloads() {
   ];
 
   return (
-    <section className="download-section section">
+    <section ref={sectionRef} className="download-section section">
       <div className="wrap">
         <div className="download-heading reveal">
           <div className="eyebrow">
@@ -127,8 +159,6 @@ export function Downloads() {
 
         <div className="download-grid reveal">
           {platforms.map((p) => {
-            const visibleDownloads = p.downloads + downloadBoost[p.id];
-
             return (
               <article className="download-card" key={p.id}>
                 <div className="platform-icon">
@@ -141,19 +171,16 @@ export function Downloads() {
                 <a
                   href={p.url ?? release.url}
                   className="button download-button"
-                  onClick={() => {
-                    if (p.url) noteDownload(p.id);
-                  }}
                 >
                   <span>{p.url ? p.button : "Ver opções de download"}</span>
                   {p.url ? (
                     <span
                       className="inline-flex items-center gap-1.5 font-mono text-[9px] font-medium opacity-70"
                       title="Contagem pública acumulada de downloads de todas as versões"
-                      aria-label={`${visibleDownloads} downloads acumulados`}
+                      aria-label={`${p.downloads} downloads acumulados`}
                     >
                       <Download size={13} />
-                      {visibleDownloads} downloads
+                      {p.downloads} downloads
                     </span>
                   ) : (
                     <Download size={16} />

@@ -1,5 +1,4 @@
 const trustedReleaseOwner = "Benfic4rthur";
-const downloadCountBaseline = 1;
 
 export const siteConfig = {
   name: "Allm4",
@@ -40,8 +39,8 @@ export const fallbackRelease: Release = {
   mac: "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.32/Allm4-0.1.32.dmg",
   windows:
     "https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v0.1.32/Allm4-Setup-0.1.32.exe",
-  macDownloads: 2,
-  windowsDownloads: 2,
+  macDownloads: 49,
+  windowsDownloads: 50,
 };
 
 function hasTrustedLogin(value: unknown) {
@@ -70,7 +69,7 @@ function rawDownloadCount(value: unknown) {
 }
 
 function displayDownloadCount(value: number) {
-  return Math.max(2, value + downloadCountBaseline);
+  return value;
 }
 
 function compareVersions(a: string, b: string) {

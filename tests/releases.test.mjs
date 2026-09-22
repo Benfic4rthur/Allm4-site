@@ -74,7 +74,7 @@ test("selects only the exact official installers", () => {
   assert.equal(result.windows, prefix + windowsName);
 });
 
-test("starts visible counters at two and follows GitHub counts", () => {
+test("uses the exact download counters reported by GitHub", () => {
   const result = parseRelease(
     release([
       asset(`Allm4-${version}.dmg`, undefined, { download_count: 1 }),
@@ -82,11 +82,11 @@ test("starts visible counters at two and follows GitHub counts", () => {
     ]),
   );
 
-  assert.equal(result.macDownloads, 2);
-  assert.equal(result.windowsDownloads, 9);
+  assert.equal(result.macDownloads, 1);
+  assert.equal(result.windowsDownloads, 8);
 });
 
-test("falls back to two when GitHub count is unavailable or invalid", () => {
+test("uses zero when GitHub count is unavailable or invalid", () => {
   const result = parseRelease(
     release([
       asset(`Allm4-${version}.dmg`, undefined, { download_count: null }),
@@ -94,14 +94,14 @@ test("falls back to two when GitHub count is unavailable or invalid", () => {
     ]),
   );
 
-  assert.equal(result.macDownloads, 2);
-  assert.equal(result.windowsDownloads, 2);
+  assert.equal(result.macDownloads, 0);
+  assert.equal(result.windowsDownloads, 0);
 });
 
 test("a partial release does not claim an unavailable installer exists", () => {
   const result = parseRelease(release([asset(`Allm4-${version}.dmg`)]));
   assert.equal(result.windows, null);
-  assert.equal(result.windowsDownloads, 2);
+  assert.equal(result.windowsDownloads, 0);
 });
 
 test("sums installer downloads across release history and keeps the newest links", () => {
@@ -114,8 +114,8 @@ test("sums installer downloads across release history and keeps the newest links
   assert.equal(result.version, "1.2.5");
   assert.match(result.mac, /\/v1\.2\.5\/Allm4-1\.2\.5\.dmg$/);
   assert.match(result.windows, /\/v1\.2\.5\/Allm4-Setup-1\.2\.5\.exe$/);
-  assert.equal(result.macDownloads, 12);
-  assert.equal(result.windowsDownloads, 12);
+  assert.equal(result.macDownloads, 11);
+  assert.equal(result.windowsDownloads, 11);
 });
 
 test("release history ignores invalid entries without losing valid totals", () => {
@@ -126,8 +126,8 @@ test("release history ignores invalid entries without losing valid totals", () =
   ]);
 
   assert.equal(filtered.version, "1.2.2");
-  assert.equal(filtered.macDownloads, 4);
-  assert.equal(filtered.windowsDownloads, 5);
+  assert.equal(filtered.macDownloads, 3);
+  assert.equal(filtered.windowsDownloads, 4);
 });
 
 test("rejects malformed, untrusted or foreign release data", () => {
@@ -158,6 +158,8 @@ test("the fallback contains separate official Mac and Windows installers", () =>
     fallbackRelease.windows,
     `https://github.com/Benfic4rthur/Allm4-Releases/releases/download/v${fallbackRelease.version}/Allm4-Setup-${fallbackRelease.version}.exe`,
   );
-  assert.equal(fallbackRelease.macDownloads, 2);
-  assert.equal(fallbackRelease.windowsDownloads, 2);
+  assert.ok(Number.isSafeInteger(fallbackRelease.macDownloads));
+  assert.ok(Number.isSafeInteger(fallbackRelease.windowsDownloads));
+  assert.ok(fallbackRelease.macDownloads >= 0);
+  assert.ok(fallbackRelease.windowsDownloads >= 0);
 });

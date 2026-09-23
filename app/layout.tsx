@@ -3,6 +3,7 @@ import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
+const googleFavicon = "/allm4-google-favicon-96.png?v=1";
 const favicon32 = "/allm4-favicon-v5-32.png?v=6";
 const appleTouchIcon = "/allm4-touch-v5.png?v=6";
 const socialPreview = "/images/allm4-social-preview.png";
@@ -35,7 +36,10 @@ export const metadata: Metadata = {
   title,
   description,
   icons: {
-    icon: [{ url: favicon32, type: "image/png", sizes: "32x32" }],
+    icon: [
+      { url: googleFavicon, type: "image/png", sizes: "96x96" },
+      { url: favicon32, type: "image/png", sizes: "32x32" },
+    ],
     apple: appleTouchIcon,
   },
   openGraph: {

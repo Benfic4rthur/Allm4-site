@@ -115,14 +115,20 @@ button:focus-visible {
   gap: 10px;
 }
 .brand-icon {
-  background: var(--orange);
+  background: #080605;
   display: grid;
   place-items: center;
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  color: white;
-  box-shadow: 0 2px 16px #f67c5210;
+  overflow: hidden;
+  flex: none;
+  box-shadow: 0 2px 16px #f67c5225;
+}
+.brand-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .brand-label {
   font-family: monospace;
@@ -303,12 +309,14 @@ button:focus-visible {
     0 0 65px #f67c521a;
   display: grid;
   place-items: center;
+  overflow: hidden;
   transform: translate(-50%, -50%) rotateX(35deg) rotateZ(-25deg);
 }
-.core svg {
-  width: 48px;
-  height: 48px;
-  color: #f6a377;
+.core img {
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+  object-fit: cover;
   filter: drop-shadow(0 0 8px #f67c5270);
 }
 .orbit-label {
@@ -661,6 +669,13 @@ button:focus-visible {
   place-items: center;
   background: #f67c5215;
   color: var(--orange);
+  overflow: hidden;
+}
+.chip-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 .floating-chip strong {
   display: block;
@@ -782,8 +797,10 @@ button:focus-visible {
     height: 60px;
     border-radius: 16px;
   }
-  .core svg {
-    width: 32px;
+  .core img {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
   }
   .orbit-label,
   .orbit-point {

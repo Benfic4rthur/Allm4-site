@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
+import Image from "next/image";
 import { Downloads } from "@/components/allm4/downloads";
 import { FeatureExplorer } from "@/components/allm4/feature-explorer";
 import { Footer } from "@/components/allm4/footer";
@@ -69,7 +70,7 @@ export default function Home() {
             <div className="orbit orbit-one" />
             <div className="orbit orbit-two" />
             <div className="orbit orbit-three" />
-            <div className="core"><Sparkles /></div>
+            <div className="core"><Image src="/allm4-icon-v7.png" width={76} height={76} alt="" unoptimized /></div>
             <span className="orbit-label">PROCESSAMENTO LOCAL</span>
             <span className="orbit-point" />
           </div>
@@ -86,7 +87,7 @@ export default function Home() {
               expandable={false}
             />
             <div className="floating-chip">
-              <div className="chip-icon"><Sparkles size={20} /></div>
+              <div className="chip-icon"><Image src="/allm4-icon-v7.png" width={38} height={38} alt="" unoptimized /></div>
               <div><strong>Você escolhe o que quer fazer.</strong><span>O Allm4 cuida da parte difícil.</span></div>
               <span className="status-dot" />
             </div>

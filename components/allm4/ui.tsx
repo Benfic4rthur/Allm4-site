@@ -1,4 +1,5 @@
-import { Sparkles, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 import { siteConfig } from "@/lib/site-config";
 import { DemoImageModal } from "./demo-image-modal";
 
@@ -8,7 +9,7 @@ export function Brand({ label = false }: { label?: boolean }) {
   return (
     <a href="#inicio" className="brand" aria-label="Allm4 — início">
       <span className="brand-icon">
-        <Sparkles size={22} aria-hidden="true" />
+        <Image src={`${publicBasePath}/allm4-icon-v7.png`} width={34} height={34} alt="" aria-hidden="true" unoptimized />
       </span>
       Allm4{label && <span className="brand-label">LOCAL INTELLIGENCE</span>}
     </a>

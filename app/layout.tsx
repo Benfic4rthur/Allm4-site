@@ -3,7 +3,7 @@ import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
-const systemIcon = "/allm4-icon-v7.png";
+const systemIcon = "/allm4-icon-v8.png";
 const socialPreview = "/images/allm4-social-preview.png";
 const isProduction = process.env.NODE_ENV === "production";
 

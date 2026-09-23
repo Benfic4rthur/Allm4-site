@@ -3,7 +3,8 @@ import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
-const systemIcon = "/allm4-icon-v8.png";
+const favicon32 = "/allm4-favicon-v5-32.png?v=6";
+const appleTouchIcon = "/allm4-touch-v5.png?v=6";
 const socialPreview = "/images/allm4-social-preview.png";
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
   title,
   description,
   icons: {
-    icon: [{ url: systemIcon, type: "image/png", sizes: "any" }],
-    apple: systemIcon,
+    icon: [{ url: favicon32, type: "image/png", sizes: "32x32" }],
+    apple: appleTouchIcon,
   },
   openGraph: {
     type: "website",

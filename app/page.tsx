@@ -9,6 +9,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { Downloads } from "@/components/allm4/downloads";
+import { CouponBubble } from "@/components/allm4/coupon-bubble";
 import { FeatureExplorer } from "@/components/allm4/feature-explorer";
 import { Footer } from "@/components/allm4/footer";
 import { ModelAssistant } from "@/components/allm4/model-controls";
@@ -20,6 +21,7 @@ import { AppScreenshot, Brand, CTA } from "@/components/allm4/ui";
 
 export default function Home() {
   return (
+    <>
     <MotionRoot>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
       <header className="header wrap" id="inicio">
@@ -109,5 +111,7 @@ export default function Home() {
       </main>
       <Footer />
     </MotionRoot>
+    <CouponBubble />
+    </>
   );
 }

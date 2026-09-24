@@ -2962,6 +2962,187 @@ button:focus-visible {
     font-size: 33px;
   }
 }
+
+/* Public coupon invitation */
+.coupon-float {
+  position: fixed;
+  z-index: 40;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  max-width: calc(100vw - 32px);
+  color: var(--foreground);
+}
+.coupon-teaser,
+.coupon-card {
+  border: 1px solid #f67c5240;
+  background: rgba(27, 25, 23, .91);
+  box-shadow: 0 16px 48px #0008, 0 2px 12px #0005;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.coupon-teaser {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  max-width: 100%;
+  min-height: 64px;
+  padding: 8px 15px 8px 8px;
+  border-radius: 16px;
+  color: var(--foreground);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -.1px;
+  text-align: left;
+  animation: coupon-drift 6s ease-in-out infinite;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+.coupon-teaser:hover,
+.coupon-teaser:focus-visible {
+  border-color: #f67c5280;
+  background: rgba(38, 31, 27, .96);
+  box-shadow: 0 18px 50px #0009, 0 0 18px #f67c5220;
+}
+.coupon-notice {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 8px 11px;
+  border: 1px solid #f67c523a;
+  border-radius: 10px;
+  background: rgba(27, 25, 23, .93);
+  box-shadow: 0 8px 25px #0006;
+  color: #f7b190;
+  font: 11px var(--font-sans);
+  pointer-events: none;
+}
+.coupon-notice::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--orange);
+  content: "";
+}
+.coupon-teaser-arrow {
+  margin-left: 3px;
+  color: var(--orange);
+}
+.coupon-icon {
+  position: relative;
+  display: block;
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #26150e;
+}
+.coupon-icon::before {
+  position: absolute;
+  inset: -15%;
+  content: "";
+  background: url("/images/allm4-coupon-icon.png") center / cover no-repeat;
+}
+.coupon-card {
+  width: 300px;
+  max-width: 100%;
+  padding: 16px;
+  border-radius: 18px;
+}
+.coupon-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.coupon-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #ffffff1c;
+  border-radius: 10px;
+  background: #ffffff0b;
+  color: #c9c6c2;
+}
+.coupon-close:hover {
+  background: #ffffff1c;
+  color: white;
+}
+.coupon-kicker {
+  margin: 16px 0 7px;
+  color: var(--orange);
+  font: 10px var(--font-mono);
+  letter-spacing: 1.4px;
+}
+.coupon-card h2 {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: -.5px;
+}
+.coupon-discount {
+  margin: 10px 0 16px;
+  color: #ddd8d2;
+  font-size: 15px;
+}
+.coupon-code {
+  padding: 12px 13px;
+  overflow-wrap: anywhere;
+  border: 1px dashed #f67c526b;
+  border-radius: 10px;
+  background: #f67c520b;
+  color: #ffad88;
+  font: 600 15px var(--font-mono);
+  letter-spacing: .5px;
+  text-align: center;
+}
+.coupon-copy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 42px;
+  margin-top: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--orange);
+  color: #18100c;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .2s ease;
+}
+.coupon-copy:hover { background: #ff9973; }
+@keyframes coupon-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+@media (max-width: 700px) {
+  .coupon-float {
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    max-width: calc(100vw - 24px);
+  }
+  .coupon-teaser {
+    min-height: 56px;
+    padding: 7px 12px 7px 7px;
+    font-size: 12px;
+  }
+  .coupon-icon {
+    flex-basis: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .coupon-card { width: min(300px, calc(100vw - 24px)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .coupon-teaser { animation: none; }
+}
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

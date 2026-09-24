@@ -24,7 +24,7 @@ const productionCsp = [
   "style-src 'self' 'unsafe-inline'",
   "script-src 'self' 'unsafe-inline'",
   "script-src-attr 'none'",
-  "connect-src 'self' https://api.github.com",
+  "connect-src 'self' https://api.github.com https://allm4-license-server.vercel.app",
   "media-src 'self'",
   "worker-src 'self' blob:",
   "manifest-src 'self'",

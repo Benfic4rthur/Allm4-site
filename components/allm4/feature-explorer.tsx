@@ -89,11 +89,11 @@ function ImageVisual() {
       <div className="explorer-screenshot">
         <AppScreenshot
           full
-          src="/images/allm4-imagem-em-uso-v0133.png"
-          width={3456}
-          height={2024}
+          src="/images/allm4-cafeteria-pedido-real.avif"
+          width={1600}
+          height={934}
           maskWindowCorners
-          alt="Interface real do Allm4 mostrando uma imagem criada localmente"
+          alt="Interface real do Allm4 com o pedido da cafeteria e a imagem criada localmente"
         />
         <span className="image-caption">
           <span className="status-dot" /> AMBIENTE DE IMAGEM DO ALLM4

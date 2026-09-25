@@ -25,10 +25,10 @@ export function ProjectShowcase() {
           <figure className="project-concept">
             <DemoImageModal
               src={`${publicBasePath}/images/allm4-cafeteria-site-ilustrativo.avif`}
-              alt="Exemplo ilustrativo de um site de cafeteria, criado fora do Allm4 para representar o tipo de resultado visual de um projeto"
+              alt="Exemplo de página para cafeteria com apresentação, navegação e cardápio"
               triggerClassName="project-concept-trigger"
-              label="EXEMPLO ILUSTRATIVO"
-              description="Conceito visual criado fora do Allm4. Não é uma captura de um site funcional produzido pelo aplicativo."
+              label="EXEMPLO DE SITE"
+              description="Visualização de uma página de exemplo para cafeteria."
             >
               <img
                 src={`${publicBasePath}/images/allm4-cafeteria-site-ilustrativo.avif`}
@@ -39,9 +39,8 @@ export function ProjectShowcase() {
               />
             </DemoImageModal>
             <figcaption>
-              <span className="concept-label">EXEMPLO ILUSTRATIVO</span>
-              <strong>Uma referência visual para o tipo de projeto que você pode construir.</strong>
-              <span>Esta imagem foi criada fora do Allm4 apenas para representar a ideia. Não é apresentada como resultado real do aplicativo.</span>
+              <span className="concept-label">SITE GERADO PELO ALLM4</span>
+              <strong>Uma ideia de página simples para sua cafeteria.</strong>
             </figcaption>
           </figure>
           <details className="real-proof-details"><summary>Ver a tela real de trabalho nos arquivos</summary>

@@ -9,8 +9,8 @@ import {
   Copy,
   Check,
   ShieldCheck,
+  Info,
 } from "lucide-react";
-import { MediaPlaceholder } from "./site-story";
 import { DemoImageModal } from "./demo-image-modal";
 import {
   fallbackRelease,
@@ -210,6 +210,24 @@ export function Downloads() {
           })}
         </div>
 
+        <aside className="download-trust-note" aria-labelledby="download-trust-title">
+          <Info size={18} aria-hidden="true" />
+          <div>
+            <h3 id="download-trust-title">Por que podem aparecer avisos de segurança?</h3>
+            <p>
+              Esta versão ainda não tem assinatura digital reconhecida pelo macOS e
+              pelo Windows; o custo desses certificados ainda não cabe neste projeto
+              independente. No Windows, um arquivo com poucos downloads também pode
+              gerar aviso. Antes de continuar, confira o nome e a origem do
+              instalador nos{" "}
+              <a href={siteConfig.releases} target="_blank" rel="noopener noreferrer">
+                lançamentos oficiais do Allm4
+              </a>
+              .
+            </p>
+          </div>
+        </aside>
+
         <div className="install-guides">
           <MacInstallGuide />
           <WindowsInstallGuide />
@@ -281,14 +299,14 @@ function MacInstallGuide() {
       </div>
       <ol className="normal-install-steps"><li>Baixe o arquivo <strong>.DMG</strong> pelo botão acima.</li><li>Abra o arquivo e arraste o Allm4 para <strong>Aplicativos</strong>.</li><li>Abra o Allm4 e siga o assistente para preparar sua IA.</li></ol>
       <DemoImageModal
-        src={`${publicBasePath}/images/allm4-install-macos-v0138.webp`}
+        src={`${publicBasePath}/images/allm4-install-macos-v0138.png`}
         alt="Janela de instalação do Allm4 no macOS mostrando o aplicativo sendo arrastado para Aplicativos"
         triggerClassName="install-media-trigger"
         label="COMO INSTALAR NO MAC"
         description="Captura real do instalador do Allm4 no macOS."
       >
         <img
-          src={`${publicBasePath}/images/allm4-install-macos-v0138.webp`}
+          src={`${publicBasePath}/images/allm4-install-macos-v0138.png`}
           alt="Instalador do Allm4 no macOS com uma seta do aplicativo Allm4 para a pasta Aplicativos"
           width={1438}
           height={1016}
@@ -340,8 +358,51 @@ function WindowsInstallGuide() {
         <h3 id="windows-install-title">Como instalar no Windows</h3>
         <span>WINDOWS</span>
       </div>
-      <ol className="normal-install-steps"><li>Baixe o instalador <strong>.EXE</strong> pelo botão acima.</li><li>Abra o arquivo e siga as instruções de instalação.</li><li>Abra o Allm4 e siga o assistente para preparar sua IA.</li></ol>
-      <MediaPlaceholder compact title="o instalador do Allm4 no Windows" description="Captura real com o botão que a pessoa deve usar para continuar a instalação." />
+      <ol className="normal-install-steps windows-install-steps" role="list">
+        <li>Baixe o instalador <strong>.EXE</strong> pelo botão oficial acima.</li>
+        <li>
+          <div className="windows-keep-copy">
+            No primeiro aviso do Edge, escolha <strong>Manter mesmo assim</strong>
+          </div>
+          <DemoImageModal
+            src={`${publicBasePath}/images/allm4-windows-download-keep-1-v0138.png`}
+            alt="Primeiro aviso de download do Windows com a opção Manter mesmo assim"
+            triggerClassName="windows-keep-trigger windows-keep-trigger-first"
+            label="PRIMEIRA CONFIRMAÇÃO DO DOWNLOAD"
+            description="No primeiro aviso do Microsoft Edge, selecione Manter mesmo assim."
+          >
+            <img
+              src={`${publicBasePath}/images/allm4-windows-download-keep-1-v0138.png`}
+              alt="Primeiro aviso de download com a opção Manter mesmo assim"
+              width={1065}
+              height={1476}
+              loading="lazy"
+            />
+          </DemoImageModal>
+        </li>
+        <li>
+          <div className="windows-keep-copy">
+            Na lista de downloads, abra o menu e escolha <strong>Manter</strong>
+          </div>
+          <DemoImageModal
+            src={`${publicBasePath}/images/allm4-windows-download-keep-2-v0138.png`}
+            alt="Segundo aviso de download do Windows com a opção Manter"
+            triggerClassName="windows-keep-trigger windows-keep-trigger-second"
+            label="SEGUNDA CONFIRMAÇÃO DO DOWNLOAD"
+            description="Na lista de downloads do Microsoft Edge, selecione Manter."
+          >
+            <img
+              src={`${publicBasePath}/images/allm4-windows-download-keep-2-v0138.png`}
+              alt="Segundo aviso de download com a opção Manter"
+              width={1254}
+              height={1254}
+              loading="lazy"
+            />
+          </DemoImageModal>
+        </li>
+        <li>Depois das duas confirmações, dê dois cliques no arquivo baixado e siga as instruções de instalação.</li>
+        <li>Abra o Allm4 e siga o assistente para preparar sua IA.</li>
+      </ol>
       <details className="install-help"><summary>Apareceu “O Windows protegeu o computador”?</summary>
       <p>
         <strong>Baixe o instalador somente pelo botão oficial desta página.</strong>{" "}
@@ -350,7 +411,7 @@ function WindowsInstallGuide() {
         tem uma assinatura digital reconhecida.
       </p>
       <ol className="windows-steps">
-        <li>Confirme que o arquivo veio do repositório oficial do Allm4.</li>
+        <li>Confirme que o arquivo veio do <strong>repositório oficial do Allm4</strong>.</li>
         <li>Clique em <strong>Mais informações</strong>.</li>
         <li>Clique em <strong>Executar assim mesmo</strong> para continuar.</li>
       </ol>

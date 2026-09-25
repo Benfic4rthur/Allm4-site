@@ -547,6 +547,7 @@ button:focus-visible {
   height: auto;
   max-height: calc(94dvh - 100px);
   object-fit: contain;
+  border-radius: 12px;
 }
 .demo-screenshot-rounded {
   border-radius: 12px;

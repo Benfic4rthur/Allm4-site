@@ -65,12 +65,12 @@ export function TrustRepair() {
               de disponibilizá-las. Não é necessário descobrir a causa do erro sozinho.
             </p>
             <DemoImageModal
-              src={`${publicBasePath}/images/allm4-repair-v2.avif`}
+              src={`${publicBasePath}/images/allm4-repair-v2.png`}
               alt="Janela do Allm4 Maintainer mostrando uma correção concluída e aguardando autorização"
               triggerClassName="repair-screenshot"
             >
               <img
-                src={`${publicBasePath}/images/allm4-repair-v2.avif`}
+                src={`${publicBasePath}/images/allm4-repair-v2.png`}
                 alt="Janela do Allm4 Maintainer mostrando uma correção concluída e aguardando autorização"
                 width="1951"
                 height="1205"

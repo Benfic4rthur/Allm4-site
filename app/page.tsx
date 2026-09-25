@@ -48,7 +48,7 @@ export default function Home() {
               <div className="welcome-visual">
                 <div className="welcome-visual-heading"><span className="status-dot" /> UM APLICATIVO. TRÊS POSSIBILIDADES.</div>
                 <div className="product-stage" id="produto">
-                  <AppScreenshot src="/images/allm4-chat-hero-v0133.png" width={3454} height={2024} alt="Tela real do Allm4, com acesso a Chat, Imagem e Projetos" />
+                  <AppScreenshot src="/images/allm4-chat-hero-v0138.png" width={3456} height={2024} maskWindowCorners alt="Tela real do Allm4, com acesso a Chat, Imagem e Projetos" />
                 </div>
                 <div className="welcome-caption"><span><Check size={16} aria-hidden="true" /> Esta é a interface real do Allm4.</span><a href="#recursos">Conheça por dentro <ArrowDown size={14} aria-hidden="true" /></a></div>
               </div>

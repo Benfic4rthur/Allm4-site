@@ -1,0 +1,57 @@
+name: Review site redesign (no deploy)
+
+on:
+  push:
+    branches:
+      - feature/site-simples-demonstrativo
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-review-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout review branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Archive tracked source for review
+        run: git archive --format=tar.gz --output=/tmp/allm4-review-source.tar.gz HEAD
+      - name: Save source snapshot
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: allm4-review-source
+          path: /tmp/allm4-review-source.tar.gz
+          retention-days: 2
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install existing dependencies
+        run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Existing regression tests
+        run: node --experimental-strip-types --test tests/*.test.mjs
+      - name: Build preview only
+        env:
+          GITHUB_PAGES: "true"
+          PAGES_BASE_PATH: ""
+          NEXT_PUBLIC_BASE_PATH: ""
+        run: npx next build
+      - name: Save static preview (not published)
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: allm4-review-preview
+          path: out
+          include-hidden-files: true
+          retention-days: 2

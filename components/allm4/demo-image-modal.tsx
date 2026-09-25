@@ -10,6 +10,8 @@ type DemoImageModalProps = {
   triggerClassName: string;
   children: ReactNode;
   imageClassName?: string;
+  label?: string;
+  description?: string;
   gallery?: Array<{ src: string; alt: string }>;
   initialIndex?: number;
   onOpenChange?: (open: boolean) => void;
@@ -21,6 +23,8 @@ export function DemoImageModal({
   triggerClassName,
   children,
   imageClassName,
+  label = "DEMONSTRAÇÃO DO ALLM4",
+  description = "Visualização ampliada da imagem demonstrativa do Allm4.",
   gallery,
   initialIndex = 0,
   onOpenChange,
@@ -91,12 +95,12 @@ export function DemoImageModal({
             {activeItem.alt}
           </DialogPrimitive.Title>
           <DialogPrimitive.Description className="sr-only">
-            Visualização ampliada da imagem demonstrativa do Allm4.
+            {description}
           </DialogPrimitive.Description>
 
           <div className="demo-image-dialog-chrome">
             <span className="demo-image-dialog-status">
-              <span className="status-dot" /> DEMONSTRAÇÃO DO ALLM4
+              <span className="status-dot" /> {label}
             </span>
             <div className="demo-image-dialog-actions">
               <button

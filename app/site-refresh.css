@@ -4,7 +4,9 @@
 .simple-site [id] { scroll-margin-top: 32px; }
 .simple-site .header { height: 94px; gap: 24px; }
 .simple-site .header nav { gap: 25px; font-size: 13px; }
-.simple-site .brand { flex-shrink: 0; }
+.simple-site .brand { flex-shrink: 0; gap: 6px; }
+.simple-site .brand-name { display: inline-flex; align-items: baseline; }
+.simple-site .brand-four { color: var(--orange); }
 .simple-site .brand-icon { width: 48px; height: 48px; flex-shrink: 0; border-radius: 0; background: none; box-shadow: none; overflow: visible; }
 .simple-site .brand-icon img { display: block; width: 100%; height: 100%; max-width: 100%; object-fit: contain; flex-shrink: 0; }
 .simple-site .brand-label { font-size: 9px; color: #aaa69c; letter-spacing: 1px; }

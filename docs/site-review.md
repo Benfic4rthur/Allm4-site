@@ -25,9 +25,9 @@ Apresentar Allm4 a quem está começando com IA: benefício claro, primeiros pas
 Os marcadores são produzidos pelo componente `MediaPlaceholder` em `components/allm4/site-story.tsx` e devem ser substituídos pelos arquivos reais antes da publicação definitiva. Eles não são botões de vídeo nem capturas simuladas do aplicativo.
 
 ## Condições comerciais
-O preço de R$ 49,99 foi mencionado pelo assistente na conversa, mas ainda não confirmado pelo responsável. Não foi apresentado como fato nesta versão. Tampouco foi fixado um número de usos sem confirmação da regra publicada. Mantidas as condições já informadas no site: uso inicial gratuito com limite, pagamento único, até 3 computadores e futuras atualizações incluídas. A página informa que preço e limite devem ser consultados no aplicativo antes da compra.
+Arthur confirmou o preço atual de R$ 24,99 e autorizou sua exibição. A seção Preço e acesso mostra esse valor como preço atual sem cupom, não como preço fixo ou vitalício. Cupons podem reduzir o total, e o preço está sujeito a alteração. Antes de comprar, o visitante é orientado a conferir o valor final, os cupons disponíveis e o limite gratuito no aplicativo. Não foi fixado um número de usos sem confirmação da regra publicada. Mantidas as condições já informadas: uso inicial gratuito com limite, pagamento único, até 3 computadores e futuras atualizações incluídas. O funcionamento dos cupons não foi alterado.
 
-Antes de publicar, confirmar preço e limites e mostrá-los aqui de forma explícita. Não usar “mais barato” ou promessas de funcionamento integral em qualquer computador sem comprovação.
+Antes de publicar, revalidar o preço vigente e confirmar os limites gratuitos. Não usar “mais barato”, descontos inventados, “a partir de” para o preço sem cupom ou promessas de funcionamento integral em qualquer computador sem comprovação.
 
 ## Preservado
 - Arquivos da prévia social v2, metadados, favicons e regras de CSP.

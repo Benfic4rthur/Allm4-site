@@ -238,7 +238,14 @@ function AccessInfo() {
   return (
     <section className="access-panel reveal" id="preco" aria-labelledby="access-title">
       <div className="access-copy"><div className="eyebrow">SEM ASSINATURA</div><h3 id="access-title">Experimente primeiro.<br />Decida depois.</h3><p>Comece com o uso gratuito inicial. Ao atingir o limite, o próprio Allm4 mostra o valor e as condições para liberar o acesso.</p></div>
-      <div className="access-terms"><strong>Pagamento único.</strong><p>Sem mensalidade para usar o Allm4.</p><ul><li><Check size={17} aria-hidden="true" /> Licença para até 3 computadores</li><li><Check size={17} aria-hidden="true" /> Futuras atualizações incluídas</li><li><Check size={17} aria-hidden="true" /> Gerencie seus dispositivos dentro do app</li></ul><small>Consulte o preço e o limite gratuito no aplicativo antes da compra. Recursos disponíveis dependem da compatibilidade do seu computador.</small></div>
+      <div className="access-terms">
+        <div className="eyebrow">PREÇO ATUAL, SEM CUPOM</div>
+        <strong>R$ 24,99</strong>
+        <p>Pagamento único. Sem mensalidade para usar o Allm4.</p>
+        <p>Cupons de desconto podem reduzir esse valor.</p>
+        <ul><li><Check size={17} aria-hidden="true" /> Licença para até 3 computadores</li><li><Check size={17} aria-hidden="true" /> Futuras atualizações incluídas</li><li><Check size={17} aria-hidden="true" /> Gerencie seus dispositivos dentro do app</li></ul>
+        <small>Preço sujeito a alteração. Confira o valor final, os cupons disponíveis e o limite de uso gratuito no aplicativo antes da compra. Recursos disponíveis dependem da compatibilidade do seu computador.</small>
+      </div>
     </section>
   );
 }

@@ -11,11 +11,14 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { MediaPlaceholder } from "./site-story";
+import { DemoImageModal } from "./demo-image-modal";
 import {
   fallbackRelease,
   parseReleaseHistory,
   siteConfig,
 } from "@/lib/site-config";
+
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function WindowsIcon() {
   return (
@@ -277,7 +280,21 @@ function MacInstallGuide() {
         <span>APPLE SILICON</span>
       </div>
       <ol className="normal-install-steps"><li>Baixe o arquivo <strong>.DMG</strong> pelo botão acima.</li><li>Abra o arquivo e arraste o Allm4 para <strong>Aplicativos</strong>.</li><li>Abra o Allm4 e siga o assistente para preparar sua IA.</li></ol>
-      <MediaPlaceholder compact title="como arrastar o Allm4 para Aplicativos no Mac" description="Captura real da janela do instalador com uma seta indicando o movimento." />
+      <DemoImageModal
+        src={`${publicBasePath}/images/allm4-install-macos-v0138.webp`}
+        alt="Janela de instalação do Allm4 no macOS mostrando o aplicativo sendo arrastado para Aplicativos"
+        triggerClassName="install-media-trigger"
+        label="COMO INSTALAR NO MAC"
+        description="Captura real do instalador do Allm4 no macOS."
+      >
+        <img
+          src={`${publicBasePath}/images/allm4-install-macos-v0138.webp`}
+          alt="Instalador do Allm4 no macOS com uma seta do aplicativo Allm4 para a pasta Aplicativos"
+          width={1438}
+          height={1016}
+          loading="lazy"
+        />
+      </DemoImageModal>
       <details className="install-help"><summary>O macOS bloqueou a abertura? Veja a alternativa.</summary>
       <p>
         <strong>

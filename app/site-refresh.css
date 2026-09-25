@@ -250,3 +250,6 @@
 @media (max-width: 600px) {
   .simple-site .generation-evidence { padding: 20px; margin-top: 30px; }
 }
+
+.simple-site .install-media-trigger { display: block; width: 100%; padding: 0; margin: 18px 0 0; border: 1px solid #ffffff18; border-radius: 11px; overflow: hidden; background: #141412; }
+.simple-site .install-media-trigger img { display: block; width: 100%; height: auto; object-fit: contain; }

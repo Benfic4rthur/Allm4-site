@@ -1,5 +1,8 @@
 import { ArrowDown, ArrowUpRight, Check, Image as ImageIcon, MessageSquare, FolderCode, MonitorPlay } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
+import { DemoImageModal } from "./demo-image-modal";
+
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /** Intentional editorial placeholder. Never impersonates a real product result. */
 export function MediaPlaceholder({ title, description, video = false, compact = false }: {
@@ -47,7 +50,7 @@ export function ImageShowcase() {
           <div className="eyebrow">DA SUA DESCRIÇÃO À IMAGEM</div>
           <h2 id="images-title">Uma ideia na cabeça.<br /><span className="muted-heading">Uma imagem na tela.</span></h2>
           <p className="section-intro">Você descreve o que gostaria de ver. No ambiente Imagem, o Allm4 gera o resultado e permite explorar variações, sem precisar montar ferramentas separadas.</p>
-          <div className="example-request"><span>EXEMPLO DE PEDIDO</span><p>“Crie uma ilustração de uma cafeteria aconchegante, com a luz do fim da tarde entrando pela janela.”</p></div>
+          <div className="example-request"><span>PEDIDO REAL FEITO NO ALLM4</span><p>“Crie uma ilustração de uma cafeteria aconchegante, com a luz do fim da tarde entrando pela janela.”</p></div>
           <ul className="story-benefits">
             <li><Check size={16} aria-hidden="true" /> Peça por texto ou use sua voz.</li>
             <li><Check size={16} aria-hidden="true" /> Explore variações da sua ideia.</li>
@@ -57,9 +60,48 @@ export function ImageShowcase() {
           <a className="text-button" href="#download">Começar minha primeira imagem <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="story-visual reveal">
-          <MediaPlaceholder title="uma imagem criada no Allm4" description="Mostrar a ilustração da cafeteria gerada a partir do pedido ao lado. Dar destaque ao resultado, não a uma captura inteira da tela." />
+          <figure className="result-figure">
+            <DemoImageModal
+              src={`${publicBasePath}/images/allm4-cafeteria-real.avif`}
+              alt="Ilustração de uma cafeteria aconchegante criada no Allm4 a partir do pedido mostrado nesta seção"
+              triggerClassName="result-image-trigger"
+              label="IMAGEM CRIADA NO ALLM4"
+              description="Resultado real criado no ambiente Imagem do Allm4."
+            >
+              <img
+                src={`${publicBasePath}/images/allm4-cafeteria-real.avif`}
+                alt="Cafeteria ilustrada com luz do fim da tarde, mesas e pessoas tomando café"
+                width={1024}
+                height={1024}
+                loading="lazy"
+              />
+            </DemoImageModal>
+            <figcaption><strong>Esta imagem foi criada no Allm4.</strong><span>O pedido ao lado deu origem a este resultado. Clique para ampliar.</span></figcaption>
+          </figure>
         </div>
       </div>
+      <figure className="generation-evidence wrap reveal">
+        <figcaption>
+          <div className="eyebrow">DO PEDIDO AO RESULTADO</div>
+          <h3>Veja o que aconteceu dentro do aplicativo.</h3>
+          <p>Captura real do Allm4 com o pedido e a cafeteria gerada na mesma conversa. Clique para ampliar e conferir os detalhes.</p>
+        </figcaption>
+        <DemoImageModal
+          src={`${publicBasePath}/images/allm4-cafeteria-pedido-real.avif`}
+          alt="Captura real do Allm4 com o pedido da ilustração da cafeteria e a imagem gerada na mesma conversa"
+          triggerClassName="generation-capture-trigger"
+          label="CAPTURA REAL DO ALLM4"
+          description="Captura real do ambiente Imagem mostrando o pedido e o resultado."
+        >
+          <img
+            src={`${publicBasePath}/images/allm4-cafeteria-pedido-real.avif`}
+            alt="Pedido e resultado da geração da cafeteria no aplicativo Allm4"
+            width={1600}
+            height={934}
+            loading="lazy"
+          />
+        </DemoImageModal>
+      </figure>
     </section>
   );
 }

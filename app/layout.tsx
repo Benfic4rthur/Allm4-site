@@ -6,7 +6,7 @@ import "./globals.css";
 const googleFavicon = "/allm4-google-favicon-96.png?v=1";
 const favicon32 = "/allm4-favicon-v5-32.png?v=6";
 const appleTouchIcon = "/allm4-touch-v5.png?v=6";
-const socialPreview = "/images/allm4-social-preview.png";
+const socialPreview = "/images/allm4-social-preview-v2.png";
 const isProduction = process.env.NODE_ENV === "production";
 
 const title = "Allm4 — IA local simples para qualquer pessoa";

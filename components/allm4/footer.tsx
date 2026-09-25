@@ -6,7 +6,6 @@ import {
   BookOpen,
   ShieldCheck,
   FileText,
-  MessageCircle,
 } from "lucide-react";
 import {
   Dialog,
@@ -54,15 +53,6 @@ export function Footer() {
             >
               <Mail size={12} />
               {siteConfig.contactEmail}
-            </a>
-            <a
-              className="contact-link"
-              href={siteConfig.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle size={12} />
-              WhatsApp {siteConfig.whatsappLabel}
             </a>
           </div>
           <div className="footer-column">

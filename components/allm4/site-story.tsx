@@ -119,7 +119,7 @@ const questions = [
 export function SiteQuestions() {
   return (
     <section className="section wrap site-questions" id="duvidas" aria-labelledby="questions-title">
-      <div className="questions-heading"><div className="eyebrow">ANTES DO PRIMEIRO CLIQUE</div><h2 id="questions-title">Pode perguntar.</h2><p className="section-intro">As respostas que você precisa para começar com tranquilidade.</p><a className="text-button" href={siteConfig.whatsappUrl} target="_blank" rel="noopener noreferrer">Falar com o Allm4 <ArrowUpRight size={16} aria-hidden="true" /></a></div>
+      <div className="questions-heading"><div className="eyebrow">ANTES DO PRIMEIRO CLIQUE</div><h2 id="questions-title">Pode perguntar.</h2><p className="section-intro">As respostas que você precisa para começar com tranquilidade.</p><a className="text-button" href={`mailto:${siteConfig.contactEmail}?subject=D%C3%BAvida%20sobre%20o%20Allm4`}>Enviar uma dúvida por email <ArrowUpRight size={16} aria-hidden="true" /></a></div>
       <div className="questions-list">{questions.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
     </section>
   );

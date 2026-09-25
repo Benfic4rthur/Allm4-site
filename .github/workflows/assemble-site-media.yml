@@ -1,0 +1,66 @@
+name: Assemble reviewed Allm4 site media
+on:
+  push:
+    branches: [maintenance/site-media-assemble-20260925]
+permissions:
+  contents: write
+concurrency:
+  group: assemble-reviewed-site-media
+  cancel-in-progress: false
+jobs:
+  assemble:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout staging branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          fetch-depth: 0
+      - name: Reassemble and verify reviewed media
+        run: |
+          mkdir -p /tmp/allm4-media
+          cat .media-chunks/{01,02,03,04,05}.bin > /tmp/allm4-media/allm4-cafeteria-pedido-real.avif
+          cat .media-chunks/{06,07,08,09,10}.bin > /tmp/allm4-media/allm4-cafeteria-real.avif
+          cat .media-chunks/{11,12,13,14,15}.bin > /tmp/allm4-media/allm4-cafeteria-site-ilustrativo.avif
+          echo '1c034ec535001d75bb370cf473ef0f5313162d86d643947a244a4712d6fb2efa  /tmp/allm4-media/allm4-cafeteria-pedido-real.avif' | sha256sum -c -
+          echo '327441f0e9a2994accd571de76461d3ed1d27c2e1b0642e6bfe6c6fa766f27a7  /tmp/allm4-media/allm4-cafeteria-real.avif' | sha256sum -c -
+          echo 'fade0f1cdfae327b4a68e3f59284281f7f49c047315c9873015f4ba5cac7f634  /tmp/allm4-media/allm4-cafeteria-site-ilustrativo.avif' | sha256sum -c -
+          file /tmp/allm4-media/*.avif | grep -c 'AVIF Image' | grep -q '^3$'
+      - name: Switch to review branch and install media
+        run: |
+          git fetch origin feature/site-simples-demonstrativo
+          git checkout -B feature/site-simples-demonstrativo origin/feature/site-simples-demonstrativo
+          cp /tmp/allm4-media/*.avif public/images/
+          test -f public/images/allm4-cafeteria-real.avif
+          test -f public/images/allm4-cafeteria-pedido-real.avif
+          test -f public/images/allm4-cafeteria-site-ilustrativo.avif
+          grep -q 'allm4-cafeteria-real.avif' components/allm4/site-story.tsx
+          grep -q 'allm4-cafeteria-site-ilustrativo.avif' components/allm4/project-showcase.tsx
+          grep -q 'allm4-cafeteria-pedido-real.avif' components/allm4/feature-explorer.tsx
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Tests
+        run: node --experimental-strip-types --test tests/*.test.mjs
+      - name: Build preview
+        env:
+          GITHUB_PAGES: 'true'
+          PAGES_BASE_PATH: ''
+          NEXT_PUBLIC_BASE_PATH: ''
+        run: npx next build
+      - name: Commit media to review branch
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/images/allm4-cafeteria-real.avif public/images/allm4-cafeteria-pedido-real.avif public/images/allm4-cafeteria-site-ilustrativo.avif
+          git diff --cached --check
+          git commit -m 'feat: add reviewed cafeteria media for the site' || exit 0
+          git push origin HEAD:feature/site-simples-demonstrativo

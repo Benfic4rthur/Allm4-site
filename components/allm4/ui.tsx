@@ -8,7 +8,7 @@ export function Brand({ label = false }: { label?: boolean }) {
   return (
     <a href="#inicio" className="brand" aria-label="Allm4, início">
       <span className="brand-icon">
-        <img src={`${publicBasePath}/images/allm4-coupon-icon.png`} alt="" width={54} height={54} aria-hidden="true" />
+        <img src={`${publicBasePath}/images/allm4-coupon-icon.png`} alt="" width={48} height={48} aria-hidden="true" />
       </span>
       Allm4{label && <span className="brand-label">IA NO SEU COMPUTADOR</span>}
     </a>

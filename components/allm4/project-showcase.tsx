@@ -1,6 +1,8 @@
 import { FileCode2, FolderGit2, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { AppScreenshot } from "./ui";
-import { MediaPlaceholder } from "./site-story";
+import { DemoImageModal } from "./demo-image-modal";
+
+const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function ProjectShowcase() {
   return (
@@ -20,10 +22,31 @@ export function ProjectShowcase() {
           <a className="text-button" href="#download">Experimentar em um projeto <ArrowUpRight size={16} aria-hidden="true" /></a>
         </div>
         <div className="project-proof reveal">
-          <MediaPlaceholder title="uma página criada pelo Allm4 funcionando no navegador" description="Usar o resultado real do pedido da cafeteria: página aberta, cardápio, horários e botão de WhatsApp. Mostrar o resultado, e não apenas a lista de arquivos." />
+          <figure className="project-concept">
+            <DemoImageModal
+              src={`${publicBasePath}/images/allm4-cafeteria-site-ilustrativo.avif`}
+              alt="Exemplo ilustrativo de um site de cafeteria, criado fora do Allm4 para representar o tipo de resultado visual de um projeto"
+              triggerClassName="project-concept-trigger"
+              label="EXEMPLO ILUSTRATIVO"
+              description="Conceito visual criado fora do Allm4. Não é uma captura de um site funcional produzido pelo aplicativo."
+            >
+              <img
+                src={`${publicBasePath}/images/allm4-cafeteria-site-ilustrativo.avif`}
+                alt="Conceito visual de um site para cafeteria com apresentação, navegação e cardápio"
+                width={1280}
+                height={853}
+                loading="lazy"
+              />
+            </DemoImageModal>
+            <figcaption>
+              <span className="concept-label">EXEMPLO ILUSTRATIVO</span>
+              <strong>Uma referência visual para o tipo de projeto que você pode construir.</strong>
+              <span>Esta imagem foi criada fora do Allm4 apenas para representar a ideia. Não é apresentada como resultado real do aplicativo.</span>
+            </figcaption>
+          </figure>
           <details className="real-proof-details"><summary>Ver a tela real de trabalho nos arquivos</summary>
             <AppScreenshot full src="/images/allm4-projeto-arquivos-v0134.png" width={3456} height={2024} maskWindowCorners alt="Tela real do Allm4 mostrando os arquivos encontrados dentro de um projeto" />
-            <p>Captura real disponível. O resultado final acima ainda precisa ser registrado.</p>
+            <p>Esta captura é real e mostra o Allm4 trabalhando nos arquivos do projeto.</p>
           </details>
         </div>
       </div>

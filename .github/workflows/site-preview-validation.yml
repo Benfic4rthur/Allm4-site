@@ -1,0 +1,66 @@
+name: Validate storefront preview (no deploy)
+
+on:
+  push:
+    branches:
+      - feature/site-simples-vitrine
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: storefront-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: github.ref == 'refs/heads/feature/site-simples-vitrine'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout preview branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Export source for local review
+        run: git archive --format=tar.gz --output=/tmp/allm4-site-source.tar.gz HEAD
+      - name: Save source snapshot
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: storefront-source
+          path: /tmp/allm4-site-source.tar.gz
+          retention-days: 7
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=moderate
+      - name: Type check
+        run: npx tsc --noEmit
+      - name: Lint
+        run: npm run lint
+      - name: Run tests
+        run: node --experimental-strip-types --test tests/*.test.mjs
+      - name: Build static preview
+        env:
+          GITHUB_PAGES: 'true'
+          PAGES_BASE_PATH: ''
+          NEXT_PUBLIC_BASE_PATH: ''
+        run: npx next build
+      - name: Check preview output
+        run: |
+          if [ -f tests/storefront-export.mjs ]; then
+            node tests/storefront-export.mjs
+          fi
+      - name: Save static preview (never deploy)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: storefront-static-preview
+          path: out
+          include-hidden-files: true
+          retention-days: 7

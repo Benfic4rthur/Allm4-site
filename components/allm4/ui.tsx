@@ -10,7 +10,8 @@ export function Brand({ label = false }: { label?: boolean }) {
       <span className="brand-icon">
         <img src={`${publicBasePath}/images/allm4-coupon-icon.png`} alt="" width={48} height={48} aria-hidden="true" />
       </span>
-      Allm4{label && <span className="brand-label">IA NO SEU COMPUTADOR</span>}
+      <span className="brand-name">Allm<span className="brand-four">4</span></span>
+      {label && <span className="brand-label">IA NO SEU COMPUTADOR</span>}
     </a>
   );
 }

@@ -17,7 +17,7 @@ export function TrustRepair() {
       <div className="wrap">
         <div className="trust-repair-heading reveal">
           <div>
-            <div className="eyebrow">05 / PRIVACIDADE, SEGURANÇA E CONFIANÇA</div>
+            <div className="eyebrow">VOCÊ NO CONTROLE. A GENTE POR PERTO.</div>
             <h2>
               Seu ambiente é local.
               <br />
@@ -34,7 +34,7 @@ export function TrustRepair() {
           <article className="local-trust-card reveal">
             <div className="trust-card-icon"><LockKeyhole /></div>
             <span className="trust-card-kicker">PROCESSAMENTO LOCAL</span>
-            <h3>Algumas coisas não precisam sair do seu computador.</h3>
+            <h3>Sua IA pode trabalhar aqui. No seu computador.</h3>
             <p>
               Modelos executados localmente podem processar conversas, imagens e
               arquivos no próprio dispositivo. Você escolhe os modelos e mantém o
@@ -57,12 +57,12 @@ export function TrustRepair() {
               <span><span className="status-dot" /> ATIVO E SILENCIOSO</span>
             </div>
             <span className="trust-card-kicker">ALLM4 AUTO REPAIR</span>
-            <h3>Problemas que não ficam esquecidos.</h3>
+            <h3>Deu um erro interno? Você não precisa investigar sozinho.</h3>
             <p>
-              Se algo falhar, você não precisa investigar. O Allm4 Auto Repair encontra o
-              bug, envia um relato técnico sem seus dados pessoais e prepara a
-              correção. A equipe do Allm4 só revisa e autoriza quando ela está pronta
-              para virar uma nova versão.
+              O Allm4 Auto Repair identifica falhas internas elegíveis e envia um
+              diagnóstico técnico sanitizado para análise e preparação de uma
+              correção. A equipe revisa e autoriza as novas versões antes
+              de disponibilizá-las. Não é necessário descobrir a causa do erro sozinho.
             </p>
             <DemoImageModal
               src={`${publicBasePath}/images/allm4-repair-v2.avif`}
@@ -80,16 +80,17 @@ export function TrustRepair() {
             <div className="repair-flow" aria-label="Fluxo do Allm4 Auto Repair">
               <div><ScanSearch size={16} /><span>Encontra<strong>Identifica o bug em silêncio</strong></span></div>
               <i />
-              <div><ShieldCheck size={16} /><span>Reporta<strong>Sem senhas, tokens ou dados pessoais</strong></span></div>
+              <div><ShieldCheck size={16} /><span>Reporta<strong>Diagnóstico técnico sanitizado</strong></span></div>
               <i />
-              <div><Wrench size={16} /><span>Corrige<strong>A correção é criada e testada</strong></span></div>
+              <div><Wrench size={16} /><span>Corrige<strong>Análise, correção e testes</strong></span></div>
               <i />
               <div><BellRing size={16} /><span>Atualiza<strong>A equipe autoriza a nova versão</strong></span></div>
             </div>
-            <div className="repair-control"><CheckCircle2 size={18} /><span>Ele fica sempre ativo, sem interromper o que você está fazendo.</span></div>
+            <div className="repair-control"><CheckCircle2 size={18} /><span>Acompanhamento automático de falhas internas elegíveis.</span></div>
             <small>
               O agente cuida apenas de falhas internas reais do Allm4. Problemas de
               internet, ações canceladas e situações normais não viram relatos de bug.
+              O recurso não repara o sistema operacional nem garante correção imediata.
             </small>
           </article>
         </div>

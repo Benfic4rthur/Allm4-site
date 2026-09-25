@@ -19,13 +19,13 @@ const environments = [
     id: "chat",
     label: "Chat",
     icon: MessageSquare,
-    title: "Utilize IAs modernas sem precisar fazer um curso.",
+    title: "Uma conversa pode destravar seu dia.",
     description:
-      "Escreva, fale ou anexe documentos. O Allm4 organiza as conversas e deixa o modelo pronto para você continuar de onde parou.",
+      "Escreva, fale ou anexe documentos. Peça ajuda para escrever, entender um assunto ou organizar uma ideia. O histórico fica disponível para continuar depois.",
     points: [
-      "Modelos locais prontos para conversar",
+      "Converse com uma IA no seu computador",
       "Documentos, anexos e entrada por voz",
-      "Histórico persistente e preferências por modelo",
+      "Histórico salvo e respostas do seu jeito",
     ],
     cta: "Baixar e começar",
     link: "#download",
@@ -36,22 +36,22 @@ const environments = [
     icon: ImageIcon,
     title: "Descreva a ideia. Veja ela ganhar forma.",
     description:
-      "Gere imagens, explore variações e preserve prompts e resultados em um ambiente próprio, com modelos escolhidos separadamente.",
+      "Gere imagens, explore variações e guarde seus pedidos e resultados em um espaço próprio para criação.",
     points: [
       "Geração e variações de imagens",
       "Conversas e históricos próprios",
-      "Prompt por texto ou voz",
+      "Pedidos por texto ou voz",
     ],
-    cta: "Conhecer o ambiente",
-    link: "#projetos",
+    cta: "Ver o que você pode criar",
+    link: "#imagens",
   },
   {
     id: "projetos",
     label: "Projetos",
     icon: FolderGit2,
-    title: "Um par de desenvolvimento dentro do seu projeto.",
+    title: "Uma IA que trabalha junto no seu projeto.",
     description:
-      "O Allm4 explora a base, planeja, cria, corrige, explica e documenta. Ele trabalha nos arquivos reais e ajuda até onde o modelo e o seu computador permitem.",
+      "O Allm4 lê os arquivos, ajuda a planejar, cria, corrige, explica e documenta. Ele trabalha nos arquivos reais e ajuda até onde o modelo e o seu computador permitem.",
     points: [
       "Sites, sistemas, apps e outros projetos de software",
       "Código, correções, documentação e organização",
@@ -136,16 +136,16 @@ export function FeatureExplorer() {
     <section className="section explore-section wrap reveal" id="recursos">
       <div className="section-heading">
         <div>
-          <div className="eyebrow">01 / ESCOLHA O QUE QUER FAZER</div>
+          <div className="eyebrow">CONHEÇA O APLICATIVO POR DENTRO</div>
           <h2>
-            Três ambientes.
+            Três maneiras de criar.
             <br />
-            <span className="muted-heading">Nenhuma complicação.</span>
+            <span className="muted-heading">No mesmo aplicativo.</span>
           </h2>
         </div>
         <p className="section-intro">
           Entre em Chat, Imagem ou Projetos. Cada ambiente mostra apenas o que você
-          precisa para começar, sem terminal, comandos ou configurações difíceis.
+          precisa para começar, com orientações para seguir em frente.
         </p>
       </div>
 

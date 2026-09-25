@@ -1,4 +1,4 @@
-import { Sparkles, ArrowUpRight, ShieldCheck } from "lucide-react";
+import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { DemoImageModal } from "./demo-image-modal";
 
@@ -6,11 +6,11 @@ const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function Brand({ label = false }: { label?: boolean }) {
   return (
-    <a href="#inicio" className="brand" aria-label="Allm4 — início">
+    <a href="#inicio" className="brand" aria-label="Allm4, início">
       <span className="brand-icon">
-        <Sparkles size={22} aria-hidden="true" />
+        <img src={`${publicBasePath}/images/allm4-coupon-icon.png`} alt="" width={54} height={54} aria-hidden="true" />
       </span>
-      Allm4{label && <span className="brand-label">LOCAL INTELLIGENCE</span>}
+      Allm4{label && <span className="brand-label">IA NO SEU COMPUTADOR</span>}
     </a>
   );
 }

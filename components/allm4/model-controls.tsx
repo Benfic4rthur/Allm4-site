@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import {
-  Cpu,
-  MemoryStick,
-  CircuitBoard,
+  Download,
+  ScanSearch,
+  CheckCircle2,
   SlidersHorizontal,
   RotateCcw,
 } from "lucide-react";
@@ -73,37 +73,23 @@ export function ModelAssistant() {
     <section ref={sectionRef} className="section assistant-section" id="assistente">
       <div className="wrap assistant-layout">
         <div className="assistant-copy reveal">
-          <div className="eyebrow">04 / FEITO PARA O SEU COMPUTADOR</div>
+          <div className="eyebrow">PRIMEIROS PASSOS, SEM ADIVINHAÇÃO</div>
           <h2>
-            O Allm4 ajuda
+            Instale o Allm4.
             <br />
-            você a escolher.
+            <span className="muted-heading">Ele te guia no resto.</span>
           </h2>
           <p className="section-intro">
-            Processador, memória, GPU… você não precisa entender nada disso para
-            começar. O tutorial explica o básico, analisa sua máquina e mostra
-            modelos adequados para você escolher com segurança.
+            Você não precisa pesquisar dezenas de IAs nem descobrir como configurar
+            cada uma. O assistente analisa seu computador, recomenda opções
+            compatíveis e te acompanha na escolha e no download.
           </p>
-          <div className="hardware-list">
-            <div>
-              <Cpu />
-              <span>
-                Processador<small>A base do processamento</small>
-              </span>
-            </div>
-            <div>
-              <MemoryStick />
-              <span>
-                Memória<small>Espaço para seus modelos</small>
-              </span>
-            </div>
-            <div>
-              <CircuitBoard />
-              <span>
-                GPU<small>Capacidade de aceleração</small>
-              </span>
-            </div>
-          </div>
+          <ol className="starting-steps">
+            <li><span className="starting-step-icon"><Download size={20} aria-hidden="true" /></span><div><strong>1. Baixe e abra o Allm4.</strong><p>Escolha o instalador para Windows ou Mac.</p></div></li>
+            <li><span className="starting-step-icon"><ScanSearch size={20} aria-hidden="true" /></span><div><strong>2. Deixe ele conhecer seu computador.</strong><p>O assistente analisa a máquina e indica IAs adequadas.</p></div></li>
+            <li><span className="starting-step-icon"><CheckCircle2 size={20} aria-hidden="true" /></span><div><strong>3. Escolha sua IA e comece.</strong><p>Baixe pelo aplicativo e siga as orientações para usar.</p></div></li>
+          </ol>
+          <a className="text-button" href="#download">Ver download e instalação ↓</a>
           <p className="fine-print">
             Computadores diferentes, possibilidades diferentes.
             <br />O desempenho depende do hardware e do modelo escolhido.

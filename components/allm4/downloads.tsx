@@ -8,9 +8,9 @@ import {
   Terminal,
   Copy,
   Check,
-  ChevronDown,
   ShieldCheck,
 } from "lucide-react";
+import { MediaPlaceholder } from "./site-story";
 import {
   fallbackRelease,
   parseReleaseHistory,
@@ -141,13 +141,13 @@ export function Downloads() {
   ];
 
   return (
-    <section ref={sectionRef} className="download-section section">
+    <section ref={sectionRef} className="download-section section" id="download" aria-labelledby="download-heading">
       <div className="wrap">
         <div className="download-heading reveal">
           <div className="eyebrow">
             <span className="status-dot" /> O PRÓXIMO PASSO É SEU
           </div>
-          <h2 id="download" style={{ scrollMarginTop: "-68px" }}>
+          <h2 id="download-heading">
             Seu primeiro passo
             <br />
             pode ser <span>simples.</span>
@@ -194,14 +194,12 @@ export function Downloads() {
                 </div>
                 {p.id === "mac" && (
                   <a className="mac-install-link" href="#instalacao-mac">
-                    <Terminal size={12} /> Primeira abertura: veja a orientação
-                    para Mac ↓
+                    <Terminal size={12} /> Como instalar no Mac ↓
                   </a>
                 )}
                 {p.id === "windows" && (
                   <a className="mac-install-link" href="#instalacao-windows">
-                    <ShieldCheck size={12} /> Primeira abertura: veja a orientação
-                    para Windows ↓
+                    <ShieldCheck size={12} /> Como instalar no Windows ↓
                   </a>
                 )}
               </article>
@@ -237,63 +235,11 @@ export function Downloads() {
 }
 
 function AccessInfo() {
-  const [hovered, setHovered] = useState(false);
-  const [pinned, setPinned] = useState(false);
-  const open = hovered || pinned;
-
   return (
-    <div
-      className="reveal mx-auto mt-3 mb-3 max-w-[680px] overflow-hidden rounded-[10px] border border-[#ffffff12] bg-[#171714] transition-[border-color,background-color] duration-300"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <button
-        type="button"
-        className="flex min-h-11 w-full items-center justify-center gap-2 px-4 py-3 text-center font-mono text-[8px] tracking-[0.12em] text-[#c7c2b6] transition-colors hover:text-[#f49a78] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-inset focus-visible:ring-[#f67c5260]"
-        aria-expanded={open}
-        aria-controls="allm4-access-details"
-        onFocus={() => setHovered(true)}
-        onBlur={() => setHovered(false)}
-        onClick={() => setPinned((current) => !current)}
-      >
-        <span>SEM MENSALIDADE · SEM ASSINATURA · FUTURAS ATUALIZAÇÕES INCLUÍDAS</span>
-        <ChevronDown
-          size={13}
-          className={`shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-          aria-hidden="true"
-        />
-      </button>
-
-      <div
-        id="allm4-access-details"
-        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
-          open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
-        aria-hidden={!open}
-      >
-        <div className="overflow-hidden">
-          <div className="border-t border-[#ffffff10] px-5 pb-4 pt-4">
-            <div className="flex flex-wrap items-center justify-center gap-2 text-center font-mono text-[8px] tracking-[0.12em]">
-              <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
-                USO GRATUITO INICIAL
-              </span>
-              <span className="rounded-full border border-[#f67c5240] bg-[#f67c520c] px-3 py-1.5 text-[#f49a78]">
-                PAGAMENTO ÚNICO
-              </span>
-              <span className="rounded-full border border-[#ffffff12] px-3 py-1.5 text-[#a9a69d]">
-                ATÉ 3 COMPUTADORES
-              </span>
-            </div>
-            <p className="mx-auto mt-3 max-w-[560px] text-center text-[11px] leading-[1.75] text-[#9d9b92]">
-              Comece usando o Allm4 gratuitamente. Ao atingir o limite de uso
-              gratuito, o acesso completo é liberado com um pagamento único e de
-              valor simbólico. A mesma licença pode ser usada em até 3 computadores,
-              e você controla dentro do Allm4 quais máquinas estão vinculadas.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section className="access-panel reveal" id="preco" aria-labelledby="access-title">
+      <div className="access-copy"><div className="eyebrow">SEM ASSINATURA</div><h3 id="access-title">Experimente primeiro.<br />Decida depois.</h3><p>Comece com o uso gratuito inicial. Ao atingir o limite, o próprio Allm4 mostra o valor e as condições para liberar o acesso.</p></div>
+      <div className="access-terms"><strong>Pagamento único.</strong><p>Sem mensalidade para usar o Allm4.</p><ul><li><Check size={17} aria-hidden="true" /> Licença para até 3 computadores</li><li><Check size={17} aria-hidden="true" /> Futuras atualizações incluídas</li><li><Check size={17} aria-hidden="true" /> Gerencie seus dispositivos dentro do app</li></ul><small>Consulte o preço e o limite gratuito no aplicativo antes da compra. Recursos disponíveis dependem da compatibilidade do seu computador.</small></div>
+    </section>
   );
 }
 
@@ -320,9 +266,12 @@ function MacInstallGuide() {
     >
       <div className="mac-guide-title">
         <Terminal size={17} />
-        <h3 id="mac-install-title">Primeira abertura no macOS</h3>
+        <h3 id="mac-install-title">Como instalar no Mac</h3>
         <span>APPLE SILICON</span>
       </div>
+      <ol className="normal-install-steps"><li>Baixe o arquivo <strong>.DMG</strong> pelo botão acima.</li><li>Abra o arquivo e arraste o Allm4 para <strong>Aplicativos</strong>.</li><li>Abra o Allm4 e siga o assistente para preparar sua IA.</li></ol>
+      <MediaPlaceholder compact title="como arrastar o Allm4 para Aplicativos no Mac" description="Captura real da janela do instalador com uma seta indicando o movimento." />
+      <details className="install-help"><summary>O macOS bloqueou a abertura? Veja a alternativa.</summary>
       <p>
         <strong>
           Na maioria dos Macs, o Allm4 abre normalmente e você não precisa usar
@@ -350,6 +299,7 @@ function MacInstallGuide() {
             ? "Comando copiado. Use-o somente se o macOS tiver bloqueado a abertura do Allm4."
             : "Este comando é apenas uma alternativa para quando o macOS bloquear a primeira abertura. Na maioria das instalações ele não será necessário."}
       </p>
+      </details>
     </aside>
   );
 }
@@ -363,9 +313,12 @@ function WindowsInstallGuide() {
     >
       <div className="mac-guide-title">
         <ShieldCheck size={17} />
-        <h3 id="windows-install-title">Primeira abertura no Windows</h3>
+        <h3 id="windows-install-title">Como instalar no Windows</h3>
         <span>WINDOWS</span>
       </div>
+      <ol className="normal-install-steps"><li>Baixe o instalador <strong>.EXE</strong> pelo botão acima.</li><li>Abra o arquivo e siga as instruções de instalação.</li><li>Abra o Allm4 e siga o assistente para preparar sua IA.</li></ol>
+      <MediaPlaceholder compact title="o instalador do Allm4 no Windows" description="Captura real com o botão que a pessoa deve usar para continuar a instalação." />
+      <details className="install-help"><summary>Apareceu “O Windows protegeu o computador”?</summary>
       <p>
         <strong>Baixe o instalador somente pelo botão oficial desta página.</strong>{" "}
         Ao abrir o arquivo <strong>Allm4-Setup.exe</strong>, o Windows pode mostrar
@@ -381,6 +334,7 @@ function WindowsInstallGuide() {
         Não é preciso desativar a proteção do Windows. Em computadores administrados
         por empresa ou escola, essa opção pode estar bloqueada pelo responsável do sistema.
       </p>
+      </details>
     </aside>
   );
 }

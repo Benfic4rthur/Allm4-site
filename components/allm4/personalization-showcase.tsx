@@ -6,7 +6,7 @@ export function PersonalizationShowcase() {
     <section className="section personalization-section" id="personalizacao">
       <div className="wrap personalization-layout">
         <div className="personalization-copy reveal">
-          <div className="eyebrow">02 / DO SEU JEITO DESDE O PRIMEIRO USO</div>
+          <div className="eyebrow">E AINDA FICA DO SEU JEITO</div>
           <h2>
             Você escolhe como
             <br />

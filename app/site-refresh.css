@@ -1,0 +1,231 @@
+/* Isolated presentation layer. Existing dialogs, releases and interactions remain. */
+.simple-site { --gray: #b0afa8; }
+.simple-site .wrap { max-width: 1220px; width: calc(100% - 80px); }
+.simple-site [id] { scroll-margin-top: 32px; }
+.simple-site .header { height: 94px; gap: 24px; }
+.simple-site .header nav { gap: 25px; font-size: 13px; }
+.simple-site .brand { flex-shrink: 0; }
+.simple-site .brand-icon { width: 40px; height: 40px; background: none; box-shadow: none; overflow: hidden; }
+.simple-site .brand-icon img { width: 54px; height: 54px; max-width: none; object-fit: contain; flex-shrink: 0; }
+.simple-site .brand-label { font-size: 9px; color: #aaa69c; letter-spacing: 1px; }
+.simple-site .button { min-height: 48px; font-size: 14px; padding: 15px 21px; }
+.simple-site .button-small { min-height: 43px; font-size: 12px; padding: 11px 16px; }
+.simple-site .text-button { min-height: 40px; font-size: 14px; }
+.simple-site .eyebrow { font-size: 10px; line-height: 1.6; letter-spacing: 1.7px; color: #c1b8a9; }
+.simple-site .section { padding-block: 88px; }
+.simple-site .section h2 { font-size: clamp(33px, 3.3vw, 47px); line-height: 1.13; letter-spacing: -1.8px; font-weight: 500; }
+.simple-site .section-intro { font-size: 16px; line-height: 1.8; max-width: 540px; }
+.simple-site .fine-print { font-size: 12px; line-height: 1.75; color: #a7a59a; }
+.simple-site .welcome-hero { display: grid; grid-template-columns: 1fr 1.04fr; gap: 48px; align-items: center; padding-block: 80px 60px; }
+.simple-site .welcome-hero .hero-copy { max-width: none; min-width: 0; }
+.simple-site .welcome-hero h1 { font-size: clamp(40px, 4.3vw, 61px); line-height: 1.08; letter-spacing: -2.5px; margin: 24px 0; font-weight: 500; }
+.simple-site .welcome-hero .hero-copy > p { max-width: 500px; font-size: 17px; line-height: 1.8; color: #bbb8af; }
+.simple-site .welcome-hero .hero-actions { gap: 24px; flex-wrap: wrap; margin-top: 27px; }
+.simple-site .welcome-hero .hero-copy > .welcome-offer { font-size: 12px; line-height: 1.7; color: #aaa69a; margin: 17px 0 0; }
+.simple-site .platform-note { font-size: 12px; color: #c4bfb3; margin-top: 19px; flex-wrap: wrap; }
+.simple-site .welcome-visual { position: relative; min-width: 0; padding: 30px 0; }
+.simple-site .welcome-visual::before { content: ""; position: absolute; inset: -70px -35px; background: radial-gradient(ellipse, #f67c5219, transparent 70%); z-index: -1; pointer-events: none; }
+.simple-site .welcome-visual-heading { display: flex; gap: 9px; align-items: center; font: 10px/1.7 monospace; letter-spacing: 1.4px; color: #b7ad9c; margin-bottom: 17px; }
+.simple-site .welcome-visual .product-stage { padding-top: 0; margin: 0; }
+.simple-site .welcome-visual .app-window { border-color: #f67c5240; border-radius: 12px; }
+.simple-site .welcome-visual .screenshot-viewport { aspect-ratio: 1.72; }
+.simple-site .welcome-caption { display: flex; gap: 14px; justify-content: space-between; align-items: center; margin-top: 22px; font-size: 11px; color: #aca69a; }
+.simple-site .welcome-caption span, .simple-site .welcome-caption a { display: flex; align-items: center; gap: 7px; }
+.simple-site .welcome-caption svg { color: #ce9a7d; flex-shrink: 0; }
+.simple-site .welcome-caption a { min-height: 38px; }
+.simple-site .quick-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding-bottom: 74px; }
+.simple-site .quick-choice { display: flex; flex-direction: column; padding: 26px; border: 1px solid #ffffff17; border-radius: 14px; background: linear-gradient(140deg, #20201c, #141412); transition: border-color .2s, transform .2s; }
+.simple-site .quick-choice:hover { transform: translateY(-3px); border-color: #f67c5265; }
+.simple-site .quick-choice-top { display: flex; justify-content: space-between; align-items: center; color: #f6a07b; }
+.simple-site .quick-choice-top span { font: 11px monospace; color: #aba18e; }
+.simple-site .quick-choice h2 { font-size: 22px; font-weight: 500; letter-spacing: -.6px; margin: 22px 0 11px; line-height: 1.25; }
+.simple-site .quick-choice p { color: #b1ada2; font-size: 14px; line-height: 1.75; margin: 0 0 22px; }
+.simple-site .quick-choice-link { margin-top: auto; display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: #e3c5ad; }
+.simple-site .assistant-layout, .simple-site .project-layout, .simple-site .story-layout, .simple-site .personalization-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 60px; align-items: center; }
+.simple-site .assistant-section { background: linear-gradient(125deg, #1c1b16, #131310); border-block: 1px solid #ffffff14; }
+.simple-site .starting-steps { list-style: none; padding: 0; margin: 30px 0 20px; display: grid; gap: 23px; }
+.simple-site .starting-steps li { display: flex; gap: 16px; align-items: flex-start; }
+.simple-site .starting-step-icon { width: 41px; height: 41px; display: grid; place-items: center; border: 1px solid #f67c523a; border-radius: 11px; background: #f67c5209; color: #f5a281; flex-shrink: 0; }
+.simple-site .starting-steps strong { font-size: 15px; font-weight: 500; color: #ede7dc; }
+.simple-site .starting-steps p { font-size: 14px; line-height: 1.7; color: #b4ae9f; margin: 5px 0 0; }
+.simple-site .assistant-step-list { gap: 7px; }
+.simple-site .assistant-step-tab { font-size: 12px; min-height: 42px; padding-inline: 12px; }
+.simple-site .demo-disclaimer { font-size: 11px; color: #aba594; line-height: 1.6; }
+.simple-site .section-heading { gap: 50px; }
+.simple-site .section-heading .section-intro { max-width: 410px; }
+.simple-site .feature-tab { min-height: 48px; font-size: 14px; }
+.simple-site .feature-tab-guide { font-size: 11px; color: #b9b3a4; }
+.simple-site .feature-panel { grid-template-columns: minmax(0, 1.28fr) minmax(0, 1fr); gap: 50px; min-height: 390px; }
+.simple-site .feature-description h3 { max-width: none; font-size: 29px; }
+.simple-site .feature-description > p { max-width: none; font-size: 15px; color: #b5b2a6; line-height: 1.8; }
+.simple-site .feature-description li { font-size: 13px; align-items: flex-start; line-height: 1.7; }
+.simple-site .feature-description li svg { flex-shrink: 0; margin-top: 4px; }
+.simple-site .explorer-screenshot, .simple-site .project-proof .app-window { transform: none; }
+.simple-site .image-caption { font-size: 9px; color: #aaa695; line-height: 1.6; }
+.simple-site .environment-benefits span { font-size: 13px; color: #b3b0a3; }
+.simple-site .environment-benefits > div { padding: 20px; }
+.simple-site .environment-benefits strong { font-size: 14px; }
+.simple-site .image-story { border-top: 1px solid #ffffff14; background: radial-gradient(ellipse at 78% 45%, #f67c520b, transparent 60%); }
+.simple-site .story-copy, .simple-site .story-visual { min-width: 0; }
+.simple-site .example-request { background: #ffffff04; border: 1px solid #ffffff15; border-left: 2px solid #f67c5260; border-radius: 0 10px 10px 0; margin: 25px 0; padding: 18px 20px; }
+.simple-site .example-request > span { display: block; font: 9px/1.6 monospace; letter-spacing: 1.6px; color: #cf9e80; }
+.simple-site .example-request p { font-size: 16px; line-height: 1.75; color: #e1d7c8; margin: 10px 0 0; }
+.simple-site .story-benefits { list-style: none; padding: 0; margin: 25px 0; display: grid; gap: 13px; }
+.simple-site .story-benefits li { display: flex; gap: 10px; font-size: 14px; color: #c0bcaf; line-height: 1.6; }
+.simple-site .story-benefits svg { color: #c59f7c; margin-top: 3px; flex-shrink: 0; }
+.simple-site .media-placeholder { margin: 0; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 23px; min-height: 370px; padding: 64px 40px 35px; border: 1px dashed #b6845d85; border-radius: 17px; background: linear-gradient(155deg, #32271d55, #191a1680), repeating-linear-gradient(0deg, transparent, transparent 31px, #ffffff03 31px, #ffffff03 32px), repeating-linear-gradient(90deg, transparent, transparent 31px, #ffffff03 31px, #ffffff03 32px); color: #d1ad87; }
+.simple-site .media-placeholder-tag { position: absolute; top: 19px; left: 20px; border: 1px solid #ffffff1e; border-radius: 5px; padding: 5px 9px; color: #c3b398; font: 9px/1.6 monospace; letter-spacing: 1.3px; }
+.simple-site .media-placeholder figcaption { display: grid; gap: 17px; max-width: 410px; }
+.simple-site .media-placeholder strong { color: #ebd4b8; font-size: 22px; line-height: 1.4; font-weight: 500; letter-spacing: -.4px; }
+.simple-site .media-placeholder figcaption > span { font-size: 14px; line-height: 1.75; color: #b5a992; }
+.simple-site .media-placeholder small { font-size: 11px; color: #afa38e; line-height: 1.6; }
+.simple-site .media-placeholder-compact { min-height: 245px; padding: 58px 25px 25px; gap: 14px; border-radius: 11px; }
+.simple-site .media-placeholder-compact strong { font-size: 18px; }
+.simple-site .media-placeholder-compact figcaption > span { font-size: 12px; }
+.simple-site .project-benefits span { font-size: 14px; line-height: 1.7; color: #b4b0a4; }
+.simple-site .project-benefits strong { font-size: 15px; margin-bottom: 3px; }
+.simple-site .real-proof-details { margin-top: 20px; border: 1px solid #ffffff16; border-radius: 10px; padding: 0 17px; }
+.simple-site summary { cursor: pointer; font-size: 14px; line-height: 1.6; padding: 19px 0; color: #ded3c1; }
+.simple-site summary::marker { color: #ec9a72; }
+.simple-site summary:focus-visible { outline: 2px solid var(--orange); outline-offset: 4px; }
+.simple-site .real-proof-details > p { font-size: 12px; line-height: 1.7; color: #b1a794; margin: 17px 0; }
+.simple-site .personalization-points span { padding: 12px 14px; font-size: 13px; }
+.simple-site .trust-repair-heading { gap: 40px; }
+.simple-site .trust-repair-heading .section-intro { max-width: 400px; }
+.simple-site .trust-repair-grid { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 24px; }
+.simple-site .local-trust-card, .simple-site .repair-card { padding: 29px; }
+.simple-site .local-trust-card h3, .simple-site .repair-card h3 { font-size: 26px; line-height: 1.25; }
+.simple-site .local-trust-card > p, .simple-site .repair-card > p { font-size: 14px; line-height: 1.85; color: #b6b0a1; }
+.simple-site .local-trust-card > small, .simple-site .repair-card > small { font-size: 12px; line-height: 1.75; color: #aca391; }
+.simple-site .trust-points span, .simple-site .repair-control span { font-size: 12px; line-height: 1.7; }
+.simple-site .repair-flow { grid-template-columns: 1fr 1fr; gap: 19px; }
+.simple-site .repair-flow > i { display: none; }
+.simple-site .repair-flow strong { font-size: 11px; line-height: 1.6; }
+.simple-site .repair-flow span { font-size: 12px; }
+.simple-site .download-heading h2 { font-size: clamp(36px, 4vw, 55px); }
+.simple-site .download-heading > p { font-size: 16px; }
+.simple-site .access-panel { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; max-width: 900px; margin: 40px auto 0; padding: 35px 40px; border: 1px solid #f67c5243; border-radius: 15px; background: linear-gradient(120deg, #282117, #181814); }
+.simple-site .access-copy h3 { font-size: 28px; font-weight: 500; line-height: 1.2; letter-spacing: -.9px; margin: 16px 0; }
+.simple-site .access-panel p { color: #bbb2a0; font-size: 14px; line-height: 1.85; margin: 12px 0; }
+.simple-site .access-terms > strong { display: block; color: #f6a681; font-size: 26px; font-weight: 500; line-height: 1.3; }
+.simple-site .access-terms ul { padding: 0; list-style: none; display: grid; gap: 11px; margin: 22px 0; }
+.simple-site .access-terms li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #dad1bd; line-height: 1.6; }
+.simple-site .access-terms li svg { color: #a9bf97; flex-shrink: 0; margin-top: 2px; }
+.simple-site .access-terms small { color: #b0a48e; font-size: 11px; line-height: 1.8; display: block; }
+.simple-site .download-grid { max-width: 900px; margin-top: 24px; }
+.simple-site .download-card { padding: 26px; }
+.simple-site .download-card h3 { font-size: 19px; }
+.simple-site .download-card p { font-size: 13px; color: #b8ad95; }
+.simple-site .download-button { font-size: 13px; gap: 12px; }
+.simple-site .download-button > span:nth-child(2) { font-size: 10px; }
+.simple-site .download-meta { font-size: 10px; line-height: 1.7; }
+.simple-site .mac-install-link { font-size: 12px; min-height: 34px; }
+.simple-site .install-guides { max-width: 900px; margin: 25px auto 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.simple-site .mac-install-guide { width: 100%; max-width: none; margin: 0; padding: 24px; background: #191914; }
+.simple-site .mac-guide-title h3 { font-size: 17px; }
+.simple-site .mac-guide-title > span { display: none; }
+.simple-site .normal-install-steps { margin: 22px 0; padding-left: 19px; color: #bdb49f; font-size: 14px; line-height: 1.8; }
+.simple-site .normal-install-steps li { padding-left: 3px; margin-top: 9px; }
+.simple-site .install-help { margin-top: 16px; border-top: 1px solid #ffffff12; }
+.simple-site .install-help summary { font-size: 13px; }
+.simple-site .install-help p { font-size: 13px; line-height: 1.85; color: #beb19a; margin: 14px 0; }
+.simple-site .install-help .copy-status { font-size: 11px; color: #aba18c; }
+.simple-site .install-help .windows-steps { font-size: 13px; color: #b9ac94; line-height: 1.8; }
+.simple-site .command-block { flex-wrap: wrap; padding: 12px; }
+.simple-site .command-block code { font-size: 11px; }
+.simple-site .command-block button { min-height: 36px; font-size: 11px; }
+.simple-site .release-links > a, .simple-site .update-note { font-size: 12px; }
+.simple-site .site-questions { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 85px; border-top: 1px solid #ffffff14; }
+.simple-site .questions-heading .text-button { color: #f3ae89; margin-top: 22px; }
+.simple-site .questions-list details { border-bottom: 1px solid #ffffff18; }
+.simple-site .questions-list details:first-child { border-top: 1px solid #ffffff18; }
+.simple-site .questions-list summary { font-size: 16px; padding: 23px 0; }
+.simple-site .questions-list p { margin: 0 0 24px; color: #bcb4a5; font-size: 14px; line-height: 1.9; }
+.simple-site .footer { padding-block: 54px 25px; }
+.simple-site .footer-main { gap: 35px; }
+.simple-site .footer-column a, .simple-site .footer-column button { min-height: 34px; font-size: 12px; text-align: left; }
+.simple-site .footer-brand > p, .simple-site .contact-link { font-size: 12px; line-height: 1.8; }
+.simple-site .footer-bottom { font-size: 10px; flex-wrap: wrap; line-height: 1.7; }
+@media (max-width: 1150px) {
+  .simple-site .brand-label { display: none; }
+  .simple-site .welcome-hero { gap: 35px; }
+  .simple-site .welcome-hero h1 { font-size: 49px; }
+  .simple-site .welcome-caption { flex-wrap: wrap; }
+  .simple-site .assistant-layout, .simple-site .project-layout, .simple-site .story-layout, .simple-site .personalization-layout { gap: 35px; }
+}
+@media (max-width: 900px) {
+  .simple-site .wrap { width: calc(100% - 48px); }
+  .simple-site .header { flex-wrap: wrap; height: auto; min-height: 116px; padding-block: 17px; gap: 14px; }
+  .simple-site .header nav { display: flex; order: 3; flex-basis: 100%; justify-content: space-between; gap: 18px; overflow-x: auto; white-space: nowrap; padding: 3px 0; font-size: 12px; }
+  .simple-site .header nav a { min-height: 34px; display: inline-flex; align-items: center; }
+  .simple-site .welcome-hero { grid-template-columns: 1fr; padding-block: 52px 32px; gap: 24px; }
+  .simple-site .welcome-hero h1 { font-size: clamp(38px, 6.8vw, 57px); }
+  .simple-site .welcome-hero .hero-copy > p { max-width: 660px; }
+  .simple-site .welcome-visual { max-width: 700px; width: 100%; margin-inline: auto; padding: 18px 0 0; }
+  .simple-site .welcome-visual::before { inset: 0; }
+  .simple-site .quick-choices { gap: 13px; padding-bottom: 50px; }
+  .simple-site .quick-choice { padding: 20px; }
+  .simple-site .quick-choice h2 { font-size: 20px; }
+  .simple-site .section { padding-block: 64px; }
+  .simple-site .assistant-layout, .simple-site .project-layout, .simple-site .story-layout, .simple-site .personalization-layout { grid-template-columns: 1fr; gap: 36px; }
+  .simple-site .section-intro { max-width: 670px; }
+  .simple-site .assistant-console { width: 100%; max-width: 720px; justify-self: center; }
+  .simple-site .section-heading { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .simple-site .section-heading .section-intro { max-width: 650px; }
+  .simple-site .feature-panel { gap: 25px; }
+  .simple-site .feature-description h3 { font-size: 24px; }
+  .simple-site .feature-tab-guide { display: none; }
+  .simple-site .story-visual, .simple-site .project-proof, .simple-site .personalization-visual { max-width: 720px; width: 100%; justify-self: center; }
+  .simple-site .trust-repair-heading { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .simple-site .trust-repair-grid { grid-template-columns: 1fr; }
+  .simple-site .site-questions { grid-template-columns: 1fr; gap: 30px; }
+  .simple-site .footer-main { grid-template-columns: 1.5fr 1fr 1fr; }
+  .simple-site .footer-brand { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .simple-site .wrap { width: calc(100% - 36px); }
+  .simple-site .header { gap: 10px; }
+  .simple-site .header .brand { font-size: 24px; }
+  .simple-site .header nav { font-size: 11px; gap: 17px; }
+  .simple-site .eyebrow { font-size: 9px; letter-spacing: 1.2px; }
+  .simple-site .welcome-hero { padding-top: 38px; }
+  .simple-site .welcome-hero h1 { font-size: clamp(35px, 8.3vw, 47px); letter-spacing: -1.6px; }
+  .simple-site .welcome-hero .hero-copy > p { font-size: 16px; }
+  .simple-site .welcome-hero .hero-actions { gap: 15px; align-items: stretch; }
+  .simple-site .welcome-hero .hero-actions > .button { width: 100%; }
+  .simple-site .welcome-visual-heading { font-size: 9px; }
+  .simple-site .welcome-caption { margin-top: 14px; gap: 2px; }
+  .simple-site .quick-choices { grid-template-columns: 1fr; gap: 12px; }
+  .simple-site .quick-choice { padding: 21px; }
+  .simple-site .quick-choice h2 { margin-top: 15px; font-size: 23px; }
+  .simple-site .quick-choice p { margin-bottom: 16px; }
+  .simple-site .quick-choice-link { font-size: 13px; }
+  .simple-site .section { padding-block: 54px; }
+  .simple-site .section h2 { font-size: 34px; letter-spacing: -1.3px; }
+  .simple-site .section-intro { font-size: 15px; }
+  .simple-site .feature-panel { grid-template-columns: 1fr; gap: 24px; padding-top: 12px; }
+  .simple-site .feature-preview { padding-block: 15px 25px; }
+  .simple-site .feature-description h3 { max-width: none; font-size: 27px; }
+  .simple-site .feature-tab-list { width: 100%; }
+  .simple-site .feature-tab { min-width: 0; flex: 1; padding-inline: 10px; font-size: 13px; gap: 7px; }
+  .simple-site .environment-benefits { grid-template-columns: 1fr; margin-top: 28px; }
+  .simple-site .media-placeholder { min-height: 310px; padding: 59px 24px 28px; }
+  .simple-site .media-placeholder strong { font-size: 21px; }
+  .simple-site .media-placeholder-compact { min-height: 235px; }
+  .simple-site .media-placeholder-compact strong { font-size: 18px; }
+  .simple-site .local-trust-card, .simple-site .repair-card { padding: 23px; }
+  .simple-site .access-panel { grid-template-columns: 1fr; padding: 26px; gap: 25px; margin-top: 28px; }
+  .simple-site .access-terms { border-top: 1px solid #ffffff1c; padding-top: 25px; }
+  .simple-site .download-grid, .simple-site .install-guides { grid-template-columns: 1fr; gap: 19px; }
+  .simple-site .download-card { padding: 23px; }
+  .simple-site .download-button { flex-wrap: wrap; }
+  .simple-site .download-button > span:nth-child(2) { font-size: 10px; }
+  .simple-site .mac-install-guide { padding: 22px; }
+  .simple-site .questions-list summary { font-size: 15px; }
+  .simple-site .footer-main { grid-template-columns: 1fr 1fr; gap: 27px; }
+  .simple-site .footer-bottom { gap: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .simple-site .quick-choice { transition: none; }
+  .simple-site .quick-choice:hover { transform: none; }
+}

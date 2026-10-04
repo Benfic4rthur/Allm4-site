@@ -48,8 +48,8 @@ export default function Home() {
           <div className="umb-hero-copy">
             <div className="umb-kicker">ALLM4 · SOFTWARE STUDIO</div>
             <h1 id="hero-title">
-              Ideias em
-              <span>aplicativos.</span>
+              Software para uma
+              <span>vida mais simples.</span>
             </h1>
             <p className="umb-hero-lede">
               A ALLM4 projeta e desenvolve software com foco em utilidade,

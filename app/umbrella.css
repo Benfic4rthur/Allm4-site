@@ -690,26 +690,59 @@
 .umb-about-signature {
   position: relative;
   display: grid;
-  justify-items: start;
-  gap: 22px;
-  padding-top: 16px;
+  width: min(100%, 420px);
+  min-height: 390px;
+  justify-self: end;
+  place-items: center;
+  align-content: center;
+  gap: 18px;
+  padding: 42px 36px 36px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 32%, rgba(94, 111, 255, 0.16), transparent 42%),
+    linear-gradient(150deg, #0f1320, #080a10 72%);
+  box-shadow:
+    0 26px 60px rgba(24, 28, 48, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  text-align: center;
+}
+
+.umb-about-signature::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 115, 255, 0.12), transparent 68%);
+  filter: blur(24px);
+  pointer-events: none;
 }
 
 .umb-about-mark {
-  width: min(290px, 72%);
+  position: relative;
+  z-index: 1;
+  width: min(235px, 68%);
   height: auto;
-  filter: drop-shadow(0 20px 30px rgba(75, 87, 196, 0.16));
+  filter:
+    drop-shadow(0 18px 28px rgba(51, 69, 205, 0.2))
+    drop-shadow(0 5px 16px rgba(176, 111, 255, 0.08));
 }
 
 .umb-about-signature strong {
+  position: relative;
+  z-index: 1;
+  color: #f7f8fb;
   font-size: 24px;
   font-weight: 500;
   letter-spacing: 0.18em;
 }
 
 .umb-about-signature span {
-  color: #68707e;
-  font-size: 12px;
+  position: relative;
+  z-index: 1;
+  color: #9ca5b7;
+  font-size: 11px;
   letter-spacing: 0.17em;
   text-transform: uppercase;
 }
@@ -1006,6 +1039,7 @@
 
   .umb-about-signature {
     max-width: 420px;
+    justify-self: start;
   }
 
   .umb-brand-band-inner {
@@ -1167,6 +1201,12 @@
 
   .umb-about-grid {
     gap: 52px;
+  }
+
+  .umb-about-signature {
+    width: 100%;
+    min-height: 330px;
+    justify-self: stretch;
   }
 
   .umb-about-copy p {

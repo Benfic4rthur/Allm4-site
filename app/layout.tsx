@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { CardParallax } from "@/components/allm4/card-parallax";
 import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
-const googleFavicon = "/allm4-google-favicon-96.png?v=1";
-const favicon32 = "/allm4-favicon-v5-32.png?v=6";
-const appleTouchIcon = "/allm4-touch-v5.png?v=6";
-const socialPreview = "/images/allm4-social-preview-v2.png";
+const brandIcon = "/brand/allm4-mark.svg";
 const isProduction = process.env.NODE_ENV === "production";
 
-const title = "Allm4 — IA local simples para qualquer pessoa";
+const title = "ALLM4 | Software para uma vida mais simples";
 const description =
-  "Converse, crie imagens e trabalhe em projetos com IA local, mesmo sem conhecimento técnico. Allm4 para macOS Apple Silicon e Windows.";
+  "A ALLM4 cria aplicativos e experiências de software com foco em utilidade, clareza e cuidado nos detalhes.";
 
 const productionCsp = [
   "default-src 'self'",
@@ -36,34 +32,20 @@ export const metadata: Metadata = {
   title,
   description,
   icons: {
-    icon: [
-      { url: googleFavicon, type: "image/png", sizes: "96x96" },
-      { url: favicon32, type: "image/png", sizes: "32x32" },
-    ],
-    apple: appleTouchIcon,
+    icon: [{ url: brandIcon, type: "image/svg+xml" }],
   },
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: "/",
-    siteName: "Allm4",
+    siteName: "ALLM4",
     title,
     description,
-    images: [
-      {
-        url: socialPreview,
-        width: 1200,
-        height: 630,
-        alt: "Allm4 — IA local simples para qualquer pessoa",
-        type: "image/png",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title,
     description,
-    images: [socialPreview],
   },
 };
 
@@ -110,11 +92,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="antialiased">
-        <SecurityConsole />
-        <CardParallax />
-        {children}
-      </body>
+      <body className="antialiased"><SecurityConsole />{children}</body>
     </html>
   );
 }

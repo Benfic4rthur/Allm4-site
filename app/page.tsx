@@ -53,9 +53,9 @@ export default function Home() {
               <span>vida mais simples.</span>
             </h1>
             <p className="umb-hero-lede">
-              A ALLM4 projeta e desenvolve software com foco em utilidade,
-              clareza e cuidado nos detalhes. Ferramentas feitas para tornar a
-              tecnologia mais simples de usar no dia a dia.
+              A ALLM4 cria aplicativos com foco principal no ecossistema macOS,
+              combinando utilidade, clareza e cuidado nos detalhes. Quando faz
+              sentido para o produto, também desenvolvemos versões para Windows.
             </p>
 
             <div className="umb-hero-actions">
@@ -68,9 +68,9 @@ export default function Home() {
             </div>
 
             <div className="umb-hero-meta" aria-label="Áreas de atuação">
-              <span>Aplicativos</span>
-              <span>Desktop</span>
-              <span>Experiências de software</span>
+              <span>macOS em primeiro plano</span>
+              <span>Windows quando fizer sentido</span>
+              <span>Aplicativos desktop</span>
             </div>
           </div>
 
@@ -95,14 +95,17 @@ export default function Home() {
                 <h2 id="products-title">Software com propósito.</h2>
               </div>
               <p>
-                Cada aplicativo tem seu próprio foco, sua própria experiência e
-                espaço para evoluir. Todos compartilham o mesmo cuidado de
-                produto, design e desenvolvimento da ALLM4.
+                Criamos aplicações pensadas primeiro para Mac, sem limitar cada
+                produto a uma única plataforma. Quando existe um bom motivo,
+                também levamos a experiência para Windows.
               </p>
             </div>
 
             <div className="umb-product-list">
-              {products.map((product) => (
+              {products.map((product) => {
+                const external = product.url.startsWith("http");
+
+                return (
                 <article className="umb-product" key={product.slug}>
                   <div className="umb-product-copy">
                     <div className="umb-product-topline">
@@ -140,8 +143,8 @@ export default function Home() {
                     <a
                       className="umb-product-link"
                       href={product.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noopener noreferrer" : undefined}
                     >
                       {product.ctaLabel}
                       <ArrowUpRight size={16} aria-hidden="true" />
@@ -153,8 +156,8 @@ export default function Home() {
                       <Image
                         className="umb-product-screenshot"
                         src={`${publicBasePath}${product.screenshot}`}
-                        width={3456}
-                        height={2024}
+                        width={product.screenshotWidth ?? 1200}
+                        height={product.screenshotHeight ?? 630}
                         loading="lazy"
                         alt={product.screenshotAlt ?? `Interface de ${product.name}`}
                         sizes="(max-width: 980px) 100vw, 60vw"
@@ -165,7 +168,8 @@ export default function Home() {
                     )}
                   </div>
                 </article>
-              ))}
+                );
+              })}
             </div>
 
             <p className="umb-catalog-note">
@@ -182,14 +186,16 @@ export default function Home() {
                 <div className="umb-kicker">SOBRE A ALLM4</div>
                 <h2 id="about-title">Software útil, simples e bem construído.</h2>
                 <p>
-                  A ALLM4 é uma marca de software criada para desenvolver
-                  ferramentas que resolvam problemas reais sem transformar a
-                  experiência em algo mais complicado do que precisa ser.
+                  A ALLM4 é uma marca de software voltada principalmente para
+                  aplicações de macOS, criando ferramentas que resolvem
+                  problemas reais sem tornar a experiência mais complicada do
+                  que precisa ser.
                 </p>
                 <p>
-                  Cada produto pode seguir um caminho próprio. A base continua
-                  a mesma: clareza, utilidade e atenção ao comportamento do
-                  software em cada detalhe.
+                  Cada produto pode seguir um caminho próprio e, quando fizer
+                  sentido, também ganhar uma versão para Windows. A base
+                  continua a mesma: clareza, utilidade e atenção ao comportamento
+                  do software em cada detalhe.
                 </p>
               </div>
 
@@ -255,16 +261,20 @@ export default function Home() {
 
           <div className="umb-footer-column">
             <span>PRODUTOS</span>
-            {products.map((product) => (
-              <a
-                key={product.slug}
-                href={product.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {product.name} <ArrowUpRight size={11} aria-hidden="true" />
-              </a>
-            ))}
+            {products.map((product) => {
+              const external = product.url.startsWith("http");
+
+              return (
+                <a
+                  key={product.slug}
+                  href={product.url}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                >
+                  {product.name} <ArrowUpRight size={11} aria-hidden="true" />
+                </a>
+              );
+            })}
           </div>
 
           <div className="umb-footer-column">

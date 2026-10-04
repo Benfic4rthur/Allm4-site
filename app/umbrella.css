@@ -33,6 +33,15 @@
   color: inherit;
 }
 
+.umbrella-site ::selection {
+  background: rgba(103, 116, 255, 0.36);
+}
+
+.umbrella-site a:focus-visible {
+  outline: 2px solid #7d89ff;
+  outline-offset: 5px;
+}
+
 .umb-shell {
   width: var(--umb-shell);
   margin-inline: auto;
@@ -1175,6 +1184,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .umbrella-site *,
   .umbrella-site *::before,
   .umbrella-site *::after {

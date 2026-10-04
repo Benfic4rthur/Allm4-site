@@ -1,9 +1,10 @@
-name: Review site redesign (no deploy)
+name: Review site branches (no deploy)
 
 on:
   push:
     branches:
       - feature/site-simples-demonstrativo
+      - feature/allm4-umbrella-brand
 
 permissions:
   contents: read

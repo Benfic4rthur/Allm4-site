@@ -581,7 +581,7 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  padding: 34px;
+  padding: 26px;
   border-left: 1px solid var(--umb-line);
   background:
     linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
@@ -607,7 +607,7 @@
 .umb-product-screenshot {
   position: relative;
   z-index: 1;
-  width: min(760px, 92%);
+  width: min(820px, 95%);
   max-width: 100%;
   height: auto;
   transform: scale(1);
@@ -625,7 +625,7 @@
 }
 
 .umb-product:hover .umb-product-screenshot {
-  transform: scale(1.025);
+  transform: scale(1.04);
   filter: brightness(1.04);
   border-color: rgba(131, 143, 255, 0.28);
   box-shadow:
@@ -990,12 +990,12 @@
   }
 
   .umb-product-screenshot {
-    width: min(760px, 92%);
+    width: min(800px, 95%);
     transform: scale(1);
   }
 
   .umb-product:hover .umb-product-screenshot {
-    transform: scale(1.02);
+    transform: scale(1.035);
   }
 
   .umb-about-grid {
@@ -1151,17 +1151,17 @@
   }
 
   .umb-product-visual {
-    padding: 20px;
+    padding: 16px;
   }
 
   .umb-product-screenshot {
-    width: 96%;
+    width: 97%;
     transform: scale(1);
     border-radius: 14px;
   }
 
   .umb-product:hover .umb-product-screenshot {
-    transform: scale(1.015);
+    transform: scale(1.025);
   }
 
   .umb-about-grid {

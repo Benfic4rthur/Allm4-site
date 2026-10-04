@@ -231,6 +231,77 @@ for (const viewport of viewports) {
   });
 }
 
+browserErrors.length = 0;
+
+await command("Emulation.setDeviceMetricsOverride", {
+  width: 1440,
+  height: 1000,
+  deviceScaleFactor: 1,
+  mobile: false,
+});
+
+const localIaLoaded = once("Page.loadEventFired");
+await command("Page.navigate", { url: new URL("local-ia/", siteUrl).toString() });
+await localIaLoaded;
+await wait(500);
+
+const localIaEvaluation = await command("Runtime.evaluate", {
+  expression: `(() => {
+    const root = document.documentElement;
+    const main = document.querySelector("main");
+    return {
+      title: document.title,
+      scrollWidth: root.scrollWidth,
+      clientWidth: root.clientWidth,
+      mainHeight: main?.getBoundingClientRect().height ?? 0,
+      readyState: document.readyState,
+    };
+  })()`,
+  returnByValue: true,
+});
+
+const localIaMetrics = localIaEvaluation?.result?.value;
+
+if (!localIaMetrics || localIaMetrics.readyState !== "complete") {
+  throw new Error("local-ia: page did not reach a complete state.");
+}
+
+if (localIaMetrics.scrollWidth > localIaMetrics.clientWidth + 1) {
+  throw new Error(
+    `local-ia: horizontal overflow detected (${localIaMetrics.scrollWidth}px > ${localIaMetrics.clientWidth}px).`,
+  );
+}
+
+if (localIaMetrics.mainHeight <= 0) {
+  throw new Error("local-ia: main content has no rendered height.");
+}
+
+if (browserErrors.length > 0) {
+  throw new Error(
+    `local-ia: browser errors detected:\n${browserErrors.join("\n")}`,
+  );
+}
+
+const localIaScreenshot = await command("Page.captureScreenshot", {
+  format: "png",
+  captureBeyondViewport: false,
+  fromSurface: true,
+});
+
+await writeFile(
+  `${outputDir}/local-ia-desktop.png`,
+  Buffer.from(localIaScreenshot.data, "base64"),
+);
+
+results.push({
+  viewport: "local-ia-desktop",
+  width: 1440,
+  height: 1000,
+  title: localIaMetrics.title,
+  scrollWidth: localIaMetrics.scrollWidth,
+  clientWidth: localIaMetrics.clientWidth,
+});
+
 socket.close();
 
 console.log("Browser smoke test passed:");

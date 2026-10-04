@@ -49,6 +49,66 @@ jobs:
           PAGES_BASE_PATH: ""
           NEXT_PUBLIC_BASE_PATH: ""
         run: npx next build
+      - name: Browser smoke test
+        run: |
+          set -euo pipefail
+
+          chrome="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$chrome" ]; then
+            echo "::error::Chrome/Chromium is not available on this runner."
+            exit 1
+          fi
+
+          python3 -m http.server 4173 --directory out >/tmp/allm4-http.log 2>&1 &
+          http_pid=$!
+
+          "$chrome" \
+            --headless=new \
+            --no-sandbox \
+            --disable-gpu \
+            --remote-debugging-port=9222 \
+            --remote-allow-origins='*' \
+            --user-data-dir=/tmp/allm4-chrome \
+            about:blank >/tmp/allm4-chrome.log 2>&1 &
+          chrome_pid=$!
+
+          cleanup() {
+            kill "$http_pid" "$chrome_pid" 2>/dev/null || true
+          }
+          trap cleanup EXIT
+
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              cat /tmp/allm4-http.log
+              exit 1
+            fi
+            sleep 0.5
+          done
+
+          for attempt in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:9222/json/version >/dev/null; then
+              break
+            fi
+            if [ "$attempt" -eq 30 ]; then
+              cat /tmp/allm4-chrome.log
+              exit 1
+            fi
+            sleep 0.5
+          done
+
+          node scripts/browser-smoke.mjs \
+            http://127.0.0.1:4173/ \
+            http://127.0.0.1:9222 \
+            /tmp/allm4-browser
+      - name: Save responsive screenshots
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        with:
+          name: allm4-review-responsive-screenshots
+          path: /tmp/allm4-browser/*.png
+          retention-days: 2
       - name: Save static preview (not published)
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:

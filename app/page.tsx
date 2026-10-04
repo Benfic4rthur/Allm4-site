@@ -1,7 +1,6 @@
 import {
   ArrowDown,
   ArrowUpRight,
-  Github,
   Mail,
 } from "lucide-react";
 import { BrandLockup, BrandMark } from "@/components/brand/brand-mark";
@@ -268,7 +267,7 @@ export default function Home() {
             <span>ALLM4</span>
             <a href="#sobre">Sobre</a>
             <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-              GitHub <Github size={12} aria-hidden="true" />
+              GitHub <ArrowUpRight size={11} aria-hidden="true" />
             </a>
             <a
               href={siteConfig.releases}

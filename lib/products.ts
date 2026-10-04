@@ -28,6 +28,6 @@ export const products: Product[] = [
     platforms: ["macOS Apple Silicon", "Windows"],
     status: "Disponível",
     url: siteConfig.releases,
-    ctaLabel: "Ver aplicativo",
+    ctaLabel: "Ver releases",
   },
 ];

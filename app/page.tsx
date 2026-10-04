@@ -179,15 +179,14 @@ export default function Home() {
                 <div className="umb-kicker">SOBRE A ALLM4</div>
                 <h2 id="about-title">Software útil, simples e bem construído.</h2>
                 <p>
-                  A ALLM4 é uma marca de software voltada ao desenvolvimento de
-                  aplicações para macOS, criando ferramentas que resolvem
-                  problemas reais sem tornar a experiência mais complicada do
-                  que precisa ser.
+                  A ALLM4 desenvolve software com foco em experiências simples,
+                  úteis e bem construídas, com atenção especial ao ecossistema
+                  macOS.
                 </p>
                 <p>
-                  Cada produto pode seguir um caminho próprio. A base continua
-                  a mesma: clareza, utilidade e atenção ao comportamento do
-                  software em cada detalhe.
+                  Cada produto nasce para resolver uma necessidade específica,
+                  com interfaces claras, comportamento previsível e cuidado nos
+                  detalhes que fazem diferença no uso diário.
                 </p>
               </div>
 

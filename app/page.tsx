@@ -279,13 +279,6 @@ export default function Home() {
             <a href={githubUrl} target="_blank" rel="noopener noreferrer">
               GitHub <ArrowUpRight size={11} aria-hidden="true" />
             </a>
-            <a
-              href={siteConfig.releases}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Releases <ArrowUpRight size={11} aria-hidden="true" />
-            </a>
             <a href={`mailto:${siteConfig.contactEmail}`}>
               Contato <Mail size={12} aria-hidden="true" />
             </a>

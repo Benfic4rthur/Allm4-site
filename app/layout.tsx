@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SecurityConsole } from "@/components/allm4/security-console";
 import "./globals.css";
 
 const brandIcon = "/brand/allm4-mark.svg";
@@ -91,7 +92,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased"><SecurityConsole />{children}</body>
     </html>
   );
 }

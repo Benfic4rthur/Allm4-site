@@ -40,7 +40,13 @@ O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A 
 
 ## Catálogo de produtos
 
-Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`.
+Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta ordem:
+
+1. Notchficator, com destino para `https://notchficator.app`.
+2. LUM4, com destino para `https://lum4.app`.
+3. ALLM4 Local IA, com destino para a subpágina interna `/local-ia`.
+
+A comunicação institucional deixa explícito que o foco principal da ALLM4 é desenvolver aplicações para macOS, sem impedir versões para Windows quando fizer sentido para cada produto.
 
 Cada entrada pode conter:
 
@@ -56,7 +62,9 @@ Cada entrada pode conter:
 
 Adicionar um novo produto não exige duplicar a estrutura da página.
 
-O produto atual ainda não possui, neste repositório, um nome formal separado da marca ALLM4. Por isso, sua entrada usa temporariamente um título descritivo e contém um `TODO(PRODUCT_NAME)` explícito para substituição quando o nome oficial for definido.
+O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
+
+Os assets oficiais usados nos cartões de Notchficator e LUM4 foram reaproveitados dos respectivos sites oficiais, sem recriar seus ícones.
 
 ## Identidade
 

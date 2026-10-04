@@ -8,7 +8,6 @@ import { ModelAssistant } from "@/components/allm4/model-controls";
 import { MotionRoot } from "@/components/allm4/motion";
 import { PersonalizationShowcase } from "@/components/allm4/personalization-showcase";
 import { ProjectShowcase } from "@/components/allm4/project-showcase";
-import { SecurityConsole } from "@/components/allm4/security-console";
 import { CardParallax } from "@/components/allm4/card-parallax";
 import { ImageShowcase, QuickChoices, SiteQuestions } from "@/components/allm4/site-story";
 import { TrustRepair } from "@/components/allm4/trust-repair";
@@ -50,7 +49,6 @@ export const metadata: Metadata = {
 export default function LocalIAPage() {
   return (
     <>
-      <SecurityConsole />
       <CardParallax />
       <MotionRoot>
         <div className="simple-site">

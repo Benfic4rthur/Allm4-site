@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function BrandMark({
@@ -8,13 +10,14 @@ export function BrandMark({
   decorative?: boolean;
 }) {
   return (
-    <img
+    <Image
       className={className}
       src={`${publicBasePath}/brand/allm4-mark.svg`}
       alt={decorative ? "" : "Símbolo da ALLM4"}
       width={256}
       height={256}
       aria-hidden={decorative ? true : undefined}
+      unoptimized
     />
   );
 }

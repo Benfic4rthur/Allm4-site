@@ -329,13 +329,14 @@
 
 .umb-hero-meta {
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
+  flex-wrap: nowrap;
+  gap: 0;
   margin-top: 32px;
   color: #778092;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .umb-hero-meta span {

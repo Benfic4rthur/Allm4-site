@@ -53,8 +53,9 @@ export default function Home() {
               <span>vida mais simples.</span>
             </h1>
             <p className="umb-hero-lede">
-              A ALLM4 cria aplicativos com foco no ecossistema macOS,
-              combinando utilidade, clareza e cuidado nos detalhes.
+              A ALLM4 projeta e desenvolve software com foco em utilidade,
+              clareza e cuidado nos detalhes. Ferramentas feitas para tornar a
+              tecnologia mais simples de usar no dia a dia.
             </p>
 
             <div className="umb-hero-actions">
@@ -66,8 +67,10 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="umb-hero-meta" aria-label="Foco de desenvolvimento">
-              <span>Desenvolvimento pensado para macOS</span>
+            <div className="umb-hero-meta" aria-label="Áreas de atuação">
+              <span>Aplicativos</span>
+              <span>Desktop</span>
+              <span>Experiências de software</span>
             </div>
           </div>
 
@@ -92,9 +95,9 @@ export default function Home() {
                 <h2 id="products-title">Software com propósito.</h2>
               </div>
               <p>
-                Criamos aplicações com atenção especial à experiência no macOS.
-                Cada produto segue seu próprio caminho, sempre com foco em
-                utilidade, clareza e cuidado nos detalhes.
+                Cada aplicativo tem seu próprio foco, sua própria experiência e
+                espaço para evoluir. Todos compartilham o mesmo cuidado de
+                produto, design e desenvolvimento da ALLM4.
               </p>
             </div>
 
@@ -179,14 +182,14 @@ export default function Home() {
                 <div className="umb-kicker">SOBRE A ALLM4</div>
                 <h2 id="about-title">Software útil, simples e bem construído.</h2>
                 <p>
-                  A ALLM4 desenvolve software com foco em experiências simples,
-                  úteis e bem construídas, com atenção especial ao ecossistema
-                  macOS.
+                  A ALLM4 é uma marca de software criada para desenvolver
+                  ferramentas que resolvam problemas reais sem transformar a
+                  experiência em algo mais complicado do que precisa ser.
                 </p>
                 <p>
-                  Cada produto nasce para resolver uma necessidade específica,
-                  com interfaces claras, comportamento previsível e cuidado nos
-                  detalhes que fazem diferença no uso diário.
+                  Cada produto pode seguir um caminho próprio. A base continua
+                  a mesma: clareza, utilidade e atenção ao comportamento do
+                  software em cada detalhe.
                 </p>
               </div>
 

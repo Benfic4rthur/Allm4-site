@@ -885,7 +885,7 @@
 
 @media (max-width: 980px) {
   .umbrella-site {
-    --umb-shell: min(100% - 42px, 880px);
+    --umb-shell: min(calc(100% - 42px), 880px);
   }
 
   .umb-header-inner {

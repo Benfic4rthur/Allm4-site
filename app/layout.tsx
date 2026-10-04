@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   description,
   icons: {
     icon: [{ url: brandIcon, type: "image/svg+xml" }],
-    apple: "/allm4-touch-v5.png?v=6",
   },
   openGraph: {
     type: "website",

@@ -342,16 +342,14 @@
 .umb-hero-meta span {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
 }
 
-.umb-hero-meta span:not(:last-child)::after {
-  content: "";
-  width: 3px;
-  height: 3px;
-  margin-left: 10px;
-  border-radius: 50%;
-  background: #4f5768;
+.umb-hero-meta span + span::before {
+  content: "•";
+  margin-inline: 18px;
+  color: #4f5768;
+  font-size: 10px;
+  line-height: 1;
 }
 
 .umb-mark-stage {

@@ -102,10 +102,7 @@ export default function Home() {
             </div>
 
             <div className="umb-product-list">
-              {products.map((product) => {
-                const external = product.url.startsWith("http");
-
-                return (
+              {products.map((product) => (
                 <article className="umb-product" key={product.slug}>
                   <div className="umb-product-copy">
                     <div className="umb-product-topline">
@@ -143,8 +140,8 @@ export default function Home() {
                     <a
                       className="umb-product-link"
                       href={product.url}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noopener noreferrer" : undefined}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {product.ctaLabel}
                       <ArrowUpRight size={16} aria-hidden="true" />
@@ -168,8 +165,7 @@ export default function Home() {
                     )}
                   </div>
                 </article>
-                );
-              })}
+              ))}
             </div>
 
             <p className="umb-catalog-note">
@@ -261,20 +257,16 @@ export default function Home() {
 
           <div className="umb-footer-column">
             <span>PRODUTOS</span>
-            {products.map((product) => {
-              const external = product.url.startsWith("http");
-
-              return (
-                <a
-                  key={product.slug}
-                  href={product.url}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
-                >
-                  {product.name} <ArrowUpRight size={11} aria-hidden="true" />
-                </a>
-              );
-            })}
+            {products.map((product) => (
+              <a
+                key={product.slug}
+                href={product.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {product.name} <ArrowUpRight size={11} aria-hidden="true" />
+              </a>
+            ))}
           </div>
 
           <div className="umb-footer-column">

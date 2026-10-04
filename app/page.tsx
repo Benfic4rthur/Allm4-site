@@ -120,7 +120,13 @@ export default function Home() {
                       )}
                     </div>
 
-                    <h3>
+                    <h3
+                      className={
+                        product.slug === "allm4-local-ia"
+                          ? "umb-product-title-local-ia"
+                          : undefined
+                      }
+                    >
                       {product.name}
                       <span className="umb-product-byline">by ALLM4</span>
                     </h3>

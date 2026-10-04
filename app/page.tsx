@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   ArrowDown,
   ArrowUpRight,
@@ -105,13 +106,14 @@ export default function Home() {
                 <article className="umb-product" key={product.slug}>
                   <div className="umb-product-copy">
                     <div className="umb-product-topline">
-                      <img
+                      <Image
                         className="umb-product-icon"
                         src={`${publicBasePath}${product.icon}`}
                         width={96}
                         height={96}
                         alt=""
                         aria-hidden="true"
+                        unoptimized
                       />
                       {product.status && (
                         <span className="umb-status">{product.status}</span>
@@ -148,13 +150,15 @@ export default function Home() {
 
                   <div className="umb-product-visual">
                     {product.screenshot ? (
-                      <img
+                      <Image
                         className="umb-product-screenshot"
                         src={`${publicBasePath}${product.screenshot}`}
                         width={3456}
                         height={2024}
                         loading="lazy"
                         alt={product.screenshotAlt ?? `Interface de ${product.name}`}
+                        sizes="(max-width: 980px) 100vw, 60vw"
+                        unoptimized
                       />
                     ) : (
                       <BrandMark className="umb-about-mark" decorative />

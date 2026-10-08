@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === "production";
 const title = "ALLM4 | Software para uma vida mais simples";
 const description =
   "Conheça os apps da ALLM4: software útil, simples e bem construído para o dia a dia.";
-const socialImage = "/images/allm4-share.png";
+const socialImage = "/images/allm4-share-v2.png";
 
 const productionCsp = [
   "default-src 'self'",

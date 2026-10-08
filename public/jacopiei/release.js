@@ -58,6 +58,8 @@ export function validateRelease(data) {
 }
 
 function showNeutralRelease(message) {
+  document.querySelectorAll('[data-installer-command]').forEach(el => { el.value = ''; el.placeholder = 'Consulte o instalador disponível nas releases.'; });
+  document.querySelectorAll('[data-copy-command="installer-command"]').forEach(el => { el.disabled = true; });
   document.querySelectorAll('[data-version]').forEach(el => { el.textContent = ''; el.hidden = true; });
   document.querySelectorAll('[data-version-divider]').forEach(el => { el.hidden = true; });
   document.querySelectorAll('[data-download-cta]').forEach(el => { el.href = product.release.releasesUrl; el.textContent = 'Ver downloads'; });
@@ -79,6 +81,13 @@ export async function loadReleaseMetadata() {
     const response = await fetch(product.release.metadataUrl, { signal: controller.signal, cache: 'no-cache' });
     if (!response.ok) throw new Error('Release metadata unavailable');
     const data = validateRelease(await response.json());
+    const installerName = new URL(data.downloadUrl).pathname.split('/').at(-1);
+    if (/^JaCopiei-\d+\.\d+\.\d+(?:-[\w.-]+)?-universal\.dmg$/.test(installerName)) {
+      document.querySelectorAll('[data-installer-command]').forEach(el => {
+        el.value = `/usr/bin/xattr -d com.apple.quarantine "$HOME/Downloads/${installerName}"`;
+      });
+      document.querySelectorAll('[data-copy-command="installer-command"]').forEach(el => { el.disabled = false; });
+    }
     document.querySelectorAll('[data-version]').forEach(el => { el.textContent = `v${data.version}`; el.hidden = false; });
     document.querySelectorAll('[data-version-divider]').forEach(el => { el.hidden = false; });
     document.querySelectorAll('[data-download-cta]').forEach(el => {

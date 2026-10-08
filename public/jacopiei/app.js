@@ -1,10 +1,29 @@
 import { product } from './config.js';
-import { loadReleaseMetadata, loadReleaseDownloads } from './release.js?v=downloads-total';
+import { loadReleaseMetadata, loadReleaseDownloads } from './release.js?v=installation-help';
 import { initCopyDemo } from './copy-demo.js';
 
 const $ = selector => document.querySelector(selector);
 void loadReleaseMetadata();
 void loadReleaseDownloads();
+
+for (const button of document.querySelectorAll('[data-copy-command]')) {
+  const field = document.getElementById(button.dataset.copyCommand);
+  if (!field) continue;
+  button.addEventListener('click', async () => {
+    if (!field.value) return;
+    const status = document.querySelector('#installation-copy-status');
+    try {
+      await navigator.clipboard.writeText(field.value);
+      button.textContent = 'Copiado';
+      if (status) status.textContent = 'Comando copiado. Cole no Terminal e pressione Enter.';
+      setTimeout(() => { button.textContent = 'Copiar'; }, 2000);
+    } catch {
+      field.focus();
+      field.select();
+      if (status) status.textContent = 'O comando está selecionado. Pressione ⌘C para copiar.';
+    }
+  });
+}
 
 // A light deterrent, not source protection: browser menus can still open DevTools.
 console.log('%cSai daqui, ô curioso! Sai, ô metido a hacker. 😄', 'background: #1559C7; color: #ECE9D8; padding: 8px 12px; font: bold 14px Tahoma, sans-serif;');

@@ -7,7 +7,8 @@ const isProduction = process.env.NODE_ENV === "production";
 
 const title = "ALLM4 | Software para uma vida mais simples";
 const description =
-  "A ALLM4 cria aplicativos e experiências de software com foco em utilidade, clareza e cuidado nos detalhes.";
+  "Conheça os apps da ALLM4: software útil, simples e bem construído para o dia a dia.";
+const socialImage = "/images/allm4-share.png";
 
 const productionCsp = [
   "default-src 'self'",
@@ -41,11 +42,19 @@ export const metadata: Metadata = {
     siteName: "ALLM4",
     title,
     description,
+    images: [{
+      url: socialImage,
+      width: 1200,
+      height: 630,
+      alt: "ALLM4 — Software para uma vida mais simples",
+      type: "image/png",
+    }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description,
+    images: [socialImage],
   },
 };
 

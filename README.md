@@ -24,7 +24,7 @@ node --experimental-strip-types --test tests/releases.test.mjs
 npm run build
 ```
 
-O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A versão pública é exportada como site estático. A publicação atual é feita manualmente, sem GitHub Actions.
+O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A versão pública é exportada como site estático e publicada no GitHub Pages.
 
 ## Estrutura principal
 
@@ -97,7 +97,7 @@ Relatos de vulnerabilidade devem seguir o arquivo `SECURITY.md` ou `/.well-known
 
 ## Publicação
 
-Os workflows legados de GitHub Pages continuam no histórico do projeto. Eles não devem ser acionados para publicar o site. O código é enviado ao GitHub com `[skip actions]` na mensagem do commit; a compilação e o envio da versão pública acontecem fora do GitHub Actions.
+O site continua hospedado no GitHub Pages, com o domínio `allm4.com`. Para evitar execuções desnecessárias, valide as mudanças localmente e envie os commits ao GitHub com `[skip actions]`. Quando a versão estiver pronta, acione uma única vez o workflow existente **Deploy Allm4 site to GitHub Pages** por `workflow_dispatch`, usando a branch `main`.
 
 ### Exportação para publicação manual, sem GitHub Actions
 
@@ -109,8 +109,6 @@ npm run build:static
 ```
 
 O comando cria e confere os arquivos de `out/`, incluindo o cartão do JáCopiei na home, o link no rodapé e a página completa do produto. Esses arquivos podem ser enviados diretamente a uma hospedagem estática, sem conectar o repositório Git nem usar artefatos intermediários do GitHub Actions.
-
-Na Vercel, o projeto de hospedagem é `allm4-site`; publique o diretório exportado pelo CLI, com compilação local. O domínio `allm4.com` só passa a exibir essa publicação depois que seu DNS apontar para o projeto correto.
 
 Como alternativa, `netlify.toml` define `npm run build:static` e `out` para envio manual na Netlify. Após o login e vínculo inicial, `netlify deploy --dir=out` envia uma prévia e `netlify deploy --dir=out --prod` publica a versão validada.
 

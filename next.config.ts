@@ -1,17 +1,19 @@
 import type { NextConfig } from "next";
 
-const isGitHubPages = process.env.GITHUB_PAGES === "true";
-const pagesBasePath = isGitHubPages ? (process.env.PAGES_BASE_PATH ?? "") : "";
+const isStaticExport = process.env.STATIC_EXPORT === "true" || process.env.GITHUB_PAGES === "true";
+const staticBasePath = isStaticExport
+  ? (process.env.STATIC_BASE_PATH ?? process.env.PAGES_BASE_PATH ?? "")
+  : "";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
-  ...(isGitHubPages
+  ...(isStaticExport
     ? {
         output: "export",
         trailingSlash: true,
-        basePath: pagesBasePath,
-        assetPrefix: pagesBasePath,
+        basePath: staticBasePath,
+        assetPrefix: staticBasePath,
         images: {
           unoptimized: true,
         },

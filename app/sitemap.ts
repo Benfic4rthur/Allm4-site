@@ -10,6 +10,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: "https://allm4.com/local-ia/",
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: "https://allm4.com/jacopiei/",
       changeFrequency: "weekly",
       priority: 0.8,

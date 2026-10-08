@@ -103,7 +103,7 @@ export default function Home() {
 
             <div className="umb-product-list">
               {products.map((product) => (
-                <article className="umb-product" key={product.slug}>
+                <article className="umb-product" id={product.slug} key={product.slug}>
                   <div className="umb-product-copy">
                     <div className="umb-product-topline">
                       <Image
@@ -265,8 +265,8 @@ export default function Home() {
               <a
                 key={product.slug}
                 href={product.url}
-                target="_blank"
-                rel="noopener noreferrer"
+                target={product.url.startsWith("/") ? undefined : "_blank"}
+                rel={product.url.startsWith("/") ? undefined : "noopener noreferrer"}
               >
                 {product.name} <ArrowUpRight size={11} aria-hidden="true" />
               </a>

@@ -24,7 +24,7 @@ node --experimental-strip-types --test tests/releases.test.mjs
 npm run build
 ```
 
-O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A versão pública é exportada como site estático e publicada no GitHub Pages.
+O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A versão pública é exportada como site estático. A publicação atual é feita manualmente, sem GitHub Actions.
 
 ## Estrutura principal
 
@@ -44,8 +44,8 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 
 1. Notchficator, com destino para `https://notchficator.app`.
 2. LUM4, com destino para `https://lum4.app`.
-3. ALLM4 Local IA, com destino para a subpágina interna `/local-ia`.
-4. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
+3. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
+4. ALLM4 Local IA, com destino para a subpágina interna `/local-ia`.
 
 A comunicação institucional deixa explícito que o foco principal da ALLM4 é desenvolver aplicações para macOS, sem impedir versões para Windows quando fizer sentido para cada produto.
 
@@ -97,4 +97,21 @@ Relatos de vulnerabilidade devem seguir o arquivo `SECURITY.md` ou `/.well-known
 
 ## Publicação
 
-O workflow de GitHub Pages continua publicando somente alterações da branch `main`. Branches de redesign podem ser validadas sem alterar a versão pública até que sejam revisadas e integradas manualmente.
+Os workflows legados de GitHub Pages continuam no histórico do projeto. Eles não devem ser acionados para publicar o site. O código é enviado ao GitHub com `[skip actions]` na mensagem do commit; a compilação e o envio da versão pública acontecem fora do GitHub Actions.
+
+### Exportação para publicação manual, sem GitHub Actions
+
+O site completo da ALLM4, incluindo `/local-ia/` e `/jacopiei/`, pode ser gerado localmente para hospedagem estática:
+
+```sh
+npm ci
+npm run build:static
+```
+
+O comando cria e confere os arquivos de `out/`, incluindo o cartão do JáCopiei na home, o link no rodapé e a página completa do produto. Esses arquivos podem ser enviados diretamente a uma hospedagem estática, sem conectar o repositório Git nem usar artefatos intermediários do GitHub Actions.
+
+Na Vercel, o projeto de hospedagem é `allm4-site`; publique o diretório exportado pelo CLI, com compilação local. O domínio `allm4.com` só passa a exibir essa publicação depois que seu DNS apontar para o projeto correto.
+
+Como alternativa, `netlify.toml` define `npm run build:static` e `out` para envio manual na Netlify. Após o login e vínculo inicial, `netlify deploy --dir=out` envia uma prévia e `netlify deploy --dir=out --prod` publica a versão validada.
+
+O script `npm run build` existente pertence ao ambiente de desenvolvimento Vinext. Use `build:static` para gerar o pacote de hospedagem.

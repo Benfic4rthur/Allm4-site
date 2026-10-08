@@ -9,7 +9,7 @@ export const product = Object.freeze({
     releasesUrl: 'https://github.com/Benfic4rthur/JaCopiei-Releases/releases',
     repositoryUrl: 'https://github.com/Benfic4rthur/JaCopiei-Releases',
   },
-  subscriptionAvailable: false,
+  subscriptionAvailable: true,
   siteUrl: 'https://allm4.com/jacopiei',
   contact: null,
   company: { name: 'Allm4', cnpj: null, address: null },

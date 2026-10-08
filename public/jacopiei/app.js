@@ -43,7 +43,7 @@ mobileNav.addEventListener('click', event => {
 function showPrice(amount, currency = 'BRL') {
   const price = new Intl.NumberFormat('pt-BR', { style: 'currency', currency }).format(amount);
   document.querySelectorAll('[data-price]').forEach(el => { el.textContent = price; });
-  $('[data-faq-subscription]').textContent = `${price} por ${product.price.interval} é o plano apresentado na área de licença do aplicativo. O pagamento e a ativação paga estão em preparação. A contratação fica dentro do app; o site não recebe pagamentos.`;
+  $('[data-faq-subscription]').textContent = `A assinatura custa ${price} por ${product.price.interval} para um Mac por vez. Você pode contratar antes, durante ou depois do teste, dentro do app, e concluir o pagamento no Mercado Pago. Após a confirmação, o acesso é liberado automaticamente, sem digitar uma chave de licença.`;
 }
 showPrice(product.price.amount, product.price.currency);
 async function refreshPublicPrice() {

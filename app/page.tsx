@@ -146,8 +146,8 @@ export default function Home() {
                     <a
                       className="umb-product-link"
                       href={product.url}
-                      target={product.url.startsWith("/") ? undefined : "_blank"}
-                      rel={product.url.startsWith("/") ? undefined : "noopener noreferrer"}
+                      target={product.slug === "jacopiei" || !product.url.startsWith("/") ? "_blank" : undefined}
+                      rel={product.slug === "jacopiei" || !product.url.startsWith("/") ? "noopener noreferrer" : undefined}
                     >
                       {product.ctaLabel}
                       <ArrowUpRight size={16} aria-hidden="true" />
@@ -265,8 +265,8 @@ export default function Home() {
               <a
                 key={product.slug}
                 href={product.url}
-                target={product.url.startsWith("/") ? undefined : "_blank"}
-                rel={product.url.startsWith("/") ? undefined : "noopener noreferrer"}
+                target={product.slug === "jacopiei" || !product.url.startsWith("/") ? "_blank" : undefined}
+                rel={product.slug === "jacopiei" || !product.url.startsWith("/") ? "noopener noreferrer" : undefined}
               >
                 {product.name} <ArrowUpRight size={11} aria-hidden="true" />
               </a>

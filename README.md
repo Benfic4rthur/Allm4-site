@@ -65,7 +65,7 @@ Adicionar um novo produto não exige duplicar a estrutura da página.
 
 O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
 
-`app/jacopiei/page.tsx` apresenta em `/jacopiei/` o site completo publicado pelo repositório `JACOPIEI-SITE`, preservado em `public/jacopiei/`. A página mantém a demonstração, o visual e a consulta do manifesto público de `JaCopiei-Releases`. Quando o site original mudar, execute `npm run sync:jacopiei -- /caminho/para/JACOPIEI-SITE`; o script copia `dist/`, ajusta as URLs e isola os estilos para não afetar a página da ALLM4. O site não processa pagamentos nem recebe arquivos do usuário; a contratação ocorre dentro do aplicativo.
+`public/jacopiei/` contém o site completo publicado pelo repositório `JACOPIEI-SITE`. Ele é servido diretamente em `/jacopiei/`, com seu HTML e CSS originais, preservando a demonstração, o visual e a consulta do manifesto público de `JaCopiei-Releases`. Quando o site original mudar, execute `npm run sync:jacopiei -- /caminho/para/JACOPIEI-SITE`; o script copia `dist/` e ajusta as URLs públicas. O site não processa pagamentos nem recebe arquivos do usuário; a contratação ocorre dentro do aplicativo.
 
 Os assets oficiais usados nos cartões de Notchficator e LUM4 foram reaproveitados dos respectivos sites oficiais, sem recriar seus ícones.
 

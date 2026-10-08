@@ -25,7 +25,7 @@ export const products: Product[] = [
       "Apresentação oficial do Notchficator em um MacBook com mini vídeo no notch",
     screenshotWidth: 1200,
     screenshotHeight: 630,
-    platforms: ["macOS"],
+    platforms: ["macOS", "Apple Silicon"],
     status: "Disponível",
     url: "https://notchficator.app",
     ctaLabel: "Visitar notchficator.app",
@@ -59,7 +59,7 @@ export const products: Product[] = [
     screenshotHeight: 909,
     platforms: ["macOS", "Apple Silicon", "Intel"],
     status: "Disponível",
-    url: "/jacopiei",
+    url: "/jacopiei/",
     ctaLabel: "Conhecer JáCopiei?",
   },
   {

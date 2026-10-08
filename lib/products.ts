@@ -47,6 +47,22 @@ export const products: Product[] = [
     ctaLabel: "Visitar lum4.app",
   },
   {
+    name: "JáCopiei?",
+    slug: "jacopiei",
+    description:
+      "Confira se seus arquivos já têm cópia e guarde em lote o que falta, com uma verificação clara feita no seu Mac.",
+    icon: "/products/jacopiei-icon.svg",
+    screenshot: "/products/jacopiei-preview.png",
+    screenshotAlt:
+      "Apresentação oficial do JáCopiei? com janela azul, pasta e confirmação de cópia",
+    screenshotWidth: 1730,
+    screenshotHeight: 909,
+    platforms: ["macOS", "Apple Silicon", "Intel"],
+    status: "Disponível",
+    url: "/jacopiei",
+    ctaLabel: "Conhecer JáCopiei?",
+  },
+  {
     name: "ALLM4 Local IA",
     slug: "allm4-local-ia",
     description:

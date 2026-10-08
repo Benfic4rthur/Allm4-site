@@ -146,8 +146,8 @@ export default function Home() {
                     <a
                       className="umb-product-link"
                       href={product.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={product.url.startsWith("/") ? undefined : "_blank"}
+                      rel={product.url.startsWith("/") ? undefined : "noopener noreferrer"}
                     >
                       {product.ctaLabel}
                       <ArrowUpRight size={16} aria-hidden="true" />

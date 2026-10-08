@@ -45,6 +45,7 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 1. Notchficator, com destino para `https://notchficator.app`.
 2. LUM4, com destino para `https://lum4.app`.
 3. ALLM4 Local IA, com destino para a subpágina interna `/local-ia`.
+4. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
 
 A comunicação institucional deixa explícito que o foco principal da ALLM4 é desenvolver aplicações para macOS, sem impedir versões para Windows quando fizer sentido para cada produto.
 
@@ -63,6 +64,8 @@ Cada entrada pode conter:
 Adicionar um novo produto não exige duplicar a estrutura da página.
 
 O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
+
+`app/jacopiei/page.tsx` apresenta em `/jacopiei/` o site completo publicado pelo repositório `JACOPIEI-SITE`, preservado em `public/jacopiei/`. A página mantém a demonstração, o visual e a consulta do manifesto público de `JaCopiei-Releases`. Quando o site original mudar, execute `npm run sync:jacopiei -- /caminho/para/JACOPIEI-SITE`; o script copia `dist/`, ajusta as URLs e isola os estilos para não afetar a página da ALLM4. O site não processa pagamentos nem recebe arquivos do usuário; a contratação ocorre dentro do aplicativo.
 
 Os assets oficiais usados nos cartões de Notchficator e LUM4 foram reaproveitados dos respectivos sites oficiais, sem recriar seus ícones.
 

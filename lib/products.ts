@@ -67,13 +67,13 @@ export const products: Product[] = [
     slug: "allm4-local-ia",
     description:
       "Converse, crie imagens e trabalhe em projetos com modelos de IA executados no seu computador.",
-    icon: "/allm4-google-favicon-96.png",
+    icon: "/products/allm4-local-ia-icon.png",
     screenshot: "/images/allm4-chat-hero-v0138.png",
     screenshotAlt:
       "Interface real do ALLM4 Local IA com ambientes de chat, imagem e projetos",
     screenshotWidth: 3456,
     screenshotHeight: 2024,
-    platforms: ["macOS Apple Silicon", "Windows"],
+    platforms: ["macOS", "Apple Silicon", "Windows"],
     status: "Disponível",
     url: "/local-ia",
     ctaLabel: "Conhecer ALLM4 Local IA",

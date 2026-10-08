@@ -9,14 +9,16 @@ const warningStyle =
   "color:#a996ff;font-weight:800;font-size:13px;letter-spacing:.02em";
 const noteStyle = "color:#8f96a8;font-size:11px";
 
+const editableTarget =
+  "input, textarea, select, [contenteditable]:not([contenteditable='false'])";
 const allowedContextMenuTarget =
-  "a, button, input, textarea, select, option, [contenteditable='true'], code, pre";
+  `a, button, option, code, pre, ${editableTarget}`;
 
 export function SecurityConsole() {
   useEffect(() => {
     console.log("%c ALLM4 / ÁREA DOS CURIOSOS ", titleStyle);
     console.log(
-      "%c👀 Se você abriu isso procurando um botão secreto, sinto informar: era só curiosidade mesmo.",
+      "%c👀 F12 não desbloqueia o modo hacker. Mas a curiosidade tá em dia. 😄",
       warningStyle,
     );
     console.log("%cPode olhar. Só não quebra a mobília. 😄", noteStyle);
@@ -25,7 +27,23 @@ export function SecurityConsole() {
       noteStyle,
     );
 
+    let pointerContextMenu = false;
+
+    const onPointerDown = (event: PointerEvent) => {
+      pointerContextMenu =
+        event.button === 2 || (event.button === 0 && event.ctrlKey);
+    };
+
     const onKeyDown = (event: KeyboardEvent) => {
+      pointerContextMenu = false;
+
+      if (
+        event.target instanceof Element &&
+        event.target.closest(editableTarget)
+      ) {
+        return;
+      }
+
       const key = event.key.toLowerCase();
 
       const windowsLinuxDevtools =
@@ -41,7 +59,7 @@ export function SecurityConsole() {
       const viewSource = event.ctrlKey && key === "u";
 
       if (
-        event.key === "F12" ||
+        key === "f12" ||
         windowsLinuxDevtools ||
         macDevtools ||
         viewSource
@@ -50,18 +68,22 @@ export function SecurityConsole() {
         event.stopPropagation();
         event.stopImmediatePropagation();
         console.log(
-          "%cBoa tentativa 😄 O atalho foi bloqueado por aqui.",
+          "%cBoa tentativa, curioso 😄 Esse atalho ficou do lado de fora.",
           warningStyle,
         );
       }
     };
 
     const onContextMenu = (event: MouseEvent) => {
+      const fromPointer = pointerContextMenu;
+      pointerContextMenu = false;
       const target = event.target;
 
       if (
-        target instanceof Element &&
-        target.closest(allowedContextMenuTarget)
+        !fromPointer ||
+        window.getSelection()?.toString() ||
+        (target instanceof Element &&
+          target.closest(allowedContextMenuTarget))
       ) {
         return;
       }
@@ -69,10 +91,12 @@ export function SecurityConsole() {
       event.preventDefault();
     };
 
+    document.addEventListener("pointerdown", onPointerDown, true);
     window.addEventListener("keydown", onKeyDown, true);
     document.addEventListener("contextmenu", onContextMenu);
 
     return () => {
+      document.removeEventListener("pointerdown", onPointerDown, true);
       window.removeEventListener("keydown", onKeyDown, true);
       document.removeEventListener("contextmenu", onContextMenu);
     };

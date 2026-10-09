@@ -145,7 +145,7 @@ export function initCopyDemo({ dialog, motionPreference, pauseCheck, onCompared,
     $('#copy-selection').hidden = false; $('#copy-review').hidden = true; $('#copy-operation').hidden = true;
     $('#copy-summary').textContent = '48 de 50 arquivos têm cópia confirmada.'; renderSelection();
   }
-  $('#reset-copy').addEventListener('click', () => { reset(); onReset(); $('#review-copy').focus({ preventScroll: true }); });
+  $('#reset-copy').addEventListener('click', () => { reset(); onReset(); });
   motionPreference.addEventListener('change', event => { if (event.matches && ['running', 'paused'].includes(state.phase)) skip(); });
   document.addEventListener('visibilitychange', () => { if (document.hidden) pause(); });
   function selectMode(mode) {

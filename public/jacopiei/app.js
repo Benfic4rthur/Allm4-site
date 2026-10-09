@@ -1,6 +1,6 @@
 import { product } from './config.js';
 import { loadReleaseMetadata, loadReleaseDownloads } from './release.js?v=installation-help';
-import { initCopyDemo } from './copy-demo.js';
+import { initCopyDemo } from './copy-demo.js?v=restart-at-beginning';
 
 const $ = selector => document.querySelector(selector);
 void loadReleaseMetadata();
@@ -181,7 +181,11 @@ for (const [id, field, label] of [['choose-source', 'source', 'Origem escolhida'
     $('#demo-phase').textContent = startButton.disabled ? 'Escolha também o outro item fictício.' : 'Tudo pronto para conferir.';
   });
 }
-startButton.addEventListener('click', start); finishButton.addEventListener('click', finish);
+startButton.addEventListener('click', () => {
+  if (state.phase === 'done') { copyDemo.reset(); resetCheckDemo(); }
+  else start();
+});
+finishButton.addEventListener('click', finish);
 pauseButton.addEventListener('click', () => {
   if (state.phase === 'running') {
     clearTimer(); state.phase = 'paused'; pauseButton.textContent = 'Continuar';
@@ -202,14 +206,34 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && sta
 
 const demoDialog = $('#demo-dialog');
 let demoOpener = null;
+function resetCheckDemo() {
+  clearTimer();
+  files.forEach(file => { file.found = file.baseFound; file.destination = 'Backup no SSD'; if (!file.baseFound) file.copyName = null; });
+  Object.assign(state, { phase: 'idle', processed: 0, tick: 0, filter: 'all', search: '', source: false, destination: false });
+  $('#demo-search').value = ''; $('#additional-destination').hidden = true;
+  for (const [id, label] of [['choose-source', 'Usar esta origem'], ['choose-destination', 'Usar este destino']]) {
+    $(`#${id}`).setAttribute('aria-pressed', 'false');
+    $(`#${id}`).textContent = label;
+  }
+  startButton.disabled = true;
+  startButton.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>Conferir cópias';
+  pauseButton.hidden = true; finishButton.hidden = true;
+  $('.demo-progress-wrap').hidden = true;
+  $('#demo-result').hidden = true; $('.copy-next-step').hidden = true;
+  $('#demo-status').textContent = 'Aguardando conferência';
+  updateProgress();
+  $('#demo-phase').textContent = 'Escolha a origem e o destino fictícios.';
+  $('.file-table-scroll').scrollTop = 0;
+  renderFiles();
+  copyDemo.enable(false);
+  copyDemo.selectMode('check');
+  demoDialog.scrollTop = 0;
+  $('#choose-source').focus({ preventScroll: true });
+  announce('Demonstração reiniciada. Escolha a origem e o destino fictícios para conferir as cópias.');
+}
 const copyDemo = initCopyDemo({ dialog: demoDialog, motionPreference,
   pauseCheck: () => { if (state.phase === 'running') pauseButton.click(); },
-  onReset: () => {
-    files.forEach(file => { file.found = file.baseFound; file.destination = 'Backup no SSD'; if (!file.baseFound) file.copyName = null; });
-    state.phase = 'done'; state.processed = 50; state.filter = 'all'; state.search = '';
-    $('#demo-search').value = ''; $('#additional-destination').hidden = true;
-    renderFiles(); showResult(); $('#demo-status').textContent = 'Conferência inicial · 2 arquivos sem cópia';
-  },
+  onReset: resetCheckDemo,
   onCompared: confirmedFiles => {
     confirmedFiles.forEach(copied => {
       const file = files.find(item => item.name === copied.name);

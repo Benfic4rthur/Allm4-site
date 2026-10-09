@@ -59,20 +59,25 @@ button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visi
 .pricing-section .subscription-note{font-size:14px;line-height:1.7;margin-inline:0}
 .download-section .download-updates{display:flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.6;margin-top:17px}
 .download-updates .icon{width:18px;height:18px;flex-shrink:0;margin-top:2px;color:var(--blue)}
-.download-section{align-items:start}
-.installation-help{margin:17px 0 16px;padding:18px;border:1px solid #bdcce0;border-top:3px solid var(--blue);background:#eef3fb}
-.installation-help h3{font-size:17px;margin:0 0 10px}
+.download-section{align-items:start;row-gap:20px}
+.installation-help{grid-column:1/-1;margin:0;border:1px solid #bdcce0;background:#eef3fb}
+.installation-help>summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;font-size:14px;font-weight:700;list-style:none}
+.installation-help>summary::-webkit-details-marker{display:none}
+.installation-help>summary::after{content:"+";flex-shrink:0;display:grid;place-items:center;width:19px;height:19px;border:1px solid #bdcce0;background:#fff;color:var(--blue);font-size:16px;font-weight:400}
+.installation-help[open]>summary{border-bottom:1px solid #bdcce0}
+.installation-help[open]>summary::after{content:"−"}
+.installation-help-body{padding:18px}
 .installation-help p{font-size:13px;line-height:1.65;color:var(--muted);margin:0 0 14px}
 .installation-step label{display:block;font-size:13px;margin-bottom:7px}
 .installation-step p{margin-bottom:10px}
 .installation-command{display:flex;align-items:center;gap:9px}
-.installation-command textarea{display:block;min-width:0;flex:1;width:100%;height:68px;resize:none;padding:10px;font:12px/1.6 Menlo,Consolas,monospace;color:var(--ink);background:#fff;border:1px solid #a0a8b4;border-radius:0;box-shadow:inset 1px 1px 0 #142d5014;overflow-wrap:anywhere}
-.installation-command textarea:focus-visible{outline:3px solid #d99b00;outline-offset:2px}
+.installation-command input{display:block;min-width:0;flex:1;width:100%;height:43px;padding:10px;font:12px/1.6 Menlo,Consolas,monospace;color:var(--ink);background:#fff;border:1px solid #a0a8b4;border-radius:0;box-shadow:inset 1px 1px 0 #142d5014}
+.installation-command input:focus-visible{outline:3px solid #d99b00;outline-offset:2px}
 .installation-command .button{flex-shrink:0;min-height:40px;padding:9px 12px;font-size:12px}
 .installation-help .installation-note{font-size:12px;margin:16px 0 0}
 .installation-help .installation-copy-status{font-size:12px;color:var(--dark-blue);margin:10px 0 0}
 .installation-copy-status:empty{display:none}
-@media(max-width:540px){.installation-help{padding:16px 14px}.installation-command textarea{height:106px;font-size:11px}.installation-command{gap:7px}.installation-command .button{padding:9px 10px}}
+@media(max-width:540px){.installation-help>summary{padding:13px 14px;font-size:13px}.installation-help-body{padding:16px 14px}.installation-command input{font-size:11px}.installation-command{gap:7px}.installation-command .button{padding:9px 10px}}
 @media(max-width:1100px){.everyday-feature-body{padding:20px 18px}.everyday-feature h3{font-size:21px}}
 @media(max-width:860px){.everyday-features{grid-template-columns:1fr;gap:12px}.everyday-feature-body{padding:18px 20px}.everyday-feature h3{font-size:23px;margin-bottom:9px}.everyday-feature h3 br{display:none}.subscription-benefits{gap:16px;margin-top:20px}.subscription-benefits p{font-size:15px}.subscription-benefits strong{font-size:15px}}
 @media(max-width:540px){.everyday-feature .feature-bar{padding:9px 16px}.everyday-feature h3{font-size:22px}.everyday-feature p{font-size:16px}.price-body{padding:22px 20px}.pricing-section .subscription-note{font-size:14px}}

@@ -1,7 +1,7 @@
 "use client";
 
 import { Check, Copy, MoveVertical, Repeat2, Sun, Volume2 } from "lucide-react";
-import { useState, type CSSProperties } from "react";
+import { useState, type CSSProperties, type PointerEvent } from "react";
 import { beiraInstallCommand } from "@/lib/beira";
 
 type Control = "volume" | "brightness";
@@ -18,27 +18,49 @@ export function TrackpadDemo() {
   function control(side: Control, position: "left" | "right") {
     const value = side === "volume" ? volume : brightness;
     const label = side === "volume" ? "Volume" : "Brilho";
+    function update(next: number) {
+      setInteracted(true);
+      const level = Math.max(0, Math.min(100, Math.round(next)));
+      if (side === "volume") setVolume(level); else setBrightness(level);
+    }
+    function move(event: PointerEvent<HTMLDivElement>) {
+      const bounds = event.currentTarget.getBoundingClientRect();
+      update((bounds.bottom - event.clientY) / bounds.height * 100);
+    }
     return (
-      <label className={`beira-demo-edge beira-demo-edge--${position} beira-demo-edge--${side}`}>
-        <input
-          type="range"
-          min="0"
-          max="100"
-          value={value}
+      <div className={`beira-demo-edge beira-demo-edge--${position} beira-demo-edge--${side}`}>
+        <div
+          className="beira-demo-slider"
+          role="slider"
+          tabIndex={0}
+          aria-orientation="vertical"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={value}
           aria-label={`${label} na demonstração`}
           aria-valuetext={`${value}%`}
-          onPointerDown={() => { setInteracted(true); setActive(side); }}
+          onPointerDown={(event) => {
+            if (event.button !== 0) return;
+            event.preventDefault();
+            event.currentTarget.focus({ preventScroll: true });
+            event.currentTarget.setPointerCapture(event.pointerId);
+            setActive(side);
+            move(event);
+          }}
+          onPointerMove={(event) => { if (event.currentTarget.hasPointerCapture(event.pointerId)) move(event); }}
           onPointerUp={() => setActive(null)}
           onPointerCancel={() => setActive(null)}
+          onLostPointerCapture={() => setActive(null)}
           onBlur={() => setActive(null)}
-          onChange={(event) => {
-            setInteracted(true);
-            const next = Number(event.target.value);
-            if (side === "volume") setVolume(next); else setBrightness(next);
+          onKeyDown={(event) => {
+            const values: Record<string, number> = { ArrowUp: value + 1, ArrowRight: value + 1, ArrowDown: value - 1, ArrowLeft: value - 1, PageUp: value + 10, PageDown: value - 10, Home: 0, End: 100 };
+            if (!(event.key in values)) return;
+            event.preventDefault();
+            update(values[event.key]);
           }}
           style={{ "--demo-value": `${value}%` } as CSSProperties}
-        />
-      </label>
+        ><span className="beira-demo-slider-thumb" aria-hidden="true" /></div>
+      </div>
     );
   }
 

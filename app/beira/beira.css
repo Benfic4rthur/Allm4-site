@@ -47,10 +47,6 @@ html:has(.beira-site) { scroll-padding-top: 28px; }
 .beira-demo-edge--left { left: 6px; }
 .beira-demo-edge--right { right: 6px; }
 .beira-demo-edge--brightness { --edge-color: #ad945e; }
-.beira-demo-edge input { appearance: none; -webkit-appearance: none; writing-mode: vertical-lr; direction: rtl; width: 6px; height: 100%; min-height: 0; padding: 0; margin: 0; border: 0; border-radius: 20px; background: linear-gradient(to top, var(--edge-color) var(--demo-value), #8c937834 var(--demo-value)); cursor: ns-resize; touch-action: none; }
-.beira-demo-edge input::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border: 5px solid #fff; border-radius: 50%; background: var(--edge-color); box-shadow: 0 2px 5px #0003, 0 0 0 1px #0001; }
-.beira-demo-edge input::-moz-range-thumb { width: 12px; height: 12px; border: 5px solid #fff; border-radius: 50%; background: var(--edge-color); }
-.beira-demo-edge input:focus-visible { outline: 2px solid #526b4c; outline-offset: 7px; }
 .beira-demo-trace { position: absolute; right: 4px; top: 25%; width: 42px; height: 42px; border: 1px solid #a38b6380; border-radius: 50%; pointer-events: none; animation: beira-finger 4s ease-in-out infinite; }
 .beira-demo-trace span { position: absolute; inset: 8px; border-radius: inherit; background: #fff6; box-shadow: 0 0 15px #f6d99488; }
 .beira-demo[data-interacted="true"] .beira-demo-trace { display: none; }
@@ -172,3 +168,9 @@ html:has(.beira-site) { scroll-padding-top: 28px; }
 @media (prefers-reduced-motion: reduce) { html:has(.beira-site) { scroll-behavior: auto; } .beira-site *, .beira-site *::before, .beira-site *::after { animation: none !important; transition: none !important; } .beira-demo-trace { display: none; } }
 
 .beira-download-version { text-align: center; margin: 24px 0 0; color: #52664a; font: 10px/1.6 ui-monospace, monospace; }
+
+.beira-demo-pad { overflow: hidden; }
+.beira-demo-slider { position: absolute; inset: 0; touch-action: none; cursor: ns-resize; border-radius: 16px; }
+.beira-demo-slider::before { content: ""; position: absolute; top: 0; bottom: 0; left: calc(50% - 3px); width: 6px; border-radius: 20px; background: linear-gradient(to top, var(--edge-color) var(--demo-value), #8c937834 var(--demo-value)); pointer-events: none; }
+.beira-demo-slider-thumb { position: absolute; left: 50%; bottom: var(--demo-value); width: 22px; height: 22px; transform: translate(-50%, 50%); border: 5px solid #fff; border-radius: 50%; background: var(--edge-color); box-shadow: 0 2px 5px #0003, 0 0 0 1px #0001; pointer-events: none; }
+.beira-demo-slider:focus-visible { outline: 2px solid #526b4c; outline-offset: 3px; }

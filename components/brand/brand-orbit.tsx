@@ -86,7 +86,7 @@ export function BrandOrbit() {
           <div className="brand-orbit-tilt">
             <ul className="brand-orbit-apps" aria-label="Aplicativos da ALLM4">
               {products.map((product, index) => (
-                <li className="brand-orbit-track" style={{ "--orbit-start": `${index * 90 - 42}deg` } as CSSProperties} key={product.slug}>
+                <li className="brand-orbit-track" style={{ "--orbit-start": `${index * (360 / products.length) - 42}deg` } as CSSProperties} key={product.slug}>
                   <div className="brand-orbit-position">
                     <div className="brand-orbit-upright">
                       <a

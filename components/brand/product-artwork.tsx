@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Check, FileText, Sun } from "lucide-react";
+import { Check, FileText, Sun, Volume2 } from "lucide-react";
 import type { Product } from "@/lib/products";
 import "./product-artwork.css";
 
@@ -10,6 +10,7 @@ const artworkDescriptions: Record<string, string> = {
   lum4: "Ilustração do LUM4, com seu ícone luminoso e uma barra de brilho.",
   jacopiei: "Ilustração do JáCopiei? com documentos e uma confirmação de cópia.",
   "allm4-local-ia": "Interface real do ALLM4 Local IA, com chat, imagem e projetos.",
+  beira: "Ilustração do Beira: um trackpad com volume na borda esquerda e brilho na borda direita.",
 };
 
 export function ProductArtwork({ product }: { product: Product }) {
@@ -72,6 +73,16 @@ export function ProductArtwork({ product }: { product: Product }) {
               unoptimized
             />
             <span className="studio-art-file-check"><Check size={18} strokeWidth={2.2} /></span>
+          </div>
+        ) : product.slug === "beira" ? (
+          <div className="studio-art-beira">
+            <span className="studio-art-beira-label"><Volume2 size={14} strokeWidth={1.5} /> Volume</span>
+            <div className="studio-art-beira-pad">
+              <span className="studio-art-beira-edge studio-art-beira-volume" />
+              <span className="studio-art-beira-symbol">[ ]</span>
+              <span className="studio-art-beira-edge studio-art-beira-brightness" />
+            </div>
+            <span className="studio-art-beira-label"><Sun size={14} strokeWidth={1.5} /> Brilho</span>
           </div>
         ) : (
           <div className="studio-art-app-window">

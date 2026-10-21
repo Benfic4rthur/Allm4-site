@@ -49,9 +49,11 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 1. Notchficator, com destino para `https://notchficator.app`.
 2. LUM4, com destino para `https://lum4.app`.
 3. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
-4. ALLM4 Local IA, com destino para a subpágina interna `/local-ia`.
+4. Beira, com destino para a página interna `/beira/`.
 
-As plataformas e os requisitos de cada aplicativo aparecem no próprio cartão, incluindo macOS e a versão para Windows do ALLM4 Local IA.
+Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados.
+
+As plataformas e os requisitos de cada aplicativo aparecem no próprio cartão, incluindo macOS e as arquiteturas de cada app.
 
 Cada entrada pode conter:
 
@@ -65,7 +67,9 @@ Cada entrada pode conter:
 - `url`
 - `ctaLabel`
 
-Adicionar um novo produto não exige duplicar a estrutura da página.
+Adicionar um novo produto não exige duplicar a estrutura da página. O ALLM4 Local IA foi retirado do catálogo, da órbita e do rodapé; a página antiga permanece no código para preservar o trabalho anterior.
+
+O site do Beira está em `app/beira/`, com demonstração interativa de volume e brilho, inversão dos lados, recursos, FAQ e instruções de instalação com comando copiável. Os links em `lib/beira.ts` apontam diretamente às releases do GitHub; o site não hospeda instaladores. A demonstração só altera o estado da página, sem controlar o hardware do visitante. O número da versão e os downloads são consultados em `releases/latest` do GitHub ao abrir a página, ao voltar à aba e a cada cinco minutos enquanto ela estiver visível. A interface só usa releases estáveis com os dois ZIPs oficiais; se a API estiver indisponível, usa links diretos `latest/download` e não exibe um número de versão antigo.
 
 O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
 

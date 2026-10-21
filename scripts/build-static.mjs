@@ -23,6 +23,8 @@ if (build.status !== 0) process.exit(build.status ?? 1);
 for (const file of [
   "index.html",
   "local-ia/index.html",
+  "beira/index.html",
+  "products/beira-icon.svg",
   "jacopiei/index.html",
   "jacopiei/app.js",
   "jacopiei/assets/brand.svg",

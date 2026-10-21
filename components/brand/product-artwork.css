@@ -248,6 +248,50 @@
   box-shadow: 0 5px 17px rgba(0, 0, 0, .25), 0 0 22px rgba(50, 152, 111, .09);
 }
 
+.studio-art--beira {
+  background: radial-gradient(ellipse at 50% 80%, #334138, #18231f 55%, #111a16);
+}
+
+.studio-art-beira {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  height: 100%;
+  padding: 20px;
+}
+
+.studio-art-beira-label {
+  display: grid;
+  justify-items: center;
+  gap: 9px;
+  color: #d6b391;
+  font-size: 9px;
+  letter-spacing: .03em;
+}
+
+.studio-art-beira-label:last-child { color: #d7c08c; }
+
+.studio-art-beira-pad {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 228px;
+  max-width: 65%;
+  height: 128px;
+  flex-shrink: 1;
+  border: 1px solid #f8f2e8b0;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #eee9df, #cfcfc3);
+  box-shadow: 0 16px 24px #0005, inset 0 1px #fff8;
+  transform: perspective(650px) rotateX(12deg) rotateZ(-5deg);
+}
+
+.studio-art-beira-symbol { color: #657165; font: 30px/1 monospace; letter-spacing: .15em; opacity: .65; }
+.studio-art-beira-edge { position: absolute; top: 13px; bottom: 13px; width: 5px; border-radius: 5px; }
+.studio-art-beira-volume { left: 13px; background: #c38a66; }
+.studio-art-beira-brightness { right: 13px; background: #b9a16b; }
+
 .studio-art--allm4-local-ia {
   background: radial-gradient(ellipse at 32% 75%, rgba(130, 83, 73, .24), transparent 53%), radial-gradient(ellipse at 75% 34%, #25213c, #14141f 70%);
 }

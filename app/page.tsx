@@ -69,7 +69,7 @@ export default function Home() {
                   </div>
                   <ProductArtwork product={product} />
                   <div className="studio-product-footer">
-                    <span className="studio-availability"><i />{product.status}</span>
+                    <span className="studio-availability">{product.status}</span>
                     <span className="studio-product-cta">Conhecer app <ArrowRight size={14} aria-hidden="true" /></span>
                   </div>
                 </a>

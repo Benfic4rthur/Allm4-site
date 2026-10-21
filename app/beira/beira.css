@@ -1,0 +1,174 @@
+html:has(.beira-site) { scroll-padding-top: 28px; }
+.beira-site { --beira-bg: #16251f; --beira-text: #f2eddf; --beira-muted: #b0b9ac; --beira-accent: #e6b77d; --beira-line: #ebeed91a; min-height: 100vh; overflow: clip; background: var(--beira-bg); color: var(--beira-text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: -.02em; }
+.beira-site a { color: inherit; text-decoration: none; }
+.beira-site button, .beira-site input { font: inherit; }
+.beira-site a:focus-visible, .beira-site button:focus-visible, .beira-site summary:focus-visible { outline: 2px solid #c8854e; outline-offset: 6px; }
+.beira-site ::selection { background: #e6b77d55; }
+.beira-wrap { width: min(1200px, calc(100% - 96px)); margin-inline: auto; }
+.beira-skip { position: fixed; top: 10px; left: 10px; z-index: 99; padding: 12px; transform: translateY(-160%); background: #f2eddf; color: #16251f !important; }
+.beira-skip:focus { transform: none; }
+.beira-header { display: flex; align-items: center; justify-content: space-between; gap: 25px; min-height: 98px; border-bottom: 1px solid var(--beira-line); }
+.beira-brand { display: inline-flex; align-items: center; gap: 9px; font-size: 29px; font-weight: 600; letter-spacing: -.06em; }
+.beira-brand-dot { color: var(--beira-accent); }
+.beira-header nav { display: flex; gap: 30px; font-size: 12px; color: #c1c6b9; }
+.beira-header nav a:hover, .beira-text-link:hover { color: var(--beira-accent); }
+.beira-nav-download { display: flex; align-items: center; gap: 12px; padding: 11px 18px; border: 1px solid #e6b77d66; border-radius: 99px; font-size: 12px; }
+.beira-nav-download:hover { background: #e6b77d15; }
+.beira-hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 50px; padding-block: 94px 100px; }
+.beira-eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 28px; font: 9px/1.6 ui-monospace, monospace; letter-spacing: .14em; color: var(--beira-accent); }
+.beira-hero h1 { margin: 0; font-size: clamp(53px, 5.4vw, 79px); line-height: 1.03; font-weight: 450; letter-spacing: -.065em; }
+.beira-hero h1 > span { color: #e7bb87; }
+.beira-hero-intro { max-width: 405px; margin: 28px 0 30px; color: var(--beira-muted); font-size: 15px; line-height: 1.85; }
+.beira-actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.beira-button { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 49px; padding: 14px 22px; border-radius: 7px; background: var(--beira-accent); color: #213027 !important; font-size: 12px; font-weight: 600; transition: transform .2s, background .2s; }
+.beira-button:hover { transform: translateY(-3px); background: #f4ce9e; }
+.beira-text-link { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; }
+.beira-hero-meta { display: flex; align-items: center; gap: 9px; margin: 25px 0 0; color: #a4ae9f; font-size: 9px; flex-wrap: wrap; }
+.beira-hero-meta > span { padding-left: 10px; border-left: 1px solid #7b8d6a55; }
+.beira-demo { min-width: 0; padding-top: 18px; animation: beira-enter .9s ease-out both; }
+.beira-demo-topline { display: flex; align-items: center; gap: 8px; padding: 0 0 22px; border-bottom: 1px solid var(--beira-line); color: #a8b39f; font: 8px/1.5 ui-monospace, monospace; letter-spacing: .13em; }
+.beira-demo-topline > span:last-child { margin-left: auto; font-size: 18px; }
+.beira-demo-stage { position: relative; padding: 35px 18px 46px; perspective: 1000px; }
+.beira-demo-hud { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; width: 100%; margin: 0 auto 38px; padding: 19px 20px; border: 1px solid #f1eee536; border-radius: 12px; background: #0e1c16; color: #f5f0e3; }
+.beira-demo-readout > div { display: flex; gap: 8px; align-items: center; margin-bottom: 13px; }
+.beira-demo-readout > div > span { font-size: 12px; font-weight: 500; }
+.beira-demo-readout strong { margin-left: auto; font: 500 21px/1 ui-monospace, monospace; letter-spacing: -.04em; color: #fff8e7; }
+.beira-demo-readout small { font-size: 12px; margin-left: 3px; color: #d8d6c3; }
+.beira-demo-readout--volume svg { color: #e6ad85; }
+.beira-demo-readout--brightness svg { color: #edca85; }
+.beira-demo-meter { display: block; width: 100%; height: 3px; border-radius: 9px; background: #ffffff1c; overflow: hidden; }
+.beira-demo-meter i { display: block; height: 100%; background: #e7bb87; border-radius: inherit; transition: width .12s; }
+.beira-demo-pad { position: relative; width: 100%; aspect-ratio: 1.55; border: 1px solid #fff8; border-radius: 30px; background: linear-gradient(145deg, #f5f0e5, #d4d4c6); box-shadow: inset 0 1px 2px #fff, 0 24px 1px -13px #b5b8a8, 0 30px 45px #0005; transform: rotateX(10deg) rotateZ(-5deg); transition: box-shadow .3s; }
+.beira-demo[data-active="volume"] .beira-demo-pad, .beira-demo[data-active="brightness"] .beira-demo-pad { box-shadow: inset 0 1px 2px #fff, 0 24px 1px -13px #b5b8a8, 0 30px 60px #e6b77d20; }
+.beira-demo-center { position: absolute; inset: 28% 20%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #718070; pointer-events: none; }
+.beira-demo-center svg { width: 80px; opacity: .65; }
+.beira-demo-center > span { margin-top: 10px; font-size: 9px; letter-spacing: .035em; color: #74806f; }
+.beira-demo-edge { --edge-color: #bd8966; position: absolute; z-index: 2; top: 20px; bottom: 20px; display: flex; align-items: center; justify-content: center; width: 38px; }
+.beira-demo-edge--left { left: 6px; }
+.beira-demo-edge--right { right: 6px; }
+.beira-demo-edge--brightness { --edge-color: #ad945e; }
+.beira-demo-edge input { appearance: none; -webkit-appearance: none; writing-mode: vertical-lr; direction: rtl; width: 6px; height: 100%; min-height: 0; padding: 0; margin: 0; border: 0; border-radius: 20px; background: linear-gradient(to top, var(--edge-color) var(--demo-value), #8c937834 var(--demo-value)); cursor: ns-resize; touch-action: none; }
+.beira-demo-edge input::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border: 5px solid #fff; border-radius: 50%; background: var(--edge-color); box-shadow: 0 2px 5px #0003, 0 0 0 1px #0001; }
+.beira-demo-edge input::-moz-range-thumb { width: 12px; height: 12px; border: 5px solid #fff; border-radius: 50%; background: var(--edge-color); }
+.beira-demo-edge input:focus-visible { outline: 2px solid #526b4c; outline-offset: 7px; }
+.beira-demo-trace { position: absolute; right: 4px; top: 25%; width: 42px; height: 42px; border: 1px solid #a38b6380; border-radius: 50%; pointer-events: none; animation: beira-finger 4s ease-in-out infinite; }
+.beira-demo-trace span { position: absolute; inset: 8px; border-radius: inherit; background: #fff6; box-shadow: 0 0 15px #f6d99488; }
+.beira-demo[data-interacted="true"] .beira-demo-trace { display: none; }
+.beira-demo-bottom { display: flex; gap: 12px; align-items: center; justify-content: space-between; padding-top: 23px; border-top: 1px solid var(--beira-line); }
+.beira-demo-bottom p { display: flex; align-items: center; gap: 7px; margin: 0; color: #c6ccbb; font-size: 10px; }
+.beira-demo-bottom button { display: flex; align-items: center; gap: 7px; padding: 8px 10px; border: 1px solid #e6b77d36; border-radius: 5px; background: transparent; color: #e6b77d; font-size: 9px; cursor: pointer; }
+.beira-demo-bottom button[aria-pressed="true"] { background: #e6b77d20; }
+.beira-demo-caption { color: #89987e; font-size: 8px; margin: 15px 0 0; line-height: 1.6; }
+.beira-ribbon { border-block: 1px solid var(--beira-line); background: #0c191326; }
+.beira-ribbon > div { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding-block: 21px; }
+.beira-ribbon span { display: flex; align-items: center; gap: 8px; color: #b1bda7; font-size: 10px; }
+.beira-ribbon svg { color: #d8b581; }
+.beira-light { background: #f0eee6; color: #293a30; --beira-muted: #6a7366; --beira-line: #2a3d2e20; }
+.beira-light .beira-eyebrow { color: #8b6947; }
+.beira-site h2 { margin: 0; font-size: clamp(35px, 4.2vw, 57px); line-height: 1.1; letter-spacing: -.055em; font-weight: 450; }
+.beira-site h2 > span { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; letter-spacing: -.045em; }
+.beira-how { padding-block: 94px 70px; }
+.beira-section-heading { position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 0 40px; align-items: end; margin-bottom: 55px; }
+.beira-section-heading .beira-eyebrow { grid-column: 1/-1; }
+.beira-section-heading > p:last-child { color: #70796c; font-size: 14px; line-height: 1.9; margin: 0 0 3px; }
+.beira-gesture-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--beira-line); }
+.beira-gesture { position: relative; padding: 30px 28px 25px; border-right: 1px solid var(--beira-line); }
+.beira-gesture:first-child { padding-left: 0; }
+.beira-gesture:last-child { padding-right: 0; border-right: 0; }
+.beira-gesture-number { font: 9px/1.5 ui-monospace, monospace; color: #9c9e8c; }
+.beira-gesture-art { height: 168px; display: grid; place-items: center; }
+.beira-mini-pad { position: relative; display: grid; place-items: center; width: 187px; height: 112px; border: 1px solid #bcbfb1; border-radius: 15px; background: linear-gradient(150deg, #e1e1d6, #f5f3ed); color: #bd8866; box-shadow: 0 10px 15px #283e2a0c; transform: rotate(-5deg); transition: transform .35s; }
+.beira-gesture:hover .beira-mini-pad { transform: rotate(0) translateY(-5px); }
+.beira-gesture--brightness .beira-mini-pad { color: #a88e52; }
+.beira-gesture--center .beira-mini-pad { color: #607c67; }
+.beira-mini-edge { position: absolute; width: 4px; top: 11px; bottom: 11px; border-radius: 5px; background: currentColor; }
+.beira-mini-edge--left { left: 11px; }
+.beira-mini-edge--right { right: 11px; }
+.beira-mini-travel { position: absolute; left: 23px; top: 28px; font-size: 25px; animation: beira-arrow 3s ease-in-out infinite; }
+.beira-gesture--brightness .beira-mini-travel { left: auto; right: 23px; animation-delay: -.7s; }
+.beira-gesture h3 { font-size: 19px; font-weight: 550; letter-spacing: -.035em; margin: 5px 0 14px; }
+.beira-gesture p { min-height: 83px; font-size: 12px; line-height: 1.9; color: #71796b; margin: 0 0 20px; }
+.beira-gesture-tag { font: 7px/1.8 ui-monospace, monospace; letter-spacing: .08em; color: #7c806b; }
+.beira-full-travel { display: flex; align-items: center; justify-content: center; gap: 22px; padding: 30px; margin-top: 40px; background: #e3e4d8; border-radius: 9px; color: #67775b; }
+.beira-full-travel p { display: grid; gap: 7px; margin: 0; }
+.beira-full-travel strong { color: #344735; font-size: 14px; font-weight: 550; }
+.beira-full-travel p span { font-size: 11px; line-height: 1.8; }
+.beira-personal { display: grid; grid-template-columns: 1fr 1fr; gap: 50px 80px; padding-block: 110px 75px; }
+.beira-personal-heading > p:last-child { max-width: 390px; color: var(--beira-muted); font-size: 13px; line-height: 1.9; margin-top: 25px; }
+.beira-personal h2 > span, .beira-install h2 > span, .beira-closing h2 > span { color: #d9bc91; }
+.beira-menu-illustration { align-self: center; position: relative; padding-bottom: 34px; }
+.beira-menu-bar { display: flex; align-items: center; gap: 14px; padding: 12px 18px; background: #e3e8d91a; border: 1px solid #eef2e220; border-radius: 8px; color: #cbd0bd; font-size: 10px; }
+.beira-menu-spacer { flex: 1; }
+.beira-menubar-icon { color: #f3c487; font-family: monospace; padding: 3px 6px; background: #e7bb8720; border-radius: 4px; }
+.beira-menu-popover { width: 81%; margin: 6px 10% 0 auto; padding: 22px; border: 1px solid #e9ebdb30; border-radius: 11px; background: linear-gradient(140deg, #344239, #27392e); box-shadow: 0 20px 35px #0002; transition: transform .3s; }
+.beira-menu-illustration:hover .beira-menu-popover { transform: translateY(4px); }
+.beira-menu-app { display: flex; justify-content: space-between; align-items: center; font-size: 21px; letter-spacing: -.05em; }
+.beira-menu-app > span { display: flex; align-items: center; gap: 6px; font-size: 8px; color: #bac8ad; letter-spacing: 0; }
+.beira-menu-control { display: flex; align-items: center; gap: 10px; padding-top: 22px; color: #ddd5ba; font-size: 10px; }
+.beira-menu-track { height: 3px; flex: 1; background: #f9f3d61c; border-radius: 5px; margin-left: 15px; }
+.beira-menu-track i { display: block; width: 63%; height: 100%; background: #e7bb87; border-radius: inherit; }
+.beira-menu-control:nth-child(3) i { width: 80%; }
+.beira-menu-popover > p { margin: 22px 0 0; padding-top: 15px; border-top: 1px solid var(--beira-line); color: #8fa18b; font-size: 8px; }
+.beira-illustration-caption { position: absolute; bottom: 0; right: 10%; font: 7px/1.6 ui-monospace, monospace; color: #91a184; }
+.beira-feature-grid { grid-column: 1/-1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 45px; padding-top: 30px; border-top: 1px solid var(--beira-line); }
+.beira-feature-grid article > svg { color: #d7b489; margin-bottom: 22px; }
+.beira-feature-grid h3 { font-size: 17px; font-weight: 450; margin: 0 0 12px; }
+.beira-feature-grid p { color: #a4b09b; font-size: 12px; line-height: 1.85; margin: 0; }
+.beira-personal-note { grid-column: 1/-1; color: #8c9c83; font-size: 10px; padding-top: 20px; border-top: 1px solid var(--beira-line); margin: 0; }
+.beira-download { padding-block: 92px 70px; }
+.beira-download-heading { text-align: center; }
+.beira-download-heading .beira-eyebrow { justify-content: center; }
+.beira-download-heading > p:last-child { font-size: 13px; color: #717a6c; line-height: 1.9; margin: 25px 0 40px; }
+.beira-download-options { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.beira-download-option { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; padding: 29px; border: 1px solid #bdc2af; border-radius: 11px; background: #faf9f340; transition: background .2s, border-color .2s, transform .2s; }
+.beira-download-option:hover { background: #fffdf8; border-color: #526c52; transform: translateY(-4px); }
+.beira-download-option h3 { font-size: 20px; font-weight: 500; margin: 0 0 5px; }
+.beira-download-option p { color: #818570; font-size: 10px; margin: 0; }
+.beira-download-option > span:last-child { display: flex; align-items: center; gap: 9px; font-size: 11px; margin-left: auto; }
+.beira-intel-symbol { font: italic 600 22px/1 Georgia, serif; letter-spacing: -.06em; }
+.beira-download-notes { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 20px; }
+.beira-download-notes p { color: #838975; font-size: 10px; line-height: 1.9; }
+.beira-download-notes a { display: inline-flex; gap: 8px; align-items: center; font-size: 10px; }
+.beira-compatibility { padding-top: 22px; border-top: 1px solid var(--beira-line); margin-top: 24px; color: #89907b; font-size: 9px; line-height: 1.8; }
+.beira-install { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; padding-block: 100px; }
+.beira-install-intro > p:last-child { max-width: 320px; color: #aab6a0; font-size: 12px; line-height: 1.9; margin-top: 25px; }
+.beira-install-steps { list-style: none; margin: 0; padding: 0; }
+.beira-install-steps > li { display: flex; gap: 20px; padding: 0 0 28px; margin-bottom: 28px; border-bottom: 1px solid var(--beira-line); }
+.beira-install-steps > li:last-child { margin-bottom: 0; padding-bottom: 0; border: 0; }
+.beira-step-number { flex-shrink: 0; display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid #e7bb8755; border-radius: 50%; font: 9px ui-monospace, monospace; color: #e7bb87; }
+.beira-install-steps > li > div { min-width: 0; }
+.beira-install-steps h3 { font-size: 16px; font-weight: 500; margin: 2px 0 12px; }
+.beira-install-steps p { color: #a6b29b; font-size: 12px; line-height: 1.8; margin: 0; }
+.beira-install-steps strong { color: #d9dfc9; font-weight: 500; }
+.beira-install-steps .beira-text-link { color: #e7bb87; font-size: 11px; margin-top: 17px; }
+.beira-command { display: flex; gap: 15px; align-items: center; padding: 15px; margin-top: 20px; background: #0b1711; border: 1px solid #d4e0c51e; border-radius: 6px; }
+.beira-command code { min-width: 0; flex: 1; overflow-wrap: anywhere; color: #dce3c9; font: 10px/1.9 ui-monospace, monospace; }
+.beira-command button { display: flex; align-items: center; justify-content: center; gap: 7px; border: 0; background: transparent; color: #d9b98b; padding: 6px; font-size: 9px; flex-shrink: 0; }
+.beira-install-steps p.beira-copy-status { font-size: 9px; color: #82967a; margin-top: 10px; }
+.beira-faq { padding-block: 90px; }
+.beira-faq-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; }
+.beira-faq-grid .beira-text-link { margin-top: 30px; color: #6d805f; }
+.beira-questions details { border-bottom: 1px solid var(--beira-line); }
+.beira-questions details:first-child { border-top: 1px solid var(--beira-line); }
+.beira-questions summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 23px 0; cursor: pointer; font-size: 13px; font-weight: 500; list-style: none; }
+.beira-questions summary::-webkit-details-marker { display: none; }
+.beira-questions summary > span { font-size: 23px; font-weight: 300; color: #849074; transition: transform .2s; }
+.beira-questions details[open] summary > span { transform: rotate(45deg); }
+.beira-questions details p { margin: 0 25px 23px 0; color: #727d68; font-size: 12px; line-height: 1.95; animation: beira-enter .25s ease-out; }
+.beira-closing { padding-block: 85px; text-align: center; }
+.beira-closing > img { display: block; margin: 0 auto 25px; }
+.beira-closing h2 { font-size: clamp(30px, 3.2vw, 44px); margin-bottom: 30px; }
+.beira-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 25px; padding-block: 28px; border-top: 1px solid var(--beira-line); color: #98a68e; font-size: 9px; }
+.beira-family { display: inline-flex; align-items: center; gap: 9px; }
+.beira-family strong { color: #cfd3c4; font-size: 10px; font-weight: 500; letter-spacing: .08em; }
+.beira-footer > a:last-child { display: inline-flex; gap: 7px; align-items: center; }
+@keyframes beira-enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes beira-finger { 0%, 12%, 100% { transform: translateY(30px); opacity: 0; } 22% { opacity: .8; } 60% { transform: translateY(-38px); opacity: .8; } 75% { transform: translateY(-38px); opacity: 0; } }
+@keyframes beira-arrow { 0%,100% { transform: translateY(4px); } 50% { transform: translateY(-4px); } }
+@media (min-width: 1550px) { .beira-hero { gap: 90px; padding-block: 110px; } }
+@media (max-width: 1050px) { .beira-wrap { width: calc(100% - 64px); } .beira-hero { gap: 30px; padding-block: 65px 75px; } .beira-hero h1 { font-size: 58px; } .beira-hero-intro { font-size: 13px; } .beira-demo-stage { padding-inline: 10px; } .beira-demo-bottom { flex-direction: column; align-items: flex-start; } .beira-hero .beira-text-link { font-size: 11px; } .beira-personal { gap: 50px 35px; } .beira-install,.beira-faq-grid { gap: 40px; } .beira-gesture { padding-inline: 20px; } .beira-mini-pad { width: 160px; } .beira-menu-app > span { font-size: 7px; } }
+@media (max-width: 760px) { .beira-wrap { width: calc(100% - 40px); } .beira-header { min-height: 80px; gap: 12px; } .beira-header nav { display: none; } .beira-brand { font-size: 25px; } .beira-brand > img { width: 36px; height: 36px; } .beira-nav-download { font-size: 11px; padding: 10px 13px; } .beira-hero { grid-template-columns: 1fr; gap: 38px; padding-block: 53px 45px; } .beira-hero h1 { font-size: clamp(54px, 9.8vw, 77px); } .beira-hero-intro { max-width: 440px; font-size: 14px; } .beira-eyebrow { font-size: 8px; margin-bottom: 23px; } .beira-demo { width: min(100%, 500px); justify-self: center; } .beira-demo-stage { padding: 35px 24px 63px; } .beira-demo-pad { border-radius: 25px; } .beira-demo-bottom { flex-direction: row; align-items: center; } .beira-demo-bottom p { font-size: 9px; } .beira-ribbon > div { gap: 18px; justify-content: flex-start; } .beira-ribbon span { width: calc(50% - 18px); font-size: 9px; } .beira-how,.beira-download,.beira-faq { padding-block: 60px; } .beira-site h2 { font-size: 42px; } .beira-section-heading { grid-template-columns: 1fr; gap: 22px; margin-bottom: 35px; } .beira-section-heading .beira-eyebrow { margin-bottom: 0; } .beira-section-heading > p:last-child { font-size: 13px; } .beira-gesture-grid { grid-template-columns: 1fr; } .beira-gesture,.beira-gesture:first-child,.beira-gesture:last-child { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; padding: 25px 0; border-right: 0; border-bottom: 1px solid var(--beira-line); } .beira-gesture-number { grid-column: 1/-1; } .beira-gesture-art { grid-column: 2; grid-row: 2/5; height: 155px; } .beira-gesture h3 { margin-top: 20px; font-size: 18px; } .beira-gesture p { min-height: 0; font-size: 11px; margin-bottom: 12px; } .beira-gesture-tag { font-size: 6px; } .beira-mini-pad { width: 160px; max-width: 100%; height: 105px; } .beira-full-travel { padding: 24px; gap: 15px; } .beira-full-travel svg { flex-shrink: 0; } .beira-full-travel strong { font-size: 12px; } .beira-full-travel p span { font-size: 10px; } .beira-personal { grid-template-columns: 1fr; padding-block: 65px 50px; gap: 35px; } .beira-personal-heading > p:last-child { max-width: 450px; } .beira-menu-illustration { width: min(100%, 430px); justify-self: center; margin-block: 10px; } .beira-feature-grid { grid-template-columns: 1fr; gap: 27px; } .beira-feature-grid article { display: grid; grid-template-columns: 34px 1fr; column-gap: 18px; } .beira-feature-grid article > svg { grid-row: 1/3; margin-top: 2px; } .beira-feature-grid h3 { font-size: 18px; } .beira-feature-grid p { font-size: 12px; } .beira-download-options { grid-template-columns: 1fr; } .beira-download-option { padding: 24px; } .beira-download-heading > p:last-child { margin-bottom: 30px; } .beira-download-notes { align-items: flex-start; gap: 15px; flex-direction: column; } .beira-download-notes p { margin-block: 0; } .beira-install,.beira-faq-grid { grid-template-columns: 1fr; gap: 35px; } .beira-install { padding-block: 65px; } .beira-install-intro > p:last-child { max-width: 440px; } .beira-command { padding: 12px; gap: 9px; } .beira-command button > span { display: none; } .beira-questions summary { font-size: 13px; } .beira-faq-grid .beira-text-link { margin-top: 20px; } .beira-closing { padding-block: 60px; } .beira-closing h2 { font-size: 34px; } .beira-footer { gap: 20px; } .beira-footer > span { order: 3; width: 100%; } }
+@media (max-width: 390px) { .beira-hero h1 { font-size: 52px; } .beira-actions { gap: 19px; } .beira-button { font-size: 11px; padding-inline: 16px; } .beira-demo-stage { padding-inline: 14px; } .beira-demo-bottom { gap: 9px; } .beira-demo-bottom p { font-size: 8px; } .beira-demo-bottom button { font-size: 8px; padding-inline: 6px; } .beira-gesture { column-gap: 12px; } .beira-gesture h3 { font-size: 16px; } .beira-mini-pad { height: 95px; } .beira-site h2 { font-size: 36px; } .beira-download-option { gap: 14px; padding: 22px 17px; } .beira-download-option h3 { font-size: 17px; } .beira-download-option > span:last-child { font-size: 10px; } }
+@media (prefers-reduced-motion: reduce) { html:has(.beira-site) { scroll-behavior: auto; } .beira-site *, .beira-site *::before, .beira-site *::after { animation: none !important; transition: none !important; } .beira-demo-trace { display: none; } }
+
+.beira-download-version { text-align: center; margin: 24px 0 0; color: #52664a; font: 10px/1.6 ui-monospace, monospace; }

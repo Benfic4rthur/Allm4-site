@@ -138,8 +138,8 @@ html:has(.beira-site) { scroll-padding-top: 28px; }
 .beira-install-steps strong { color: #d9dfc9; font-weight: 500; }
 .beira-install-steps .beira-text-link { color: #e7bb87; font-size: 11px; margin-top: 17px; }
 .beira-command { display: flex; gap: 15px; align-items: center; padding: 15px; margin-top: 20px; background: #0b1711; border: 1px solid #d4e0c51e; border-radius: 6px; }
-.beira-command code { min-width: 0; flex: 1; overflow-wrap: anywhere; color: #dce3c9; font: 10px/1.9 ui-monospace, monospace; }
-.beira-command button { display: flex; align-items: center; justify-content: center; gap: 7px; border: 0; background: transparent; color: #d9b98b; padding: 6px; font-size: 9px; flex-shrink: 0; }
+.beira-command code { min-width: 0; flex: 1; overflow-wrap: anywhere; color: #dce3c9; font: 13px/1.9 ui-monospace, monospace; }
+.beira-command button { display: flex; align-items: center; justify-content: center; gap: 7px; border: 0; background: transparent; color: #d9b98b; padding: 6px; font-size: 11px; flex-shrink: 0; }
 .beira-install-steps p.beira-copy-status { font-size: 9px; color: #82967a; margin-top: 10px; }
 .beira-faq { padding-block: 90px; }
 .beira-faq-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 90px; }
@@ -168,6 +168,11 @@ html:has(.beira-site) { scroll-padding-top: 28px; }
 @media (prefers-reduced-motion: reduce) { html:has(.beira-site) { scroll-behavior: auto; } .beira-site *, .beira-site *::before, .beira-site *::after { animation: none !important; transition: none !important; } .beira-demo-trace { display: none; } }
 
 .beira-download-version { text-align: center; margin: 24px 0 0; color: #52664a; font: 10px/1.6 ui-monospace, monospace; }
+.beira-download-install { margin-top: 30px; padding: clamp(20px, 3vw, 32px); border: 1px solid #bdc2af; border-radius: 11px; background: #faf9f3; }
+.beira-download-install h3 { margin: 0 0 12px; font-size: 22px; font-weight: 500; }
+.beira-download-install > p { margin: 0; max-width: 740px; color: #52604f; font-size: 14px; line-height: 1.8; }
+.beira-download-install .beira-copy-status { margin: 10px 0 0; color: #52604f; font-size: 11px; line-height: 1.7; }
+.beira-download-install > a { margin-top: 20px; font-size: 12px; }
 
 .beira-demo-pad { overflow: hidden; }
 .beira-demo-slider { position: absolute; inset: 0; touch-action: none; cursor: ns-resize; border-radius: 16px; }

@@ -81,6 +81,12 @@ export default function BeiraPage() {
           <div className="beira-download-heading"><p className="beira-eyebrow">03 / LEVE PARA O SEU MAC</p><h2 id="beira-download-title">Um gesto a mais.<br /><span>Zero mensalidades.</span></h2><p>Gratuito, sem cadastro e sem complicar.<br />Escolha a versão para o seu processador.</p></div>
           <BeiraDownloadOptions />
           <p className="beira-download-version"><BeiraVersion /></p>
+          <div className="beira-download-install" aria-labelledby="beira-download-install-title">
+            <h3 id="beira-download-install-title">Antes de abrir o Beira</h3>
+            <p>Extraia o ZIP e mova <strong>Beira.app</strong> para <strong>Aplicativos</strong>. Depois, abra o Terminal, cole o comando abaixo e pressione Enter para liberar a primeira abertura.</p>
+            <InstallationCommand />
+            <a className="beira-text-link" href="#instalar">Ver a instalação completa <ArrowRight size={15} aria-hidden="true" /></a>
+          </div>
           <div className="beira-download-notes"><p>macOS 13 ou superior · Trackpad compatível<br />Veja seu chip em  → Sobre Este Mac.</p><a href={beiraLinks.releases} target="_blank" rel="noopener noreferrer">Downloads e versões no GitHub <ArrowUpRight size={15} aria-hidden="true" /></a></div>
           <p className="beira-compatibility">Versão inicial: funcionamento confirmado em MacBook Pro com Apple Silicon. A versão Intel ainda precisa de validação em hardware Intel. Retorno tátil disponível em trackpads Force Touch compatíveis.</p>
         </div></section>

@@ -1,15 +1,13 @@
 // Dados ainda não definidos ficam nulos: nunca exibir links fictícios.
 export const product = Object.freeze({
   name: 'JáCopiei?',
-  price: { amount: 29.99, currency: 'BRL', interval: 'mês' },
-  licensingApiUrl: 'https://jacopiei-license-server.vercel.app',
+  usage: 'free-personal',
   release: {
     metadataUrl: 'https://raw.githubusercontent.com/Benfic4rthur/JaCopiei-Releases/main/latest.json',
     apiUrl: 'https://api.github.com/repos/Benfic4rthur/JaCopiei-Releases/releases',
     releasesUrl: 'https://github.com/Benfic4rthur/JaCopiei-Releases/releases',
     repositoryUrl: 'https://github.com/Benfic4rthur/JaCopiei-Releases',
   },
-  subscriptionAvailable: true,
   siteUrl: 'https://allm4.com/jacopiei',
   contact: null,
   company: { name: 'Allm4', cnpj: null, address: null },

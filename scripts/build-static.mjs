@@ -25,6 +25,9 @@ for (const file of [
   "local-ia/index.html",
   "beira/index.html",
   "products/beira-icon.svg",
+  "codex-reset/index.html",
+  "products/codex-reset-icon.png",
+  "codex-reset/share.png",
   "jacopiei/index.html",
   "jacopiei/app.js",
   "jacopiei/assets/brand.svg",
@@ -34,4 +37,4 @@ for (const file of [
   }
 }
 
-console.log("Exportação estática completa em out/ (ALLM4 + JáCopiei?).");
+console.log("Exportação estática completa em out/ (ALLM4 + páginas dos produtos).");

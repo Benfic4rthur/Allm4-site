@@ -48,7 +48,7 @@ jobs:
         run: npm run lint
 
       - name: Validate release parsing
-        run: node --experimental-strip-types --test tests/releases.test.mjs
+        run: node --experimental-strip-types --test tests/releases.test.mjs tests/beira-releases.test.mjs tests/codex-reset-releases.test.mjs
 
       - name: Build static site
         env:

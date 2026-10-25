@@ -31,6 +31,7 @@
 .brand-orbit-app--jacopiei { --orbit-app-tint: #90baff; }
 .brand-orbit-app--allm4-local-ia { --orbit-app-tint: #f69c77; }
 .brand-orbit-app--beira { --orbit-app-tint: #e7b57d; }
+.brand-orbit-app--codex-reset { --orbit-app-tint: #6be0c4; }
 .brand-orbit-app img { width: 100%; height: 100%; object-fit: contain; border-radius: 24%; }
 .brand-orbit-app:hover, .brand-orbit-app:focus-visible { transform: rotate(12deg) translateY(-3px) scale(1.13); border-color: color-mix(in srgb, var(--orbit-app-tint) 60%, transparent); box-shadow: 0 16px 36px #0006, 0 0 26px color-mix(in srgb, var(--orbit-app-tint) 12%, transparent); }
 .brand-orbit-tooltip { position: absolute; top: calc(100% + 12px); left: 50%; transform: translate(-50%, -3px); padding: 7px 10px; border: 1px solid #ffffff16; border-radius: 6px; background: #121420f2; color: #e3e0ef; font-size: 10px; white-space: nowrap; pointer-events: none; opacity: 0; transition: transform 200ms, opacity 200ms; }

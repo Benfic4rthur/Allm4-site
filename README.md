@@ -2,7 +2,7 @@
 
 Site institucional da ALLM4, marca responsável por aplicativos e experiências de software.
 
-A home preserva o texto institucional e o símbolo grande da ALLM4 na abertura, com os aplicativos orbitando ao redor. O botão abaixo do logo reúne os ícones, faz o símbolo encolher em direção ao botão e conduz à vitrine em uma transição animada. O catálogo usa uma grade de dois por dois no desktop, seguido pelo Sobre e um rodapé escuro nas proporções da versão original. O Sobre apresenta o estúdio independente, conduzido por um único desenvolvedor, e seus princípios de utilidade, clareza e cuidado nos detalhes. Todos os produtos abrem em novas abas, sem distinguir visualmente destinos internos e externos.
+A home preserva o texto institucional e o símbolo grande da ALLM4 na abertura, com os aplicativos orbitando ao redor. O botão abaixo do logo reúne os ícones, faz o símbolo encolher em direção ao botão e conduz à vitrine em uma transição animada. O catálogo usa uma grade de duas colunas no desktop, com o Codex Reset fechando a vitrine em um cartão horizontal, seguido pelo Sobre e um rodapé escuro nas proporções da versão original. O Sobre apresenta o estúdio independente, conduzido por um único desenvolvedor, e seus princípios de utilidade, clareza e cuidado nos detalhes. Todos os produtos abrem em novas abas, sem distinguir visualmente destinos internos e externos.
 
 ## Desenvolvimento
 
@@ -33,7 +33,7 @@ O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A 
 - `app/globals.css`: estilos globais e infraestrutura visual legada compartilhada pelo projeto.
 - `components/brand/brand-mark.tsx`: símbolo e assinatura reutilizáveis da ALLM4.
 - `components/brand/brand-orbit.tsx`: órbita responsiva, reação ao mouse e sequência de entrada na vitrine; respeita movimento reduzido e transfere o foco para o catálogo.
-- `components/brand/product-artwork.tsx`: visuais dos quatro produtos com ícones oficiais, capturas existentes e ilustrações de interface.
+- `components/brand/product-artwork.tsx`: visuais dos produtos com ícones oficiais, capturas existentes e ilustrações de interface.
 - `components/brand/studio-about.tsx`: seção institucional escura, com a história do estúdio independente, o símbolo da marca e os três princípios; destino dos links Sobre.
 - `components/brand/studio-footer.tsx`: faixa de assinatura e rodapé com produtos e contato, nas proporções da versão original e com o fundo escuro da nova identidade.
 - `lib/products.ts`: catálogo centralizado de aplicativos.
@@ -50,6 +50,7 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 2. LUM4, com destino para `https://lum4.app`.
 3. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
 4. Beira, com destino para a página interna `/beira/`.
+5. Codex Reset, com destino para a página interna `/codex-reset/`.
 
 Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados.
 
@@ -70,6 +71,8 @@ Cada entrada pode conter:
 Adicionar um novo produto não exige duplicar a estrutura da página. O ALLM4 Local IA foi retirado do catálogo, da órbita e do rodapé; a página antiga permanece no código para preservar o trabalho anterior.
 
 O site do Beira está em `app/beira/`, com demonstração interativa de volume e brilho, inversão dos lados, recursos, FAQ e instruções de instalação com comando copiável. Os links em `lib/beira.ts` apontam diretamente às releases do GitHub; o site não hospeda instaladores. A demonstração só altera o estado da página, sem controlar o hardware do visitante. O número da versão e os downloads são consultados em `releases/latest` do GitHub ao abrir a página, ao voltar à aba e a cada cinco minutos enquanto ela estiver visível. A interface só usa releases estáveis com os dois ZIPs oficiais; se a API estiver indisponível, usa links diretos `latest/download` e não exibe um número de versão antigo.
+
+O Codex Reset tem sua apresentação em `app/codex-reset/`, com o ícone oficial, demonstrações de notch e cápsula, uma prévia configurável dos campos, downloads e instruções de instalação. É gratuito para baixar e usar. As demonstrações têm dados ilustrativos: o site não consulta a conta, as conversas nem os arquivos locais do Codex. A renovação semanal da conta e a estimativa histórica de reset extra são explicadas separadamente. `lib/codex-reset.ts` centraliza os links e a validação das releases; `components/brand/codex-reset-release.tsx` consulta a última versão estável no GitHub na abertura, ao voltar à aba e a cada cinco minutos enquanto visível. A versão e os dois DMGs precisam pertencer à mesma release oficial. Se a consulta falhar, os links públicos `latest/download` continuam disponíveis, sem exibir uma versão fixa. O ícone também entra na órbita e no rodapé pelo catálogo compartilhado. A imagem de compartilhamento pode ser regenerada com `node scripts/render-codex-reset-share.mjs`.
 
 O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
 

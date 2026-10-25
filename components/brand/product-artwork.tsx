@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Check, FileText, Sun, Volume2 } from "lucide-react";
+import { Check, ChevronDown, FileText, RotateCw, Settings2, Sun, Volume2 } from "lucide-react";
 import type { Product } from "@/lib/products";
 import "./product-artwork.css";
 
@@ -11,6 +11,7 @@ const artworkDescriptions: Record<string, string> = {
   jacopiei: "Ilustração do JáCopiei? com documentos e uma confirmação de cópia.",
   "allm4-local-ia": "Interface real do ALLM4 Local IA, com chat, imagem e projetos.",
   beira: "Ilustração do Beira: um trackpad com volume na borda esquerda e brilho na borda direita.",
+  "codex-reset": "Ilustração do Codex Reset no notch do Mac, com franquia restante, atividade e próximos resets. Dados de demonstração.",
 };
 
 export function ProductArtwork({ product }: { product: Product }) {
@@ -83,6 +84,24 @@ export function ProductArtwork({ product }: { product: Product }) {
               <span className="studio-art-beira-edge studio-art-beira-brightness" />
             </div>
             <span className="studio-art-beira-label"><Sun size={14} strokeWidth={1.5} /> Brilho</span>
+          </div>
+        ) : product.slug === "codex-reset" ? (
+          <div className="studio-art-reset-screen">
+            <div className="studio-art-reset-menubar"><span>Seu Mac</span><span>10:24</span></div>
+            <div className="studio-art-reset-panel">
+              <div className="studio-art-reset-top">
+                <span className="studio-art-reset-quota"><strong>87<span>%</span></strong></span>
+                <span className="studio-art-reset-camera" />
+                <span className="studio-art-reset-activity"><strong>Seu projeto <ChevronDown size={9} /></strong><small>Modelo ativo <span>Alto</span></small></span>
+              </div>
+              <div className="studio-art-reset-tools"><RotateCw size={10} /><span /><Settings2 size={10} /></div>
+              <div className="studio-art-reset-details">
+                <div><small>RESET EXTRA</small><strong>Entre 1d e 3d</strong><span>Estimativa histórica</span></div>
+                <div><small>RESET SEMANAL</small><strong>Em 6d 17h</strong><span>Informado pelo Codex</span></div>
+              </div>
+              <div className="studio-art-reset-last"><RotateCw size={7} /> Último reset · há 6h</div>
+            </div>
+            <span className="studio-art-reset-caption">SEU CODEX. SEMPRE À VISTA.</span>
           </div>
         ) : (
           <div className="studio-art-app-window">

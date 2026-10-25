@@ -15,6 +15,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://allm4.com/codex-reset/",
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
       url: "https://allm4.com/jacopiei/",
       changeFrequency: "weekly",
       priority: 0.8,

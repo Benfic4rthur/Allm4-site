@@ -73,4 +73,15 @@ export const products: Product[] = [
     url: "/beira/",
     ctaLabel: "Conhecer Beira",
   },
+  {
+    name: "Codex Reset",
+    slug: "codex-reset",
+    description:
+      "Sua franquia do Codex sempre à vista. Acompanhe as conversas ativas e o tempo até a renovação em um painel discreto no topo do Mac.",
+    icon: "/products/codex-reset-icon.png",
+    platforms: ["macOS 14+", "Apple Silicon", "Intel"],
+    status: "Gratuito",
+    url: "/codex-reset/",
+    ctaLabel: "Conhecer Codex Reset",
+  },
 ];

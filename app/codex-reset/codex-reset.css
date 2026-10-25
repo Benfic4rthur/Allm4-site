@@ -11,6 +11,8 @@ html:has(.cr-site) { scroll-padding-top: 28px; }
 .cr-header { display:flex; align-items:center; justify-content:space-between; gap:24px; min-height:92px; border-bottom:1px solid var(--cr-line); }
 .cr-brand { display:flex; align-items:center; gap:10px; font-size:21px; font-weight:550; letter-spacing:-.06em; }
 .cr-brand img { width:40px; height:40px; }
+.cr-brand-group { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+.cr-brand-version { display:inline-flex; align-items:center; min-height:22px; padding:3px 7px; border:1px solid #83c5aa35; border-radius:4px; color:#9bc8b3; font:10px/1.25 ui-monospace,SFMono-Regular,Consolas,monospace; letter-spacing:0; white-space:nowrap; }
 .cr-header nav { display:flex; gap:29px; color:#aab6af; font-size:12px; }
 .cr-header nav a:hover,.cr-text-link:hover { color:var(--cr-accent); }
 .cr-header-download { display:flex; align-items:center; gap:12px; padding:11px 16px; border:1px solid #85b8a542; border-radius:7px; font-size:12px; transition:background .2s; }
@@ -87,6 +89,7 @@ html:has(.cr-site) { scroll-padding-top: 28px; }
 @media (prefers-reduced-motion:reduce) { .cr-site *, .cr-site *::before, .cr-site *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; }.cr-button:hover,.cr-download-card:hover { transform:none; } }
 
 .cr-closing-logo { display:block; width:88px; height:88px; object-fit:contain; }
+@media (max-width:420px) { .cr-brand-group { display:grid; grid-template-columns:auto; gap:2px; padding-block:8px; }.cr-brand-version { width:fit-content; min-height:18px; margin-left:40px; padding:2px 5px; font-size:8px; } }
 
 /* Enlarged notch preview: three balanced top zones and two centered detail columns. */
 .cr-monitor-top { grid-template-columns:minmax(0,1fr) 70px minmax(0,1fr); }

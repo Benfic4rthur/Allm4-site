@@ -33,7 +33,7 @@ export default function CodexResetPage() {
   return <CodexResetReleaseProvider><div className="cr-site" id="codex-reset-topo">
     <a className="cr-skip" href="#cr-conteudo">Pular para o conteúdo</a>
     <header className="cr-header cr-wrap">
-      <a className="cr-brand" href="#codex-reset-topo" aria-label="Codex Reset, início"><Image src={`${basePath}/products/codex-reset-icon.png`} alt="" width={40} height={40} unoptimized /><span>Codex Reset</span></a>
+      <div className="cr-brand-group"><a className="cr-brand" href="#codex-reset-topo" aria-label="Codex Reset, início"><Image src={`${basePath}/products/codex-reset-icon.png`} alt="" width={40} height={40} unoptimized /><span>Codex Reset</span></a><CodexResetVersion compact /></div>
       <nav aria-label="Navegação do Codex Reset"><a href="#o-monitor">O monitor</a><a href="#seu-painel">Do seu jeito</a><a href="#duvidas">Dúvidas</a></nav>
       <a className="cr-header-download" href="#baixar">Baixar grátis <ArrowDownToLine size={14} aria-hidden="true" /></a>
     </header>

@@ -39,7 +39,7 @@ export default function BeiraPage() {
     <BeiraReleaseProvider><div className="beira-site" id="beira-topo">
       <a className="beira-skip" href="#beira-conteudo">Pular para o conteúdo</a>
       <header className="beira-header beira-wrap">
-        <a className="beira-brand" href="#beira-topo" aria-label="Beira, início"><Image src={`${basePath}/products/beira-icon.svg`} alt="" width={42} height={42} unoptimized /><span>Beira</span></a>
+        <div className="beira-brand-group"><a className="beira-brand" href="#beira-topo" aria-label="Beira, início"><Image src={`${basePath}/products/beira-icon.svg`} alt="" width={42} height={42} unoptimized /><span>Beira</span></a><BeiraVersion compact /></div>
         <nav aria-label="Navegação do Beira"><a href="#como-funciona">O gesto</a><a href="#seu-jeito">Seu jeito</a><a href="#instalar">Instalação</a></nav>
         <a className="beira-nav-download" href="#baixar">Baixar grátis <ArrowDownToLine size={15} aria-hidden="true" /></a>
       </header>

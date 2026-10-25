@@ -61,11 +61,12 @@ export function CodexResetReleaseProvider({ children }: { children: ReactNode })
   return <ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>;
 }
 
-export function CodexResetVersion() {
+export function CodexResetVersion({ compact = false }: { compact?: boolean }) {
   const release = useContext(ReleaseContext);
+  if (compact && !release) return null;
   return (
-    <span className="cr-release-version" aria-live="polite">
-      {release ? `Versão ${release.version}` : "Última versão no GitHub"}
+    <span className={compact ? "cr-brand-version" : "cr-release-version"} aria-live="polite" aria-label={compact && release ? `Versão ${release.version}` : undefined}>
+      {release ? `${compact ? "v" : "Versão "}${release.version}` : "Última versão no GitHub"}
     </span>
   );
 }

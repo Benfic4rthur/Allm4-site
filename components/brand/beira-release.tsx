@@ -20,11 +20,11 @@ export function BeiraReleaseProvider({ children }: { children: ReactNode }) {
       const timeout = setTimeout(() => controller.abort(), 8000);
       try {
         const response = await fetch(beiraLinks.releaseApi, { signal: controller.signal, cache: "no-store", headers: { Accept: "application/vnd.github+json" } });
-        if (!response.ok) return;
-        const latest = parseBeiraRelease(await response.json());
-        if (latest && !disposed) setRelease(latest);
+        const latest = response.ok ? parseBeiraRelease(await response.json()) : null;
+        if (!disposed) setRelease(latest);
       } catch {
         // Direct latest/download links remain usable without this optional lookup.
+        if (!disposed) setRelease(null);
       } finally {
         clearTimeout(timeout);
         request = null;
@@ -41,9 +41,10 @@ export function BeiraReleaseProvider({ children }: { children: ReactNode }) {
   return <ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>;
 }
 
-export function BeiraVersion() {
+export function BeiraVersion({ compact = false }: { compact?: boolean }) {
   const release = useContext(ReleaseContext);
-  return <span className="beira-release-version" aria-live="polite">{release ? `Versão ${release.version}` : "Última versão no GitHub"}</span>;
+  if (compact && !release) return null;
+  return <span className={compact ? "beira-brand-version" : "beira-release-version"} aria-live="polite" aria-label={compact && release ? `Versão ${release.version}` : undefined}>{release ? `${compact ? "v" : "Versão "}${release.version}` : "Última versão no GitHub"}</span>;
 }
 
 export function BeiraDownloadOptions() {

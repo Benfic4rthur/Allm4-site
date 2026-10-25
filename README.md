@@ -52,7 +52,7 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 4. Beira, com destino para a página interna `/beira/`.
 5. Codex Reset, com destino para a página interna `/codex-reset/`.
 
-Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados.
+Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados. Nas páginas do Beira e do Codex Reset, o cabeçalho mostra uma versão compacta ao lado do nome, consultada no GitHub e compartilhada com a informação de versão dos downloads; o número não é fixado no HTML.
 
 As plataformas e os requisitos de cada aplicativo aparecem no próprio cartão, incluindo macOS e as arquiteturas de cada app.
 

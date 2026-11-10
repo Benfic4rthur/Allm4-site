@@ -46,6 +46,13 @@ for (const file of [
   "tubeorder/index.html",
   "tubeorder/brand/tubeorder.svg",
   "tubeorder/share.png",
+  "alwaysdarkmode/index.html",
+  "alwaysdarkmode/app.js",
+  "alwaysdarkmode/releases.js",
+  "alwaysdarkmode/styles.css",
+  "alwaysdarkmode/assets/always-dark.svg",
+  "alwaysdarkmode/assets/release.json",
+  "alwaysdarkmode/share.png",
 ]) {
   if (!existsSync(join(root, "out", file))) {
     throw new Error(`Exportação incompleta: out/${file} não foi gerado.`);

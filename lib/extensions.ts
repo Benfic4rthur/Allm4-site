@@ -31,4 +31,14 @@ export const extensions: BrowserExtension[] = [
     url: "/tubeorder/",
     ctaLabel: "Conhecer extensão",
   },
+  {
+    name: "Always Dark",
+    slug: "alwaysdarkmode",
+    description: "Menos luz. Mais conforto. Modo escuro que se adapta aos sites que você escolher, com contraste equilibrado, imagens preservadas e ajustes para cada página.",
+    icon: "/alwaysdarkmode/assets/always-dark.svg",
+    platforms: ["Microsoft Edge", "Google Chrome", "Computador"],
+    status: "Gratuita",
+    url: "/alwaysdarkmode/",
+    ctaLabel: "Conhecer extensão",
+  },
 ];

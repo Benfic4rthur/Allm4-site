@@ -1,9 +1,23 @@
 import Image from "next/image";
-import { ArrowRight, ArrowUpRight, Ban, Check, Clock3, Play, ShieldCheck } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Ban, Check, Clock3, Moon, Play, ShieldCheck } from "lucide-react";
 import { extensions } from "@/lib/extensions";
 import "./studio-extensions.css";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function AlwaysDarkArtwork({ icon }: { icon: string }) {
+  return <>
+    <div className="studio-alwaysdark-browser">
+      <div className="studio-extension-browser-bar"><span><i/><i/><i/></span><span>seus sites, no seu tom</span><Moon size={11}/></div>
+      <div className="studio-alwaysdark-copy">
+        <p>Menos luz.<br/><em>Mais conforto.</em></p>
+        <div className="studio-alwaysdark-reading"><span/><div><b>Seu conteúdo de sempre.</b><i/><i/><i/></div><Image src={`${publicBasePath}/alwaysdarkmode/assets/reading-landscape.jpg`} alt="" width={70} height={46} unoptimized/></div>
+        <span className="studio-alwaysdark-status"><Moon size={10}/> Modo escuro ativado <i/></span>
+      </div>
+    </div>
+    <span className="studio-extension-badge studio-alwaysdark-badge"><Image src={`${publicBasePath}${icon}`} alt="" width={25} height={25} unoptimized/><span>Uma luz mais confortável.<small>Always Dark · Ajustes salvos por site</small></span><i/></span>
+  </>;
+}
 
 function TubeOrderArtwork({ icon }: { icon: string }) {
   return <><div className="studio-tubeorder-browser"><div className="studio-extension-browser-bar"><span><i/><i/><i/></span><span>Assistir mais tarde</span><Clock3 size={11}/></div><div className="studio-tubeorder-copy"><p>Seu tempo,<br/><em>na ordem certa.</em></p><span className="studio-tubeorder-rule"><Image src={`${publicBasePath}${icon}`} alt="" width={17} height={17} unoptimized/> Curtos primeiro <Check size={10}/></span><div className="studio-tubeorder-queue">{[["Uma ideia para hoje", "4:12"], ["Entre montanhas e estrelas", "7:48"], ["Lugares para descobrir", "12:36"]].map(([title,time],index)=><div key={title}><small>{index+1}</small><span className={`studio-tubeorder-thumb studio-tubeorder-thumb--${index}`}><Play size={9}/></span><span>{title}</span><b>{time}</b></div>)}</div></div></div><span className="studio-extension-badge studio-tubeorder-badge"><Image src={`${publicBasePath}${icon}`} alt="" width={25} height={25} unoptimized/><span>A fila segue o seu ritmo.<small>TubeOrder · Ordem salva no YouTube</small></span><i/></span></>;
@@ -56,7 +70,7 @@ export function StudioExtensions() {
                 <span className="studio-extension-trust"><ShieldCheck size={13} aria-hidden="true" /> Código disponível no GitHub</span>
               </div>
               <div className="studio-extension-art" aria-hidden="true">
-                {extension.slug === "tubeorder" ? <TubeOrderArtwork icon={extension.icon}/> : <>
+                {extension.slug === "alwaysdarkmode" ? <AlwaysDarkArtwork icon={extension.icon}/> : extension.slug === "tubeorder" ? <TubeOrderArtwork icon={extension.icon}/> : <>
                 <div className="studio-extension-browser">
                   <div className="studio-extension-browser-bar"><span><i /><i /><i /></span><span>seu YouTube</span><ShieldCheck size={10} /></div>
                   <div className="studio-extension-browser-body">

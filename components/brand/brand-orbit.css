@@ -94,3 +94,5 @@
   .brand-orbit-tilt, .brand-orbit[data-phase="idle"] .brand-orbit-core:hover .brand-orbit-mark, .brand-orbit-app:hover, .brand-orbit-app:focus-visible { transform: none; }
   .brand-orbit-explore:enabled:is(:hover, :focus-visible) { transform: none; }
 }
+
+.brand-orbit-app--alwaysdarkmode { --orbit-app-tint: #b7a2f7; }

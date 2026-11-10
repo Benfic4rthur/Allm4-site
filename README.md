@@ -35,6 +35,9 @@ O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A 
 - `components/brand/brand-orbit.tsx`: órbita responsiva, reação ao mouse e sequência de entrada na vitrine; respeita movimento reduzido e transfere o foco para o catálogo.
 - `components/brand/product-artwork.tsx`: visuais dos produtos com ícones oficiais, capturas existentes e ilustrações de interface.
 - `components/brand/studio-about.tsx`: seção institucional escura, com a história do estúdio independente, o símbolo da marca e os três princípios; destino dos links Sobre.
+- `components/brand/studio-story.tsx`: controla a apresentação dentro do Sobre, com entrada pela borda inferior, trava da página durante o percurso e animações ligadas ao progresso da rolagem.
+- `components/brand/studio-profile.tsx` e `studio-profile.css`: apresentação de Arthur, experiência, formação, tecnologias, histórias de produtos e contato.
+- `lib/studio-profile.ts`: dados profissionais e histórias dos projetos exibidos no Sobre.
 - `components/brand/studio-footer.tsx`: faixa de assinatura e rodapé com produtos e contato, nas proporções da versão original e com o fundo escuro da nova identidade.
 - `lib/products.ts`: catálogo centralizado de aplicativos.
 - `lib/extensions.ts`: catálogo de extensões para navegador.
@@ -99,9 +102,9 @@ A interface usa uma base escura, tipografia limpa, amplo espaço visual e acento
 
 A abertura ocupa pelo menos a primeira tela inteira, mantendo a vitrine abaixo da dobra até a rolagem. O símbolo central fica reto e estável; seu hover aplica apenas escala e brilho. A inclinação acompanha somente os aplicativos ao redor, e a sequência do botão continua reunindo a composição antes de entrar na vitrine.
 
-O botão de entrada na vitrine recebe um brilho suave e um movimento curto na seta a cada nove segundos. Ao passar o mouse ou focar pelo teclado, o botão ganha brilho e os aplicativos se aproximam ligeiramente do símbolo. Os efeitos respeitam movimento reduzido; a rolagem e o acesso ao Sobre continuam livres.
+O botão de entrada na vitrine recebe um brilho suave e um movimento curto na seta a cada nove segundos. Ao passar o mouse ou focar pelo teclado, o botão ganha brilho e os aplicativos se aproximam ligeiramente do símbolo. Os efeitos respeitam movimento reduzido.
 
-O Sobre ocupa no mínimo uma janela inteira e sua âncora se alinha ao topo, mantendo a vitrine e o rodapé fora do enquadramento de chegada. Título, parágrafos e princípios têm tipografia mais ampla; em telas pequenas, a seção cresce com o conteúdo, sem cortes.
+O Sobre ocupa uma janela inteira e começa seu percurso quando a borda inferior encontra a base da tela. Título, parágrafos e princípios têm tipografia mais ampla; em telas pequenas, os conteúdos longos rolam dentro da etapa antes de avançar à próxima, sem barra de rolagem aparente.
 
 ## Produto existente
 
@@ -124,6 +127,12 @@ Relatos de vulnerabilidade devem seguir o arquivo `SECURITY.md` ou `/.well-known
 - layout responsivo para desktop, tablet e celular;
 - movimentos reduzidos quando `prefers-reduced-motion` está ativo;
 - conteúdo e hierarquia sem dependência de efeitos visuais para compreensão.
+
+## Sobre interativo
+
+O Sobre mantém a altura de uma tela. A página desce normalmente até a seção caber inteira no viewport; a partir daí, a roda controla a montagem e a desmontagem dos elementos. O progresso é suavizado por quadro, sem reproduzir automaticamente uma etapa inteira. Ao completar o percurso, a página libera a passagem ao rodapé; na volta, percorre as etapas em sentido inverso antes de liberar a parte superior.
+
+O controlador remove os bloqueios de rolagem e cancela as animações ao desmontar o componente. Em movimento reduzido, preserva a transição de opacidade e dispensa os deslocamentos e a perspectiva. O contato usa o WhatsApp informado pelo Arthur, com GitHub e LinkedIn como links adicionais. As experiências e as tecnologias ficam nos dados do perfil; as duas formações constam como em andamento, e o inglês, como fluente.
 
 ## Publicação
 

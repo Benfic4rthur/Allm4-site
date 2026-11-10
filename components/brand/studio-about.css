@@ -36,6 +36,13 @@
   letter-spacing: -.005em;
 }
 .studio-about-copy > p:not(.studio-eyebrow) + p { margin-top: 24px; }
+.studio-about-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 20px; margin-top: 12px; }
+.studio-about-links a { display: inline-flex; align-items: center; gap: 7px; min-height: 32px; color: #c7baf0; font-size: 13px; transition: color 160ms ease-out; }
+.studio-about-links a:hover { color: #f7f6ff; }
+.studio-about-links a:active { transform: translateY(1px); }
+.studio-about-links .studio-about-profile-link { min-height: 36px; padding-inline: 14px; border: 1px solid #b39bff29; border-radius: 999px; background: #b39bff07; transition: color 160ms ease-out, background 160ms ease-out, border-color 160ms ease-out; }
+.studio-about-links .studio-about-profile-link:hover { border-color: #b39bff50; background: #b39bff12; }
+.studio-about-links .studio-about-more-link { color: #e3dbf6; }
 .studio-about-signature {
   display: flex;
   flex-direction: column;
@@ -111,6 +118,8 @@
   .studio-about-copy .studio-eyebrow { margin-bottom: 19px; }
   .studio-about h2 { font-size: clamp(33px, 8.5vw, 48px); margin-bottom: 24px; }
   .studio-about-copy > p:not(.studio-eyebrow) { font-size: 15px; line-height: 1.8; }
+  .studio-about-links { column-gap: 16px; }
+  .studio-about-links a { font-size: 12px; }
   .studio-about-signature { display: grid; grid-template-columns: 86px auto; column-gap: 20px; width: fit-content; text-align: left; padding: 0; }
   .studio-about-emblem { width: 86px; height: 86px; grid-row: span 2; }
   .studio-about-emblem::after { inset: 0; }

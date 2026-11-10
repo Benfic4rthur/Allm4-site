@@ -1,0 +1,61 @@
+html:has(.studio-about--story) { scrollbar-gutter: stable; }
+.studio-about.studio-about--story {
+  display: block;
+  height: 100svh;
+  height: 100dvh;
+  min-height: 0;
+  padding-block: 0;
+}
+.studio-story { position: relative; display: grid; grid-template-rows: minmax(0, 1fr); height: 100%; }
+.studio-story-scroll { position: relative; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); min-height: 0; overflow: hidden; scrollbar-width: none; }
+.studio-story-scroll:focus-visible { outline: 2px solid #b39bff; outline-offset: 4px; border-radius: 3px; }
+.studio-story-slide { position: relative; grid-area: 1 / 1; min-width: 0; min-height: 0; height: 100%; visibility: hidden; pointer-events: none; }
+.studio-story-slide[data-story-visible="true"] { visibility: visible; }
+.studio-story-slide[data-story-active="true"] { pointer-events: auto; }
+.studio-story-panel { display: flex; flex-direction: column; height: 100%; overflow-y: auto; padding-block: clamp(24px, 4.5vh, 48px); scrollbar-width: none; }
+.studio-story-scroll::-webkit-scrollbar, .studio-story-panel::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.studio-story-panel > * { flex-shrink: 0; margin-block: auto; }
+.studio-story-panel > *, .studio-story-panel .profile-portrait, .studio-story-panel .profile-license-app, .studio-story-panel .profile-license-service { animation: none !important; opacity: 1; transform: none; }
+.studio-story-introduction { width: 100%; }
+.studio-story-principles { display: flex; flex-wrap: wrap; gap: 12px 30px; margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--studio-line); color: #a99bbd; font-size: 11px; }
+
+.studio-story button:focus-visible { outline: 2px solid #b39bff; outline-offset: 3px; }
+.studio-story-panel .profile-slide { width: 100%; padding-block: 0; border: 0; background: transparent; scroll-margin-top: 0; }
+.studio-story-panel .profile-hero { gap: 80px; }
+.studio-about .profile-hero h2 { margin: 0 0 24px; font-size: clamp(40px, 5vw, 68px); }
+.studio-about .profile-hero h2 > span { display: block; margin-top: 12px; color: #c7baf0; font-size: .58em; line-height: 1.2; letter-spacing: -.03em; }
+.studio-story-panel .profile-portrait { max-width: 290px; }
+.studio-story-panel .profile-section { gap: 60px; }
+.studio-about .profile-section-intro h2 { font-size: clamp(28px, 3.3vw, 46px); }
+.studio-story-panel .profile-job { margin-bottom: 25px; }
+.studio-story-panel .profile-case { gap: 65px; }
+.studio-about .profile-case h2 { max-width: 480px; margin: 19px 0 24px; font-size: clamp(27px, 2.7vw, 38px); line-height: 1.2; font-weight: 450; letter-spacing: -.035em; }
+.studio-story-panel .profile-closing { min-height: 300px; }
+.studio-about .profile-closing h2 { margin: 0 0 18px; font-size: clamp(44px, 5vw, 70px); }
+.studio-story-panel .profile-closing p { max-width: 450px; font-size: 15px; line-height: 1.8; }
+.studio-story-panel .profile-contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
+.studio-story-panel .profile-contact-links .profile-hero-links { margin: 0; }
+@media (max-width: 900px) {
+  .studio-story-panel .profile-hero { gap: 36px; }
+  .studio-story-panel .profile-section { gap: 28px; }
+  .studio-story-panel .profile-case { gap: 30px; }
+}
+@media (max-width: 720px) {
+  .studio-story-panel { padding-block: 26px; }
+
+  .studio-story-principles { gap: 10px 18px; margin-top: 26px; padding-top: 16px; font-size: 10px; }
+  .studio-story-panel .profile-hero { grid-template-columns: 1fr; gap: 28px; }
+  .studio-about .profile-hero h2 { font-size: 39px; }
+  .studio-story-panel .profile-portrait { display: flex; align-items: center; justify-self: start; gap: 17px; max-width: none; }
+  .studio-story-panel .profile-portrait > img { width: 86px; height: 86px; border-radius: 14px; object-fit: cover; }
+  .studio-story-panel .profile-portrait figcaption { margin: 0; }
+  .studio-story-panel .profile-section { grid-template-columns: 1fr; }
+  .studio-about .profile-section-intro h2 { font-size: 30px; }
+  .studio-about .profile-case h2 { font-size: 28px; }
+  .studio-story-panel .profile-closing { flex-direction: column; align-items: flex-start; justify-content: center; gap: 30px; }
+  .studio-about .profile-closing h2 { font-size: 44px; }
+  .studio-story-panel .profile-closing p { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .studio-story *, .studio-story *::before, .studio-story *::after { scroll-behavior: auto; animation: none !important; transition: none !important; }
+}

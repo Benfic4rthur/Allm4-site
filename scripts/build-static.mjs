@@ -6,6 +6,10 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const next = join(root, "node_modules", "next", "dist", "bin", "next");
 
+const gelamac = spawnSync(process.execPath, [join(root, "scripts/build-gelamac.mjs")], { cwd: root, stdio: "inherit" });
+if (gelamac.error) throw gelamac.error;
+if (gelamac.status !== 0) process.exit(gelamac.status ?? 1);
+
 const build = spawnSync(process.execPath, [next, "build"], {
   cwd: root,
   env: {
@@ -22,6 +26,11 @@ if (build.status !== 0) process.exit(build.status ?? 1);
 
 for (const file of [
   "index.html",
+  "gelamac/index.html",
+  "gelamac/images/gelamac-icon.png",
+  "gelamac/scrollcraft/scrollcraft.js",
+  "gelamac/downloads/GelaMac-macOS-arm64.zip",
+  "products/gelamac-icon.png",
   "local-ia/index.html",
   "beira/index.html",
   "products/beira-icon.svg",

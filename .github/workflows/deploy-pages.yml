@@ -48,14 +48,14 @@ jobs:
         run: npm run lint
 
       - name: Validate release parsing
-        run: node --experimental-strip-types --test tests/releases.test.mjs tests/beira-releases.test.mjs tests/codex-reset-releases.test.mjs tests/canalnongrato-releases.test.mjs tests/tubeorder-releases.test.mjs
+        run: node --experimental-strip-types --test tests/releases.test.mjs tests/beira-releases.test.mjs tests/codex-reset-releases.test.mjs tests/canalnongrato-releases.test.mjs tests/tubeorder-releases.test.mjs tests/gelamac-releases.test.mjs
 
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
           PAGES_BASE_PATH: ""
           NEXT_PUBLIC_BASE_PATH: ""
-        run: npx next build
+        run: npm run build:static
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0

@@ -34,5 +34,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: "https://allm4.com/gelamac/",
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
 }

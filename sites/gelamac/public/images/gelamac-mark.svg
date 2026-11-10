@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100 100">
+  <title>GelaMac: floco de neve com ventoinha</title>
+  <defs>
+    <path id="arm" d="M0 20V44M-10 39L0 31L10 39" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="blade" d="M2.2 5C6 7 14 11 11 16C10 20 1 21-3 19C-8 19-9 13-7 10C-6 7-4 5-3 4.3Z" fill="black"/>
+    <mask id="flake" maskUnits="userSpaceOnUse" x="0" y="0" width="100" height="100">
+      <g transform="translate(50 50)">
+        <use href="#arm"/><use href="#arm" transform="rotate(60)"/><use href="#arm" transform="rotate(120)"/>
+        <use href="#arm" transform="rotate(180)"/><use href="#arm" transform="rotate(240)"/><use href="#arm" transform="rotate(300)"/>
+        <circle r="23" fill="white"/>
+        <use href="#blade"/><use href="#blade" transform="rotate(90)"/><use href="#blade" transform="rotate(180)"/><use href="#blade" transform="rotate(270)"/>
+        <circle r="2.8" fill="black"/>
+      </g>
+    </mask>
+  </defs>
+  <path d="M0 0H100V100H0Z" fill="currentColor" mask="url(#flake)"/>
+</svg>

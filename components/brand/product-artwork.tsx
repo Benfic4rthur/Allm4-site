@@ -12,6 +12,7 @@ const artworkDescriptions: Record<string, string> = {
   "allm4-local-ia": "Interface real do ALLM4 Local IA, com chat, imagem e projetos.",
   beira: "Ilustração do Beira: um trackpad com volume na borda esquerda e brilho na borda direita.",
   "codex-reset": "Ilustração do Codex Reset no notch do Mac, com franquia restante, atividade e próximos resets. Dados de demonstração.",
+  gelamac: "GelaMac: ícone oficial de neve com ventoinha e temperatura ilustrativa na barra de menus do Mac.",
 };
 
 export function ProductArtwork({ product }: { product: Product }) {
@@ -102,6 +103,12 @@ export function ProductArtwork({ product }: { product: Product }) {
               <div className="studio-art-reset-last"><RotateCw size={7} /> Último reset · há 6h</div>
             </div>
             <span className="studio-art-reset-caption">SEU CODEX. SEMPRE À VISTA.</span>
+          </div>
+        ) : product.slug === "gelamac" ? (
+          <div className="studio-art-gelamac">
+            <div className="studio-art-gelamac-ring" />
+            <Image src={`${publicBasePath}${product.icon}`} alt="" width={112} height={112} unoptimized />
+            <div className="studio-art-gelamac-temperature"><Image src={`${publicBasePath}${product.icon}`} alt="" width={18} height={18} unoptimized /><strong>54<span>°C</span></strong><span>Um respiro para o seu Mac.</span></div>
           </div>
         ) : (
           <div className="studio-art-app-window">

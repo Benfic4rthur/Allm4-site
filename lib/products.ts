@@ -84,4 +84,15 @@ export const products: Product[] = [
     url: "/codex-reset/",
     ctaLabel: "Conhecer Codex Reset",
   },
+  {
+    name: "GelaMac",
+    slug: "gelamac",
+    description:
+      "Temperatura à vista e resfriamento na hora certa. Controle as ventoinhas pela barra de menus. Prévia validada no MacBook Pro M1 Pro; outros modelos ainda não foram validados.",
+    icon: "/products/gelamac-icon.png",
+    platforms: ["macOS 14+", "Apple Silicon", "Com ventoinhas"],
+    status: "Prévia",
+    url: "/gelamac/",
+    ctaLabel: "Conhecer GelaMac",
+  },
 ];

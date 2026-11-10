@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    "sites/gelamac/.next/**",
+    "sites/gelamac/out/**",
+    "sites/gelamac/next-env.d.ts",
+    "sites/gelamac/public/scrollcraft/**",
+    "public/gelamac/**",
   ]),
   {
     files: ["components/ui/**/*.{ts,tsx}", "hooks/use-mobile.ts"],

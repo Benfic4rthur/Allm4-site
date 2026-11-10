@@ -375,3 +375,16 @@
     transition: none !important;
   }
 }
+
+/* Keep the Codex Reset artwork and mint palette, framed for a half-width card. */
+.studio-art--codex-reset .studio-art-reset-screen { top: 8px; }
+.studio-art--codex-reset .studio-art-reset-caption { top: 151px; }
+.studio-art--gelamac { background: radial-gradient(ellipse at 50% 80%, #193c50, #102331 55%, #0b1721); }
+.studio-art-gelamac { position: relative; display: flex; align-items: center; flex-direction: column; height: 100%; padding-top: 8px; }
+.studio-art-gelamac > img { position: relative; z-index: 1; width: 112px; height: 112px; transform: rotate(-7deg); filter: drop-shadow(0 12px 15px #00101e66); }
+.studio-art-gelamac-ring { position: absolute; top: -45px; width: 245px; height: 245px; border: 1px solid #a9e4f116; border-radius: 50%; }
+.studio-art-gelamac-ring::after { content: ''; position: absolute; inset: 28px; border: 1px solid #a9e4f10c; border-radius: 50%; }
+.studio-art-gelamac-temperature { display: flex; align-items: center; gap: 8px; position: relative; z-index: 2; margin-top: 3px; padding: 8px 12px; border: 1px solid #a9e4f129; border-radius: 8px; background: #142c3b; color: #d0edf6; }
+.studio-art-gelamac-temperature strong { font-size: 16px; font-weight: 500; line-height: 1; }
+.studio-art-gelamac-temperature strong span { font-size: 9px; margin-left: 2px; }
+.studio-art-gelamac-temperature > span { padding-left: 8px; border-left: 1px solid #a9e4f125; font-size: 8px; color: #a8c4d6; }

@@ -36,12 +36,21 @@ html:has(.studio-about--story) { scrollbar-gutter: stable; }
 .studio-story-panel .profile-contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; }
 .studio-story-panel .profile-contact-links .profile-hero-links { margin: 0; }
 @media (max-width: 900px) {
+  html:has(.studio-about--story) { scrollbar-gutter: auto; }
+  .studio-about.studio-about--story { height: auto; min-height: 0; }
+  .studio-story, .studio-story-scroll { display: block; height: auto; overflow: visible; }
+  .studio-story-slide { height: auto; visibility: visible; pointer-events: auto; }
+  .studio-story-slide + .studio-story-slide { border-top: 1px solid var(--studio-line); }
+  .studio-story-panel { display: block; height: auto; overflow: visible; padding-block: 44px; }
+  .studio-story-panel > * { margin-block: 0; }
+  .studio-story > .profile-sr-only { display: none; }
+  .studio-story-panel .profile-closing { min-height: 0; }
   .studio-story-panel .profile-hero { gap: 36px; }
   .studio-story-panel .profile-section { gap: 28px; }
   .studio-story-panel .profile-case { gap: 30px; }
 }
 @media (max-width: 720px) {
-  .studio-story-panel { padding-block: 26px; }
+  .studio-story-panel { padding-block: 36px; }
 
   .studio-story-principles { gap: 10px 18px; margin-top: 26px; padding-top: 16px; font-size: 10px; }
   .studio-story-panel .profile-hero { grid-template-columns: 1fr; gap: 28px; }

@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, useEffect, useRef, useState } from "react";
+import { Children, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 
 type StudioStoryProps = {
@@ -24,6 +24,15 @@ const PIECES = [
 
 const clamp = (value: number, min = 0, max = 1) => Math.max(min, Math.min(max, value));
 
+const COMPACT_QUERY = "(max-width: 900px)";
+function subscribeCompact(onChange: () => void) {
+  const media = window.matchMedia(COMPACT_QUERY);
+  media.addEventListener("change", onChange);
+  return () => media.removeEventListener("change", onChange);
+}
+const compactSnapshot = () => window.matchMedia(COMPACT_QUERY).matches;
+const serverCompactSnapshot = () => true;
+
 function piecesOf(panel: HTMLElement) {
   const bounds = panel.getBoundingClientRect();
   const candidates = Array.from(panel.querySelectorAll<HTMLElement>(PIECES)).filter(piece => {
@@ -38,9 +47,13 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
   const stageRef = useRef<HTMLDivElement>(null);
   const slides = Children.toArray(children);
   const count = slides.length;
+  const compact = useSyncExternalStore(subscribeCompact, compactSnapshot, serverCompactSnapshot);
   const [frame, setFrame] = useState<Frame>({ from: 0, to: 0, current: 0, reduced: false });
 
   useEffect(() => {
+    // Phones use document scrolling. Never install the scroll lock or touch
+    // interception there; browser chrome resizing must not restart the story.
+    if (compact) return;
     const root = rootRef.current;
     const stage = stageRef.current;
     const section = stage?.closest<HTMLElement>("#sobre");
@@ -377,18 +390,18 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
       window.removeEventListener("touchcancel", onTouchEnd);
       media.removeEventListener("change", onMotionChange);
     };
-  }, [count]);
+  }, [count, compact]);
 
   return (
-    <div className="studio-story" ref={rootRef}>
-      <div className="studio-story-scroll" ref={stageRef} tabIndex={0} role="region" aria-label="Apresentação sobre Arthur Benfica e o ALLM4">
+    <div className="studio-story" data-story-layout={compact ? "flow" : "scrub"} ref={rootRef}>
+      <div className="studio-story-scroll" ref={stageRef} tabIndex={compact ? undefined : 0} role="region" aria-label="Apresentação sobre Arthur Benfica e o ALLM4">
         {slides.map((slide, index) => (
           <div
             className="studio-story-slide"
             data-story-visible={index === frame.from || index === frame.to}
             data-story-active={index === frame.current}
-            inert={index !== frame.current}
-            aria-hidden={index !== frame.current}
+            inert={!compact && index !== frame.current}
+            aria-hidden={!compact && index !== frame.current}
             key={chapters[index] ?? index}
             role="group"
             aria-label={chapters[index]}
@@ -397,7 +410,7 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
           </div>
         ))}
       </div>
-      <span className="profile-sr-only" aria-live="polite" aria-atomic="true">{chapters[frame.current]}</span>
+      <span className="profile-sr-only" aria-live={compact ? "off" : "polite"} aria-atomic="true">{chapters[frame.current]}</span>
     </div>
   );
 }

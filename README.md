@@ -134,6 +134,8 @@ O Sobre mantém a altura de uma tela. A página desce normalmente até a seção
 
 O controlador remove os bloqueios de rolagem e cancela as animações ao desmontar o componente. Em movimento reduzido, preserva a transição de opacidade e dispensa os deslocamentos e a perspectiva. O contato usa o WhatsApp informado pelo Arthur, com GitHub e LinkedIn como links adicionais. As experiências e as tecnologias ficam nos dados do perfil; as duas formações constam como em andamento, e o inglês, como fluente.
 
+Em telas de até 900 px, o Sobre usa uma sequência vertical com rolagem nativa da página. Não há trava, captura dos gestos de toque nem painéis com rolagem interna. Todos os conteúdos e links permanecem acessíveis, inclusive antes de carregar o JavaScript; ao mudar o tamanho da tela, o controlador do desktop é instalado ou removido conforme o breakpoint.
+
 ## Publicação
 
 O site continua hospedado no GitHub Pages, com o domínio `allm4.com`. Para evitar execuções desnecessárias, valide as mudanças localmente e envie os commits ao GitHub com `[skip actions]`. Quando a versão estiver pronta, acione uma única vez o workflow existente **Deploy Allm4 site to GitHub Pages** por `workflow_dispatch`, usando a branch `main`.

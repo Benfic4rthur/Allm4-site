@@ -37,17 +37,55 @@ html:has(.studio-about--story) { scrollbar-gutter: stable; }
 .studio-story-panel .profile-contact-links .profile-hero-links { margin: 0; }
 @media (max-width: 900px) {
   html:has(.studio-about--story) { scrollbar-gutter: auto; }
-  .studio-about.studio-about--story { height: auto; min-height: 0; }
-  .studio-story, .studio-story-scroll { display: block; height: auto; overflow: visible; }
-  .studio-story-slide { height: auto; visibility: visible; pointer-events: auto; }
-  .studio-story-slide + .studio-story-slide { border-top: 1px solid var(--studio-line); }
-  .studio-story-panel { display: block; height: auto; overflow: visible; padding-block: 44px; }
-  .studio-story-panel > * { margin-block: 0; }
+  .studio-about.studio-about--story { height: 100svh; min-height: 0; }
+  .studio-story { display: block; height: 100%; }
+  .studio-story-scroll { display: block; height: 100%; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: auto; touch-action: pan-y pinch-zoom; -webkit-overflow-scrolling: touch; }
+  .studio-about.studio-about--story:has(> .studio-story[data-touch-pinned="true"]) { height: calc(100svh + var(--touch-story-travel, 0px)); view-timeline-name: --studio-touch; view-timeline-axis: block; view-timeline-inset: 0; }
+  .studio-story[data-touch-pinned="true"] { position: sticky; top: 0; height: 100svh; overflow: clip; }
+  .studio-story[data-touch-pinned="true"] .studio-story-scroll { height: auto; overflow: visible; will-change: transform; }
+  .studio-story[data-touch-pinned="true"] .studio-story-slide { contain: paint; }
+  .studio-story[data-touch-native-timeline="true"] .studio-story-scroll { animation: studio-touch-flow 1s linear both; animation-timeline: --studio-touch; animation-range: contain; }
+  .studio-story[data-touch-native-timeline="true"] .studio-story-panel > .profile-slide > :first-child,
+  .studio-story[data-touch-native-timeline="true"] .studio-about-copy,
+  .studio-story[data-touch-native-timeline="true"] .studio-story-principles {
+    animation: studio-touch-copy 1s linear both !important;
+    animation-timeline: --studio-touch !important;
+    animation-range: contain var(--touch-scene-start) contain var(--touch-scene-end) !important;
+  }
+  .studio-story[data-touch-native-timeline="true"] .studio-story-panel > .profile-slide > :nth-child(2),
+  .studio-story[data-touch-native-timeline="true"] .studio-about-signature {
+    animation: studio-touch-visual 1s linear both !important;
+    animation-timeline: --studio-touch !important;
+    animation-range: contain var(--touch-scene-start) contain var(--touch-scene-end) !important;
+  }
+  .studio-story-slide { min-height: 100%; height: auto; visibility: visible; pointer-events: auto; }
+  .studio-story-panel { display: flex; min-height: 100svh; height: auto; overflow: visible; padding-block: 44px; }
+  .studio-story-panel > * { margin-block: auto; }
   .studio-story > .profile-sr-only { display: none; }
   .studio-story-panel .profile-closing { min-height: 0; }
   .studio-story-panel .profile-hero { gap: 36px; }
   .studio-story-panel .profile-section { gap: 28px; }
   .studio-story-panel .profile-case { gap: 30px; }
+  .studio-story-panel .profile-license-flow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px 24px; height: auto; padding-bottom: 24px; }
+  .studio-story-panel .profile-license-app, .studio-story-panel .profile-license-service { position: relative; inset: auto; width: 100%; min-width: 0; }
+  .studio-story-panel .profile-license-app { max-width: 218px; justify-self: start; }
+  .studio-story-panel .profile-license-service { max-width: 232px; justify-self: end; }
+  .studio-story-panel .profile-license-connector { display: none; }
+  .studio-story-panel .profile-license-figure figcaption { margin-top: 24px; }
+}
+@keyframes studio-touch-flow {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(0, calc(-1 * var(--touch-content-travel, 0px)), 0); }
+}
+@keyframes studio-touch-copy {
+  from { opacity: .2; transform: translate3d(0, 30px, 0); }
+  24%, 76% { opacity: 1; transform: none; }
+  to { opacity: .4; transform: translate3d(-20px, -24px, 0); }
+}
+@keyframes studio-touch-visual {
+  from { opacity: .15; transform: translate3d(30px, 24px, 0) scale(.97); }
+  34%, 84% { opacity: 1; transform: none; }
+  to { opacity: .4; transform: translate3d(20px, -20px, 0) scale(.985); }
 }
 @media (max-width: 720px) {
   .studio-story-panel { padding-block: 36px; }
@@ -64,6 +102,11 @@ html:has(.studio-about--story) { scrollbar-gutter: stable; }
   .studio-story-panel .profile-closing { flex-direction: column; align-items: flex-start; justify-content: center; gap: 30px; }
   .studio-about .profile-closing h2 { font-size: 44px; }
   .studio-story-panel .profile-closing p { font-size: 14px; }
+}
+@media (max-width: 600px) {
+  .studio-story-panel .profile-license-flow { grid-template-columns: 1fr; }
+  .studio-story-panel .profile-license-app { max-width: 184px; }
+  .studio-story-panel .profile-license-service { max-width: 220px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .studio-story *, .studio-story *::before, .studio-story *::after { scroll-behavior: auto; animation: none !important; transition: none !important; }

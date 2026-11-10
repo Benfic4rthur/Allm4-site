@@ -2,6 +2,7 @@
 
 import { Children, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
+import { useTouchStory } from "./use-touch-story";
 
 type StudioStoryProps = {
   chapters: readonly string[];
@@ -50,9 +51,10 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
   const compact = useSyncExternalStore(subscribeCompact, compactSnapshot, serverCompactSnapshot);
   const [frame, setFrame] = useState<Frame>({ from: 0, to: 0, current: 0, reduced: false });
 
+  useTouchStory(rootRef, stageRef, compact, count);
+
   useEffect(() => {
-    // Phones use document scrolling. Never install the scroll lock or touch
-    // interception there; browser chrome resizing must not restart the story.
+    // The native mobile scroller has its own motion and never uses this lock.
     if (compact) return;
     const root = rootRef.current;
     const stage = stageRef.current;
@@ -393,8 +395,8 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
   }, [count, compact]);
 
   return (
-    <div className="studio-story" data-story-layout={compact ? "flow" : "scrub"} ref={rootRef}>
-      <div className="studio-story-scroll" ref={stageRef} tabIndex={compact ? undefined : 0} role="region" aria-label="Apresentação sobre Arthur Benfica e o ALLM4">
+    <div className="studio-story" data-story-layout={compact ? "touch" : "scrub"} ref={rootRef}>
+      <div className="studio-story-scroll" ref={stageRef} tabIndex={0} role="region" aria-label="Apresentação sobre Arthur Benfica e o ALLM4">
         {slides.map((slide, index) => (
           <div
             className="studio-story-slide"

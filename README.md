@@ -134,7 +134,9 @@ O Sobre mantém a altura de uma tela. A página desce normalmente até a seção
 
 O controlador remove os bloqueios de rolagem e cancela as animações ao desmontar o componente. Em movimento reduzido, preserva a transição de opacidade e dispensa os deslocamentos e a perspectiva. O contato usa o WhatsApp informado pelo Arthur, com GitHub e LinkedIn como links adicionais. As experiências e as tecnologias ficam nos dados do perfil; as duas formações constam como em andamento, e o inglês, como fluente.
 
-Em telas de até 900 px, o Sobre usa uma sequência vertical com rolagem nativa da página. Não há trava, captura dos gestos de toque nem painéis com rolagem interna. Todos os conteúdos e links permanecem acessíveis, inclusive antes de carregar o JavaScript; ao mudar o tamanho da tela, o controlador do desktop é instalado ou removido conforme o breakpoint.
+Em telas de até 900 px, a própria rolagem nativa da página conduz o Sobre. Um quadro com `position: sticky` permanece na tela durante o percurso, enquanto o conteúdo acompanha a distância rolada. Funciona também quando o gesto começa fora do Sobre e percorre o sentido inverso ao subir. Não há captura de gestos, bloqueio do documento ou correções de `scrollY`. Sem JavaScript, os capítulos continuam acessíveis em um scroller nativo. Em movimento reduzido, preserva-se apenas o deslocamento necessário à leitura. O controlador do desktop permanece separado e é instalado ou removido conforme o breakpoint.
+
+O deslocamento principal e dois grupos visuais por capítulo usam animações CSS ligadas à mesma timeline quando o navegador oferece suporte. A cópia e o visual montam e desmontam com ritmos diferentes, sem recalcular animações por elemento ou executar JavaScript por quadro. As faixas de cada capítulo são medidas somente quando o layout muda. A alternativa para navegadores sem suporte atualiza somente uma transformação. Os limites de pintura de cada capítulo evitam que a atualização de um trecho invalide o restante da apresentação.
 
 ## Publicação
 

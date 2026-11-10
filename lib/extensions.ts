@@ -21,4 +21,14 @@ export const extensions: BrowserExtension[] = [
     url: "/canalnongrato/",
     ctaLabel: "Conhecer extensão",
   },
+  {
+    name: "TubeOrder",
+    slug: "tubeorder",
+    description: "Seu Assistir mais tarde, na ordem certa. Organize os vídeos por duração e deixe o YouTube seguir a sequência, dos mais curtos aos mais longos ou ao contrário.",
+    icon: "/tubeorder/brand/tubeorder.svg",
+    platforms: ["Microsoft Edge", "Google Chrome", "Computador"],
+    status: "Gratuita",
+    url: "/tubeorder/",
+    ctaLabel: "Conhecer extensão",
+  },
 ];

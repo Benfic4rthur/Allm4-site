@@ -103,3 +103,17 @@
   .studio-extension-card .studio-extension-browser { transition: none; }
   .studio-extension-card:hover .studio-extension-browser { transform: rotate(-3deg); }
 }
+
+/* TubeOrder has its own artwork; the CanalNonGrato presentation stays intact. */
+.studio-product.studio-extension-card--tubeorder{--product-accent:#bda0fa;background:linear-gradient(125deg,#1b1727,#14111e)}
+.studio-extension-card--tubeorder .studio-extension-art{min-height:310px;background:radial-gradient(ellipse at 70% 80%,#bda0fa18,transparent 70%),#17131f;border-color:#bda0fa1c}
+.studio-extension-card--tubeorder .studio-extension-trust svg{color:#bda0fa}
+.studio-tubeorder-browser{width:100%;max-width:370px;border:1px solid #bda0fa2c;border-radius:9px;background:#211a2b;box-shadow:0 15px 25px #0002;transform:rotate(2deg);transition:transform 350ms ease}
+.studio-extension-card--tubeorder:hover .studio-tubeorder-browser{transform:rotate(0) translateY(-3px)}
+.studio-tubeorder-copy{padding:18px 20px 24px}.studio-tubeorder-copy>p{font-size:25px;line-height:1.15;letter-spacing:-.045em;color:#eee6f8;margin:0 0 15px}.studio-tubeorder-copy em{color:#c5a8f7;font-style:normal}
+.studio-tubeorder-rule{display:flex;align-items:center;gap:7px;padding:5px 7px;background:#bda0fa12;border:1px solid #bda0fa23;border-radius:5px;font-size:8px;color:#d4bdf0}.studio-tubeorder-rule>svg{margin-left:auto;color:#9fcca9}
+.studio-tubeorder-queue{display:grid;gap:8px;margin-top:12px}.studio-tubeorder-queue>div{display:flex;gap:7px;align-items:center;font-size:8px;color:#c6b9d5}.studio-tubeorder-queue small{font-size:7px;color:#8d789e;width:7px}.studio-tubeorder-queue b{font-size:7px;font-weight:500;margin-left:auto;color:#baa3d0;font-variant-numeric:tabular-nums}
+.studio-tubeorder-thumb{display:grid;place-items:center;width:33px;height:21px;flex:none;background:linear-gradient(130deg,#b793c0,#554272);border-radius:3px;color:#ead9ff}.studio-tubeorder-thumb--1{background:linear-gradient(130deg,#7599c0,#39325e)}.studio-tubeorder-thumb--2{background:linear-gradient(130deg,#82b6ab,#454a6f)}
+.studio-extension-card--tubeorder .studio-tubeorder-badge{border-color:#bda0fa30;background:#231b2e;transform:rotate(-3deg)}
+@media(max-width:720px){.studio-extension-card--tubeorder .studio-extension-art{min-height:320px}.studio-tubeorder-copy{padding:18px 20px 27px}}
+@media(prefers-reduced-motion:reduce){.studio-tubeorder-browser{transition:none}.studio-extension-card--tubeorder:hover .studio-tubeorder-browser{transform:rotate(2deg)}}

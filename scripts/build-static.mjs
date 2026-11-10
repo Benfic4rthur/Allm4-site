@@ -34,6 +34,9 @@ for (const file of [
   "canalnongrato/index.html",
   "canalnongrato/brand/canalnongrato.svg",
   "canalnongrato/share.png",
+  "tubeorder/index.html",
+  "tubeorder/brand/tubeorder.svg",
+  "tubeorder/share.png",
 ]) {
   if (!existsSync(join(root, "out", file))) {
     throw new Error(`Exportação incompleta: out/${file} não foi gerado.`);

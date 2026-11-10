@@ -59,8 +59,8 @@
 
 .studio-footer-columns {
   display: grid;
-  grid-template-columns: minmax(260px, 1.25fr) repeat(2, minmax(150px, .55fr));
-  gap: 70px;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(3, minmax(130px, .65fr));
+  gap: 45px;
   padding-top: 62px;
 }
 
@@ -147,9 +147,11 @@
   }
 
   .studio-footer-columns {
-    grid-template-columns: 1.4fr .7fr .7fr;
-    gap: 42px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 36px;
   }
+
+  .studio-footer-brand { grid-column: 1 / -1; }
 }
 
 @media (max-width: 700px) {

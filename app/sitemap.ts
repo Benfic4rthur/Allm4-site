@@ -24,5 +24,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.8,
     },
+    {
+      url: "https://allm4.com/canalnongrato/",
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
   ];
 }

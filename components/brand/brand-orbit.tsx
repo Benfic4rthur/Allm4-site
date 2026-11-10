@@ -5,9 +5,11 @@ import { ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { BrandMark } from "@/components/brand/brand-mark";
 import { products } from "@/lib/products";
+import { extensions } from "@/lib/extensions";
 import "./brand-orbit.css";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const orbitProducts = [...products, ...extensions];
 type Phase = "idle" | "gathering" | "dropping" | "revealing";
 
 export function BrandOrbit() {
@@ -84,9 +86,9 @@ export function BrandOrbit() {
           <div className="brand-orbit-ring brand-orbit-ring-outer" aria-hidden="true" />
           <div className="brand-orbit-ring brand-orbit-ring-inner" aria-hidden="true" />
           <div className="brand-orbit-tilt">
-            <ul className="brand-orbit-apps" aria-label="Aplicativos da ALLM4">
-              {products.map((product, index) => (
-                <li className="brand-orbit-track" style={{ "--orbit-start": `${index * (360 / products.length) - 42}deg` } as CSSProperties} key={product.slug}>
+            <ul className="brand-orbit-apps" aria-label="Aplicativos e extensões da ALLM4">
+              {orbitProducts.map((product, index) => (
+                <li className="brand-orbit-track" style={{ "--orbit-start": `${index * (360 / orbitProducts.length) - 42}deg` } as CSSProperties} key={product.slug}>
                   <div className="brand-orbit-position">
                     <div className="brand-orbit-upright">
                       <a
@@ -113,7 +115,7 @@ export function BrandOrbit() {
         <div className="brand-orbit-signature" aria-hidden="true"><strong>ALLM4</strong><span>SOFTWARE FOR A BRIGHTER DAY</span></div>
       </div>
       <button className="brand-orbit-explore" type="button" onClick={exploreProducts} disabled={phase !== "idle"} aria-controls="produtos">
-        <span>Encontre seu próximo app</span><ArrowDown size={17} aria-hidden="true" />
+        <span>Encontre sua próxima ferramenta</span><ArrowDown size={17} aria-hidden="true" />
       </button>
     </div>
   );

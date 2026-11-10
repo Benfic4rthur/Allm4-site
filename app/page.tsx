@@ -5,6 +5,7 @@ import { BrandOrbit } from "@/components/brand/brand-orbit";
 import { ProductArtwork } from "@/components/brand/product-artwork";
 import { StudioAbout } from "@/components/brand/studio-about";
 import { StudioFooter } from "@/components/brand/studio-footer";
+import { StudioExtensions } from "@/components/brand/studio-extensions";
 import { products } from "@/lib/products";
 import "./umbrella.css";
 
@@ -17,6 +18,11 @@ export default function Home() {
       <header className="studio-header">
         <div className="studio-shell studio-header-inner">
           <BrandLockup />
+          <nav className="studio-main-nav" aria-label="Navegação principal">
+            <a href="#produtos">Aplicativos</a>
+            <a className="studio-nav-extensions" href="#extensoes">Extensões</a>
+            <a href="#sobre">Sobre</a>
+          </nav>
         </div>
       </header>
       <main id="conteudo">
@@ -33,7 +39,7 @@ export default function Home() {
               Sobre a ALLM4 <ArrowUpRight size={14} aria-hidden="true" />
             </a>
             <div className="studio-hero-meta" aria-label="Áreas de atuação">
-              <span>Aplicativos</span><span>Desktop</span><span>Experiências de software</span>
+              <span>Aplicativos</span><span>Extensões</span><span>Experiências de software</span>
             </div>
           </div>
           <BrandOrbit />
@@ -77,6 +83,7 @@ export default function Home() {
             ))}
           </div>
         </section>
+        <StudioExtensions />
         <StudioAbout />
       </main>
       <StudioFooter />

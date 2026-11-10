@@ -1,6 +1,7 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 import { BrandLockup } from "@/components/brand/brand-mark";
 import { products } from "@/lib/products";
+import { extensions } from "@/lib/extensions";
 import { siteConfig } from "@/lib/site-config";
 import "./studio-footer.css";
 
@@ -18,7 +19,7 @@ export function StudioFooter() {
           <div>
             <h2 id="studio-signature-title">Produtos diferentes. A mesma assinatura.</h2>
             <p>
-              Um aplicativo pode ter seu próprio nome. O compromisso por trás
+              Cada produto pode ter seu próprio nome. O compromisso por trás
               dele continua sendo ALLM4.
             </p>
           </div>
@@ -36,7 +37,7 @@ export function StudioFooter() {
         </div>
 
         <nav className="studio-footer-column" aria-label="Produtos">
-          <h3>PRODUTOS</h3>
+          <h3>APLICATIVOS</h3>
           {products.map((product) => (
             <a
               key={product.slug}
@@ -46,6 +47,21 @@ export function StudioFooter() {
               aria-label={`${product.name} (abre em nova aba)`}
             >
               {product.name} <ArrowUpRight size={11} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+
+        <nav className="studio-footer-column" aria-label="Extensões">
+          <h3>EXTENSÕES</h3>
+          {extensions.map((extension) => (
+            <a
+              key={extension.slug}
+              href={`${publicBasePath}${extension.url}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${extension.name} (abre em nova aba)`}
+            >
+              {extension.name} <ArrowUpRight size={11} aria-hidden="true" />
             </a>
           ))}
         </nav>

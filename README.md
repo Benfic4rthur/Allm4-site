@@ -37,6 +37,9 @@ O projeto usa React 19, TypeScript, Next.js 16, Vinext/Vite e Tailwind CSS 4. A 
 - `components/brand/studio-about.tsx`: seção institucional escura, com a história do estúdio independente, o símbolo da marca e os três princípios; destino dos links Sobre.
 - `components/brand/studio-footer.tsx`: faixa de assinatura e rodapé com produtos e contato, nas proporções da versão original e com o fundo escuro da nova identidade.
 - `lib/products.ts`: catálogo centralizado de aplicativos.
+- `lib/extensions.ts`: catálogo de extensões para navegador.
+- `components/brand/studio-extensions.tsx`: seção de extensões na home, com o card do CanalNonGrato.
+- `app/canalnongrato/`: página completa da extensão, com estilos isolados e instalação para Edge e Chrome.
 - `lib/site-config.ts`: links, contato e dados do produto já publicado.
 - `public/brand/allm4-mark.svg`: símbolo oficial usado pela nova apresentação.
 - `components/allm4/`: componentes da apresentação anterior do aplicativo, preservados para referência e reaproveitamento técnico.
@@ -53,6 +56,14 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 5. Codex Reset, com destino para a página interna `/codex-reset/`.
 
 Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados. Nas páginas do Beira e do Codex Reset, o cabeçalho mostra uma versão compacta ao lado do nome, consultada no GitHub e compartilhada com a informação de versão dos downloads; o número não é fixado no HTML.
+
+## Extensões
+
+A navegação da home tem o destino **Extensões**, em `/#extensoes`. Essa seção aparece depois do catálogo de aplicativos e apresenta um card próprio do CanalNonGrato, com o ícone oficial, cores terracota, prévia do filtro, navegadores compatíveis e acesso à página `/canalnongrato/`. O ícone da extensão também participa da órbita animada junto dos aplicativos, com distribuição automática dos seis itens. O rodapé mantém os links de aplicativos e extensões em colunas próprias.
+
+`app/canalnongrato/` integra a página criada para a extensão diretamente ao ALLM4. Ela preserva a demonstração interativa de bloquear/desfazer, o guia de instalação manual para Edge e Chrome, a cópia dos endereços do navegador e os links para o repositório público. Os downloads são consultados na última release estável do repositório público `Benfic4rthur/CanalNonGrato`, sem hospedar um ZIP fixo no ALLM4. Versão, tamanho e link pertencem sempre à mesma release. A consulta ocorre ao abrir a página, ao voltar à aba e a cada cinco minutos enquanto visível. Se a API estiver indisponível ou a release estiver incompleta, o destino é a página pública `releases/latest`, sem oferecer um pacote antigo. Não há cadastro nem publicação nas lojas dos navegadores.
+
+Os estilos da página ficam limitados a `.cng-site` para preservar os outros produtos. O endereço canônico e a imagem de compartilhamento usam `https://allm4.com/canalnongrato/`. Para regenerar a imagem, execute `node scripts/render-canalnongrato-share.mjs`. Para disponibilizar uma atualização sem republicar o ALLM4, publique uma release estável (por exemplo, `v1.1.0`) com o arquivo `CanalNonGrato-1.1.0.zip` anexado. O nome estável `CanalNonGrato.zip` também é aceito. Apenas enviar commits ao repositório não cria um pacote de distribuição. O site não gasta GitHub Actions para descobrir novas releases; a instalação e a atualização da extensão no navegador continuam manuais.
 
 As plataformas e os requisitos de cada aplicativo aparecem no próprio cartão, incluindo macOS e as arquiteturas de cada app.
 

@@ -31,6 +31,9 @@ for (const file of [
   "jacopiei/index.html",
   "jacopiei/app.js",
   "jacopiei/assets/brand.svg",
+  "canalnongrato/index.html",
+  "canalnongrato/brand/canalnongrato.svg",
+  "canalnongrato/share.png",
 ]) {
   if (!existsSync(join(root, "out", file))) {
     throw new Error(`Exportação incompleta: out/${file} não foi gerado.`);

@@ -1,4 +1,5 @@
 "use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useState } from "react";
 import {
   ArrowUpRight,
@@ -34,9 +35,10 @@ const information = {
 };
 type Info = keyof typeof information;
 export function Footer() {
+  useSiteLanguage();
   const [active, setActive] = useState<Info | null>(null);
   const content = active ? information[active] : null;
-  return (
+  return localizeTree((
     <>
       <footer className="footer wrap">
         <div className="footer-main">
@@ -187,5 +189,5 @@ export function Footer() {
         </DialogContent>
       </Dialog>
     </>
-  );
+  ));
 }

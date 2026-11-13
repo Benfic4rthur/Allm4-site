@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Check, ChevronDown, Command, Copy, CornerDownLeft, MessageSquare, MousePointer2, Power, RotateCw, Settings2, Wifi } from "lucide-react";
 import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
 import { codexResetInstallCommand } from "@/lib/codex-reset";
@@ -7,13 +7,15 @@ import { codexResetInstallCommand } from "@/lib/codex-reset";
 type ScreenMode = "notch" | "capsule";
 
 function QuotaRing({ size = 43 }: { size?: number }) {
-  return <span className="cr-quota" style={{ "--quota-size": `${size}px` } as CSSProperties}>
+  useSiteLanguage();
+  return localizeTree(<span className="cr-quota" style={{ "--quota-size": `${size}px` } as CSSProperties}>
     <svg viewBox="0 0 48 48" aria-hidden="true"><circle className="cr-quota-track" cx="24" cy="24" r="20" /><circle className="cr-quota-fill" cx="24" cy="24" r="20" /></svg>
     <strong>87<small>%</small></strong>
-  </span>;
+  </span>);
 }
 
 export function CodexResetDemo() {
+  useSiteLanguage();
   const [mode, setMode] = useState<ScreenMode>("notch");
   const [expanded, setExpanded] = useState(true);
 
@@ -25,7 +27,7 @@ export function CodexResetDemo() {
     if (event.pointerType === "mouse") setExpanded(false);
   }
 
-  return <div className="cr-demo" aria-label="Demonstração interativa do Codex Reset">
+  return localizeTree(<div className="cr-demo" aria-label="Demonstração interativa do Codex Reset">
     <div className="cr-demo-label">UM OLHAR. TUDO NO SEU LUGAR.<span>01 / DEMO</span></div>
     <div className="cr-laptop">
       <div className="cr-screen" data-mode={mode}>
@@ -49,7 +51,7 @@ export function CodexResetDemo() {
     </div>
     <div className="cr-demo-controls"><div className="cr-segmented" role="group" aria-label="Tipo de tela da demonstração"><button type="button" aria-pressed={mode === "notch"} onClick={() => setMode("notch")}>Com notch</button><button type="button" aria-pressed={mode === "capsule"} onClick={() => setMode("capsule")}>Sem notch</button></div><span><MousePointer2 size={12} aria-hidden="true" /> Passe o mouse ou toque no painel</span></div>
     <p className="cr-demo-disclaimer">Demonstração com dados ilustrativos. A página não acessa sua conta.</p>
-  </div>;
+  </div>);
 }
 
 const fieldOptions = [
@@ -67,9 +69,10 @@ const presets: { name: string; fields: Field[] }[] = [
 ];
 
 export function CodexResetCustomizer() {
+  useSiteLanguage();
   const [fields, setFields] = useState<Field[]>(["project", "model", "effort"]);
   function toggle(id: Field) { setFields((current) => current.includes(id) ? current.filter((field) => field !== id) : [...current, id]); }
-  return <div className="cr-customizer">
+  return localizeTree(<div className="cr-customizer">
     <div className="cr-customizer-heading"><span>Seu painel, do seu jeito</span><Settings2 size={15} aria-hidden="true" /></div>
     <div className="cr-customizer-body">
       <div className="cr-preset-row" role="group" aria-label="Exemplos de organização do painel">{presets.map((preset) => <button key={preset.name} type="button" aria-pressed={preset.fields.length === fields.length && preset.fields.every((field) => fields.includes(field))} onClick={() => setFields([...preset.fields])}>{preset.name}</button>)}</div>
@@ -85,10 +88,11 @@ export function CodexResetCustomizer() {
       <div className="cr-field-options" role="group" aria-label="Informações da prévia">{fieldOptions.map((field) => <button type="button" key={field.id} aria-pressed={fields.includes(field.id)} onClick={() => toggle(field.id)}>{fields.includes(field.id) ? <Check size={12} aria-hidden="true" /> : <span aria-hidden="true">+</span>}{field.label}</button>)}</div>
       <p className="cr-customizer-note"><CornerDownLeft size={12} aria-hidden="true" /> No aplicativo, arraste os campos e ajuste também as linhas de detalhes.</p>
     </div>
-  </div>;
+  </div>);
 }
 
 export function CodexResetInstallCommand() {
+  useSiteLanguage();
   const [copied, setCopied] = useState(false);
   const [failed, setFailed] = useState(false);
   const codeRef = useRef<HTMLElement>(null);
@@ -108,9 +112,10 @@ export function CodexResetInstallCommand() {
       }
     }
   }
-  return <div className="cr-command"><div><span>TERMINAL · APÓS COPIAR PARA APLICATIVOS</span><button type="button" onClick={copy}>{copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}{copied ? "Copiado" : "Copiar comando"}</button></div><pre><code ref={codeRef}>{codexResetInstallCommand}</code></pre><span className="cr-command-status" role="status">{failed ? "Comando selecionado. Copie com ⌘C." : copied ? "Comando copiado. Cole no Terminal para liberar a primeira abertura." : ""}</span></div>;
+  return localizeTree(<div className="cr-command"><div><span>TERMINAL · APÓS COPIAR PARA APLICATIVOS</span><button type="button" onClick={copy}>{copied ? <Check size={14} aria-hidden="true" /> : <Copy size={14} aria-hidden="true" />}{copied ? "Copiado" : "Copiar comando"}</button></div><pre><code ref={codeRef}>{codexResetInstallCommand}</code></pre><span className="cr-command-status" role="status">{failed ? "Comando selecionado. Copie com ⌘C." : copied ? "Comando copiado. Cole no Terminal para liberar a primeira abertura." : ""}</span></div>);
 }
 
 export function CodexResetActivityMark() {
-  return <div className="cr-activity-mark" aria-hidden="true"><MessageSquare size={20} strokeWidth={1.4} /><span /><span /><span /><span /><span /><span /><span /></div>;
+  useSiteLanguage();
+  return localizeTree(<div className="cr-activity-mark" aria-hidden="true"><MessageSquare size={20} strokeWidth={1.4} /><span /><span /><span /><span /><span /><span /><span /></div>);
 }

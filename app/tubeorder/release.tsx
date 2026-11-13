@@ -1,4 +1,5 @@
 "use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { fetchTubeOrderRelease, type TubeOrderRelease } from "@/lib/tubeorder";
 
@@ -7,6 +8,7 @@ const ReleaseContext = createContext<ReleaseContextValue>({ release: null, loade
 export const useTubeOrderRelease = () => useContext(ReleaseContext);
 
 export function TubeOrderReleaseProvider({ children }: { children: ReactNode }) {
+  useSiteLanguage();
   const [release, setRelease] = useState<TubeOrderRelease | null>(null);
   const [loaded, setLoaded] = useState(false);
   const refreshRef = useRef<() => Promise<TubeOrderRelease | null>>(async () => null);
@@ -36,5 +38,5 @@ export function TubeOrderReleaseProvider({ children }: { children: ReactNode }) 
     document.addEventListener("visibilitychange", visible);
     return () => { disposed = true; controller?.abort(); clearInterval(interval); document.removeEventListener("visibilitychange", visible); refreshRef.current = async () => null; };
   }, []);
-  return <ReleaseContext.Provider value={{ release, loaded, refresh }}>{children}</ReleaseContext.Provider>;
+  return localizeTree(<ReleaseContext.Provider value={{ release, loaded, refresh }}>{children}</ReleaseContext.Provider>);
 }

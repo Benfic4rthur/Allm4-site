@@ -1,8 +1,11 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Languages, MessageSquareText, UserRound } from "lucide-react";
 import { AppScreenshot } from "./ui";
 
 export function PersonalizationShowcase() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="section personalization-section" id="personalizacao">
       <div className="wrap personalization-layout">
         <div className="personalization-copy reveal">
@@ -40,5 +43,5 @@ export function PersonalizationShowcase() {
         </div>
       </div>
     </section>
-  );
+  ));
 }

@@ -1,4 +1,5 @@
 "use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useEffect, useRef, useState } from "react";
 import {
   Apple,
@@ -21,7 +22,8 @@ import {
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function WindowsIcon() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <svg
       viewBox="0 0 24 24"
       width="27"
@@ -31,10 +33,11 @@ function WindowsIcon() {
     >
       <path d="M2 3h9v9H2zM13 3h9v9h-9zM2 14h9v9H2zM13 14h9v9h-9z" />
     </svg>
-  );
+  ));
 }
 
 export function Downloads() {
+  useSiteLanguage();
   const [release, setRelease] = useState(fallbackRelease);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -143,7 +146,7 @@ export function Downloads() {
     },
   ];
 
-  return (
+  return localizeTree((
     <section ref={sectionRef} className="download-section section" id="download" aria-labelledby="download-heading">
       <div className="wrap">
         <div className="download-heading reveal">
@@ -252,11 +255,12 @@ export function Downloads() {
         </p>
       </div>
     </section>
-  );
+  ));
 }
 
 function AccessInfo() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="access-panel reveal" id="preco" aria-labelledby="access-title">
       <div className="access-copy"><div className="eyebrow">SEM ASSINATURA</div><h3 id="access-title">Experimente primeiro.<br />Decida depois.</h3><p>Comece com o uso gratuito inicial. Ao atingir o limite, o próprio Allm4 mostra o valor e as condições para liberar o acesso.</p></div>
       <div className="access-terms">
@@ -268,10 +272,11 @@ function AccessInfo() {
         <small>Preço sujeito a alteração. Confira o valor final, os cupons disponíveis e o limite de uso gratuito no aplicativo antes da compra. Recursos disponíveis dependem da compatibilidade do seu computador.</small>
       </div>
     </section>
-  );
+  ));
 }
 
 function MacInstallGuide() {
+  useSiteLanguage();
   const command = 'xattr -dr com.apple.quarantine "/Applications/Allm4.app"';
   const [copyState, setCopyState] = useState<"idle" | "copied" | "error">(
     "idle",
@@ -286,7 +291,7 @@ function MacInstallGuide() {
     }
   }
 
-  return (
+  return localizeTree((
     <aside
       className="mac-install-guide reveal"
       id="instalacao-mac"
@@ -343,11 +348,12 @@ function MacInstallGuide() {
       </p>
       </details>
     </aside>
-  );
+  ));
 }
 
 function WindowsInstallGuide() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <aside
       className="mac-install-guide windows-install-guide reveal"
       id="instalacao-windows"
@@ -421,5 +427,5 @@ function WindowsInstallGuide() {
       </p>
       </details>
     </aside>
-  );
+  ));
 }

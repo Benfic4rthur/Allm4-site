@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { ArrowUpRight } from "lucide-react";
 import { BrandMark } from "@/components/brand/brand-mark";
 import { StudioStory } from "@/components/brand/studio-story";
@@ -9,7 +11,8 @@ import "./studio-story.css";
 const chapters = ["O estúdio", "Arthur Benfica", "Experiência", "Formação", "Tecnologias", "LUM4", "JáCopiei?", "Beira", "Vamos conversar"];
 
 export function StudioAbout() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="studio-about studio-about--story studio-shell" id="sobre" aria-labelledby="studio-about-title" tabIndex={-1}>
       <StudioStory chapters={chapters}>
       <div className="studio-story-introduction">
@@ -54,5 +57,5 @@ export function StudioAbout() {
       <ProfileContact />
       </StudioStory>
     </section>
-  );
+  ));
 }

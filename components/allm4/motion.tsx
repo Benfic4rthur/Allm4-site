@@ -1,7 +1,9 @@
 "use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useEffect, useRef, type ReactNode } from "react";
 
 export function MotionRoot({ children }: { children: ReactNode }) {
+  useSiteLanguage();
   const root = useRef<HTMLDivElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
   const glow = useRef<HTMLDivElement>(null);
@@ -127,7 +129,7 @@ export function MotionRoot({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return (
+  return localizeTree((
     <div ref={root} className="site-motion">
       <style>{`
         @media (pointer: fine) and (min-width: 900px) and (prefers-reduced-motion: no-preference) {
@@ -542,5 +544,5 @@ export function MotionRoot({ children }: { children: ReactNode }) {
       </div>
       {children}
     </div>
-  );
+  ));
 }

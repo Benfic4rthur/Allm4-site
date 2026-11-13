@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Check, Copy, MoveVertical, Repeat2, Sun, Volume2 } from "lucide-react";
 import { useState, type CSSProperties, type PointerEvent } from "react";
 import { beiraInstallCommand } from "@/lib/beira";
@@ -7,6 +7,7 @@ import { beiraInstallCommand } from "@/lib/beira";
 type Control = "volume" | "brightness";
 
 export function TrackpadDemo() {
+  useSiteLanguage();
   const [volume, setVolume] = useState(48);
   const [brightness, setBrightness] = useState(72);
   const [swapped, setSwapped] = useState(false);
@@ -75,7 +76,7 @@ export function TrackpadDemo() {
     );
   }
 
-  return (
+  return localizeTree((
     <div className="beira-demo" data-interacted={interacted} data-active={active ?? "none"}>
       <div className="beira-demo-topline">UM GESTO. DOIS CONTROLES.<span>↕</span></div>
       <div className="beira-demo-stage">
@@ -97,10 +98,11 @@ export function TrackpadDemo() {
       </div>
       <p className="beira-demo-caption">Demonstração interativa. Não altera os ajustes do seu dispositivo.</p>
     </div>
-  );
+  ));
 }
 
 export function InstallationCommand() {
+  useSiteLanguage();
   const [status, setStatus] = useState<"idle" | "copied" | "error">("idle");
 
   async function copyCommand() {
@@ -112,7 +114,7 @@ export function InstallationCommand() {
     }
   }
 
-  return (
+  return localizeTree((
     <div className="beira-command-wrap">
       <div className="beira-command">
         <code>{beiraInstallCommand}</code>
@@ -123,5 +125,5 @@ export function InstallationCommand() {
       </div>
       <p className="beira-copy-status" role="status">{status === "copied" ? "Comando copiado. Cole no Terminal depois de mover o Beira para Aplicativos." : status === "error" ? "Selecione o comando acima e copie com ⌘C." : "O comando libera apenas o Beira instalado nesse caminho."}</p>
     </div>
-  );
+  ));
 }

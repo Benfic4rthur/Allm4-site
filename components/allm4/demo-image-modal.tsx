@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight, Maximize2, X, ZoomIn, ZoomOut } from "lucide-react";
 import { Dialog as DialogPrimitive } from "radix-ui";
@@ -29,6 +29,7 @@ export function DemoImageModal({
   initialIndex = 0,
   onOpenChange,
 }: DemoImageModalProps) {
+  useSiteLanguage();
   const items = gallery?.length ? gallery : [{ src, alt }];
   const [activeIndex, setActiveIndex] = useState(initialIndex);
   const [zoomed, setZoomed] = useState(false);
@@ -52,7 +53,7 @@ export function DemoImageModal({
     }
   }
 
-  return (
+  return localizeTree((
     <DialogPrimitive.Root
       onOpenChange={(open) => {
         if (open) {
@@ -163,5 +164,5 @@ export function DemoImageModal({
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>
-  );
+  ));
 }

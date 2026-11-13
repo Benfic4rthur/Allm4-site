@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useState } from "react";
 import {
   ArrowUpRight,
@@ -64,7 +64,8 @@ const environments = [
 ];
 
 function ChatVisual() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div className="explorer-motion-idle">
       <div className="explorer-screenshot">
         <AppScreenshot
@@ -80,11 +81,12 @@ function ChatVisual() {
         </span>
       </div>
     </div>
-  );
+  ));
 }
 
 function ImageVisual() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div className="explorer-motion-idle">
       <div className="explorer-screenshot">
         <AppScreenshot
@@ -100,11 +102,12 @@ function ImageVisual() {
         </span>
       </div>
     </div>
-  );
+  ));
 }
 
 function ProjectsVisual() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div className="explorer-motion-idle">
       <div className="explorer-screenshot">
         <AppScreenshot
@@ -120,19 +123,21 @@ function ProjectsVisual() {
         </span>
       </div>
     </div>
-  );
+  ));
 }
 
 function FeatureVisual({ id }: { id: string }) {
-  if (id === "chat") return <ChatVisual />;
-  if (id === "imagem") return <ImageVisual />;
-  return <ProjectsVisual />;
+  useSiteLanguage();
+  if (id === "chat") return localizeTree(<ChatVisual />);
+  if (id === "imagem") return localizeTree(<ImageVisual />);
+  return localizeTree(<ProjectsVisual />);
 }
 
 export function FeatureExplorer() {
+  useSiteLanguage();
   const [active, setActive] = useState("chat");
 
-  return (
+  return localizeTree((
     <section className="section explore-section wrap reveal" id="recursos">
       <div className="section-heading">
         <div>
@@ -204,5 +209,5 @@ export function FeatureExplorer() {
         </div>
       </div>
     </section>
-  );
+  ));
 }

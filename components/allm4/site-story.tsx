@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { ArrowDown, ArrowUpRight, Check, Image as ImageIcon, MessageSquare, FolderCode, MonitorPlay } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { DemoImageModal } from "./demo-image-modal";
@@ -11,15 +13,16 @@ export function MediaPlaceholder({ title, description, video = false, compact = 
   video?: boolean;
   compact?: boolean;
 }) {
+  useSiteLanguage();
   const Icon = video ? MonitorPlay : ImageIcon;
-  return (
+  return localizeTree((
     <figure className={`media-placeholder${compact ? " media-placeholder-compact" : ""}`} aria-label={`${video ? "Vídeo" : "Foto"} a produzir: ${title}`}>
       <span className="media-placeholder-tag">ESPAÇO RESERVADO</span>
       <Icon size={34} strokeWidth={1.25} aria-hidden="true" />
       <figcaption><strong>{video ? "Vídeo" : "Foto"} de {title}</strong><span>{description}</span></figcaption>
       <small>Substituir pelo material real do Allm4.</small>
     </figure>
-  );
+  ));
 }
 
 const choices = [
@@ -29,7 +32,8 @@ const choices = [
 ];
 
 export function QuickChoices() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="quick-choices wrap" aria-label="O que você pode fazer com o Allm4">
       {choices.map(({ icon: Icon, ...item }) => (
         <a key={item.number} href={item.href} className="quick-choice">
@@ -39,11 +43,12 @@ export function QuickChoices() {
         </a>
       ))}
     </section>
-  );
+  ));
 }
 
 export function ImageShowcase() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="section image-story" id="imagens" aria-labelledby="images-title">
       <div className="wrap story-layout">
         <div className="story-copy reveal">
@@ -103,7 +108,7 @@ export function ImageShowcase() {
         </DemoImageModal>
       </figure>
     </section>
-  );
+  ));
 }
 
 const questions = [
@@ -117,10 +122,11 @@ const questions = [
 ];
 
 export function SiteQuestions() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="section wrap site-questions" id="duvidas" aria-labelledby="questions-title">
       <div className="questions-heading"><div className="eyebrow">ANTES DO PRIMEIRO CLIQUE</div><h2 id="questions-title">Pode perguntar.</h2><p className="section-intro">As respostas que você precisa para começar com tranquilidade.</p><a className="text-button" href={`mailto:${siteConfig.contactEmail}?subject=D%C3%BAvida%20sobre%20o%20Allm4`}>Enviar uma dúvida por email <ArrowUpRight size={16} aria-hidden="true" /></a></div>
       <div className="questions-list">{questions.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
     </section>
-  );
+  ));
 }

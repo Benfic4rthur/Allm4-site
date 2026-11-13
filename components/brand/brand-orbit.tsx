@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import { ArrowDown } from "lucide-react";
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent } from "react";
@@ -13,6 +13,7 @@ const orbitProducts = [...products, ...extensions];
 type Phase = "idle" | "gathering" | "dropping" | "revealing";
 
 export function BrandOrbit() {
+  useSiteLanguage();
   const rootRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -78,7 +79,7 @@ export function BrandOrbit() {
     ];
   }
 
-  return (
+  return localizeTree((
     <div className="brand-orbit" data-phase={phase} ref={rootRef}>
       <div className="brand-orbit-stage" onPointerMove={followPointer} onPointerLeave={resetTilt}>
         <div className="brand-orbit-visual">
@@ -118,5 +119,5 @@ export function BrandOrbit() {
         <span>Encontre sua próxima ferramenta</span><ArrowDown size={17} aria-hidden="true" />
       </button>
     </div>
-  );
+  ));
 }

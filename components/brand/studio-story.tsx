@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Children, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import type { ReactNode } from "react";
 import { useTouchStory } from "./use-touch-story";
@@ -44,6 +44,7 @@ function piecesOf(panel: HTMLElement) {
 }
 
 export function StudioStory({ chapters, children }: StudioStoryProps) {
+  useSiteLanguage();
   const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const slides = Children.toArray(children);
@@ -394,7 +395,7 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
     };
   }, [count, compact]);
 
-  return (
+  return localizeTree((
     <div className="studio-story" data-story-layout={compact ? "touch" : "scrub"} ref={rootRef}>
       <div className="studio-story-scroll" ref={stageRef} tabIndex={0} role="region" aria-label="Apresentação sobre Arthur Benfica e o ALLM4">
         {slides.map((slide, index) => (
@@ -414,5 +415,5 @@ export function StudioStory({ chapters, children }: StudioStoryProps) {
       </div>
       <span className="profile-sr-only" aria-live={compact ? "off" : "polite"} aria-atomic="true">{chapters[frame.current]}</span>
     </div>
-  );
+  ));
 }

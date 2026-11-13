@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "../lib/i18n/runtime";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ArrowDownToLine, ArrowUpRight, Check, Command, Cpu, Menu, Minus, Plus, ShieldCheck, Thermometer, X } from "lucide-react";
 import { AppIcon, Demo, Mark, ThermalCycle } from "../components/gelamac-demo";
@@ -18,15 +18,17 @@ const faqs = [
 ];
 
 function DownloadDialog({ close, release }: { close: () => void; release: ReleaseInfo }) {
+  useSiteLanguage();
   const dialog = useRef<HTMLDialogElement>(null);
   useEffect(() => { const el = dialog.current; el?.showModal(); return () => el?.close(); }, []);
-  return <dialog ref={dialog} className="download-dialog" onCancel={close} onClick={e => { if (e.target === dialog.current) close(); }}><button className="dialog-close icon-button" onClick={close} aria-label="Fechar download"><X size={20} /></button><AppIcon size={76} /><span className="dialog-eyebrow">GELAMAC PARA macOS</span><h2>Um respiro.<br />A poucos cliques.</h2><p>Prévia v{release.version} para Apple Silicon.<br />macOS 14 ou posterior.</p><ol><li>Baixe e descompacte o arquivo ZIP.</li><li>Execute Instalar.command conforme o guia de instalação.</li><li>Autorize a primeira abertura e o auxiliar no macOS.</li></ol><a href="#instalacao" className="dialog-guide-link text-link" onClick={close}>Ver instalação passo a passo <ArrowUpRight size={14} /></a><a className="button primary" href={release.url} download="GelaMac-macOS-arm64.zip"><ArrowDownToLine size={18} /> Baixar para macOS</a><small>Prévia de desenvolvimento, validada no MacBook Pro M1 Pro. Ainda não é uma distribuição pública notarizada. Consulte o guia de instalação.</small></dialog>;
+  return localizeTree(<dialog ref={dialog} className="download-dialog" onCancel={close} onClick={e => { if (e.target === dialog.current) close(); }}><button className="dialog-close icon-button" onClick={close} aria-label="Fechar download"><X size={20} /></button><AppIcon size={76} /><span className="dialog-eyebrow">GELAMAC PARA macOS</span><h2>Um respiro.<br />A poucos cliques.</h2><p>Prévia v{release.version} para Apple Silicon.<br />macOS 14 ou posterior.</p><ol><li>Baixe e descompacte o arquivo ZIP.</li><li>Execute Instalar.command conforme o guia de instalação.</li><li>Autorize a primeira abertura e o auxiliar no macOS.</li></ol><a href="#instalacao" className="dialog-guide-link text-link" onClick={close}>Ver instalação passo a passo <ArrowUpRight size={14} /></a><a className="button primary" href={release.url} download="GelaMac-macOS-arm64.zip"><ArrowDownToLine size={18} /> Baixar para macOS</a><small>Prévia de desenvolvimento, validada no MacBook Pro M1 Pro. Ainda não é uma distribuição pública notarizada. Consulte o guia de instalação.</small></dialog>);
 }
 
 const subscribeMotion = () => () => {};
 const readMotion = () => new URLSearchParams(window.location.search).get("motion") === "reduced";
 
 export default function Home() {
+  useSiteLanguage();
   const root = useRef<HTMLElement>(null);
   const [release, setRelease] = useState<ReleaseInfo>(bundledRelease);
   const reduced = useSyncExternalStore(subscribeMotion, readMotion, () => false);
@@ -47,7 +49,7 @@ export default function Home() {
     return () => { cancelled = true; api?.destroy(); existing?.removeEventListener("load", mount); };
   }, [reduced]);
   const openSettings = () => document.getElementById("seu-jeito")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
-  return <>
+  return localizeTree(<>
     <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
     <header className="site-header container"><a className="brand" href="#inicio" aria-label="GelaMac, início"><AppIcon /><span>GelaMac<small>by ALLM4</small></span></a><nav className={mobileMenu ? "desktop-nav mobile-open" : "desktop-nav"} aria-label="Navegação principal"><a href="#como-funciona" onClick={() => setMobileMenu(false)}>Como funciona</a><a href="#seu-jeito" onClick={() => setMobileMenu(false)}>Do seu jeito</a><a href="#duvidas" onClick={() => setMobileMenu(false)}>Dúvidas</a></nav><button className="button header-download" onClick={() => setShowDownload(true)}><span>Baixar para macOS</span><ArrowDownToLine size={16} /></button><button className="mobile-menu-button icon-button" aria-label={mobileMenu ? "Fechar menu" : "Abrir menu"} aria-expanded={mobileMenu} onClick={() => setMobileMenu(v => !v)}>{mobileMenu ? <X /> : <Menu />}</button></header>
     <main ref={root} id="conteudo" data-motion={reduced ? "reduced" : "full"}>
@@ -62,5 +64,5 @@ export default function Home() {
     </main>
     <footer className="site-footer container"><a className="footer-brand" href="#inicio"><Mark /> GelaMac <span>by ALLM4</span></a><span>Feito para deixar o Mac respirar.</span><a className="motion-toggle" href={reduced ? "/gelamac/" : "/gelamac/?motion=reduced"}>{reduced ? "Ativar animações" : "Reduzir movimento"}</a><a href="https://allm4.com" target="_blank" rel="noreferrer">Conheça a ALLM4 <ArrowUpRight size={14} /></a></footer>
     {showDownload && <DownloadDialog close={() => setShowDownload(false)} release={release} />}
-  </>;
+  </>);
 }

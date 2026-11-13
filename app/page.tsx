@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { BrandLockup } from "@/components/brand/brand-mark";
@@ -12,7 +14,8 @@ import "./umbrella.css";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div className="umbrella-site" id="inicio">
       <a className="umb-skip" href="#conteudo">Pular para o conteúdo</a>
       <header className="studio-header">
@@ -96,5 +99,5 @@ export default function Home() {
       </main>
       <StudioFooter />
     </div>
-  );
+  ));
 }

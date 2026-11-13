@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Apple, ArrowDownToLine, Cpu } from "lucide-react";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import {
@@ -11,6 +11,7 @@ import {
 const ReleaseContext = createContext<CodexResetRelease | null>(null);
 
 export function CodexResetReleaseProvider({ children }: { children: ReactNode }) {
+  useSiteLanguage();
   const [release, setRelease] = useState<CodexResetRelease | null>(null);
 
   useEffect(() => {
@@ -58,22 +59,24 @@ export function CodexResetReleaseProvider({ children }: { children: ReactNode })
     };
   }, []);
 
-  return <ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>;
+  return localizeTree(<ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>);
 }
 
 export function CodexResetVersion({ compact = false }: { compact?: boolean }) {
+  useSiteLanguage();
   const release = useContext(ReleaseContext);
-  if (compact && !release) return null;
-  return (
+  if (compact && !release) return localizeTree(null);
+  return localizeTree((
     <span className={compact ? "cr-brand-version" : "cr-release-version"} aria-live="polite" aria-label={compact && release ? `Versão ${release.version}` : undefined}>
       {release ? `${compact ? "v" : "Versão "}${release.version}` : "Última versão no GitHub"}
     </span>
-  );
+  ));
 }
 
 export function CodexResetDownloadOptions() {
+  useSiteLanguage();
   const release = useContext(ReleaseContext);
-  return (
+  return localizeTree((
     <div className="cr-download-options">
       <a className="cr-download-card" href={release?.appleSilicon ?? codexResetLinks.appleSilicon}>
         <Apple size={28} strokeWidth={1.4} aria-hidden="true" />
@@ -86,5 +89,5 @@ export function CodexResetDownloadOptions() {
         <ArrowDownToLine size={20} aria-hidden="true" />
       </a>
     </div>
-  );
+  ));
 }

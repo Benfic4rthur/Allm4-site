@@ -1,4 +1,5 @@
 "use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useEffect, useRef, useState } from "react";
 import {
   Download,
@@ -38,6 +39,7 @@ const assistantSteps = [
   },
 ];
 export function ModelAssistant() {
+  useSiteLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState(assistantSteps[0].id);
   const [imageOpen, setImageOpen] = useState(false);
@@ -69,7 +71,7 @@ export function ModelAssistant() {
     return () => window.clearTimeout(timer);
   }, [activeStep, imageOpen, visible]);
 
-  return (
+  return localizeTree((
     <section ref={sectionRef} className="section assistant-section" id="assistente">
       <div className="wrap assistant-layout">
         <div className="assistant-copy reveal">
@@ -127,9 +129,10 @@ export function ModelAssistant() {
         </div>
       </div>
     </section>
-  );
+  ));
 }
 export function ModelControls() {
+  useSiteLanguage();
   const [temperature, setTemperature] = useState([0.7]);
   const [context, setContext] = useState([8192]);
   const [topP, setTopP] = useState([0.9]);
@@ -140,7 +143,7 @@ export function ModelControls() {
     setTopP([0.9]);
     setSeed("42");
   };
-  return (
+  return localizeTree((
     <section className="section wrap controls-layout" id="controle">
       <div className="controls-console reveal">
         <div className="console-top">
@@ -263,5 +266,5 @@ export function ModelControls() {
         </span>
       </div>
     </section>
-  );
+  ));
 }

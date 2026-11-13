@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -9,7 +11,8 @@ export function BrandMark({
   className?: string;
   decorative?: boolean;
 }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <Image
       className={className}
       src={`${publicBasePath}/brand/allm4-mark.svg`}
@@ -19,7 +22,7 @@ export function BrandMark({
       aria-hidden={decorative ? true : undefined}
       unoptimized
     />
-  );
+  ));
 }
 
 export function BrandLockup({
@@ -27,7 +30,8 @@ export function BrandLockup({
 }: {
   compact?: boolean;
 }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <a className={`umb-lockup${compact ? " umb-lockup-compact" : ""}`} href="#inicio" aria-label="ALLM4, início">
       <BrandMark className="umb-lockup-mark" decorative />
       <span className="umb-lockup-copy">
@@ -35,5 +39,5 @@ export function BrandLockup({
         {!compact && <small>SOFTWARE FOR A BRIGHTER DAY</small>}
       </span>
     </a>
-  );
+  ));
 }

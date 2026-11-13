@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import { Check, ChevronDown, FileText, RotateCw, Settings2, Sun, Volume2 } from "lucide-react";
 import type { Product } from "@/lib/products";
@@ -16,7 +18,8 @@ const artworkDescriptions: Record<string, string> = {
 };
 
 export function ProductArtwork({ product }: { product: Product }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div
       className={`studio-art studio-art--${product.slug}`}
       role="img"
@@ -123,5 +126,5 @@ export function ProductArtwork({ product }: { product: Product }) {
         )}
       </div>
     </div>
-  );
+  ));
 }

@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import {
   ArrowRight,
@@ -29,11 +31,13 @@ const whatsapp = "https://wa.me/5551991640517";
 export type ProfileProjectSlug = "lum4" | "jacopiei" | "beira";
 
 function ExternalLinkNotice() {
-  return <span className="profile-sr-only"> (abre em nova aba)</span>;
+  useSiteLanguage();
+  return localizeTree(<span className="profile-sr-only"> (abre em nova aba)</span>);
 }
 
 function Experience({ experience }: { experience: StudioExperience }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <li className="profile-job">
       <div className="profile-job-heading">
         <h3>{experience.company}</h3>
@@ -42,20 +46,22 @@ function Experience({ experience }: { experience: StudioExperience }) {
       <p className="profile-job-role">{experience.role}</p>
       <p>{experience.summary}</p>
     </li>
-  );
+  ));
 }
 
 function SkillGroup({ group }: { group: StudioSkillGroup }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <div className="profile-skill-group">
       <h3>{group.title}</h3>
       <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
     </div>
-  );
+  ));
 }
 
 function LicenseFlow() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <figure className="profile-license-figure">
       <div className="profile-license-flow">
         <div className="profile-license-app">
@@ -77,11 +83,12 @@ function LicenseFlow() {
       </div>
       <figcaption>Da interface nativa aos serviços do produto. Diagrama ilustrativo da arquitetura.</figcaption>
     </figure>
-  );
+  ));
 }
 
 function TrackpadStory() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <figure className="profile-trackpad-figure">
       <div className="profile-trackpad" aria-hidden="true">
         <div className="profile-trackpad-edge profile-trackpad-edge--volume"><Volume2 size={17} /><span>↕</span></div>
@@ -90,11 +97,12 @@ function TrackpadStory() {
       </div>
       <figcaption>O gesto começa na borda e segue na vertical. Movimentos no centro continuam com o ponteiro.</figcaption>
     </figure>
-  );
+  ));
 }
 
 export function ProfileIdentity() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="profile-slide profile-hero" id="profile-identity" aria-labelledby="profile-identity-title">
       <div className="profile-hero-copy">
         <h2 id="profile-identity-title">Arthur Benfica<span>Desenvolvedor.<br />Criador de produtos.</span></h2>
@@ -114,11 +122,12 @@ export function ProfileIdentity() {
         <figcaption><strong>Arthur Benfica</strong><span>Desenvolvedor Full Stack · Criador do ALLM4</span></figcaption>
       </figure>
     </section>
-  );
+  ));
 }
 
 export function ProfileExperience() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="profile-slide profile-section profile-experience" id="profile-experience" aria-labelledby="profile-experience-title">
       <div className="profile-section-intro">
         <h2 id="profile-experience-title">A experiência<br />{" "}que levo para o código.</h2>
@@ -142,11 +151,12 @@ export function ProfileExperience() {
         </details>
       </div>
     </section>
-  );
+  ));
 }
 
 export function ProfileEducation() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="profile-slide profile-education-band" id="profile-education" aria-labelledby="profile-education-title">
       <div className="profile-section">
         <div className="profile-section-intro">
@@ -160,11 +170,12 @@ export function ProfileEducation() {
         </div>
       </div>
     </section>
-  );
+  ));
 }
 
 export function ProfileTechnologies() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="profile-slide profile-section profile-technologies" id="profile-technologies" aria-labelledby="profile-technologies-title">
       <div className="profile-section-intro">
         <h2 id="profile-technologies-title">Linguagens<br />{" "}e ferramentas.</h2>
@@ -182,17 +193,18 @@ export function ProfileTechnologies() {
         </details>
       </div>
     </section>
-  );
+  ));
 }
 
 export function ProfileProjectStory({ slug }: { slug: ProfileProjectSlug }) {
+  useSiteLanguage();
   const project = selectedProjectStories.find((story) => story.slug === slug);
 
   if (!project) {
     throw new Error(`Missing studio project story: ${slug}`);
   }
 
-  return (
+  return localizeTree((
     <section className={"profile-slide profile-case profile-case--" + project.slug} id={"profile-story-" + project.slug} aria-labelledby={"profile-story-" + project.slug + "-title"}>
       <div className="profile-case-copy">
         <div className="profile-case-name"><Image src={basePath + project.icon} alt="" width={38} height={38} unoptimized /><span>{project.name}</span></div>
@@ -213,11 +225,12 @@ export function ProfileProjectStory({ slug }: { slug: ProfileProjectSlug }) {
         </figure>
       ) : <TrackpadStory />}
     </section>
-  );
+  ));
 }
 
 export function ProfileContact() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="profile-slide profile-closing" id="profile-contact" aria-labelledby="profile-contact-title">
       <div>
         <h2 id="profile-contact-title">Vamos conversar.</h2>
@@ -235,5 +248,5 @@ export function ProfileContact() {
         </a>
       </div>
     </section>
-  );
+  ));
 }

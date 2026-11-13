@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "../lib/i18n/runtime";
 import { useState } from "react";
 import { ChevronRight, Power, Settings2 } from "lucide-react";
 import { Mark } from "./gelamac-demo";
@@ -13,6 +13,7 @@ type Mode = keyof typeof modes;
 const points = [{ t: 55, p: 0 }, { t: 60, p: 30 }, { t: 65, p: 70 }, { t: 70, p: 100 }];
 
 export function ModeLab() {
+  useSiteLanguage();
   const [mode, setMode] = useState<Mode>("curve"), [temperature, setTemperature] = useState(65), [enabled, setEnabled] = useState(true);
   const data = modes[mode];
   function percent(t: number) {
@@ -23,7 +24,7 @@ export function ModeLab() {
     return Math.round(a.p + (b.p - a.p) * (t - a.t) / (b.t - a.t));
   }
   const rpm = percent(temperature), cx = 48 + (temperature - 50) / 25 * 440, cy = 235 - rpm * 1.85;
-  return <section id="seu-jeito" className="mode-section container" data-sc-act="flow" aria-labelledby="modes-title">
+  return localizeTree(<section id="seu-jeito" className="mode-section container" data-sc-act="flow" aria-labelledby="modes-title">
     <div className="mode-heading" data-sc-in><h2 id="modes-title">Calmo no dia a dia.<br /><span>Intenso quando precisa.</span></h2><p>Três formas de cuidar da temperatura.<br />Você escolhe como o GelaMac entra em ação.</p></div>
     <div className="mode-layout">
       <div className="mode-choices" role="tablist" aria-label="Modos de resfriamento" aria-orientation="vertical">
@@ -51,5 +52,5 @@ export function ModeLab() {
         <div className="mode-explanation"><strong>{data.label}</strong><p>{data.text}</p><small>{data.detail}</small></div><span className="sample-label">Demonstração ilustrativa</span>
       </div>
     </div>
-  </section>;
+  </section>);
 }

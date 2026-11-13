@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Ban, Check, Clock3, Moon, Play, ShieldCheck } from "lucide-react";
 import { extensions } from "@/lib/extensions";
@@ -6,7 +8,8 @@ import "./studio-extensions.css";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 function AlwaysDarkArtwork({ icon }: { icon: string }) {
-  return <>
+  useSiteLanguage();
+  return localizeTree(<>
     <div className="studio-alwaysdark-browser">
       <div className="studio-extension-browser-bar"><span><i/><i/><i/></span><span>seus sites, no seu tom</span><Moon size={11}/></div>
       <div className="studio-alwaysdark-copy">
@@ -16,15 +19,17 @@ function AlwaysDarkArtwork({ icon }: { icon: string }) {
       </div>
     </div>
     <span className="studio-extension-badge studio-alwaysdark-badge"><Image src={`${publicBasePath}${icon}`} alt="" width={25} height={25} unoptimized/><span>Uma luz mais confortável.<small>Always Dark · Ajustes salvos por site</small></span><i/></span>
-  </>;
+  </>);
 }
 
 function TubeOrderArtwork({ icon }: { icon: string }) {
-  return <><div className="studio-tubeorder-browser"><div className="studio-extension-browser-bar"><span><i/><i/><i/></span><span>Assistir mais tarde</span><Clock3 size={11}/></div><div className="studio-tubeorder-copy"><p>Seu tempo,<br/><em>na ordem certa.</em></p><span className="studio-tubeorder-rule"><Image src={`${publicBasePath}${icon}`} alt="" width={17} height={17} unoptimized/> Curtos primeiro <Check size={10}/></span><div className="studio-tubeorder-queue">{[["Uma ideia para hoje", "4:12"], ["Entre montanhas e estrelas", "7:48"], ["Lugares para descobrir", "12:36"]].map(([title,time],index)=><div key={title}><small>{index+1}</small><span className={`studio-tubeorder-thumb studio-tubeorder-thumb--${index}`}><Play size={9}/></span><span>{title}</span><b>{time}</b></div>)}</div></div></div><span className="studio-extension-badge studio-tubeorder-badge"><Image src={`${publicBasePath}${icon}`} alt="" width={25} height={25} unoptimized/><span>A fila segue o seu ritmo.<small>TubeOrder · Ordem salva no YouTube</small></span><i/></span></>;
+  useSiteLanguage();
+  return localizeTree(<><div className="studio-tubeorder-browser"><div className="studio-extension-browser-bar"><span><i/><i/><i/></span><span>Assistir mais tarde</span><Clock3 size={11}/></div><div className="studio-tubeorder-copy"><p>Seu tempo,<br/><em>na ordem certa.</em></p><span className="studio-tubeorder-rule"><Image src={`${publicBasePath}${icon}`} alt="" width={17} height={17} unoptimized/> Curtos primeiro <Check size={10}/></span><div className="studio-tubeorder-queue">{[["Uma ideia para hoje", "4:12"], ["Entre montanhas e estrelas", "7:48"], ["Lugares para descobrir", "12:36"]].map(([title,time],index)=><div key={title}><small>{index+1}</small><span className={`studio-tubeorder-thumb studio-tubeorder-thumb--${index}`}><Play size={9}/></span><span>{title}</span><b>{time}</b></div>)}</div></div></div><span className="studio-extension-badge studio-tubeorder-badge"><Image src={`${publicBasePath}${icon}`} alt="" width={25} height={25} unoptimized/><span>A fila segue o seu ritmo.<small>TubeOrder · Ordem salva no YouTube</small></span><i/></span></>);
 }
 
 export function StudioExtensions() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section
       className="studio-extensions studio-shell"
       id="extensoes"
@@ -91,5 +96,5 @@ export function StudioExtensions() {
         ))}
       </div>
     </section>
-  );
+  ));
 }

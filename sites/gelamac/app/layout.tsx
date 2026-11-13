@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageBar } from "../components/language-bar";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allm4.com"),
@@ -30,7 +31,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="antialiased">{children}</body>
+      <head><link rel="stylesheet" href="/i18n/language.css" /></head>
+      <body className="antialiased"><LanguageBar />{children}</body>
     </html>
   );
 }

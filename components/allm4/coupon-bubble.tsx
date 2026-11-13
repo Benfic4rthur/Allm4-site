@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Check, Copy, X } from "lucide-react";
 import {
@@ -13,6 +13,7 @@ import {
 const couponsUrl = "https://allm4-license-server.vercel.app/api/public/coupons";
 
 export function CouponBubble() {
+  useSiteLanguage();
   const [coupons, setCoupons] = useState<PublicCoupon[]>([]);
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
@@ -174,7 +175,7 @@ export function CouponBubble() {
     if (noticeTimer.current) clearTimeout(noticeTimer.current);
   }, []);
 
-  if (!coupons.length) return null;
+  if (!coupons.length) return localizeTree(null);
   const coupon = coupons[index] ?? coupons[0];
 
   async function copyCoupon() {
@@ -188,7 +189,7 @@ export function CouponBubble() {
     }
   }
 
-  return (
+  return localizeTree((
     <aside ref={cardRef} className={`coupon-float${open ? " coupon-float-open" : ""}`} aria-label="Cupons Allm4">
       {!open ? (
         <>
@@ -217,5 +218,5 @@ export function CouponBubble() {
         </div>
       )}
     </aside>
-  );
+  ));
 }

@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { BrandLockup } from "@/components/brand/brand-mark";
 import { products } from "@/lib/products";
@@ -9,7 +11,8 @@ const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const githubUrl = "https://github.com/Benfic4rthur";
 
 export function StudioFooter() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <footer className="studio-site-footer">
       <section
         className="studio-signature-band"
@@ -84,5 +87,5 @@ export function StudioFooter() {
         <a href="#inicio">Voltar ao topo ↑</a>
       </div>
     </footer>
-  );
+  ));
 }

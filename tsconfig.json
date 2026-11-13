@@ -43,8 +43,7 @@
   "exclude": [
     "node_modules",
     "examples",
-    "sites/gelamac/.next",
-    "sites/gelamac/out",
-    "public/gelamac"
+    "public/gelamac",
+    "sites/gelamac"
   ]
 }

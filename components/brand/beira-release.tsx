@@ -1,5 +1,5 @@
 "use client";
-
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { Apple, ArrowDownToLine } from "lucide-react";
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { beiraLinks, parseBeiraRelease, type BeiraRelease } from "@/lib/beira";
@@ -7,6 +7,7 @@ import { beiraLinks, parseBeiraRelease, type BeiraRelease } from "@/lib/beira";
 const ReleaseContext = createContext<BeiraRelease | null>(null);
 
 export function BeiraReleaseProvider({ children }: { children: ReactNode }) {
+  useSiteLanguage();
   const [release, setRelease] = useState<BeiraRelease | null>(null);
 
   useEffect(() => {
@@ -38,19 +39,21 @@ export function BeiraReleaseProvider({ children }: { children: ReactNode }) {
     return () => { disposed = true; request?.abort(); clearInterval(interval); document.removeEventListener("visibilitychange", refreshWhenVisible); };
   }, []);
 
-  return <ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>;
+  return localizeTree(<ReleaseContext.Provider value={release}>{children}</ReleaseContext.Provider>);
 }
 
 export function BeiraVersion({ compact = false }: { compact?: boolean }) {
+  useSiteLanguage();
   const release = useContext(ReleaseContext);
-  if (compact && !release) return null;
-  return <span className={compact ? "beira-brand-version" : "beira-release-version"} aria-live="polite" aria-label={compact && release ? `Versão ${release.version}` : undefined}>{release ? `${compact ? "v" : "Versão "}${release.version}` : "Última versão no GitHub"}</span>;
+  if (compact && !release) return localizeTree(null);
+  return localizeTree(<span className={compact ? "beira-brand-version" : "beira-release-version"} aria-live="polite" aria-label={compact && release ? `Versão ${release.version}` : undefined}>{release ? `${compact ? "v" : "Versão "}${release.version}` : "Última versão no GitHub"}</span>);
 }
 
 export function BeiraDownloadOptions() {
+  useSiteLanguage();
   const release = useContext(ReleaseContext);
-  return <div className="beira-download-options">
+  return localizeTree(<div className="beira-download-options">
     <a className="beira-download-option" href={release?.appleSilicon ?? beiraLinks.appleSilicon}><Apple size={30} strokeWidth={1.3} aria-hidden="true" /><div><h3>Apple Silicon</h3><p>Mac com chip da família M</p></div><span>Baixar ZIP <ArrowDownToLine size={17} aria-hidden="true" /></span></a>
     <a className="beira-download-option" href={release?.intel ?? beiraLinks.intel}><span className="beira-intel-symbol" aria-hidden="true">intel</span><div><h3>Intel</h3><p>Mac com processador Intel</p></div><span>Baixar ZIP <ArrowDownToLine size={17} aria-hidden="true" /></span></a>
-  </div>;
+  </div>);
 }

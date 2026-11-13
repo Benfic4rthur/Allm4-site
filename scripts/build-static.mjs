@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const next = join(root, "node_modules", "next", "dist", "bin", "next");
+await import("./build-translations.mjs");
 
 const gelamac = spawnSync(process.execPath, [join(root, "scripts/build-gelamac.mjs")], { cwd: root, stdio: "inherit" });
 if (gelamac.error) throw gelamac.error;

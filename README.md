@@ -156,3 +156,9 @@ O comando gera o site em `out/` e confere a presença da home, das páginas inte
 Como alternativa, `netlify.toml` define `npm run build:static` e `out` para envio manual na Netlify. Após o login e vínculo inicial, `netlify deploy --dir=out` envia uma prévia e `netlify deploy --dir=out --prod` publica a versão validada.
 
 O script `npm run build` existente pertence ao ambiente de desenvolvimento Vinext. Use `build:static` para gerar o pacote de hospedagem.
+
+## Idiomas
+
+O seletor comum no topo alterna português e inglês em todas as páginas, incluindo os sites independentes do GelaMac, JáCopiei? e Always Dark. A preferência fica no navegador e acompanha a navegação; na primeira visita, o idioma do navegador é usado quando disponível. `?lang=en` ou `?lang=pt` também define a preferência sem mudar os caminhos das páginas.
+
+Os textos revisados ficam em `lib/i18n/en.json`. `lib/i18n/runtime.tsx` traduz o texto e os atributos descritivos dos componentes React, preservando chaves, estado, eventos e nós das animações. As páginas HTML independentes usam `public/i18n/standalone.js`, com o mesmo catálogo e a mesma preferência. `scripts/build-translations.mjs` prepara os arquivos compartilhados antes do desenvolvimento e da exportação. O build do GelaMac mantém sua verificação de tipos separada.

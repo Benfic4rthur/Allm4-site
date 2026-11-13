@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { SecurityConsole } from "@/components/allm4/security-console";
+import { LanguageBar } from "@/components/language-bar";
 import "./globals.css";
 
 const brandIcon = "/brand/allm4-mark.svg";
@@ -91,6 +92,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <head>
+        <link rel="stylesheet" href="/i18n/language.css" />
         {isProduction && (
           <meta httpEquiv="Content-Security-Policy" content={productionCsp} />
         )}
@@ -101,7 +103,7 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="antialiased"><SecurityConsole />{children}</body>
+      <body className="antialiased"><LanguageBar /><SecurityConsole />{children}</body>
     </html>
   );
 }

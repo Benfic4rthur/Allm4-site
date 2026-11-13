@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import {
   BellRing,
   CheckCircle2,
@@ -12,7 +14,8 @@ import { DemoImageModal } from "./demo-image-modal";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function TrustRepair() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="section trust-repair-section" id="privacidade">
       <div className="wrap">
         <div className="trust-repair-heading reveal">
@@ -96,5 +99,5 @@ export function TrustRepair() {
         </div>
       </div>
     </section>
-  );
+  ));
 }

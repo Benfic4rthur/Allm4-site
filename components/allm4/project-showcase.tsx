@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { FileCode2, FolderGit2, ShieldCheck, ArrowUpRight } from "lucide-react";
 import { AppScreenshot } from "./ui";
 import { DemoImageModal } from "./demo-image-modal";
@@ -5,7 +7,8 @@ import { DemoImageModal } from "./demo-image-modal";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function ProjectShowcase() {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <section className="section project-section" id="projetos" aria-labelledby="projects-title">
       <div className="wrap project-layout">
         <div className="project-copy reveal">
@@ -50,5 +53,5 @@ export function ProjectShowcase() {
         </div>
       </div>
     </section>
-  );
+  ));
 }

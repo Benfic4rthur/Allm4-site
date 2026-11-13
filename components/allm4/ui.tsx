@@ -1,3 +1,5 @@
+"use client";
+import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import { ArrowUpRight, ShieldCheck } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { DemoImageModal } from "./demo-image-modal";
@@ -5,7 +7,8 @@ import { DemoImageModal } from "./demo-image-modal";
 const publicBasePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export function Brand({ label = false }: { label?: boolean }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <a href="#inicio" className="brand" aria-label="Allm4, início">
       <span className="brand-icon">
         <img src={`${publicBasePath}/images/allm4-coupon-icon.png`} alt="" width={48} height={48} aria-hidden="true" />
@@ -13,10 +16,11 @@ export function Brand({ label = false }: { label?: boolean }) {
       <span className="brand-name">Allm<span className="brand-four">4</span></span>
       {label && <span className="brand-label">IA NO SEU COMPUTADOR</span>}
     </a>
-  );
+  ));
 }
 export function CTA({ small = false }: { small?: boolean }) {
-  return (
+  useSiteLanguage();
+  return localizeTree((
     <a
       href={siteConfig.cta.href}
       className={`button ${small ? "button-small" : ""}`}
@@ -24,7 +28,7 @@ export function CTA({ small = false }: { small?: boolean }) {
       {siteConfig.cta.label}
       <ArrowUpRight size={small ? 15 : 18} aria-hidden="true" />
     </a>
-  );
+  ));
 }
 export function AppScreenshot({
   full = false,
@@ -49,6 +53,7 @@ export function AppScreenshot({
   maskWindowCorners?: boolean;
   onModalOpenChange?: (open: boolean) => void;
 }) {
+  useSiteLanguage();
   const imageSrc = `${publicBasePath}${src}`;
   const modalGallery = gallery?.map((item) => ({
     ...item,
@@ -82,14 +87,14 @@ export function AppScreenshot({
   );
 
   if (!expandable) {
-    return (
+    return localizeTree((
       <div className={`app-window ${full ? "full-screenshot" : ""}`}>
         {frame}
       </div>
-    );
+    ));
   }
 
-  return (
+  return localizeTree((
     <DemoImageModal
       src={imageSrc}
       alt={alt}
@@ -101,5 +106,5 @@ export function AppScreenshot({
     >
       {frame}
     </DemoImageModal>
-  );
+  ));
 }

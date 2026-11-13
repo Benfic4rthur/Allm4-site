@@ -6,7 +6,12 @@ import { initializeSiteLanguage, languages, setSiteLanguage, translate, useSiteL
 export function LanguageBar() {
   const locale = useSiteLanguage();
   const metadataState = useRef(new WeakMap<Element, { original: string; output: string }>());
-  useEffect(() => { initializeSiteLanguage(); }, []);
+  useEffect(() => {
+    initializeSiteLanguage();
+    const syncLanguage = (event: StorageEvent) => { if (event.key === "allm4.language.v1") initializeSiteLanguage(); };
+    window.addEventListener("storage", syncLanguage);
+    return () => window.removeEventListener("storage", syncLanguage);
+  }, []);
   useEffect(() => {
     function updateMetadata() {
       for (const element of document.head.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"]')) {
@@ -28,6 +33,6 @@ export function LanguageBar() {
   }, [locale]);
   return <nav className="allm4-language-bar" aria-label="Language / Idioma">
     <span className="allm4-language-icon" aria-hidden="true">◎</span>
-    {languages.map(code => <button key={code} type="button" lang={code === "pt" ? "pt-BR" : code} aria-label={{ pt: "Português", en: "English" }[code]} aria-pressed={locale === code} onClick={() => setSiteLanguage(code)}>{code.toUpperCase()}</button>)}
+    {languages.map(code => <button key={code} type="button" lang={code === "pt" ? "pt-BR" : code} aria-label={{ pt: "Português", en: "English", es: "Español" }[code]} aria-pressed={locale === code} onClick={() => setSiteLanguage(code)}>{code.toUpperCase()}</button>)}
   </nav>;
 }

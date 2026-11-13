@@ -1684,5 +1684,20 @@
   "Endereço": "Address",
   "copiado.": "copied.",
   "Always Dark — Menos luz. Mais conforto. Uma extensão ALLM4.": "Always Dark — Less glare. More comfort. An ALLM4 extension.",
-  "Dados": "Data"
+  "Dados": "Data",
+  "Pendente": "Pending",
+  "Copiando…": "Copying…",
+  "Copiando": "Copying",
+  "Copiando {{0}}": "Copying {{0}}",
+  "Conferindo o conteúdo de {{0}}": "Checking contents of {{0}}",
+  "Ajuda": "Help",
+  "Destino:": "Destination:",
+  "Fechar": "Close",
+  "ORIGEM": "SOURCE",
+  "Selecionados": "Selected",
+  "Terminou?": "Finished?",
+  "Voltar": "Back",
+  "Estudos": "Study",
+  "1 arquivos": "1 file",
+  "Revisar 1 arquivos": "Review 1 file"
 }

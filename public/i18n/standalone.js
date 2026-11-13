@@ -52,6 +52,7 @@
     walk(document);
   }
   setLanguage(locale);
+  window.addEventListener('storage', event => { if (event.key === key && available.includes(event.newValue)) setLanguage(event.newValue); });
   const observer = new MutationObserver(records => {
     for (const record of records) {
       if (record.type === 'characterData') updateText(record.target);

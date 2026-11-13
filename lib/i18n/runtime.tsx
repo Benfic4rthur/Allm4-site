@@ -2,10 +2,11 @@
 
 import { cloneElement, isValidElement, useSyncExternalStore, type ReactNode } from "react";
 import english from "./en.json";
+import spanish from "./es.json";
 
-export type SiteLanguage = "pt" | "en";
-export const languages: SiteLanguage[] = ["pt", "en"];
-const dictionaries: Record<string, Record<string, string>> = { en: english };
+export type SiteLanguage = "pt" | "en" | "es";
+export const languages: SiteLanguage[] = ["pt", "en", "es"];
+const dictionaries: Record<string, Record<string, string>> = { en: english, es: spanish };
 const languageKey = "allm4.language.v1";
 let language: SiteLanguage = "pt";
 const listeners = new Set<() => void>();

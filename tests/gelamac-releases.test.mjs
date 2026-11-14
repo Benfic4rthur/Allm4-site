@@ -29,8 +29,11 @@ test("falhas da API preservam o fallback local sob /gelamac/", async () => {
   assert.equal(bundledRelease.url, "/gelamac/downloads/GelaMac-macOS-arm64.zip");
 });
 test("GelaMac é um aplicativo após Codex Reset, com compatibilidade real e rota interna", () => {
-  assert.equal(products.at(-2).slug, "codex-reset");
-  const app = products.at(-1);
+  const codexIndex = products.findIndex(app => app.slug === "codex-reset");
+  const gelamacIndex = products.findIndex(app => app.slug === "gelamac");
+  const trioIndex = products.findIndex(app => app.slug === "trio");
+  assert.ok(codexIndex >= 0 && codexIndex < gelamacIndex && gelamacIndex < trioIndex);
+  const app = products[gelamacIndex];
   assert.equal(app.slug, "gelamac");
   assert.equal(app.url, "/gelamac/");
   assert.ok(app.platforms.includes("Com ventoinhas"));

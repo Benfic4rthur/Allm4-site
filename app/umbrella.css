@@ -67,6 +67,7 @@ html:has(.umbrella-site) { scroll-padding-top: 0; }
 .studio-product--beira { --product-accent: #e7b57d; }
 .studio-product--codex-reset { --product-accent: #6be0c4; }
 .studio-product--gelamac { --product-accent: #a9e4f1; }
+.studio-product--trio { --product-accent: #b8ccdf; }
 .studio-product:hover { border-color: color-mix(in srgb, var(--product-accent) 36%, transparent); transform: translateY(-3px); box-shadow: 0 14px 35px #0002; }
 .studio-product:focus-within { outline: 2px solid #b39bff; outline-offset: 4px; }
 .studio-product-link { display: flex; flex-direction: column; height: 100%; }

@@ -60,3 +60,7 @@ next-env.d.ts
 /sites/gelamac/components/language-bar.tsx
 
 /public/i18n/translations.js
+
+# Trio static export is reproduced from its portable source and verified package.
+/sites/trio/dist/
+/public/trio/

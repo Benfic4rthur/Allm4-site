@@ -15,6 +15,7 @@ const artworkDescriptions: Record<string, string> = {
   beira: "Ilustração do Beira: um trackpad com volume na borda esquerda e brilho na borda direita.",
   "codex-reset": "Ilustração do Codex Reset no notch do Mac, com franquia restante, atividade e próximos resets. Dados de demonstração.",
   gelamac: "GelaMac: ícone oficial de neve com ventoinha e temperatura ilustrativa na barra de menus do Mac.",
+  trio: "Ilustração do Trio com os controles de fechar, minimizar e maximizar ampliados no canto superior esquerdo de uma janela do Mac.",
 };
 
 export function ProductArtwork({ product }: { product: Product }) {
@@ -112,6 +113,25 @@ export function ProductArtwork({ product }: { product: Product }) {
             <div className="studio-art-gelamac-ring" />
             <Image src={`${publicBasePath}${product.icon}`} alt="" width={112} height={112} unoptimized />
             <div className="studio-art-gelamac-temperature"><Image src={`${publicBasePath}${product.icon}`} alt="" width={18} height={18} unoptimized /><strong>54<span>°C</span></strong><span>Um respiro para o seu Mac.</span></div>
+          </div>
+        ) : product.slug === "trio" ? (
+          <div className="studio-art-trio">
+            <div className="studio-art-trio-window">
+              <div className="studio-art-trio-toolbar">
+                <div className="studio-art-trio-controls">
+                  <span className="studio-art-trio-control studio-art-trio-close"><svg viewBox="0 0 20 20"><path d="m6.5 6.5 7 7m0-7-7 7" /></svg></span>
+                  <span className="studio-art-trio-control studio-art-trio-minimize"><svg viewBox="0 0 20 20"><path d="M5.5 10h9" /></svg></span>
+                  <span className="studio-art-trio-control studio-art-trio-maximize"><svg viewBox="0 0 20 20"><path d="M5.5 5.5h6l-6 6Zm9 9h-6l6-6Z" /></svg></span>
+                </div>
+                <span>Trio</span>
+              </div>
+              <div className="studio-art-trio-content">
+                <span className="studio-art-trio-line" />
+                <strong>No canto de sempre.</strong>
+                <span>Mais fáceis de acertar.</span>
+              </div>
+            </div>
+            <Image className="studio-art-trio-icon" src={`${publicBasePath}${product.icon}`} alt="" width={76} height={76} unoptimized />
           </div>
         ) : (
           <div className="studio-art-app-window">

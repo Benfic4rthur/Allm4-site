@@ -95,4 +95,15 @@ export const products: Product[] = [
     url: "/gelamac/",
     ctaLabel: "Conhecer GelaMac",
   },
+  {
+    name: "Trio",
+    slug: "trio",
+    description:
+      "Os botões de janela do Mac, mais fáceis de enxergar e acertar. Ajuste o tamanho e maximize sem entrar em tela cheia, nas janelas compatíveis.",
+    icon: "/products/trio-icon.png",
+    platforms: ["macOS 13+", "Apple Silicon", "Intel"],
+    status: "Gratuito",
+    url: "/trio/",
+    ctaLabel: "Conhecer Trio",
+  },
 ];

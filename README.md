@@ -2,7 +2,7 @@
 
 Site institucional da ALLM4, marca responsável por aplicativos e experiências de software.
 
-A home preserva o texto institucional e o símbolo grande da ALLM4 na abertura, com os aplicativos orbitando ao redor. O botão abaixo do logo reúne os ícones, faz o símbolo encolher em direção ao botão e conduz à vitrine em uma transição animada. O catálogo usa uma grade de duas colunas no desktop, com o Codex Reset fechando a vitrine em um cartão horizontal, seguido pelo Sobre e um rodapé escuro nas proporções da versão original. O Sobre apresenta o estúdio independente, conduzido por um único desenvolvedor, e seus princípios de utilidade, clareza e cuidado nos detalhes. Todos os produtos abrem em novas abas, sem distinguir visualmente destinos internos e externos.
+A home preserva o texto institucional e o símbolo grande da ALLM4 na abertura, com os aplicativos orbitando ao redor. O botão abaixo do logo reúne os ícones, faz o símbolo encolher em direção ao botão e conduz à vitrine em uma transição animada. O catálogo usa uma grade de duas colunas no desktop, seguido pelo Sobre e um rodapé escuro nas proporções da versão original. O Sobre apresenta o estúdio independente, conduzido por um único desenvolvedor, e seus princípios de utilidade, clareza e cuidado nos detalhes. Todos os produtos abrem em novas abas, sem distinguir visualmente destinos internos e externos.
 
 ## Desenvolvimento
 
@@ -57,12 +57,14 @@ Os aplicativos exibidos na home ficam centralizados em `lib/products.ts`, nesta 
 3. JáCopiei?, com destino para a subpágina interna `/jacopiei`.
 4. Beira, com destino para a página interna `/beira/`.
 5. Codex Reset, com destino para a página interna `/codex-reset/`.
+6. GelaMac, com destino para a página interna `/gelamac/`.
+7. Trio, com destino para a página interna `/trio/`.
 
 Os links dos produtos abrem em uma nova aba. A órbita da marca distribui automaticamente os ícones conforme a quantidade de produtos cadastrados. Nas páginas do Beira e do Codex Reset, o cabeçalho mostra uma versão compacta ao lado do nome, consultada no GitHub e compartilhada com a informação de versão dos downloads; o número não é fixado no HTML.
 
 ## Extensões
 
-A navegação da home tem o destino **Extensões**, em `/#extensoes`. Essa seção aparece depois do catálogo de aplicativos e apresenta um card próprio do CanalNonGrato, com o ícone oficial, cores terracota, prévia do filtro, navegadores compatíveis e acesso à página `/canalnongrato/`. O ícone da extensão também participa da órbita animada junto dos aplicativos, com distribuição automática dos seis itens. O rodapé mantém os links de aplicativos e extensões em colunas próprias.
+A navegação da home tem o destino **Extensões**, em `/#extensoes`. Essa seção aparece depois do catálogo de aplicativos e apresenta um card próprio do CanalNonGrato, com o ícone oficial, cores terracota, prévia do filtro, navegadores compatíveis e acesso à página `/canalnongrato/`. O ícone da extensão também participa da órbita animada junto dos aplicativos, com distribuição automática conforme os catálogos. O rodapé mantém os links de aplicativos e extensões em colunas próprias.
 
 `app/canalnongrato/` integra a página criada para a extensão diretamente ao ALLM4. Ela preserva a demonstração interativa de bloquear/desfazer, o guia de instalação manual para Edge e Chrome, a cópia dos endereços do navegador e os links para o repositório público. Os downloads são consultados na última release estável do repositório público `Benfic4rthur/CanalNonGrato`, sem hospedar um ZIP fixo no ALLM4. Versão, tamanho e link pertencem sempre à mesma release. A consulta ocorre ao abrir a página, ao voltar à aba e a cada cinco minutos enquanto visível. Se a API estiver indisponível ou a release estiver incompleta, o destino é a página pública `releases/latest`, sem oferecer um pacote antigo. Não há cadastro nem publicação nas lojas dos navegadores.
 
@@ -89,6 +91,16 @@ O site do Beira está em `app/beira/`, com demonstração interativa de volume e
 O Codex Reset tem sua apresentação em `app/codex-reset/`, com o ícone oficial, demonstrações de notch e cápsula, uma prévia configurável dos campos, downloads e instruções de instalação. É gratuito para baixar e usar. As demonstrações têm dados ilustrativos: o site não consulta a conta, as conversas nem os arquivos locais do Codex. A renovação semanal da conta e a estimativa histórica de reset extra são explicadas separadamente. `lib/codex-reset.ts` centraliza os links e a validação das releases; `components/brand/codex-reset-release.tsx` consulta a última versão estável no GitHub na abertura, ao voltar à aba e a cada cinco minutos enquanto visível. A versão e os dois DMGs precisam pertencer à mesma release oficial. Se a consulta falhar, os links públicos `latest/download` continuam disponíveis, sem exibir uma versão fixa. O ícone também entra na órbita e no rodapé pelo catálogo compartilhado. A imagem de compartilhamento pode ser regenerada com `node scripts/render-codex-reset-share.mjs`.
 
 O antigo site dedicado ao aplicativo de IA local foi preservado em `app/local-ia/page.tsx`, mantendo a apresentação anterior como página própria do produto em vez de descartá-la durante a mudança institucional.
+
+### Trio
+
+O Trio entra por último no catálogo, sem alterar a ordem dos aplicativos existentes. A mesma entrada alimenta sua presença na órbita e no rodapé. O cartão usa o ícone oficial em `public/products/trio-icon.png` e uma ilustração própria em HTML/CSS: controles maiores no canto da janela, com símbolos sempre visíveis e uma onda ao passar o ponteiro ou focar o cartão. O movimento é desativado quando o visitante prefere movimento reduzido.
+
+A página `/trio/` preserva o site independente aprovado, com versões em português, inglês e espanhol, demonstrações que atuam apenas no navegador e retorno à home do ALLM4. Seu seletor compartilha a preferência `allm4.language.v1`, sem acrescentar uma segunda barra de idiomas. As traduções do catálogo e da descrição acessível da arte ficam em `lib/i18n/en.json` e `lib/i18n/es.json`.
+
+A fonte portátil fica em `sites/trio/`. `npm run build:trio` valida o ZIP, o checksum e os metadados de `sites/trio/distribution/`, gera as três páginas e copia o resultado para `public/trio/`. O pipeline de desenvolvimento e `build:static` executam essa etapa automaticamente. O build usa apenas arquivos deste repositório, incluindo fontes, licença, motor e capa 1200×630. `npm run test:trio` verifica idiomas, URLs confiáveis, exportação limpa e integridade do download. Veja `sites/trio/README.md` para atualizar o pacote.
+
+O aplicativo é gratuito, nativo em Swift/AppKit e compilado como Universal para macOS 13 ou posterior. O teste em hardware Intel continua pendente. Os controles acompanham a janela ativa quando ela é compatível; o site explica as limitações e a permissão de Acessibilidade. O download contém o aplicativo já compilado e um instalador local. A distribuição atual tem assinatura local, ainda sem notarização da Apple. Esta integração foi preparada para revisão local; não representa autorização de publicação do ALLM4.
 
 `public/jacopiei/` contém o site completo publicado pelo repositório `JACOPIEI-SITE`. Ele é servido diretamente em `/jacopiei/`, com seu HTML e CSS originais, preservando a demonstração, o visual e a consulta do manifesto público de `JaCopiei-Releases`. Quando o site original mudar, execute `npm run sync:jacopiei -- /caminho/para/JACOPIEI-SITE`; o script copia `dist/` e ajusta as URLs públicas. O site não processa pagamentos nem recebe arquivos do usuário; a contratação ocorre dentro do aplicativo.
 

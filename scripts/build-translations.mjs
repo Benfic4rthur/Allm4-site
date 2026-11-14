@@ -15,3 +15,7 @@ for (const name of ['jacopiei', 'alwaysdarkmode']) {
  html = html.replace(/\/i18n\/(translations|standalone)\.js(?:\?v=[a-f0-9]+)?/g, `/i18n/$1.js?v=${assetVersion}`);
  writeFileSync(path, html);
 }
+
+// Trio owns translated static documents and uses the same preference key.
+// Build its portable source rather than injecting a second language bar.
+await import("./build-trio.mjs");

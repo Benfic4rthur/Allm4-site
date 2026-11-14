@@ -27,6 +27,18 @@ if (build.status !== 0) process.exit(build.status ?? 1);
 
 for (const file of [
   "index.html",
+  "trio/index.html",
+  "trio/en/index.html",
+  "trio/es/index.html",
+  "trio/assets/site.js",
+  "trio/assets/trio-icon.png",
+  "trio/assets/fonts/LICENSE.txt",
+  "trio/vendor/scrollcraft.js",
+  "trio/share.png",
+  "trio/downloads/Trio-macOS-universal.zip",
+  "trio/downloads/Trio-macOS-universal.zip.sha256",
+  "trio/downloads/release.json",
+  "products/trio-icon.png",
   "gelamac/index.html",
   "gelamac/images/gelamac-icon.png",
   "gelamac/scrollcraft/scrollcraft.js",

@@ -174,3 +174,11 @@ O script `npm run build` existente pertence ao ambiente de desenvolvimento Vinex
 O seletor comum no topo alterna português, inglês e espanhol em todas as páginas, incluindo os sites independentes do GelaMac, JáCopiei? e Always Dark. A preferência fica no navegador e acompanha a navegação; na primeira visita, o idioma do navegador é usado quando disponível. `?lang=en`, `?lang=es` ou `?lang=pt` também define a preferência sem mudar os caminhos das páginas.
 
 Os textos revisados ficam em `lib/i18n/en.json` e `lib/i18n/es.json`. `lib/i18n/runtime.tsx` traduz o texto e os atributos descritivos dos componentes React, preservando chaves, estado, eventos e nós das animações. As páginas HTML independentes usam `public/i18n/standalone.js`, com o mesmo catálogo e a mesma preferência. `scripts/build-translations.mjs` prepara os arquivos compartilhados antes do desenvolvimento e da exportação. O build do GelaMac mantém sua verificação de tipos separada.
+
+## Games
+
+`/games/` é o catálogo de jogos, separado de aplicativos e extensões. Os itens ficam em `lib/games.ts`; cada um tem imagem, ícone, descrição e acesso ao próprio site. Primalith abre em `/games/primalith/`. FazuelliPunk 2077 abre diretamente no domínio oficial `https://fazuellipunk2077.com/`, preservando o jogo e seus serviços online. Sua capa e seu ícone são cópias dos assets oficiais do projeto `CyberCuzil 2077`; nenhum código desse jogo é incorporado ao ALLM4.
+
+O Primalith usa uma cópia local do site estático pronto em `sites/primalith/source/`. O build preserva seu documento independente, estilos, capturas e vídeos reais, sem carregar o CSS do ALLM4. O seletor PT/EN/ES compartilha a preferência do restante do site. Os downloads consultam a release mais recente e só exibem plataformas com instaladores reais, mantendo cache, snapshot e acesso à página oficial quando a API falhar. Veja `sites/primalith/README.md` para atualizar a cópia sem alterar o projeto original ou o jogo.
+
+`npm run dev -- --hostname 0.0.0.0` inicia a prévia local e na rede. `npm run build:static` prepara também as duas rotas de Games para publicação, sem publicar nada.

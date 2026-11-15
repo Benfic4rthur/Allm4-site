@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Explore uma ilha ancestral, sobreviva entre dinossauros, construa seu abrigo e jogue com amigos em rede local. Conheça Primalith e baixe a versão oficial.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Primalith · Encontre seu lugar na natureza">
+  <meta property="og:description" content="Uma ilha ancestral. Um mundo voxel para explorar, construir e sobreviver.">
+  <meta property="og:image" content="./assets/hero-moon.jpg?v=moon3">
+  <link rel="icon" href="./assets/primalith-amber.svg" type="image/svg+xml">
+  <link rel="preload" href="./assets/hero-moon.jpg?v=moon3" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Primalith · Encontre seu lugar na natureza</title>
+</head>
+<body class="night-vista">
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header" id="topo">
+    <a class="brand" href="#inicio" aria-label="Primalith, início">
+      <img src="./assets/primalith-amber.svg" alt="" width="44" height="44">
+      <span>PRIMALITH</span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Abrir navegação" aria-expanded="false" aria-controls="main-nav"><span></span><span></span></button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegação principal">
+      <a href="#ilha">A ilha</a>
+      <a href="#criaturas">Criaturas</a>
+      <a href="#sobrevivencia">Sobrevivência</a>
+      <a class="nav-download" href="#baixar">Baixar o jogo <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="conteudo">
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-media">
+        <img class="hero-poster" src="./assets/hero-moon.jpg?v=moon3" alt="Costa da ilha de Primalith sob o luar, com mar, praias e floresta voxel" width="1440" height="900" fetchpriority="high">
+        <video id="island-video" class="hero-video" muted loop playsinline preload="none" poster="./assets/hero-moon.jpg?v=moon3" aria-label="Voo de câmera sobre a costa, gravado dentro do jogo"><source data-src="./assets/island-moon.mp4?v=moon3" type="video/mp4"></video>
+      </div>
+      <div class="hero-shade"></div>
+      <div class="hero-content page-width">
+        <p class="eyebrow"><span class="small-diamond"></span> UM MUNDO ANCESTRAL. SUA PRÓPRIA HISTÓRIA.</p>
+        <h1 id="hero-title">ANTES DE TUDO,<br><span>SOBREVIVA.</span></h1>
+        <p class="hero-description">A natureza escreveu as regras.<br>Agora é a sua vez de deixar uma marca.</p>
+        <div class="hero-actions">
+          <a class="button button-amber" href="#baixar">Baixar Primalith <span aria-hidden="true">↗</span></a>
+          <a class="button button-ghost" href="#ilha">Conhecer a ilha <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-meta"><span>EXPLORAÇÃO</span><i></i><span>SOBREVIVÊNCIA VOXEL</span><i></i><span>SOLO + CO-OP LAN</span></div>
+      </div>
+      <div class="hero-bottom page-width">
+        <div class="capture-note"><span class="record-dot"></span> IMAGENS REAIS DO JOGO</div>
+        <button class="video-toggle" id="video-toggle" type="button" aria-label="Reproduzir vídeo de fundo" aria-pressed="false"><span class="video-toggle-icon" aria-hidden="true">▶</span><span class="video-toggle-label">Explorar em movimento</span></button>
+      </div>
+      <div class="hero-edge" aria-hidden="true"></div>
+    </section>
+
+    <section class="introduction page-width reveal" aria-label="Sobre o jogo">
+      <p class="intro-lead">Nem tudo aqui<br>quer te conhecer.</p>
+      <div class="intro-copy"><p>Um paraíso de blocos. Uma terra indomável. Em Primalith, cada expedição pode virar uma descoberta, um novo abrigo ou uma boa razão para correr.</p><p>Colete, fabrique, construa e crie laços com criaturas pré-históricas. A história da sua sobrevivência começa na praia.</p></div>
+      <div class="island-measure"><strong>8 × 8<span> KM</span></strong><p>Uma ilha finita.<br>Muito chão para explorar.</p></div>
+    </section>
+
+    <section class="island-section section-space" id="ilha" aria-labelledby="island-title">
+      <div class="section-heading page-width reveal"><div><p class="eyebrow">ESCOLHA SEU PRÓXIMO DESTINO</p><h2 id="island-title">Além da<br>sua zona de conforto.</h2></div><p>Da sombra da selva ao silêncio do gelo.<br>Cada território muda o que você precisa<br>para continuar vivo.</p></div>
+      <div class="biome-explorer page-width reveal">
+        <div class="biome-tabs" role="tablist" aria-label="Explorar biomas">
+          <button type="button" role="tab" aria-selected="true" aria-controls="biome-panel" id="tab-beach" data-biome="beach"><span class="biome-symbol" aria-hidden="true">≈</span> Praia</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="biome-panel" tabindex="-1" id="tab-jungle" data-biome="jungle"><span class="biome-symbol" aria-hidden="true">♧</span> Selva</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="biome-panel" id="tab-glacier" data-biome="glacier" tabindex="-1"><span class="biome-symbol" aria-hidden="true">❄</span> Gelo</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="biome-panel" id="tab-desert" data-biome="desert" tabindex="-1"><span class="biome-symbol" aria-hidden="true">☀</span> Deserto</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="biome-panel" id="tab-volcano" data-biome="volcano" tabindex="-1"><span class="biome-symbol" aria-hidden="true">△</span> Vulcão</button>
+        </div>
+        <div class="biome-panel" id="biome-panel" role="tabpanel" aria-labelledby="tab-beach" tabindex="0">
+          <img id="biome-image" src="./assets/biome-beach.jpg?v=beach5" alt="Praia Serena do Sul com enseada, areia e mar, capturada no jogo" width="1440" height="900" loading="lazy">
+          <div class="biome-panel-shade"></div>
+          <div class="biome-label"><span class="tiny-kicker" id="biome-type">ENSEADA DO SUL</span><h3 id="biome-title">Praia Serena do Sul</h3><p id="biome-description">A sua primeira fogueira pode nascer aqui. Areia, água rasa e fauna costeira ajudam no começo, mas continue atento aos predadores.</p><span class="biome-condition" id="biome-condition">Clima ameno · Dificuldade fácil</span></div>
+          <span class="image-stamp">CAPTURADO EM PRIMALITH</span>
+        </div>
+      </div>
+      <div class="territory-note page-width"><span>64 km² de mundo voxel</span><span>Praias, florestas, montanhas, pântanos e oceano</span></div><div class="island-film-invite page-width"><a class="text-link" id="open-island-film" href="./assets/island-tour.mp4?v=tour6">Ver o sobrevoo da ilha <span aria-hidden="true">▷</span></a><p>Da selva ao gelo, em imagens gravadas no jogo.</p></div>
+    </section>
+
+    <section class="creatures-section section-space" id="criaturas" aria-labelledby="creatures-title">
+      <div class="section-heading page-width reveal"><div><p class="eyebrow">VOCÊ TEM COMPANHIA</p><h2 id="creatures-title">Alguns encontros<br>mudam tudo.</h2></div><p>Aprenda a observar antes de se aproximar.<br>A mesma criatura que ameaça sua expedição<br>pode se tornar parte da sua história.</p></div>
+      <div class="creature-gallery page-width">
+        <article class="creature-card creature-featured reveal"><img src="./assets/creature-therizino.jpg" width="1440" height="900" loading="lazy" alt="Terizinossauro com plumagem e garras voxel, no mundo do jogo"><div class="creature-caption"><span>OBSERVE. RESPEITE. APRENDA.</span><h3>Terizinossauro</h3><p>Uma silhueta inconfundível.<br>Garras que merecem distância.</p></div></article>
+        <article class="creature-card reveal"><img src="./assets/creature-raptor.jpg" width="1440" height="900" loading="lazy" alt="Velociraptor no terreno voxel de Primalith"><div class="creature-caption"><span>RÁPIDO. ATENTO. NUNCA INOFENSIVO.</span><h3>Velociraptor</h3></div></article>
+        <article class="creature-card reveal"><img src="./assets/creature-trike.jpg" width="1440" height="900" loading="lazy" alt="Tricerátopo no cenário real de Primalith"><div class="creature-caption"><span>FORÇA NÃO É EXCLUSIVIDADE DOS PREDADORES.</span><h3>Tricerátopo</h3></div></article>
+      </div>
+      <div class="creature-details page-width reveal"><div><span class="detail-mark" aria-hidden="true">◇</span><h4>Mais que uma montaria</h4><p>Dome respeitando a dieta de cada espécie, equipe selas e encontre companheiros para explorar.</p></div><div><span class="detail-mark" aria-hidden="true">⌁</span><h4>Uma nova geração</h4><p>Forme casais, proteja os ovos e acompanhe o crescimento de filhotes até a vida adulta.</p></div><div><span class="detail-mark alpha-mark" aria-hidden="true">✦</span><h4>Reconheça um alfa</h4><p>Maior, mais forte e marcado pelo brilho vermelho. Alguns encontros exigem um plano melhor.</p></div></div>
+    </section>
+
+    <section class="survival-section section-space" id="sobrevivencia" aria-labelledby="survival-title">
+      <div class="page-width survival-layout"><div class="survival-heading reveal"><p class="eyebrow">SEU ABRIGO NÃO VAI SE CONSTRUIR SOZINHO</p><h2 id="survival-title">Comece com<br>as próprias<br><em>mãos.</em></h2><p>Da primeira fogueira à próxima grande expedição. Cada recurso tem um destino e cada nível abre novas possibilidades.</p><a class="text-link" href="#baixar">Começar a explorar <span aria-hidden="true">↗</span></a></div><div class="survival-steps"><article class="survival-step reveal"><span aria-hidden="true">01</span><div><h3>Aprenda a sobreviver.</h3><p>Procure alimento, cuide da sede e prepare sua comida. Nem toda água é segura. Nem toda carne está pronta para comer.</p></div></article><article class="survival-step reveal"><span aria-hidden="true">02</span><div><h3>Transforme o que encontrar.</h3><p>Recolha materiais, desbloqueie receitas e monte sua oficina. Fogueira, fornalha e mesa de ferramentas fazem parte da jornada.</p></div></article><article class="survival-step reveal"><span aria-hidden="true">03</span><div><h3>Construa um lugar seu.</h3><p>Coloque blocos, erga paredes e prepare um abrigo para voltar depois de explorar. O mundo voxel também é sua matéria-prima.</p></div></article><article class="survival-step reveal"><span aria-hidden="true">04</span><div><h3>Vá um pouco mais longe.</h3><p>Evolua atributos, descubra ruínas e cumpra missões. A noite e os territórios mais difíceis guardam seus próprios desafios.</p></div></article></div></div>
+    </section>
+
+    <section class="coop-section section-space" id="coop" aria-labelledby="coop-title"><div class="coop-landscape" aria-hidden="true"></div><div class="page-width coop-content reveal"><div class="coop-emblem" aria-hidden="true"><span>◇</span><span>◇</span></div><p class="eyebrow">UM MUNDO COMPARTILHADO</p><h2 id="coop-title">Melhor com alguém<br>cobrindo suas costas.</h2><p>Abra uma sala, compartilhe o código e explorem juntos.<br>O co-op em rede local conecta a sua próxima aventura.</p><div class="coop-facts"><span>Mesma rede local</span><span>Código e senha da sala</span><span>Voz durante a partida</span></div><p class="coop-limit">Servidores públicos e partidas pela internet não fazem parte desta etapa.</p></div></section>
+
+    <section class="download-section section-space" id="baixar" aria-labelledby="download-title"><div class="page-width download-layout"><div class="download-heading reveal"><img src="./assets/primalith-amber.svg" alt="Ícone original do dinossauro no âmbar" width="94" height="94"><p class="eyebrow">A SUA HISTÓRIA COMEÇA AQUI</p><h2 id="download-title">A ilha está<br>esperando.</h2><p>Primalith está em desenvolvimento contínuo.<br>Baixe uma versão oficial e acompanhe a evolução do jogo.</p><a class="text-link" href="https://github.com/Benfic4rthur/Primalith-Releases/releases" target="_blank" rel="noopener noreferrer">Ver notas das versões <span aria-hidden="true">↗</span></a></div><div class="download-panel reveal"><div class="release-heading"><span class="release-status-dot"></span><span id="release-status">CONSULTANDO VERSÃO OFICIAL</span><strong id="release-version">PRIMALITH</strong></div><div class="platform-download" id="download-mac"><div class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div><div class="platform-description"><h3>macOS</h3><p id="mac-description">Confira o pacote disponível na página oficial.</p></div><a class="button button-amber platform-button" id="mac-download-link" href="https://github.com/Benfic4rthur/Primalith-Releases/releases/latest" target="_blank" rel="noopener noreferrer">Ver download <span aria-hidden="true">↓</span></a></div><div class="platform-download platform-pending" id="download-windows" hidden><div class="platform-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m3 5 8-1v8H3V5Zm10-1 8-1v9h-8V4ZM3 14h8v7l-8-1v-6Zm10 0h8v9l-8-2v-7Z"/></svg></div><div class="platform-description"><h3>Windows</h3><p id="windows-description">Instalador para Windows de 64 bits.</p></div><a class="button button-ghost platform-button" id="windows-download-link" href="https://github.com/Benfic4rthur/Primalith-Releases/releases/latest" target="_blank" rel="noopener noreferrer">Baixar <span aria-hidden="true">↓</span></a></div><p class="download-system" id="windows-pending">Windows: o download aparece aqui assim que o instalador for publicado.</p><p class="download-check" id="release-detail" role="status" aria-live="polite">Consultando os arquivos do repositório oficial.</p><div class="download-footnotes"><span>Arquivos oficiais via GitHub</span><span>Sem conta para baixar</span></div><noscript><p class="download-check">Ative JavaScript para consultar os instaladores automaticamente ou <a href="https://github.com/Benfic4rthur/Primalith-Releases/releases/latest">acesse os downloads oficiais</a>.</p></noscript></div></div>
+      <div class="page-width faq"><details><summary>Como jogar com outra pessoa?</summary><p>Os computadores precisam estar na mesma rede local. Um jogador cria a sala em “Jogar em rede” e compartilha o código e a senha, se tiver definido uma. Os dois devem usar a mesma versão do jogo.</p></details><details><summary>O jogo recebe atualizações?</summary><p>Sim. O aplicativo consulta as versões oficiais ao abrir e mantém a atualização automática. Você também pode acompanhar os pacotes e as mudanças na página de releases.</p></details><details><summary>O que preciso saber antes de baixar?</summary><p>O jogo está em evolução. Salve uma cópia de segurança do seu mundo antes de atualizar. O desempenho varia com o equipamento e as opções gráficas. A nova edição desktop para macOS requer macOS 13 ou posterior. A compatibilidade final no Windows está em validação.</p></details></div>
+    </section>
+  </main>
+  <footer class="site-footer page-width"><a class="brand footer-brand" href="#inicio"><img src="./assets/primalith-amber.svg" alt="" width="34" height="34"><span>PRIMALITH</span></a><p>Uma criação de Arthur Benfica.<br>Um mundo que continua crescendo.</p><a href="https://github.com/Benfic4rthur/Primalith-Releases/releases" target="_blank" rel="noopener noreferrer">Versões oficiais <span aria-hidden="true">↗</span></a><span class="footer-copyright">© <span id="year">2026</span> Primalith</span></footer>
+  <dialog class="film-dialog" id="island-film" aria-labelledby="island-film-title"><div class="film-header"><div><h3 id="island-film-title">Sobrevoo pela ilha</h3><p>Praia, selva, deserto, gelo e vulcão. Captura real do jogo.</p></div><button type="button" id="close-island-film" aria-label="Fechar vídeo">✕</button></div><video id="island-tour-video" controls muted playsinline preload="none" poster="./assets/biome-glacier.jpg?v=biomes6"><source data-src="./assets/island-tour.mp4?v=tour6" type="video/mp4">Seu navegador não suporta este vídeo. <a href="./assets/island-tour.mp4?v=tour6">Abrir vídeo</a>.</video></dialog>
+  <script type="module" src="./site.js"></script>
+</body>
+</html>

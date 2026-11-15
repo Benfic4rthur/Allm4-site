@@ -19,3 +19,6 @@ for (const name of ['jacopiei', 'alwaysdarkmode']) {
 // Trio owns translated static documents and uses the same preference key.
 // Build its portable source rather than injecting a second language bar.
 await import("./build-trio.mjs");
+
+const { buildPrimalith } = await import("./build-primalith.mjs");
+buildPrimalith({ languageVersion: assetVersion });

@@ -1,0 +1,30 @@
+/* Native header additions and narrow-screen text fitting; original visual styles stay separate. */
+.primalith-language-switcher { display: inline-flex; align-items: center; gap: 2px; flex-shrink: 0; order: 3; }
+.primalith-language-switcher button { display: inline-flex; justify-content: center; align-items: center; min-width: 32px; min-height: 40px; padding: 5px; border: 1px solid transparent; background: transparent; color: #b9bead; font-size: 10px; font-weight: 700; line-height: 1; border-radius: 3px; }
+.primalith-language-switcher button[aria-pressed="true"] { background: #e3b06018; border-color: #e3b06055; color: #f0c783; }
+.primalith-language-switcher button:hover { color: #f0c783; background: #e3b06010; }
+.main-nav { order: 2; gap: clamp(12px, 1.6vw, 25px); }
+.menu-toggle { order: 4; }
+.main-nav .allm4-games-return { color: #bfc8b4; font-size: 10px; white-space: nowrap; }
+@media (max-width: 1100px) {
+  .menu-toggle { display: flex; flex-direction: column; justify-content: center; gap: 6px; width: 44px; height: 42px; background: #0f1a1280; border: 1px solid #a9b39a44; border-radius: 2px; flex-shrink: 0; }
+  .menu-toggle span { display: block; width: 19px; height: 1px; background: #edeedb; margin-inline: auto; }
+  .main-nav { position: absolute; top: 100%; left: 15px; right: 15px; display: none; flex-direction: column; align-items: stretch; padding: 15px; background: #131d15fa; border: 1px solid #89967533; gap: 0; box-shadow: 0 15px 30px #0004; max-height: calc(100svh - 95px); overflow-y: auto; }
+  .main-nav.is-open { display: flex; }
+  .main-nav a { font-size: 13px; padding: 14px; }
+  .main-nav .nav-download { margin-top: 8px; justify-content: space-between; padding: 14px; }
+  .primalith-language-switcher { margin-left: auto; margin-right: 16px; }
+}
+@media (max-width: 380px) {
+  .site-header { padding-inline: 14px; }
+  .site-header .brand { gap: 7px; }
+  .site-header .brand img { width: 34px; height: 34px; }
+  .site-header .brand span { font-size: 23px; letter-spacing: .08em; }
+  .primalith-language-switcher { gap: 0; margin-right: 9px; }
+  .primalith-language-switcher button { min-width: 28px; font-size: 9px; }
+  .menu-toggle { width: 38px; }
+}
+
+@media (max-width: 600px) {
+  .creature-featured h3 { font-size: clamp(30px, 9.5vw, 43px); }
+}

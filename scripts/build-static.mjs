@@ -27,6 +27,16 @@ if (build.status !== 0) process.exit(build.status ?? 1);
 
 for (const file of [
   "index.html",
+  "games/index.html",
+  "games/fazuellipunk-2077/assets/cover.jpg",
+  "games/fazuellipunk-2077/assets/icon.svg",
+  "games/primalith/index.html",
+  "games/primalith/site.js",
+  "games/primalith/releases.js",
+  "games/primalith/release-snapshot.json",
+  "games/primalith/assets/primalith-amber.svg",
+  "games/primalith/assets/island-moon.mp4",
+  "games/primalith/assets/island-tour.mp4",
   "trio/index.html",
   "trio/en/index.html",
   "trio/es/index.html",

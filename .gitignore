@@ -64,3 +64,6 @@ next-env.d.ts
 # Trio static export is reproduced from its portable source and verified package.
 /sites/trio/dist/
 /public/trio/
+
+# Primalith is exported from the preserved website snapshot in sites/primalith.
+/public/games/primalith/

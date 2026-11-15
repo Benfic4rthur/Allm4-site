@@ -2,7 +2,7 @@
 import { localizeTree, useSiteLanguage } from "@/lib/i18n/runtime";
 import Image from "next/image";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { BrandLockup } from "@/components/brand/brand-mark";
+import { StudioHeader } from "@/components/brand/studio-header";
 import { BrandOrbit } from "@/components/brand/brand-orbit";
 import { ProductArtwork } from "@/components/brand/product-artwork";
 import { StudioAbout } from "@/components/brand/studio-about";
@@ -18,16 +18,7 @@ export default function Home() {
   return localizeTree((
     <div className="umbrella-site" id="inicio">
       <a className="umb-skip" href="#conteudo">Pular para o conteúdo</a>
-      <header className="studio-header">
-        <div className="studio-shell studio-header-inner">
-          <BrandLockup />
-          <nav className="studio-main-nav" aria-label="Navegação principal">
-            <a href="#produtos">Aplicativos</a>
-            <a className="studio-nav-extensions" href="#extensoes">Extensões</a>
-            <a className="studio-nav-about" href="#sobre">Sobre Arthur</a>
-          </nav>
-        </div>
-      </header>
+      <StudioHeader />
       <main id="conteudo">
         <section className="studio-hero studio-shell" aria-labelledby="hero-title">
           <div className="studio-hero-copy">

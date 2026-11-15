@@ -71,3 +71,20 @@ test('both languages cover the complete catalog and preserve dynamic placeholder
   assert.equal(runtime.translate('Em andamento'), 'En curso');
   runtime.setSiteLanguage('pt');
 });
+
+test('Games and Primalith translate interactive biome copy and release status in both languages', () => {
+  for (const locale of ['en', 'es']) {
+    for (const text of [
+      'Mundos que eu crio para explorar.',
+      'Conhecer o jogo Primalith',
+      'ANTES DE TUDO,',
+      'Praia Serena do Sul',
+      'Baixar para Mac',
+      'Universal · Intel e Apple Silicon · macOS 13+ · 90 MB',
+      'Conferido agora no GitHub. Publicado em 15 de novembro de 2026',
+      'A consulta está indisponível no momento.',
+    ]) assert.notEqual(runtime.translate(text, locale), text, `${locale}: ${text}`);
+  }
+  assert.equal(runtime.translate('Conferido agora no GitHub. Publicado em 15 de novembro de 2026', 'en'), 'Checked just now on GitHub. Published November 15, 2026');
+  assert.equal(runtime.translate('Conferido agora no GitHub. Publicado em 15 de novembro de 2026', 'es'), 'Verificado ahora en GitHub. Publicado el 15 de noviembre de 2026');
+});

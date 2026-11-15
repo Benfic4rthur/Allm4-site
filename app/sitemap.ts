@@ -4,6 +4,8 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    { url: "https://allm4.com/games/", changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://allm4.com/games/primalith/", changeFrequency: "weekly", priority: 0.8 },
     {
       url: "https://allm4.com/",
       changeFrequency: "weekly",

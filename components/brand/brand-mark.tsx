@@ -27,12 +27,14 @@ export function BrandMark({
 
 export function BrandLockup({
   compact = false,
+  href = "#inicio",
 }: {
   compact?: boolean;
+  href?: string;
 }) {
   useSiteLanguage();
   return localizeTree((
-    <a className={`umb-lockup${compact ? " umb-lockup-compact" : ""}`} href="#inicio" aria-label="ALLM4, início">
+    <a className={`umb-lockup${compact ? " umb-lockup-compact" : ""}`} href={href} aria-label="ALLM4, início">
       <BrandMark className="umb-lockup-mark" decorative />
       <span className="umb-lockup-copy">
         <strong>ALLM4</strong>

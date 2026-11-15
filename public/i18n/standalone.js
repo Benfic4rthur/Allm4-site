@@ -41,10 +41,13 @@
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT);
     while (walker.nextNode()) { if (walker.currentNode.nodeType === Node.TEXT_NODE) updateText(walker.currentNode); else updateElement(walker.currentNode); }
   }
-  const bar = document.createElement('nav'); bar.className = 'allm4-language-bar'; bar.dataset.allm4Language = ''; bar.setAttribute('aria-label', 'Language / Idioma');
+  const existingBar = document.querySelector('[data-allm4-language]');
+  const bar = existingBar || document.createElement('nav');
+  if (!existingBar) { bar.className = 'allm4-language-bar'; bar.dataset.allm4Language = ''; }
+  bar.setAttribute('aria-label', 'Language / Idioma');
   const names = { pt: 'Português', en: 'English', es: 'Español' };
   for (const code of available) { const button = document.createElement('button'); button.type = 'button'; button.lang = code; button.textContent = code.toUpperCase(); button.setAttribute('aria-label', names[code]); button.dataset.language = code; button.addEventListener('click', () => setLanguage(code)); bar.appendChild(button); }
-  document.body.prepend(bar);
+  if (!existingBar) document.body.prepend(bar);
   function setLanguage(code) {
     locale = code; try { localStorage.setItem(key, code); } catch {}
     document.documentElement.lang = code === 'pt' ? 'pt-BR' : code;

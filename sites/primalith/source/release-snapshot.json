@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-15T21:26:11.138Z",
+  "release": {
+    "tag_name": "v1.2.28",
+    "published_at": "2026-11-15T20:52:05Z",
+    "html_url": "https://github.com/Benfic4rthur/Primalith-Releases/releases/tag/v1.2.28",
+    "draft": false,
+    "prerelease": false,
+    "assets": [
+      {
+        "name": "arkcraft-web-update.zip",
+        "browser_download_url": "https://github.com/Benfic4rthur/Primalith-Releases/releases/download/v1.2.28/arkcraft-web-update.zip",
+        "size": 7805611
+      },
+      {
+        "name": "Primalith-macOS.zip",
+        "browser_download_url": "https://github.com/Benfic4rthur/Primalith-Releases/releases/download/v1.2.28/Primalith-macOS.zip",
+        "size": 89500571
+      },
+      {
+        "name": "primalith-web-update.zip",
+        "browser_download_url": "https://github.com/Benfic4rthur/Primalith-Releases/releases/download/v1.2.28/primalith-web-update.zip",
+        "size": 7805611
+      }
+    ]
+  }
+}

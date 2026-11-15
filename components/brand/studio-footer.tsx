@@ -72,6 +72,7 @@ export function StudioFooter() {
         <nav className="studio-footer-column" aria-label="ALLM4">
           <h3>ALLM4</h3>
           <a href="#sobre">Sobre</a>
+          <a href={`${publicBasePath}/games/`}>Games</a>
           <a href={githubUrl} target="_blank" rel="noopener noreferrer">
             GitHub <ArrowUpRight size={11} aria-hidden="true" />
           </a>

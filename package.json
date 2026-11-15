@@ -15,7 +15,8 @@
     "db:generate": "drizzle-kit generate",
     "sync:jacopiei": "node scripts/sync-jacopiei-site.mjs",
     "build:trio": "node scripts/build-trio.mjs",
-    "test:trio": "node --test sites/trio/tests/*.test.mjs tests/trio-site.test.mjs"
+    "test:trio": "node --test sites/trio/tests/*.test.mjs tests/trio-site.test.mjs",
+    "sync:primalith": "node scripts/sync-primalith-site.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

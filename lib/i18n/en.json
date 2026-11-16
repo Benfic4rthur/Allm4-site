@@ -1903,5 +1903,10 @@
   "Aventura 2D · Sátira brasileira": "2D adventure · Brazilian satire",
   "Arte oficial de FazuelliPunk 2077, com uma cidade neon em pixel art": "Official FazuelliPunk 2077 artwork featuring a neon city in pixel art",
   "Jogar no navegador": "Play in your browser",
-  "Jogar {{0}} no site oficial": "Play {{0}} on the official website"
+  "Jogar {{0}} no site oficial": "Play {{0}} on the official website",
+  "downloads acumulados": "total downloads",
+  "Último total verificado no GitHub. Atualizando a consulta…": "Last verified total on GitHub. Checking for updates…",
+  "Instaladores de todas as versões, somados no GitHub.": "Installer downloads across all releases on GitHub.",
+  "Último total verificado no GitHub. A consulta está temporariamente indisponível.": "Last verified total on GitHub. The live count is temporarily unavailable.",
+  "Não foi possível consultar o total agora.": "The total is currently unavailable."
 }

@@ -28,3 +28,9 @@
 @media (max-width: 600px) {
   .creature-featured h3 { font-size: clamp(30px, 9.5vw, 43px); }
 }
+
+.primalith-download-stats { margin-block: 22px 17px; padding-block: 17px; border-block: 1px solid #a9b39a29; }
+.primalith-download-stats > div { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.primalith-download-stats strong { font-family: var(--display); font-size: 40px; line-height: 1; color: var(--amber); font-variant-numeric: tabular-nums; }
+.primalith-download-stats span { font-size: 12px; color: #e0e3d1; }
+.primalith-download-stats p { margin-top: 8px; font-size: 10px; line-height: 1.7; color: #a0af99; }

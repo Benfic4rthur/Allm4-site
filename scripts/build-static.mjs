@@ -33,6 +33,8 @@ for (const file of [
   "games/primalith/index.html",
   "games/primalith/site.js",
   "games/primalith/releases.js",
+  "games/primalith/download-stats.js",
+  "games/primalith/download-stats-snapshot.json",
   "games/primalith/release-snapshot.json",
   "games/primalith/assets/primalith-amber.svg",
   "games/primalith/assets/island-moon.mp4",

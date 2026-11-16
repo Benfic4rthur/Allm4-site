@@ -18,6 +18,11 @@ export function buildPrimalith({ languageVersion, outputDirectory } = {}) {
   // Original styles, photos, videos, icon and release parser remain unmodified.
   let html = readFileSync(join(source, "index.html"), "utf8");
   let site = readFileSync(join(source, "site.js"), "utf8");
+  const creaturePhotos = ['creature-therizino.jpg', 'creature-raptor.jpg', 'creature-trike.jpg'];
+  for (const photo of creaturePhotos) {
+    const photoVersion = createHash('sha256').update(readFileSync(join(source, 'assets', photo))).digest('hex').slice(0, 12);
+    html = html.replace(`src="./assets/${photo}"`, `src="./assets/${photo}?v=${photoVersion}"`);
+  }
   // Native mobile styles hide some line breaks; keep words separated there.
   html = html.replaceAll("<br>", "<br> ");
   if (!site.includes("if(mac){")) throw new Error("Review Primalith's installer adapter: its upstream download renderer changed.");
